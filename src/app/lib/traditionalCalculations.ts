@@ -94,8 +94,8 @@ export interface ArabicPart {
 }
 
 export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
-  // Funções baseadas em minutos absolutos
-  const toTotalLocal = (signo: number, grau: number, minuto: number) => {
+  // --- 6. ESTRUTURA DE FUNÇÕES (SUGERIDA) ---
+  const toTotal = (signo: number, grau: number, minuto: number) => {
     return (signo * 1800) + (grau * 60) + minuto;
   };
 
@@ -121,20 +121,21 @@ export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
     return normalize(asc + b - c);
   };
 
-  const decimalToTotal = (lon: number) => {
-    const s = Math.floor(lon / 30);
-    const g = Math.floor(lon % 30);
-    const m = Math.round((lon - (s * 30 + g)) * 60);
-    return toTotalLocal(s, g, m);
+  // Helper para isolar signo, grau e minuto antes de chamar toTotal
+  const getAbsoluteMin = (lon: number) => {
+    const signo = Math.floor(lon / 30);
+    const grau = Math.floor(lon % 30);
+    const minuto = Math.round((lon - (signo * 30 + grau)) * 60);
+    return toTotal(signo, grau, minuto);
   };
 
-  const ascTotal = decimalToTotal(chart.housesData.ascendant);
-  const solTotal = decimalToTotal(chart.planets.find(p => p.type === "sun")!.longitudeRaw);
-  const luaTotal = decimalToTotal(chart.planets.find(p => p.type === "moon")!.longitudeRaw);
-  const venusTotal = decimalToTotal(chart.planets.find(p => p.type === "venus")!.longitudeRaw);
-  const marteTotal = decimalToTotal(chart.planets.find(p => p.type === "mars")!.longitudeRaw);
-  const jupiterTotal = decimalToTotal(chart.planets.find(p => p.type === "jupiter")!.longitudeRaw);
-  const saturnoTotal = decimalToTotal(chart.planets.find(p => p.type === "saturn")!.longitudeRaw);
+  const ascTotal = getAbsoluteMin(chart.housesData.ascendant);
+  const solTotal = getAbsoluteMin(chart.planets.find(p => p.type === "sun")!.longitudeRaw);
+  const luaTotal = getAbsoluteMin(chart.planets.find(p => p.type === "moon")!.longitudeRaw);
+  const venusTotal = getAbsoluteMin(chart.planets.find(p => p.type === "venus")!.longitudeRaw);
+  const marteTotal = getAbsoluteMin(chart.planets.find(p => p.type === "mars")!.longitudeRaw);
+  const jupiterTotal = getAbsoluteMin(chart.planets.find(p => p.type === "jupiter")!.longitudeRaw);
+  const saturnoTotal = getAbsoluteMin(chart.planets.find(p => p.type === "saturn")!.longitudeRaw);
 
   const fortunaTotal = calcPart(ascTotal, luaTotal, solTotal);
   const espiritoTotal = calcPart(ascTotal, solTotal, luaTotal);
