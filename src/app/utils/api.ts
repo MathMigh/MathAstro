@@ -1,23 +1,12 @@
 export const API_BASE = (() => {
-  if (process.env.NODE_ENV === "production") {
-    // Produção: sempre usar a URL da variável de ambiente
-    return process.env.NEXT_PUBLIC_API_URL!;
+  if (typeof window !== "undefined") {
+    // Client-side: Usamos caminho relativo para a própria Vercel ou Localhost
+    return "/api";
   } else {
-    // Desenvolvimento: decidir com base no host do navegador
-    if (typeof window !== "undefined") {
-      const hostname = window.location.hostname;
-
-      if (hostname === "localhost" || hostname === "127.0.0.1" || hostname.includes("192.168")) {
-        // PC ou celular na mesma rede rodando dev
-        return "/api";
-      } else {
-        // Fallback pra producao pra garantir
-        return "https://zazastro-api.onrender.com"
-      }
-    } else {
-      // Server-side em dev: fallback (requires absolute URL)
-      return "http://localhost:3000/api";
-    }
+    // Server-side: Vercel injeta a URL do servidor. Caso não exista, assume dev local.
+    return process.env.VERCEL_URL 
+      ? `https://${process.env.VERCEL_URL}/api` 
+      : "http://localhost:3000/api";
   }
 })();
 
