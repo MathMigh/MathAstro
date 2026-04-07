@@ -97,22 +97,24 @@ export function calculateArabicParts(chart: BirthChart, sect: "Diurno" | "Noturn
   const jup = chart.planets.find(p => p.type === "jupiter")!.longitudeRaw;
   const sat = chart.planets.find(p => p.type === "saturn")!.longitudeRaw;
 
+  const getPart = (b: number, c: number) => {
+    return sect === "Diurno" ? asc + b - c : asc + c - b;
+  };
+
+  const fortunaLon = (getPart(moon, sun) + 3600) % 360;
+
   const partsDef = [
-    { name: "Fortuna", calc: sect === "Diurno" ? asc + moon - sun : asc + sun - moon },
-    { name: "Espírito", calc: sect === "Diurno" ? asc + sun - moon : asc + moon - sun },
-    { name: "Amor", calc: asc + ven - (sect === "Diurno" ? sun : moon) }, // Simplified, usually diurno = sun, noturno = moon
-    { name: "Vitória", calc: asc + jup - (sect === "Diurno" ? sun : moon) },
-    { name: "Necessidade", calc: asc + (sect === "Diurno" ? sun : moon) - (sect === "Diurno" ? moon : sun) }, // Or static? Usually ASC + Fortuna - Spirit
-    { name: "Valor", calc: asc + mars - sat }, // Variation check needed, but let's stick to a common one
-    { name: "Cativeiro", calc: asc + sat - (sect === "Diurno" ? sun : moon) }
+    { name: "Fortuna", lon: fortunaLon },
+    { name: "Espírito", lon: (getPart(sun, moon) + 3600) % 360 },
+    { name: "Amor", lon: (getPart(ven, sun) + 3600) % 360 },
+    { name: "Vitória", lon: (getPart(jup, sun) + 3600) % 360 },
+    { name: "Valor", lon: (getPart(mars, sun) + 3600) % 360 },
+    { name: "Necessidade", lon: (getPart(fortunaLon, sat) + 3600) % 360 },
+    { name: "Cativeiro", lon: (getPart(sat, mars) + 3600) % 360 }
   ];
 
-  // Specific overrides for accuracy to the user's list if needed
-  // Fortuna: ASC + Moon - Sun (Day)
-  // Spirit: ASC + Sun - Moon (Day)
-  
   return partsDef.map(pd => {
-    let rawLon = (pd.calc + 3600) % 360;
+    let rawLon = pd.lon;
     const hIdx = getHouseIndex(rawLon, chart.housesData.house);
     const signIdx = Math.floor(rawLon / 30) % 12;
     const disp = DOMICILE_RULER[signIdx];
