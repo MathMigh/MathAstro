@@ -88,17 +88,27 @@ export interface ArabicPart {
 }
 
 export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
-  // Helper: Converte longitude decimal para minutos absolutos (0 a 21599)
-  const toTotal = (lon: number) => Math.round(lon * 60);
+  // Helper: Converte longitude decimal para minutos absolutos seguindo a regra (signo*1800 + grau*60 + min)
+  const toTotal = (lon: number) => {
+    const s = Math.floor(lon / 30);
+    const g = Math.floor(lon % 30);
+    const m = Math.round((lon - (s * 30 + g)) * 60);
+    return (s * 1800) + (g * 60) + m;
+  };
   
-  // Helper: Normaliza minutos no círculo de 360° (21600 minutos)
+  // Helper: Normaliza minutos no círculo de 21600 minutos
   const normalizeMin = (min: number) => {
     const fullCircle = 21600;
     return ((min % fullCircle) + fullCircle) % fullCircle;
   };
 
-  // Helper: Converte de volta para graus decimais
-  const fromTotal = (total: number) => total / 60;
+  // Helper: Formata o total de minutos de volta para string signo/grau/minuto seguindo a regra floor fornecida
+  const formatMinutes = (total: number) => {
+    const sIdx = Math.floor(total / 1800) % 12;
+    const g = Math.floor((total - (sIdx * 1800)) / 60);
+    const m = total - (sIdx * 1800) - (g * 60);
+    return `${SIGNS[sIdx]} a ${g}°${m.toString().padStart(2, '0')}’`;
+  };
 
   // Helper: Cálculo fixo da Parte (Asc + B - C) em minutos
   const calcPartMin = (ascMin: number, bMin: number, cMin: number) => {
@@ -113,7 +123,6 @@ export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
   const jup = toTotal(chart.planets.find(p => p.type === "jupiter")!.longitudeRaw);
   const sat = toTotal(chart.planets.find(p => p.type === "saturn")!.longitudeRaw);
 
-  // Parte da Fortuna é calculada primeiro pois a Necessidade depende dela
   const fortunaMin = calcPartMin(asc, moon, sun);
 
   const partsDef = [
@@ -127,21 +136,21 @@ export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
   ];
 
   return partsDef.map(pd => {
-    const rawLon = fromTotal(pd.min);
+    const rawLon = pd.min / 60; // Para cálculos de dispositor etc
     const hIdx = getHouseIndex(rawLon, chart.housesData.house);
-    const signIdx = Math.floor(rawLon / 30) % 12;
+    const signIdx = Math.floor(pd.min / 1800) % 12;
     const disp = DOMICILE_RULER[signIdx];
     const dispPlanet = chart.planets.find(p => p.name === disp);
-    const antiscionLon = (540 - rawLon) % 360;
+    const antiscionLon = (32400 - pd.min) % 21600; // Antiscion em minutos: (540*60 - total) % 21600
 
     return {
       name: pd.name,
       longitude: rawLon,
       sign: SIGNS[signIdx],
-      posFormatted: formatDegrees(rawLon),
+      posFormatted: formatMinutes(pd.min),
       house: `Casa ${romanize(hIdx)}`,
       dispositor: `${disp} em ${dispPlanet ? formatDegrees(dispPlanet.longitudeRaw) : "Nenhum"}, na Casa ${dispPlanet ? romanize(getHouseIndex(dispPlanet.longitudeRaw, chart.housesData.house)) : "?"}`,
-      antiscion: formatDegrees(antiscionLon)
+      antiscion: formatMinutes(antiscionLon)
     };
   });
 }
