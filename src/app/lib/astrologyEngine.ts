@@ -141,24 +141,42 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
   let hh = Math.floor(decimalTime);
   let mm = Math.round((decimalTime - hh) * 60);
 
-  // Format as ISO with -03:00 timezone for Brazil
-  const pad = (n: any) => {
-    if (n === undefined || n === null || isNaN(n)) return '00';
-    return n.toString().padStart(2, '0');
-  };
-  
-  const isoString = `${pad(year)}-${pad(month)}-${pad(day)}T${pad(hh)}:${pad(mm)}:00.000-03:00`;
-  const dateObj = new Date(isoString);
+  let uYear: number, uMonth: number, uDate: number, uHour: number;
 
-  let uYear = dateObj.getUTCFullYear();
-  let uMonth = dateObj.getUTCMonth() + 1;
-  let uDate = dateObj.getUTCDate();
-  let uHour = dateObj.getUTCHours() + dateObj.getUTCMinutes() / 60 + dateObj.getUTCSeconds() / 3600;
+  // === DETECÇÃO DE TIMEZONE DINÂMICO ===
+  // Resolve o fuso horário correto baseado nas coordenadas (Foco Brasil)
+  const determineTimezone = (lat: number, lon: number): string => {
+    // Lógica simplificada de fusos brasileiros baseada em longitudes (meridianos)
+    if (lon > -34) return "America/Noronha";          // UTC-2
+    if (lon > -45) return "America/Sao_Paulo";        // UTC-3 (Brasília/SP/RJ)
+    if (lon > -67.5) return "America/Manaus";         // UTC-4 (AM/MT/MS/RO/RR)
+    return "America/Rio_Branco";                      // UTC-5 (AC/AM-Oeste)
+  };
+
+  const zone = determineTimezone(coordinates.latitude, coordinates.longitude);
   
-  if (isNaN(uYear)) { 
-     console.error("FALHA AO PARSEAR DATA:", isoString, "Payload recebido:", birthDate);
-     uYear = 2000; uMonth = 1; uDate = 1; uHour = 12; 
+  // Usamos moment-timezone para converter hora local da cidade em UTC real
+  // Isso lida automaticamente com Horário de Verão (DST) histórico da região!
+  const m = moment.tz(
+    `${year}-${month}-${day} ${hh.toString().padStart(2, '0')}:${mm.toString().padStart(2, '0')}`, 
+    "YYYY-M-D HH:mm", 
+    zone
+  );
+
+  const dateObj = m.toDate();
+  
+  if (isNaN(dateObj.getTime())) { 
+     console.error("FALHA AO PARSEAR DATA COM MOMENT:", birthDate, "Zone:", zone);
+     // Fallback de segurança se falhar
+     const failDate = new Date();
+     uYear = failDate.getUTCFullYear(); uMonth = failDate.getUTCMonth() + 1; uDate = failDate.getUTCDate(); uHour = failDate.getUTCHours();
+  } else {
+     uYear = dateObj.getUTCFullYear();
+     uMonth = dateObj.getUTCMonth() + 1;
+     uDate = dateObj.getUTCDate();
+     uHour = dateObj.getUTCHours() + dateObj.getUTCMinutes() / 60 + dateObj.getUTCSeconds() / 3600;
   }
+
 
   // 1 = Calendário Gregoriano e passamos expresso pra evitar bug (void 0).Gregorian da lib
   const jd = sw.julianDay(uYear, uMonth, uDate, uHour, 1);
