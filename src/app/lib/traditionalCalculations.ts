@@ -137,17 +137,25 @@ export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
   const jupiterTotal = getAbsoluteMin(chart.planets.find(p => p.type === "jupiter")!.longitudeRaw);
   const saturnoTotal = getAbsoluteMin(chart.planets.find(p => p.type === "saturn")!.longitudeRaw);
 
-  const fortunaTotal = calcPart(ascTotal, luaTotal, solTotal);
-  const espiritoTotal = calcPart(ascTotal, solTotal, luaTotal);
+  const sect = getSect(chart.planets.find(p => p.type === "sun")!.longitudeRaw, chart.housesData.ascendant, chart.housesData.house);
+  const isNight = sect === "Noturno";
+
+  const fortunaTotal  = isNight ? calcPart(ascTotal, solTotal, luaTotal) : calcPart(ascTotal, luaTotal, solTotal);
+  const espiritoTotal = isNight ? calcPart(ascTotal, luaTotal, solTotal) : calcPart(ascTotal, solTotal, luaTotal);
+  const amorTotal     = isNight ? calcPart(ascTotal, solTotal, venusTotal) : calcPart(ascTotal, venusTotal, solTotal);
+  const vitoriaTotal  = isNight ? calcPart(ascTotal, solTotal, jupiterTotal) : calcPart(ascTotal, jupiterTotal, solTotal);
+  const valorTotal    = isNight ? calcPart(ascTotal, solTotal, marteTotal) : calcPart(ascTotal, marteTotal, solTotal);
+  const necessTotal   = isNight ? calcPart(ascTotal, saturnoTotal, fortunaTotal) : calcPart(ascTotal, fortunaTotal, saturnoTotal);
+  const cativTotal    = isNight ? calcPart(ascTotal, marteTotal, saturnoTotal) : calcPart(ascTotal, saturnoTotal, marteTotal);
   
   const partsDef = [
     { name: "Parte da Fortuna", min: fortunaTotal },
     { name: "Parte do Espírito", min: espiritoTotal },
-    { name: "Parte do Amor", min: calcPart(ascTotal, venusTotal, solTotal) },
-    { name: "Parte da Vitória", min: calcPart(ascTotal, jupiterTotal, solTotal) },
-    { name: "Parte do Valor", min: calcPart(ascTotal, marteTotal, solTotal) },
-    { name: "Parte da Necessidade", min: calcPart(ascTotal, fortunaTotal, saturnoTotal) },
-    { name: "Parte do Cativeiro", min: calcPart(ascTotal, saturnoTotal, marteTotal) }
+    { name: "Parte do Amor", min: amorTotal },
+    { name: "Parte da Vitória", min: vitoriaTotal },
+    { name: "Parte do Valor", min: valorTotal },
+    { name: "Parte da Necessidade", min: necessTotal },
+    { name: "Parte do Cativeiro", min: cativTotal }
   ];
 
   return partsDef.map(pd => {
