@@ -11,6 +11,7 @@
     "tw:watch": "tailwindcss -i ./src/app/globals.css -o ./public/styles/tailwind.css --watch"
   },
   "dependencies": {
+    "@swisseph/browser": "^1.1.1",
     "@tailwindcss/postcss": "^4.1.14",
     "d3": "^7.9.0",
     "moment": "^2.30.1",

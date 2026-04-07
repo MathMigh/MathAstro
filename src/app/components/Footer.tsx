@@ -1,5 +1,6 @@
 import { CgWebsite } from "react-icons/cg";
-import { SiGithub, SiGmail, SiInstagram, SiLinkedin, SiWhatsapp } from "react-icons/si";
+import { FaLinkedin } from "react-icons/fa";
+import { SiGithub, SiGmail, SiInstagram, SiWhatsapp } from "react-icons/si";
 
 export default function Footer() {
   return (
@@ -28,7 +29,7 @@ export default function Footer() {
             aria-label="LinkedIn - abre em nova aba"
             className="hover:text-blue-400 transition-colors flex items-center gap-2"
           >
-            <SiLinkedin size={20} />
+            <FaLinkedin size={20} />
             <span className="hidden sm:inline">LinkedIn</span>
           </a>
 

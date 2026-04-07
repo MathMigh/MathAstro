@@ -7,16 +7,16 @@ export const API_BASE = (() => {
     if (typeof window !== "undefined") {
       const hostname = window.location.hostname;
 
-      if (hostname === "localhost" || hostname === "127.0.0.1") {
-        // PC local
-        return "http://localhost:3001";
+      if (hostname === "localhost" || hostname === "127.0.0.1" || hostname.includes("192.168")) {
+        // PC ou celular na mesma rede rodando dev
+        return "/api";
       } else {
-        // celular na mesma rede local
+        // Fallback pra producao pra garantir
         return "https://zazastro-api.onrender.com"
       }
     } else {
-      // Server-side em dev: fallback
-      return process.env.API_URL!;
+      // Server-side em dev: fallback (requires absolute URL)
+      return "http://localhost:3000/api";
     }
   }
 })();
