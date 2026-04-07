@@ -87,34 +87,47 @@ export interface ArabicPart {
   antiscion: string;
 }
 
-export function calculateArabicParts(chart: BirthChart, sect: "Diurno" | "Noturno"): ArabicPart[] {
-  const asc = chart.housesData.ascendant;
-  const sun = chart.planets.find(p => p.type === "sun")!.longitudeRaw;
-  const moon = chart.planets.find(p => p.type === "moon")!.longitudeRaw;
-  const merc = chart.planets.find(p => p.type === "mercury")!.longitudeRaw;
-  const ven = chart.planets.find(p => p.type === "venus")!.longitudeRaw;
-  const mars = chart.planets.find(p => p.type === "mars")!.longitudeRaw;
-  const jup = chart.planets.find(p => p.type === "jupiter")!.longitudeRaw;
-  const sat = chart.planets.find(p => p.type === "saturn")!.longitudeRaw;
-
-  const getPart = (b: number, c: number) => {
-    return sect === "Diurno" ? asc + b - c : asc + c - b;
+export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
+  // Helper: Converte longitude decimal para minutos absolutos (0 a 21599)
+  const toTotal = (lon: number) => Math.round(lon * 60);
+  
+  // Helper: Normaliza minutos no círculo de 360° (21600 minutos)
+  const normalizeMin = (min: number) => {
+    const fullCircle = 21600;
+    return ((min % fullCircle) + fullCircle) % fullCircle;
   };
 
-  const fortunaLon = (getPart(moon, sun) + 3600) % 360;
+  // Helper: Converte de volta para graus decimais
+  const fromTotal = (total: number) => total / 60;
+
+  // Helper: Cálculo fixo da Parte (Asc + B - C) em minutos
+  const calcPartMin = (ascMin: number, bMin: number, cMin: number) => {
+    return normalizeMin(ascMin + bMin - cMin);
+  };
+
+  const asc = toTotal(chart.housesData.ascendant);
+  const sun = toTotal(chart.planets.find(p => p.type === "sun")!.longitudeRaw);
+  const moon = toTotal(chart.planets.find(p => p.type === "moon")!.longitudeRaw);
+  const ven = toTotal(chart.planets.find(p => p.type === "venus")!.longitudeRaw);
+  const mars = toTotal(chart.planets.find(p => p.type === "mars")!.longitudeRaw);
+  const jup = toTotal(chart.planets.find(p => p.type === "jupiter")!.longitudeRaw);
+  const sat = toTotal(chart.planets.find(p => p.type === "saturn")!.longitudeRaw);
+
+  // Parte da Fortuna é calculada primeiro pois a Necessidade depende dela
+  const fortunaMin = calcPartMin(asc, moon, sun);
 
   const partsDef = [
-    { name: "Fortuna", lon: fortunaLon },
-    { name: "Espírito", lon: (getPart(sun, moon) + 3600) % 360 },
-    { name: "Amor", lon: (getPart(ven, sun) + 3600) % 360 },
-    { name: "Vitória", lon: (getPart(jup, sun) + 3600) % 360 },
-    { name: "Valor", lon: (getPart(mars, sun) + 3600) % 360 },
-    { name: "Necessidade", lon: (getPart(fortunaLon, sat) + 3600) % 360 },
-    { name: "Cativeiro", lon: (getPart(sat, mars) + 3600) % 360 }
+    { name: "Fortuna", min: fortunaMin },
+    { name: "Espírito", min: calcPartMin(asc, sun, moon) },
+    { name: "Amor", min: calcPartMin(asc, ven, sun) },
+    { name: "Vitória", min: calcPartMin(asc, jup, sun) },
+    { name: "Valor", min: calcPartMin(asc, mars, sun) },
+    { name: "Necessidade", min: calcPartMin(asc, fortunaMin, sat) },
+    { name: "Cativeiro", min: calcPartMin(asc, sat, mars) }
   ];
 
   return partsDef.map(pd => {
-    let rawLon = pd.lon;
+    const rawLon = fromTotal(pd.min);
     const hIdx = getHouseIndex(rawLon, chart.housesData.house);
     const signIdx = Math.floor(rawLon / 30) % 12;
     const disp = DOMICILE_RULER[signIdx];

@@ -71,7 +71,7 @@ export function generateTraditionalReport(chart: BirthChart): string {
 
   report += `--------------------------------------------------------------------\n`;
   report += `PARTES ÁRABES:\n\n`;
-  const parts = calculateArabicParts(chart, sect);
+  const parts = calculateArabicParts(chart);
   parts.forEach(p => {
     report += `Parte d${p.name.endsWith('o') || p.name === 'Valor' || p.name === 'Espírito' ? 'o' : 'a'} ${p.name} em ${p.posFormatted} na ${p.house}. (Dispositor: ${p.dispositor}). Antiscion: ${p.antiscion}.\n`;
   });
