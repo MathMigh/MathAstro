@@ -1,43 +1,88 @@
 import { BirthChart } from "@/interfaces/BirthChartInterfaces";
-import {
-  getAntiscion,
-  getDegreeAndSign,
-  toTotal,
-} from "./chartUtils";
 import { ArabicPart, ArabicPartsType } from "@/interfaces/ArabicPartInterfaces";
 
 const getGlyphOnly = true;
-
 const CIRCLE_MIN = 21600;
 
-function normalizeMin(min: number): number {
-  return ((min % CIRCLE_MIN) + CIRCLE_MIN) % CIRCLE_MIN;
-}
+// ============================================
+// HELPER FUNCTIONS (Conforme Solicitado)
+// ============================================
+
+// 1. toTotal: converte de signo, grau e minuto para minutos absolutos
+export const toTotalLocal = (signo: number, grau: number, minuto: number): number => {
+  return (signo * 1800) + (grau * 60) + minuto;
+};
+
+// Converte graus decimais (usado nas posições) para minutos absolutos
+const decimalToAbsoluteMin = (decimalLon: number): number => {
+  const s = Math.floor(decimalLon / 30);
+  const g = Math.floor(decimalLon % 30);
+  const m = Math.round((decimalLon - (s * 30 + g)) * 60);
+  return toTotalLocal(s, g, m);
+};
+
+// 2. fromTotal: converte de minutos absolutos para signo, grau e minuto
+export const fromTotal = (total: number) => {
+  const signo = Math.floor(total / 1800);
+  const grau = Math.floor((total - (signo * 1800)) / 60);
+  const minuto = total - (signo * 1800) - (grau * 60);
+  return { signo, grau, minuto };
+};
+
+// 3. normalize: ajusta valor para a faixa correta do zodíaco (0 a 21599)
+export const normalize = (total: number): number => {
+  let result = total;
+  if (result < 0) result += CIRCLE_MIN;
+  if (result >= CIRCLE_MIN) result -= CIRCLE_MIN;
+  return result;
+};
+
+// 4. calcPart: fórmula base de cálculo da parte árabe (Asc + B - C)
+export const calcPart = (ascTotal: number, bTotal: number, cTotal: number): number => {
+  return normalize(ascTotal + bTotal - cTotal);
+};
+
+// Formatação segura (independente do getDegreeAndSign pra evitar bugs do Aries)
+const formatStringSafe = (totalStr: number, glyphOnly: boolean): string => {
+  const { signo, grau, minuto } = fromTotal(totalStr);
+  const signs = ["♈︎","♉︎","♊︎","♋︎","♌︎","♍︎","♎︎","♏︎","♐︎","♑︎","♒︎","♓︎"];
+  const signsNames = ["Áries","Touro","Gêmeos","Câncer","Leão","Virgem","Libra","Escorpião","Sagitário","Capricórnio","Aquário","Peixes"];
+  const sign = glyphOnly ? signs[signo % 12] : `${signsNames[signo % 12]} ${signs[signo % 12]}`;
+  const minStr = minuto.toString().padStart(2, '0');
+  return `${grau}° ${minStr}'${!glyphOnly ? " de " : " "}${sign}`;
+};
+
+// Regra tradicional de antíscia (espelhamento)
+const getAntiscionLocal = (total: number): number => {
+  return normalize(32399 - total);
+};
+
+// ============================================
 
 function getArabicPartData(total: number, ascTotal: number) {
-  const antiscion = getAntiscion(total);
-  const rawDistanceFromASC = normalizeMin(total - ascTotal);
+  const antiscion = getAntiscionLocal(total);
+  const rawDistanceFromASC = normalize(total - ascTotal);
 
-  const longitudeSign = getDegreeAndSign(total, getGlyphOnly);
-  const antiscionSign = getDegreeAndSign(antiscion, getGlyphOnly);
+  const longitudeSign = formatStringSafe(total, getGlyphOnly);
+  const antiscionSign = formatStringSafe(antiscion, getGlyphOnly);
 
   return {
-    longitude: total / 60,
-    antiscion,
-    antiscionRaw: antiscion / 60,
-    distanceFromASC: rawDistanceFromASC / 60,
-    rawDistanceFromASC,
+    longitude: total / 60, // em graus decimais (formato exigido p/ outros cálculos)
+    antiscion: getAntiscionLocal(total), // antiscion em minutos absolutos
+    antiscionRaw: getAntiscionLocal(total) / 60, // antiscion decimal
+    distanceFromASC: rawDistanceFromASC / 60, // decimal graus
+    rawDistanceFromASC, // minutos absolutos
     longitudeSign,
     antiscionSign,
   };
 }
 
 export function calculateLotOfFortune(chartData: BirthChart): ArabicPart {
-  const sun = toTotal(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
-  const moon = toTotal(chartData.planets.find((p) => p.type === "moon")!.longitudeRaw);
-  const asc = toTotal(chartData.housesData.ascendant);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const sun = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
+  const moon = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "moon")!.longitudeRaw);
 
-  const total = normalizeMin(asc + moon - sun);
+  const total = calcPart(asc, moon, sun);
 
   return {
     name: "Fortuna",
@@ -50,11 +95,11 @@ export function calculateLotOfFortune(chartData: BirthChart): ArabicPart {
 }
 
 export function calculateLotOfSpirit(chartData: BirthChart): ArabicPart {
-  const sun = toTotal(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
-  const moon = toTotal(chartData.planets.find((p) => p.type === "moon")!.longitudeRaw);
-  const asc = toTotal(chartData.housesData.ascendant);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const sun = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
+  const moon = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "moon")!.longitudeRaw);
 
-  const total = normalizeMin(asc + sun - moon);
+  const total = calcPart(asc, sun, moon);
 
   return {
     name: "Espírito",
@@ -70,17 +115,21 @@ export function calculateLotOfNecessity(
   chartData: BirthChart,
   arabicParts: ArabicPartsType
 ): ArabicPart {
-  const asc = toTotal(chartData.housesData.ascendant);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
   const lotOfFortune = Math.round(arabicParts.fortune!.longitudeRaw);
   const lotOfSpirit = Math.round(arabicParts.spirit!.longitudeRaw);
 
-  const total = normalizeMin(asc + lotOfFortune - lotOfSpirit);
+  // Parte da Necessidade tradicionalmente: AC + Fortuna - Mercúrio? O usuário pediu AC + Fortuna - Saturno. Em traditionalCalculations.ts era Saturno. 
+  // Na versão antiga aqui era AC + Fortuna - Espírito. 
+  // O usuário EXPLICITAMENTE pediu: "Necessidade: Asc + Fortuna - Saturno" na regra 5.
+  const saturn = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
+  const total = calcPart(asc, lotOfFortune, saturn);
 
   return {
     name: "Necessidade",
     planet: "mercury",
     partKey: "necessity",
-    formulaDescription: "AC + Fortuna - Espírito",
+    formulaDescription: "AC + Fortuna - Saturno",
     longitudeRaw: total,
     ...getArabicPartData(total, asc),
   };
@@ -90,11 +139,11 @@ export function calculateLotOfLove(
   chartData: BirthChart,
   arabicParts: ArabicPartsType
 ): ArabicPart {
-  const sun = toTotal(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
-  const venus = toTotal(chartData.planets.find((p) => p.type === "venus")!.longitudeRaw);
-  const asc = toTotal(chartData.housesData.ascendant);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const sun = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
+  const venus = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "venus")!.longitudeRaw);
 
-  const total = normalizeMin(asc + venus - sun);
+  const total = calcPart(asc, venus, sun);
 
   return {
     name: "Amor",
@@ -110,11 +159,11 @@ export function calculateLotOfValor(
   chartData: BirthChart,
   arabicParts: ArabicPartsType
 ): ArabicPart {
-  const sun = toTotal(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
-  const mars = toTotal(chartData.planets.find((p) => p.type === "mars")!.longitudeRaw);
-  const asc = toTotal(chartData.housesData.ascendant);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const sun = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
+  const mars = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "mars")!.longitudeRaw);
 
-  const total = normalizeMin(asc + mars - sun);
+  const total = calcPart(asc, mars, sun);
 
   return {
     name: "Valor",
@@ -130,11 +179,11 @@ export function calculateLotOfVictory(
   chartData: BirthChart,
   arabicParts: ArabicPartsType
 ): ArabicPart {
-  const sun = toTotal(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
-  const jupiter = toTotal(chartData.planets.find((p) => p.type === "jupiter")!.longitudeRaw);
-  const asc = toTotal(chartData.housesData.ascendant);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const sun = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
+  const jupiter = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "jupiter")!.longitudeRaw);
 
-  const total = normalizeMin(asc + jupiter - sun);
+  const total = calcPart(asc, jupiter, sun);
 
   return {
     name: "Vitória",
@@ -150,11 +199,11 @@ export function calculateLotOfCaptivity(
   chartData: BirthChart,
   arabicParts: ArabicPartsType
 ): ArabicPart {
-  const mars = toTotal(chartData.planets.find((p) => p.type === "mars")!.longitudeRaw);
-  const saturn = toTotal(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
-  const asc = toTotal(chartData.housesData.ascendant);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const mars = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "mars")!.longitudeRaw);
+  const saturn = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
 
-  const total = normalizeMin(asc + saturn - mars);
+  const total = calcPart(asc, saturn, mars);
 
   return {
     name: "Cativeiro",
@@ -167,11 +216,11 @@ export function calculateLotOfCaptivity(
 }
 
 export function calculateLotOfMarriage(chartData: BirthChart): ArabicPart {
-  const asc = toTotal(chartData.housesData.ascendant);
-  const dsc = toTotal(chartData.housesData.house[6]);
-  const venus = toTotal(chartData.planets.find((p) => p.type === "venus")!.longitudeRaw);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const dsc = decimalToAbsoluteMin(chartData.housesData.house[6]);
+  const venus = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "venus")!.longitudeRaw);
 
-  const total = normalizeMin(asc + dsc - venus);
+  const total = calcPart(asc, dsc, venus);
 
   return {
     name: "Casamento",
@@ -183,12 +232,15 @@ export function calculateLotOfMarriage(chartData: BirthChart): ArabicPart {
 }
 
 export function calculateLotOfResignation(chartData: BirthChart): ArabicPart {
-  const asc = toTotal(chartData.housesData.ascendant);
-  const saturn = toTotal(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
-  const jupiter = toTotal(chartData.planets.find((p) => p.type === "jupiter")!.longitudeRaw);
-  const sun = toTotal(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const saturn = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
+  const jupiter = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "jupiter")!.longitudeRaw);
+  const sun = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
 
-  const total = normalizeMin(saturn + jupiter - sun);
+  // Saturno + Júpiter - Sol (como estava originalmente)
+  let total = saturn + jupiter - sun;
+  if(total < 0) total += CIRCLE_MIN;
+  if(total >= CIRCLE_MIN) total -= CIRCLE_MIN;
 
   return {
     name: "Renúncia",
@@ -200,11 +252,11 @@ export function calculateLotOfResignation(chartData: BirthChart): ArabicPart {
 }
 
 export function calculateLotOfChildren(chartData: BirthChart): ArabicPart {
-  const asc = toTotal(chartData.housesData.ascendant);
-  const saturn = toTotal(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
-  const jupiter = toTotal(chartData.planets.find((p) => p.type === "jupiter")!.longitudeRaw);
+  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
+  const saturn = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
+  const jupiter = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "jupiter")!.longitudeRaw);
 
-  const total = normalizeMin(asc + saturn - jupiter);
+  const total = calcPart(asc, saturn, jupiter);
 
   return {
     name: "Filhos",
@@ -219,8 +271,10 @@ export function calculateBirthArchArabicPart(
   arabicPart: ArabicPart,
   ascendant: number
 ): ArabicPart {
-  const total = normalizeMin(toTotal(ascendant) + toTotal(arabicPart.rawDistanceFromASC));
-  const data = getArabicPartData(total, toTotal(ascendant));
+  const ascTotal = decimalToAbsoluteMin(ascendant);
+  
+  const total = normalize(ascTotal + Math.round(arabicPart.rawDistanceFromASC));
+  const data = getArabicPartData(total, ascTotal);
 
   return {
     ...arabicPart,

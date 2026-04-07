@@ -94,71 +94,81 @@ export interface ArabicPart {
 }
 
 export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
-  // Helper: Converte longitude decimal para minutos absolutos seguindo a regra (signo*1800 + grau*60 + min)
-  const toTotal = (lon: number) => {
+  // Funções baseadas em minutos absolutos
+  const toTotalLocal = (signo: number, grau: number, minuto: number) => {
+    return (signo * 1800) + (grau * 60) + minuto;
+  };
+
+  const fromTotal = (total: number) => {
+    const signo = Math.floor(total / 1800);
+    const grau = Math.floor((total - (signo * 1800)) / 60);
+    const minuto = total - (signo * 1800) - (grau * 60);
+    return { signo, grau, minuto };
+  };
+
+  const normalize = (total: number) => {
+    let result = total;
+    if (result < 0) {
+      result += 21600;
+    }
+    if (result >= 21600) {
+      result -= 21600;
+    }
+    return result;
+  };
+
+  const calcPart = (asc: number, b: number, c: number) => {
+    return normalize(asc + b - c);
+  };
+
+  const decimalToTotal = (lon: number) => {
     const s = Math.floor(lon / 30);
     const g = Math.floor(lon % 30);
     const m = Math.round((lon - (s * 30 + g)) * 60);
-    return (s * 1800) + (g * 60) + m;
+    return toTotalLocal(s, g, m);
   };
+
+  const ascTotal = decimalToTotal(chart.housesData.ascendant);
+  const solTotal = decimalToTotal(chart.planets.find(p => p.type === "sun")!.longitudeRaw);
+  const luaTotal = decimalToTotal(chart.planets.find(p => p.type === "moon")!.longitudeRaw);
+  const venusTotal = decimalToTotal(chart.planets.find(p => p.type === "venus")!.longitudeRaw);
+  const marteTotal = decimalToTotal(chart.planets.find(p => p.type === "mars")!.longitudeRaw);
+  const jupiterTotal = decimalToTotal(chart.planets.find(p => p.type === "jupiter")!.longitudeRaw);
+  const saturnoTotal = decimalToTotal(chart.planets.find(p => p.type === "saturn")!.longitudeRaw);
+
+  const fortunaTotal = calcPart(ascTotal, luaTotal, solTotal);
+  const espiritoTotal = calcPart(ascTotal, solTotal, luaTotal);
   
-  // Helper: Normaliza minutos no círculo de 21600 minutos
-  const normalizeMin = (min: number) => {
-    const fullCircle = 21600;
-    return ((min % fullCircle) + fullCircle) % fullCircle;
-  };
-
-  // Helper: Formata o total de minutos de volta para string signo/grau/minuto seguindo a regra floor fornecida
-  const formatMinutes = (total: number) => {
-    const sIdx = Math.floor(total / 1800) % 12;
-    const g = Math.floor((total - (sIdx * 1800)) / 60);
-    const m = total - (sIdx * 1800) - (g * 60);
-    return `${SIGNS[sIdx]} a ${g}°${m.toString().padStart(2, '0')}’`;
-  };
-
-  // Helper: Cálculo fixo da Parte (Asc + B - C) em minutos
-  const calcPartMin = (ascMin: number, bMin: number, cMin: number) => {
-    return normalizeMin(ascMin + bMin - cMin);
-  };
-
-  const asc = toTotal(chart.housesData.ascendant);
-  const sun = toTotal(chart.planets.find(p => p.type === "sun")!.longitudeRaw);
-  const moon = toTotal(chart.planets.find(p => p.type === "moon")!.longitudeRaw);
-  const ven = toTotal(chart.planets.find(p => p.type === "venus")!.longitudeRaw);
-  const mars = toTotal(chart.planets.find(p => p.type === "mars")!.longitudeRaw);
-  const jup = toTotal(chart.planets.find(p => p.type === "jupiter")!.longitudeRaw);
-  const sat = toTotal(chart.planets.find(p => p.type === "saturn")!.longitudeRaw);
-
-  const fortunaMin = calcPartMin(asc, moon, sun);
-  const spiritMin = calcPartMin(asc, sun, moon);
-
   const partsDef = [
-    { name: "Fortuna", min: fortunaMin },
-    { name: "Espírito", min: spiritMin },
-    { name: "Amor", min: calcPartMin(asc, ven, sun) },
-    { name: "Vitória", min: calcPartMin(asc, jup, sun) },
-    { name: "Valor", min: calcPartMin(asc, mars, sun) },
-    { name: "Necessidade", min: calcPartMin(asc, fortunaMin, spiritMin) },
-    { name: "Cativeiro", min: calcPartMin(asc, sat, mars) }
+    { name: "Parte da Fortuna", min: fortunaTotal },
+    { name: "Parte do Espírito", min: espiritoTotal },
+    { name: "Parte do Amor", min: calcPart(ascTotal, venusTotal, solTotal) },
+    { name: "Parte da Vitória", min: calcPart(ascTotal, jupiterTotal, solTotal) },
+    { name: "Parte do Valor", min: calcPart(ascTotal, marteTotal, solTotal) },
+    { name: "Parte da Necessidade", min: calcPart(ascTotal, fortunaTotal, saturnoTotal) },
+    { name: "Parte do Cativeiro", min: calcPart(ascTotal, saturnoTotal, marteTotal) }
   ];
 
   return partsDef.map(pd => {
-    const rawLon = pd.min / 60; // Para cálculos de dispositor etc
+    const { signo, grau, minuto } = fromTotal(pd.min);
+    const rawLon = pd.min / 60; 
     const hIdx = getHouseIndex(rawLon, chart.housesData.house);
-    const signIdx = Math.floor(pd.min / 1800) % 12;
-    const disp = DOMICILE_RULER[signIdx];
+    
+    // Regra do 59' para Antíscia (32399 = 21599 + 10800, espelhamento)
+    const antiscionLon = normalize(32399 - pd.min); 
+    const antis = fromTotal(antiscionLon);
+
+    const disp = DOMICILE_RULER[signo % 12];
     const dispPlanet = chart.planets.find(p => p.name === disp);
-    // Regra do 59' (soma de 10799 minutos no espelhamento tradicional)
-    const antiscionLon = normalizeMin(32399 - pd.min); 
 
     return {
       name: pd.name,
       longitude: rawLon,
-      sign: SIGNS[signIdx],
-      posFormatted: formatDegrees(pd.min),
-      house: `Casa ${hIdx}`, // Removendo romanize se estiver causando erro, mantendo simples
+      sign: SIGNS[signo % 12],
+      posFormatted: `${SIGNS[signo % 12]} a ${grau}°${minuto.toString().padStart(2, '0')}’`,
+      house: `Casa ${hIdx}`,
       dispositor: `${disp} em ${dispPlanet ? formatDegrees(dispPlanet.longitudeRaw) : "Nenhum"}, na Casa ${dispPlanet ? getHouseIndex(dispPlanet.longitudeRaw, chart.housesData.house) : "?"}`,
-      antiscion: formatDegrees(antiscionLon)
+      antiscion: `${SIGNS[antis.signo % 12]} a ${antis.grau}°${antis.minuto.toString().padStart(2, '0')}’`
     };
   });
 }
