@@ -213,58 +213,7 @@ export function calculateLotOfCaptivity(
     longitudeRaw: total,
     ...getArabicPartData(total, asc),
   };
-}
 
-export function calculateLotOfMarriage(chartData: BirthChart): ArabicPart {
-  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
-  const dsc = decimalToAbsoluteMin(chartData.housesData.house[6]);
-  const venus = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "venus")!.longitudeRaw);
-
-  const total = calcPart(asc, dsc, venus);
-
-  return {
-    name: "Casamento",
-    partKey: "marriage",
-    formulaDescription: "AC + DC - Vênus",
-    longitudeRaw: total,
-    ...getArabicPartData(total, asc),
-  };
-}
-
-export function calculateLotOfResignation(chartData: BirthChart): ArabicPart {
-  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
-  const saturn = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
-  const jupiter = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "jupiter")!.longitudeRaw);
-  const sun = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "sun")!.longitudeRaw);
-
-  // Saturno + Júpiter - Sol (como estava originalmente)
-  let total = saturn + jupiter - sun;
-  if(total < 0) total += CIRCLE_MIN;
-  if(total >= CIRCLE_MIN) total -= CIRCLE_MIN;
-
-  return {
-    name: "Renúncia",
-    partKey: "resignation",
-    formulaDescription: "Saturno + Júpiter - Sol",
-    longitudeRaw: total,
-    ...getArabicPartData(total, asc),
-  };
-}
-
-export function calculateLotOfChildren(chartData: BirthChart): ArabicPart {
-  const asc = decimalToAbsoluteMin(chartData.housesData.ascendant);
-  const saturn = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "saturn")!.longitudeRaw);
-  const jupiter = decimalToAbsoluteMin(chartData.planets.find((p) => p.type === "jupiter")!.longitudeRaw);
-
-  const total = calcPart(asc, saturn, jupiter);
-
-  return {
-    name: "Filhos",
-    partKey: "children",
-    formulaDescription: "AC + Saturno - Júpiter",
-    longitudeRaw: total,
-    ...getArabicPartData(total, asc),
-  };
 }
 
 export function calculateBirthArchArabicPart(

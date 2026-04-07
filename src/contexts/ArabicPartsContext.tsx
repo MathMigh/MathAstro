@@ -1,12 +1,9 @@
 import {
   calculateBirthArchArabicPart,
   calculateLotOfCaptivity,
-  calculateLotOfChildren,
   calculateLotOfFortune,
   calculateLotOfLove,
-  calculateLotOfMarriage,
   calculateLotOfNecessity,
-  calculateLotOfResignation,
   calculateLotOfSpirit,
   calculateLotOfValor,
   calculateLotOfVictory,
@@ -92,9 +89,6 @@ export const ArabicPartsContextProvider: React.FC<{ children: ReactNode }> = ({
       valor: calculateLotOfValor(birthChart, parts),
       victory: calculateLotOfVictory(birthChart, parts),
       captivity: calculateLotOfCaptivity(birthChart, parts),
-      marriage: calculateLotOfMarriage(birthChart),
-      resignation: calculateLotOfResignation(birthChart),
-      children: calculateLotOfChildren(birthChart),
     };
 
     if (partType === "birth") {

@@ -25,9 +25,6 @@ export interface ArabicPartsType {
   valor?: ArabicPart;
   victory?: ArabicPart;
   captivity?: ArabicPart;
-  marriage?: ArabicPart;
-  resignation?: ArabicPart;
-  children?: ArabicPart;
 }
 
 export interface ArabicPartCalculatorDropdownItem {

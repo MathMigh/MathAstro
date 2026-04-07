@@ -91,9 +91,6 @@ export const arabicPartKeys: (keyof ArabicPartsType)[] = [
   "valor",
   "victory",
   "captivity",
-  "marriage",
-  "resignation",
-  "children",
 ];
 
 export const TO_MIN = 60;
