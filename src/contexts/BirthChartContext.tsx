@@ -159,14 +159,14 @@ export const BirthChartContextProvider: React.FC<{ children: ReactNode }> = ({
   };
 
   const selectCity = (selectedCity?: SelectedCity) => {
-    const cityName = selectedCity?.name?.split(",")[0];
-
-    const cityObj: SelectedCity | undefined = selectedCity? {
-      ...selectedCity,
-      name: cityName,
-    } : undefined;
-
-    setCurrentCity(cityObj);
+    setCurrentCity(
+      selectedCity
+        ? {
+            ...selectedCity,
+            name: selectedCity.name?.trim(),
+          }
+        : undefined
+    );
   };
 
   const updateLoadingNextChart = (val: boolean) => {

@@ -4,6 +4,12 @@ import moment from "moment-timezone";
 
 let swe: SwissEphemeris | null = null;
 
+interface CoordinatesLike {
+  latitude: number;
+  longitude: number;
+  name?: string;
+}
+
 export async function getSwe(): Promise<SwissEphemeris> {
   if (!swe) {
     swe = new SwissEphemeris();
@@ -21,6 +27,154 @@ export function getSignName(lon: number): string {
 
 export function computeAntiscion(lon: number): number {
   return (540 - lon) % 360;
+}
+
+function normalizeLocationText(value?: string): string {
+  return (value ?? "")
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLowerCase();
+}
+
+function isWithinBox(
+  latitude: number,
+  longitude: number,
+  bounds: {
+    south: number;
+    north: number;
+    west: number;
+    east: number;
+  }
+): boolean {
+  return (
+    latitude >= bounds.south &&
+    latitude <= bounds.north &&
+    longitude >= bounds.west &&
+    longitude <= bounds.east
+  );
+}
+
+function getFixedOffsetTimezoneFromLongitude(longitude: number): string {
+  const offsetHours = Math.max(-12, Math.min(14, Math.round(longitude / 15)));
+  if (offsetHours === 0) return "Etc/GMT";
+  return offsetHours > 0
+    ? `Etc/GMT-${offsetHours}`
+    : `Etc/GMT+${Math.abs(offsetHours)}`;
+}
+
+function resolveTimezone(coordinates: CoordinatesLike): string {
+  const latitude = Number(coordinates.latitude);
+  const longitude = Number(coordinates.longitude);
+
+  if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
+    return "America/Sao_Paulo";
+  }
+
+  const locationText = normalizeLocationText(coordinates.name);
+  const isInBrazil =
+    latitude >= -34 &&
+    latitude <= 6 &&
+    longitude >= -75 &&
+    longitude <= -28;
+
+  const matches = (...keywords: string[]) =>
+    keywords.some((keyword) => locationText.includes(keyword));
+
+  if (
+    matches("fernando de noronha") ||
+    isWithinBox(latitude, longitude, {
+      south: -4.2,
+      north: -3.5,
+      west: -32.8,
+      east: -32.1,
+    })
+  ) {
+    return "America/Noronha";
+  }
+
+  if (
+    matches(
+      "acre",
+      "rio branco",
+      "cruzeiro do sul",
+      "tarauaca",
+      "sena madureira",
+      "feijo",
+      "brasileia",
+      "epitaciolandia",
+      "xapuri"
+    ) ||
+    isWithinBox(latitude, longitude, {
+      south: -11.5,
+      north: -6,
+      west: -74.2,
+      east: -66.5,
+    })
+  ) {
+    return "America/Rio_Branco";
+  }
+
+  if (
+    matches(
+      "amazonas",
+      "manaus",
+      "itacoatiara",
+      "tefe",
+      "tabatinga",
+      "parintins",
+      "roraima",
+      "boa vista",
+      "rondonia",
+      "porto velho",
+      "ji-parana",
+      "mato grosso",
+      "cuiaba",
+      "rondonopolis",
+      "sinop",
+      "mato grosso do sul",
+      "campo grande",
+      "dourados",
+      "corumba"
+    ) ||
+    isWithinBox(latitude, longitude, {
+      south: -24.7,
+      north: -17,
+      west: -58.5,
+      east: -50.8,
+    }) ||
+    isWithinBox(latitude, longitude, {
+      south: -18.2,
+      north: -7.2,
+      west: -61.8,
+      east: -50.6,
+    }) ||
+    isWithinBox(latitude, longitude, {
+      south: -13.8,
+      north: -7.6,
+      west: -66.9,
+      east: -59.7,
+    }) ||
+    isWithinBox(latitude, longitude, {
+      south: 0.5,
+      north: 5.5,
+      west: -64.9,
+      east: -58.4,
+    }) ||
+    isWithinBox(latitude, longitude, {
+      south: -9.9,
+      north: 2.6,
+      west: -73.9,
+      east: -56.1,
+    })
+  ) {
+    return "America/Manaus";
+  }
+
+  if (isInBrazil) {
+    return "America/Sao_Paulo";
+  }
+
+  return getFixedOffsetTimezoneFromLongitude(longitude);
 }
 
 // ==========================================
@@ -141,16 +295,29 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
   let hh = Math.floor(decimalTime);
   let mm = Math.round((decimalTime - hh) * 60);
 
+  if (mm === 60) {
+    hh += 1;
+    mm = 0;
+  }
+
   let uYear: number, uMonth: number, uDate: number, uHour: number;
 
   // === DETECÇÃO DE TIMEZONE DINÂMICO ===
   // Resolve o fuso horário correto baseado nas coordenadas (Foco Brasil)
-  const determineTimezone = (lat: number, lon: number): string => {
+  /* const determineTimezone = (lat: number, lon: number): string => {
     // Lógica simplificada de fusos brasileiros baseada em longitudes (meridianos)
-    if (lon > -34) return "America/Noronha";          // UTC-2
+    return resolveTimezone({
     if (lon > -45) return "America/Sao_Paulo";        // UTC-3 (Brasília/SP/RJ)
     if (lon > -67.5) return "America/Manaus";         // UTC-4 (AM/MT/MS/RO/RR)
     return "America/Rio_Branco";                      // UTC-5 (AC/AM-Oeste)
+  }; */
+
+  const determineTimezone = (lat: number, lon: number): string => {
+    return resolveTimezone({
+      latitude: lat,
+      longitude: lon,
+      name: (coordinates as CoordinatesLike).name,
+    });
   };
 
   const zone = determineTimezone(coordinates.latitude, coordinates.longitude);

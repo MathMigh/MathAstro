@@ -44,7 +44,21 @@ export const ChartDate = (props: ChatDateProps) => {
     return `${hours}:${minutes}`;
   };
 
+  const formatLocationLabel = (locationName?: string): string => {
+    if (!locationName) return "";
+
+    const parts = locationName
+      .split(",")
+      .map((part) => part.trim())
+      .filter(Boolean);
+
+    if (parts.length <= 1) return parts[0] ?? "";
+    return parts.slice(0, 3).join(", ");
+  };
+
   if (date === undefined) return;
+
+  const locationLabel = formatLocationLabel(date.coordinates?.name);
 
   if (chartType === "profection")
     return <div className="text-[0.9rem] text-center md:text-[1rem] font-bold">
@@ -59,8 +73,12 @@ export const ChartDate = (props: ChatDateProps) => {
         {date?.day.toString().padStart(2, "0")}/
         {date?.month.toString().padStart(2, "0")}/{date?.year} -{" "}
         {formatTime(date.time ?? "00:00")}
-        &nbsp;-&nbsp;
-        {date?.coordinates.name}
+        {locationLabel && (
+          <>
+            &nbsp;-&nbsp;
+            {locationLabel}
+          </>
+        )}
       </p>
     </div>
   );
