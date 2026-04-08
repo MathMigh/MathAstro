@@ -1,8 +1,4 @@
-import {
-  decimalToDegreesMinutes,
-  getAntiscion,
-  getDegreeAndSign,
-} from "@/app/utils/chartUtils";
+import { getDegreeAndSign } from "@/app/utils/chartUtils";
 import {
   BirthChart,
   ChartType,
@@ -91,37 +87,33 @@ export const BirthChartContextProvider: React.FC<{ children: ReactNode }> = ({
           ...chartData,
 
           planets: chartData.planets.map((planet) => {
+            const longitudeRaw = planet.longitudeRaw ?? planet.longitude;
+            const antiscionRaw = planet.antiscionRaw ?? planet.antiscion;
+
             return {
               ...planet,
-              longitude: decimalToDegreesMinutes(planet.longitude),
-              antiscion: getAntiscion(planet.longitude),
-
-              longitudeRaw: planet.longitude,
-              antiscionRaw: getAntiscion(planet.longitude, true),
+              longitude: longitudeRaw,
+              antiscion: antiscionRaw,
+              longitudeRaw,
+              antiscionRaw,
               type: planetTypes[planet.id],
             };
           }),
 
           planetsWithSigns: chartData.planets.map((planet) => {
+            const longitudeRaw = planet.longitudeRaw ?? planet.longitude;
+            const antiscionRaw = planet.antiscionRaw ?? planet.antiscion;
+
             return {
-              position: getDegreeAndSign(
-                decimalToDegreesMinutes(planet.longitude),
-                getGlyphOnly
-              ),
-              antiscion: getDegreeAndSign(
-                getAntiscion(planet.longitude),
-                getGlyphOnly
-              ),
+              position: getDegreeAndSign(longitudeRaw, getGlyphOnly),
+              antiscion: getDegreeAndSign(antiscionRaw, getGlyphOnly),
             };
           }),
 
           housesData: {
             ...chartData?.housesData,
             housesWithSigns: chartData.housesData?.house.map((houseLong) => {
-              return getDegreeAndSign(
-                decimalToDegreesMinutes(houseLong),
-                getGlyphOnly
-              );
+              return getDegreeAndSign(houseLong, getGlyphOnly);
             }),
           },
 
@@ -132,10 +124,7 @@ export const BirthChartContextProvider: React.FC<{ children: ReactNode }> = ({
             elementType: "fixedStar",
             isAntiscion: false,
             isFromOuterChart: false,
-            longitudeSign: getDegreeAndSign(
-              decimalToDegreesMinutes(star.longitude),
-              getGlyphOnly
-            ),
+            longitudeSign: getDegreeAndSign(star.longitude, getGlyphOnly),
           })),
         };
 
