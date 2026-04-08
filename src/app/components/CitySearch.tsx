@@ -14,16 +14,28 @@ export default function CitySearch({
   onSelect,
 }: {
   initialCoordinates?: SelectedCity;
-  onSelect: (city: SelectedCity) => void;
+  onSelect: (city?: SelectedCity) => void;
 }) {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const [query, setQuery] = useState(initialCoordinates?.name ?? "");
   const [results, setResults] = useState<CityResult[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedCity, setSelectedCity] = useState(false);
+  const [selectedCity, setSelectedCity] = useState(Boolean(initialCoordinates));
   const [queryError, setQueryError] = useState(false);
+  const selectedCityNameRef = useRef(initialCoordinates?.name ?? "");
 
   const canQuery = useRef(false);
+
+  useEffect(() => {
+    const nextName = initialCoordinates?.name ?? "";
+    setQuery(nextName);
+    setSelectedCity(Boolean(initialCoordinates));
+    selectedCityNameRef.current = nextName;
+  }, [
+    initialCoordinates?.name,
+    initialCoordinates?.latitude,
+    initialCoordinates?.longitude,
+  ]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -45,8 +57,13 @@ export default function CitySearch({
 
   useEffect(() => {
     if (!canQuery.current) return;
-    if (query.length <= 1) setSelectedCity(false);
-    if (query.length < 3 || selectedCity) return;
+    const trimmedQuery = query.trim();
+
+    if (trimmedQuery.length <= 1) {
+      setSelectedCity(false);
+    }
+
+    if (trimmedQuery.length < 3 || selectedCity) return;
 
     const controller = new AbortController();
     const signal = controller.signal;
@@ -58,7 +75,7 @@ export default function CitySearch({
       (async () => {
         try {
           const res = await fetch(
-            `/api/nominatim?q=${encodeURIComponent(query)}`,
+            `/api/nominatim?q=${encodeURIComponent(trimmedQuery)}`,
             { signal }
           );
           if (!res.ok) {
@@ -99,7 +116,7 @@ export default function CitySearch({
       clearTimeout(timeout);
       controller.abort(); // cancela fetch pendente ao mudar query/unmount
     };
-  }, [query, selectedCity]); // adicione outras deps relevantes
+  }, [query, selectedCity, queryError]);
 
   return (
     <div ref={wrapperRef} className="flex flex-col gap-1 mb-5">
@@ -110,10 +127,23 @@ export default function CitySearch({
         placeholder="Digite a cidade"
         value={query}
         onChange={(e) => {
+          const nextQuery = e.target.value;
+
           if (!canQuery.current) {
             canQuery.current = true;
           }
-          setQuery(e.target.value);
+
+          setQuery(nextQuery);
+          setResults([]);
+
+          if (queryError) {
+            setQueryError(false);
+          }
+
+          if (selectedCityNameRef.current !== nextQuery) {
+            setSelectedCity(false);
+            onSelect(undefined);
+          }
         }}
       />
 
@@ -130,6 +160,7 @@ export default function CitySearch({
                 key={index}
                 className="cursor-pointer hover:bg-gray-100 p-1"
                 onClick={() => {
+                  selectedCityNameRef.current = city.display_name;
                   onSelect({
                     name: city.display_name,
                     latitude: parseFloat(city.lat),

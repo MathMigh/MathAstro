@@ -281,7 +281,17 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
      time = "12:00"; 
   }
 
-  const coordinates = (birthDate && (birthDate as any).coordinates) ? (birthDate as any).coordinates : { latitude: -22.9, longitude: -43.2 };
+  const coordinates = (birthDate && (birthDate as any).coordinates)
+    ? (birthDate as any).coordinates
+    : undefined;
+
+  if (
+    !coordinates ||
+    !Number.isFinite(Number(coordinates.latitude)) ||
+    !Number.isFinite(Number(coordinates.longitude))
+  ) {
+    throw new Error("Selecione uma cidade válida na lista antes de gerar o mapa.");
+  }
 
   // O frontend Zazastro envia 'time' convertido pra hora decimal (Ex: 06:45 = "6.75")!
   let decimalTime = 12;

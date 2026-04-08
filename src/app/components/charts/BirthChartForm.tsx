@@ -6,7 +6,6 @@ import {
 import {
   BirthChartProfile,
   BirthDate,
-  SelectedCity,
 } from "@/interfaces/BirthChartInterfaces";
 import React, { useEffect, useRef, useState } from "react";
 import PresavedChartsDropdown from "./PresavedChartsDropdown";
@@ -92,6 +91,11 @@ export default function BirthChartForm(props: BirthChartFormProps) {
   function submitForm() {
     if (!profile) {
       alert("Não foi possível gerar o mapa.");
+      return;
+    }
+
+    if ((menu === 1 || editProfile) && !currentCity) {
+      alert("Selecione uma cidade da lista antes de gerar o mapa.");
       return;
     }
 
