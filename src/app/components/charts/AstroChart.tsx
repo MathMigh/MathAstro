@@ -101,6 +101,8 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
   const getHouseDataAscendant = () => housesData?.ascendant ?? 0;
 
   const zodiacRotation = 270 - getHouseDataAscendant();
+  const getChartAngleRad = (longitude: number) =>
+    ((getHouseDataAscendant() - mod360(longitude) - 180) * Math.PI) / 180;
 
   function getOverlapElement(chartElement: ChartElement): ChartElementOverlap {
     return overlapElements.find(
@@ -1088,14 +1090,11 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
       .attr("stroke-width", 1);
 
     // Grupo que será rotacionado para alinhar os signos com o Ascendente
-    const zodiacGroup = baseGroup
-      .append("g")
-      .attr("transform", `rotate(${-zodiacRotation})`);
+    const zodiacGroup = baseGroup.append("g");
 
     // Divisões dos signos (linhas externas)
     for (let i = 0; i < 12; i++) {
-      const angle = 360 - ((i * 30) % 360);
-      const angleRad = (angle * Math.PI) / 180;
+      const angleRad = getChartAngleRad(i * 30);
       const x1 = radius * Math.cos(angleRad);
       const y1 = radius * Math.sin(angleRad);
       const x2 = outerZodiacRadius * Math.cos(angleRad);
@@ -1113,8 +1112,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
 
     //Glifos dos signos centralizados nas fatias com cor por elemento
     zodiacSigns.forEach((sign, i) => {
-      const middleAngle = 360 - ((i * 30 + 15 + 180) % 360) - 90;
-      const angleRad = (middleAngle * Math.PI) / 180;
+      const angleRad = getChartAngleRad(i * 30 + 15);
       const x = sign.radius * Math.cos(angleRad);
       const y = sign.radius * Math.sin(angleRad);
 
@@ -1129,7 +1127,6 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
         .attr("text-anchor", "middle")
         .attr("alignment-baseline", "middle")
         .attr("fill", color)
-        .attr("transform", `rotate(${zodiacRotation}, ${x}, ${y})`)
         .text(sign.glyph);
     });
 
@@ -1222,8 +1219,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     // Linhas externas de grau (a cada 10°)
     if (!showOuterChart) {
       for (let deg = 0; deg < 360; deg += 10) {
-        const angleSVG = 360 - deg - 90;
-        const rad = (angleSVG * Math.PI) / 180;
+        const rad = getChartAngleRad(deg);
 
         const inner = outerZodiacRadius;
         const outer = outerZodiacRadius + 12; // aumenta comprimento (de +6 para +12)
@@ -1246,8 +1242,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
 
       // Marcas menores a cada 5° (entre as de 10°)
       for (let deg = 5; deg < 360; deg += 10) {
-        const angleSVG = 360 - deg - 90;
-        const rad = (angleSVG * Math.PI) / 180;
+        const rad = getChartAngleRad(deg);
 
         const inner = outerZodiacRadius;
         const outer = outerZodiacRadius + 8; // um pouco menor que as de 10°
