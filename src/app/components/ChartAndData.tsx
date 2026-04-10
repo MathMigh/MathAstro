@@ -10,8 +10,6 @@ import { useBirthChart } from "@/contexts/BirthChartContext";
 import { useChartMenu } from "@/contexts/ChartMenuContext";
 import ArabicPartsLayout from "./ArabicPartsLayout";
 import { useArabicParts } from "@/contexts/ArabicPartsContext";
-import { ChartDate } from "./ChartDate";
-import ChartSelectorArrows from "./ChartSelectorArrows";
 import Container from "./Container";
 import { SkeletonLine, SkeletonTable } from "./skeletons";
 import {
@@ -148,18 +146,11 @@ export default function ChartAndData(props: Props) {
             </div>
           )}
 
-          <ChartSelectorArrows className="mb-2 w-full md:px-6">
-            {title && (
-              <h1 className="text-center text-lg font-bold text-amber-50 md:text-2xl">
-                {title}
-              </h1>
-            )}
-          </ChartSelectorArrows>
-
-          <div className="mb-2 flex flex-col items-center gap-2">
-            <ChartDate {...chartDateProps} />
-            {outerChartDateProps && <ChartDate {...outerChartDateProps} />}
-          </div>
+          {title && (
+            <h1 className="mb-2 text-center text-lg font-bold text-amber-50 md:text-2xl">
+              {title}
+            </h1>
+          )}
 
           <AstroChart
             props={{
@@ -202,8 +193,8 @@ export default function ChartAndData(props: Props) {
       ) : (
         <ArabicPartsLayout
           parts={partsArray}
-          showMenuButtons={true}
-          showSwitchParts
+          showMenuButtons={false}
+          showSwitchParts={false}
           onToggleInnerPartsVisualization={handleOnToggleInnerPartsVisualization}
         />
       );

@@ -29,12 +29,6 @@ export default function Home() {
             <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.38em] text-amber-200/80">
               Astrologia Tradicional Ocidental
             </p>
-            <p className="section-copy mt-5 max-w-3xl text-sm md:text-base">
-              Mapas natais com Swiss Ephemeris, leitura tradicional mais clara
-              e uma interface mais elegante para consulta longa, sem ruído
-              visual.
-            </p>
-
           </header>
 
           <ProfilesContextProvider>

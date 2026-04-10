@@ -14,6 +14,7 @@ import {
 } from "./aspectDynamics";
 import {
   calculateArabicLots,
+  DEFAULT_ARABIC_PARTS_MODE,
   ORDERED_ARABIC_PART_KEYS,
 } from "./arabicLots";
 
@@ -297,7 +298,7 @@ function getArabicPartDisplayName(partKey: string): string {
 function buildArabicPartAspectParticipants(
   chart: BirthChart
 ): ReportAspectParticipant[] {
-  const lots = calculateArabicLots(chart, "traditional");
+  const lots = calculateArabicLots(chart, DEFAULT_ARABIC_PARTS_MODE);
 
   return ORDERED_ARABIC_PART_KEYS.flatMap((partKey) => {
     const lot = lots[partKey];

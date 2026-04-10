@@ -22,7 +22,6 @@ import {
   ElementOverlapPosition,
   PlanetAspectData,
 } from "@/interfaces/AstroChartInterfaces";
-import AstroChartMenu from "../menus/AstroChartMenu";
 import { useScreenDimensions } from "@/contexts/ScreenDimensionsContext";
 import ReturnSelectorArrows from "../ReturnSelectorArrows";
 import { useChartMenu } from "@/contexts/ChartMenuContext";
@@ -58,7 +57,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
 
   const ref = useRef<SVGSVGElement>(null);
   const { isMobileBreakPoint } = useScreenDimensions();
-  const { isReturnChart, isLunarDerivedReturnChart, isSinastryChart, isProgressionChart, isProfectionChart } = useChartMenu();
+  const { isSinastryChart, isProgressionChart } = useChartMenu();
   const { isMountingChart, updateIsMountingChart, isCombinedWithBirthChart, isCombinedWithReturnChart } = useBirthChart();
   const [testValue] = useState(2.5);
   const [showArabicParts, setShowArabicParts] = useState(false);
@@ -1517,6 +1516,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
           .attr("x", lx)
           .attr("y", ly)
           .attr("font-size", 12)
+          .attr("fill", "white")
           .attr("text-anchor", "middle")
           .attr("alignment-baseline", "middle")
           .attr("transform", `rotate(${-housesRotation}, ${lx}, ${ly})`)
@@ -1979,18 +1979,6 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     fixedStars,
     useReturnSelectorArrows]);
 
-  const toggleArabicParts = () => {
-    setShowArabicParts((prev) => !prev);
-  };
-
-  const toggleAntiscia = () => {
-    setShowPlanetsAntiscia((prev) => !prev);
-  };
-
-  const toggleArabicPartsAntiscia = () => {
-    setShowArabicPartsAntiscia((prev) => !prev);
-  };
-
   let className = "absolute left-1/2 top-0 block -translate-x-1/2";
 
   if (isMobileBreakPoint()) {
@@ -2015,18 +2003,8 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
 
   return (
     <div
-      className="flex w-full flex-col items-center justify-center gap-8"
+      className="flex w-full flex-col items-center justify-center"
     >
-      <div className="w-full md:px-4">
-        <AstroChartMenu
-          togglePlanetsAntiscia={toggleAntiscia}
-          toggleArabicParts={toggleArabicParts}
-          toggleArabicPartsAntiscia={toggleArabicPartsAntiscia}
-          toggleCombineWithBirthChart={isReturnChart() || isProgressionChart() || isProfectionChart()}
-          toggleCombineWithReturnChart={isLunarDerivedReturnChart()}
-        />
-      </div>
-
       <div className={`relative mx-auto h-[20rem] w-full md:h-[38rem] ${(isMountingChart ? "opacity-0" : "")}`}>
         {useReturnSelectorArrows ? (
           <ReturnSelectorArrows>

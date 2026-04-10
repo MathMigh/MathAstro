@@ -9,6 +9,7 @@ import {
 } from "./traditionalCalculations";
 import {
   calculateArabicLots,
+  DEFAULT_ARABIC_PARTS_MODE,
   fromTotal,
   ORDERED_ARABIC_PART_KEYS,
 } from "./arabicLots";
@@ -172,7 +173,8 @@ export async function generateTraditionalReport(chart: BirthChart): Promise<stri
   const desc = normalizeLongitude(asc + 180);
   const ic = normalizeLongitude(mc + 180);
   const temperament = calculateTemperament(chart);
-  const lots = calculateArabicLots(chart, "traditional");
+  // Keep the textual report synchronized with the lots rendered in the chart UI.
+  const lots = calculateArabicLots(chart, DEFAULT_ARABIC_PARTS_MODE);
   const parts = buildTraditionalReportArabicParts(chart, lots);
   const prenatalSyzygy = await calculatePrenatalSyzygy(chart);
   const almutenAnalysis = buildAlmutenAnalysis(
@@ -297,7 +299,7 @@ export async function generateTraditionalReport(chart: BirthChart): Promise<stri
 
 function buildTraditionalReportArabicParts(
   chart: BirthChart,
-  lots = calculateArabicLots(chart, "traditional"),
+  lots = calculateArabicLots(chart, DEFAULT_ARABIC_PARTS_MODE),
 ): TraditionalReportArabicPart[] {
   return ORDERED_ARABIC_PART_KEYS.flatMap((key) => {
     const lot = lots[key];
@@ -1235,7 +1237,18 @@ function getApproximatePrenatalSyzygy(chart: BirthChart): PrenatalSyzygy {
   };
 }
 
-function getBirthJulianDay(chart: BirthChart, sw: { julianDay: Function }): number {
+function getBirthJulianDay(
+  chart: BirthChart,
+  sw: {
+    julianDay: (
+      year: number,
+      month: number,
+      day: number,
+      hour: number,
+      gregorianFlag: number,
+    ) => number;
+  },
+): number {
   const utcMoment = getLocalBirthMoment(chart).clone().utc();
   const hour =
     utcMoment.hour() +
