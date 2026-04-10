@@ -18,12 +18,24 @@ import {
   buildFixedStarReportLine,
   calculateFixedStarMatches,
 } from "./fixedStars";
+import { getAbsoluteAngularDistance } from "./aspectDynamics";
 
 const OUTER_PLANET_TYPES = new Set(["uranus", "neptune", "pluto"]);
 const NODE_TYPES = new Set(["northNode", "southNode"]);
+const TRADITIONAL_SOLAR_PROXIMITY_TYPES = new Set([
+  "moon",
+  "mercury",
+  "venus",
+  "mars",
+  "jupiter",
+  "saturn",
+]);
 const RETROGRADE_SPEED_EPSILON = 1e-6;
+const CAZIMI_ORB_DEGREES = 17 / 60;
+const COMBUSTION_ORB_DEGREES = 8.5;
+const SUN_BEAMS_ORB_DEGREES = 17;
 const ARABIC_PARTS_WITH_DO_ARTICLE = new Set([
-  "Espírito",
+  "Esp\u00edrito",
   "Amor",
   "Valor",
   "Cativeiro",
@@ -79,7 +91,7 @@ export function generateTraditionalReport(chart: BirthChart): string {
   ];
 
   orderedPlanets.forEach((planet) => {
-    report += `${formatPlanetReportLine(planet, chart)}\n`;
+    report += `${formatPlanetReportLine(planet, chart, sun)}\n`;
   });
 
   report += "--------------------------------------------------------------------\n";
@@ -101,18 +113,18 @@ export function generateTraditionalReport(chart: BirthChart): string {
   report += "--------------------------------------------------------------------\n";
   report += "PARTES ARABES:\n\n";
   const parts = buildTraditionalReportArabicParts(chart);
-  parts.forEach((p) => {
-    report += `Parte ${getArabicPartArticle(p.name)} ${p.name} em ${p.posFormatted} na ${p.house}. (Dispositor: ${p.dispositor}). Antiscion: ${p.antiscion}.\n`;
+  parts.forEach((part) => {
+    report += `Parte ${getArabicPartArticle(part.name)} ${part.name} em ${part.posFormatted} na ${part.house}. (Dispositor: ${part.dispositor}). Antiscion: ${part.antiscion}.\n`;
   });
 
   report += "--------------------------------------------------------------------\n";
   report += "ANTISCIOS:\n\n";
   planets
-    .concat(parts.map((p) => ({ name: p.name, longitudeRaw: p.longitude } as Planet)))
-    .forEach((p) => {
-      const antLon = (540 - p.longitudeRaw) % 360;
+    .concat(parts.map((part) => ({ name: part.name, longitudeRaw: part.longitude } as Planet)))
+    .forEach((point) => {
+      const antLon = (540 - point.longitudeRaw) % 360;
       const contraStr = formatDegrees((antLon + 180) % 360);
-      report += `${p.name} - antiscion: ${formatDegrees(antLon)} | contrantiscion: ${contraStr}.\n`;
+      report += `${point.name} - antiscion: ${formatDegrees(antLon)} | contrantiscion: ${contraStr}.\n`;
     });
 
   report += "--------------------------------------------------------------------\n";
@@ -121,7 +133,7 @@ export function generateTraditionalReport(chart: BirthChart): string {
     chart.fixedStarMatches ?? calculateFixedStarMatches(chart);
 
   if (fixedStarMatches.length === 0) {
-    report += "Nenhuma estrela fixa associada dentro da orbe de 2°.\n";
+    report += "Nenhuma estrela fixa associada dentro da orbe de 2\u00b0.\n";
   } else {
     const groupedMatches = fixedStarMatches.reduce<Record<string, typeof fixedStarMatches>>(
       (accumulator, match) => {
@@ -145,8 +157,8 @@ export function generateTraditionalReport(chart: BirthChart): string {
 
   report += "--------------------------------------------------------------------\n";
   report += "ASPECTOS TRADICIONAIS:\n\n";
-  const aspList = getAspects(chart);
-  aspList.forEach((aspect) => {
+  const aspectList = getAspects(chart);
+  aspectList.forEach((aspect) => {
     report += `${aspect}\n`;
   });
 
@@ -213,13 +225,23 @@ function formatDispositor(
   return `${ruler} em ${formatDegrees(rulerPlanet.longitudeRaw)}, na Casa ${getHouseIndex(rulerPlanet.longitudeRaw, chart.housesData.house)}`;
 }
 
-function formatPlanetReportLine(planet: Planet, chart: BirthChart): string {
+function formatPlanetReportLine(
+  planet: Planet,
+  chart: BirthChart,
+  sun: Planet,
+): string {
   const hIdx = getHouseIndex(planet.longitudeRaw, chart.housesData.house);
   const { sign, degrees } = formatSignAndDegrees(planet.longitudeRaw);
+  const solarCondition = getSolarConditionDescription(planet, sun);
   const motion = getPlanetMotionDescription(planet);
   const note = getTraditionalPlanetNote(planet);
+  const baseLine = `${planet.name} em ${sign}, a ${degrees}, na Casa ${romanize(hIdx)}`;
 
-  return `${planet.name} em ${sign}, a ${degrees} na Casa ${romanize(hIdx)} (${motion})${note}.`;
+  if (solarCondition) {
+    return `${baseLine} (${solarCondition}), (${motion})${note}.`;
+  }
+
+  return `${baseLine} (${motion})${note}.`;
 }
 
 function formatSignAndDegrees(longitude: number): { sign: string; degrees: string } {
@@ -231,13 +253,13 @@ function formatSignAndDegrees(longitude: number): { sign: string; degrees: strin
 
   return {
     sign: SIGNS[signIdx],
-    degrees: `${degree}°${minute.toString().padStart(2, "0")}’`,
+    degrees: `${degree}\u00b0${minute.toString().padStart(2, "0")}\u2019`,
   };
 }
 
 function getPlanetMotionDescription(planet: Planet): string {
   if (planet.isRetrograde) {
-    return "Retrógrado";
+    return "Movimento Retr\u00f3grado";
   }
 
   const averageSpeed = AVERAGE_DAILY_SPEED[planet.name];
@@ -247,22 +269,69 @@ function getPlanetMotionDescription(planet: Planet): string {
     planet.longitudeSpeed >= -RETROGRADE_SPEED_EPSILON &&
     Math.abs(planet.longitudeSpeed) >= averageSpeed * 0.85
   ) {
-    return "Movimento Direto, Rápido";
+    return "Movimento Direto - R\u00e1pido";
   }
 
-  return "Movimento Direto, Lento";
+  return "Movimento Direto - Lento";
+}
+
+function getSolarConditionDescription(planet: Planet, sun: Planet): string | null {
+  if (
+    planet.type === "sun" ||
+    !TRADITIONAL_SOLAR_PROXIMITY_TYPES.has(planet.type)
+  ) {
+    return null;
+  }
+
+  const solarDistance = getAbsoluteAngularDistance(
+    planet.longitudeRaw,
+    sun.longitudeRaw,
+  );
+  const formattedSolarDistance = formatAngularDistance(solarDistance);
+  const sameSign = getSignIndex(planet.longitudeRaw) === getSignIndex(sun.longitudeRaw);
+
+  if (solarDistance <= CAZIMI_ORB_DEGREES) {
+    return `Cazimi: a ${formattedSolarDistance} do Sol, no cora\u00e7\u00e3o do Sol`;
+  }
+
+  if (solarDistance <= COMBUSTION_ORB_DEGREES) {
+    if (sameSign) {
+      return `Combusto: a ${formattedSolarDistance} do Sol, no mesmo signo`;
+    }
+
+    return `Afli\u00e7\u00e3o por proximidade: a ${formattedSolarDistance} do Sol em signo diferente, portanto n\u00e3o combusto; tamb\u00e9m n\u00e3o est\u00e1 sob os raios, que exigem a faixa de 8\u00b030\u2019 a 17\u00b0`;
+  }
+
+  if (solarDistance <= SUN_BEAMS_ORB_DEGREES) {
+    return `Afli\u00e7\u00e3o: sob os raios do Sol, a ${formattedSolarDistance}`;
+  }
+
+  return null;
 }
 
 function getTraditionalPlanetNote(planet: Planet): string {
   if (OUTER_PLANET_TYPES.has(planet.type)) {
-    return " (Só considerado como Estrela Fixa na Astrologia Tradicional, e seu valor só importa enquanto conjunção ou oposição)";
+    return " (S\u00f3 considerado como Estrela Fixa na Astrologia Tradicional, e seu valor s\u00f3 importa enquanto conjun\u00e7\u00e3o ou oposi\u00e7\u00e3o)";
   }
 
   if (NODE_TYPES.has(planet.type)) {
-    return " (Na Astrologia Tradicional seu valor só importa enquanto conjunção ou oposição)";
+    return " (Na Astrologia Tradicional seu valor s\u00f3 importa enquanto conjun\u00e7\u00e3o ou oposi\u00e7\u00e3o)";
   }
 
   return "";
+}
+
+function getSignIndex(longitude: number): number {
+  const normalizedLongitude = ((longitude % 360) + 360) % 360;
+  return Math.floor(normalizedLongitude / 30) % 12;
+}
+
+function formatAngularDistance(distance: number): string {
+  const totalMinutes = Math.round(distance * 60);
+  const degrees = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  return `${degrees}\u00b0${minutes.toString().padStart(2, "0")}\u2019`;
 }
 
 function romanize(num: number): string {

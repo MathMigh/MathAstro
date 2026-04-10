@@ -94,7 +94,12 @@ function renderLongitude(longitude: number) {
 
   return (
     <>
-      <span>{degree}° {minute.toString().padStart(2, "0")}' </span>
+      <span>
+        {degree}
+        {"\u00b0 "}
+        {minute.toString().padStart(2, "0")}
+        {"\u2019 "}
+      </span>
       <span style={{ color: SIGN_COLORS[signIndex] }}>
         {SIGN_GLYPHS[signIndex]}
       </span>
@@ -145,7 +150,7 @@ function SummaryRow({
       </div>
 
       <div className="text-sm md:text-base">
-        <span className="font-semibold text-slate-700">Posição:</span>{" "}
+        <span className="font-semibold text-slate-700">Posi\u00e7\u00e3o:</span>{" "}
         <span className="font-medium">{position}</span>
       </div>
 
