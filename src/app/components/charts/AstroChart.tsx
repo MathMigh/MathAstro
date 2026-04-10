@@ -608,7 +608,10 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     return 2;
   }
 
-  function getAspects(elements: ChartElement[]): PlanetAspectData[] {
+  function getAspects(
+    elements: ChartElement[],
+    visibleElementIds = new Set(elements.map((element) => element.id))
+  ): PlanetAspectData[] {
     const aspectsData: PlanetAspectData[] = [];
     const aspectableElements = elements.filter((el) => isAspectableElement(el));
 
@@ -662,6 +665,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
             isFromOuterChart: element.isFromOuterChart!,
             isAntiscion: element.isAntiscion,
             isRetrograde: element.isRetrograde,
+            isVisibleOnChart: visibleElementIds.has(element.id),
           },
           aspectedElement: {
             name: elToCheck.planetType ?? elToCheck.name,
@@ -670,6 +674,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
             isFromOuterChart: elToCheck.isFromOuterChart!,
             isAntiscion: elToCheck.isAntiscion,
             isRetrograde: elToCheck.isRetrograde,
+            isVisibleOnChart: visibleElementIds.has(elToCheck.id),
           },
           key: generateAspectKey(element, elToCheck, aspect),
         });
@@ -872,9 +877,10 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
       baseGroup: d3.Selection<SVGGElement, unknown, null, undefined>;
       radius: number;
       lineStartOffset: number;
-    }
+    },
+    visibleElementIds = new Set(elements.map((element) => element.id))
   ) {
-    const aspectsData = getAspects(elements);
+    const aspectsData = getAspects(elements, visibleElementIds);
     const aspectsWithFixedStars = getAspectsWithFixedStars(elements);
     setFixedStarAspects(aspectsWithFixedStars);
     // console.log(aspectsData);
@@ -882,7 +888,11 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     onUpdateAspectsData?.(aspectsData);
 
     aspectsData.forEach((aspect) => {
-      if (!isAspectWithHouse(aspect)) {
+      if (
+        aspect.element.isVisibleOnChart &&
+        aspect.aspectedElement.isVisibleOnChart &&
+        !isAspectWithHouse(aspect)
+      ) {
         drawAspectElementTrace({
           ...options,
           element: aspect.element,
@@ -912,6 +922,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     const svg = d3.select(ref.current);
     svg.selectAll("*").remove();
     chartElementsForAspect.current = [];
+    const hiddenAspectElements: ChartElement[] = [];
 
     const zodiacSigns = [
       { glyph: "♈︎", radius: radius + 15 },
@@ -1397,6 +1408,26 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
       });
     }
 
+    if (!showArabicParts && arabicParts !== undefined) {
+      arabicPartKeys.forEach((key) => {
+        const lot = arabicParts[key];
+
+        if (lot !== undefined && lot.planet) {
+          hiddenAspectElements.push({
+            id:
+              chartElementsForAspect.current.length +
+              hiddenAspectElements.length,
+            isAntiscion: false,
+            longitude: lot.longitude,
+            name: lot.partKey,
+            elementType: "arabicPart",
+            isFromOuterChart: false,
+            isRetrograde: false,
+          });
+        }
+      });
+    }
+
     if (showArabicPartsAntiscia && arabicParts !== undefined) {
       arabicPartKeys.forEach((key) => {
         const lot = arabicParts[key];
@@ -1764,6 +1795,26 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
       });
     }
 
+    if (showOuterChart && !showArabicParts && outerArabicParts) {
+      arabicPartKeys.forEach((key) => {
+        const lot = outerArabicParts[key];
+
+        if (lot !== undefined && lot.planet) {
+          hiddenAspectElements.push({
+            id:
+              chartElementsForAspect.current.length +
+              hiddenAspectElements.length,
+            isAntiscion: false,
+            longitude: lot.longitude,
+            name: `${fixedNames.outerKeyPrefix}-${lot.partKey}`,
+            elementType: "arabicPart",
+            isFromOuterChart: true,
+            isRetrograde: false,
+          });
+        }
+      });
+    }
+
     if (showOuterChart && showArabicPartsAntiscia && outerArabicParts) {
       arabicPartKeys.forEach((key) => {
         const lot = outerArabicParts[key];
@@ -1914,11 +1965,23 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
       }
     }
 
-    drawAspects(chartElementsForAspect.current, {
-      baseGroup,
-      radius: smallInnerRadius,
-      lineStartOffset,
-    });
+    const aspectElements = [
+      ...chartElementsForAspect.current,
+      ...hiddenAspectElements,
+    ];
+    const visibleElementIds = new Set(
+      chartElementsForAspect.current.map((element) => element.id)
+    );
+
+    drawAspects(
+      aspectElements,
+      {
+        baseGroup,
+        radius: smallInnerRadius,
+        lineStartOffset,
+      },
+      visibleElementIds
+    );
 
     setTimeout(() => {
       updateIsMountingChart(false);

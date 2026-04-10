@@ -147,7 +147,7 @@ export default function ChartAndData(props: Props) {
           )}
 
           {title && (
-            <h1 className="mb-2 text-center text-lg font-bold text-amber-50 md:text-2xl">
+            <h1 className="mb-4 text-center text-lg font-bold text-amber-50 md:mb-5 md:text-2xl">
               {title}
             </h1>
           )}
