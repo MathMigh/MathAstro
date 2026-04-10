@@ -1991,36 +1991,31 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     setShowArabicPartsAntiscia((prev) => !prev);
   };
 
-  let className = `absolute
-    xl:right-[4.5rem] 2xl:left-[4.25rem] 3xl:left-5-5rem`;
+  let className = "absolute left-1/2 top-0 block -translate-x-1/2";
 
-  if (!isMobileBreakPoint()) {
-    if (isReturnChart())
-      className = "absolute " + showOuterChart ? "right-28" : "right-20";
+  if (isMobileBreakPoint()) {
+    className += showOuterChart ? " mb-8" : " mb-6";
 
-    if (isSinastryChart())
-      className = "absolute right-[6.8rem] top-12"
+    if (isCombinedWithBirthChart || isCombinedWithReturnChart) {
+      className += " top-4";
+    }
 
-    if (isProgressionChart() || isProfectionChart())
-      className = "";
+    if (isSinastryChart()) {
+      className += " top-6";
+    }
+
+    if (isProgressionChart()) {
+      className += !isCombinedWithBirthChart ? " top-[-0.75rem]" : " top-4";
+    }
   } else {
-    className = showOuterChart ? "mb-8" : "mb-6";
-    className += " absolute left-3";
-
-    if (isCombinedWithBirthChart || isCombinedWithReturnChart)
-      className = "absolute left-10 top-4"
-
-    if (isSinastryChart())
-      className = "absolute right-10 top-6"
-
-    if (isProgressionChart())
-      className = "absolute " + (!isCombinedWithBirthChart ? "left-3 top-[-0.75rem]" : "left-9 top-4");
+    if (isSinastryChart()) {
+      className += " top-12";
+    }
   }
 
   return (
     <div
-      className={`w-full flex flex-col justify-center items-center gap-8
-        ${useReturnSelectorArrows ? 'mx-14' : 'mx-10'}`}
+      className="flex w-full flex-col items-center justify-center gap-8"
     >
       <div className="w-full md:px-4">
         <AstroChartMenu
@@ -2032,7 +2027,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
         />
       </div>
 
-      <div className={`relative w-full h-[20rem] md:h-[38rem] ${(isMountingChart ? "opacity-0" : "")}`}>
+      <div className={`relative mx-auto h-[20rem] w-full md:h-[38rem] ${(isMountingChart ? "opacity-0" : "")}`}>
         {useReturnSelectorArrows ? (
           <ReturnSelectorArrows>
             <svg className={className} ref={ref}></svg>

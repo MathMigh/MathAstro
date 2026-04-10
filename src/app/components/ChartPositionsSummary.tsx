@@ -40,7 +40,7 @@ export default function ChartPositionsSummary({
         ))}
       </SummaryCard>
 
-      <SummaryCard title="Casas">
+      <SummaryCard title="Cúspides das Casas">
         {chart.housesData.house.map((houseLongitude, index) => (
           <SummaryRow
             key={HOUSE_LABELS[index]}
@@ -150,7 +150,7 @@ function SummaryRow({
       </div>
 
       <div className="text-sm md:text-base">
-        <span className="font-semibold text-slate-700">Posi\u00e7\u00e3o:</span>{" "}
+        <span className="font-semibold text-slate-700">{"Posição:"}</span>{" "}
         <span className="font-medium">{position}</span>
       </div>
 

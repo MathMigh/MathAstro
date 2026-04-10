@@ -16,18 +16,18 @@ export default function InfoPopup() {
           <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
             <LegendItem image="/aspects/sextile.png" label="Sextil" size={aspectImgSize} />
             <LegendItem image="/aspects/square.png" label="Quadratura" size={aspectImgSize} />
-            <LegendItem image="/aspects/trine.png" label="Tr\u00edgono" size={aspectImgSize} />
-            <LegendItem image="/aspects/opposition.png" label="Oposi\u00e7\u00e3o" size={aspectImgSize} />
-            <LegendItem image="/aspects/conjunction.png" label="Conjun\u00e7\u00e3o" size={aspectImgSize} />
+            <LegendItem image="/aspects/trine.png" label="Trígono" size={aspectImgSize} />
+            <LegendItem image="/aspects/opposition.png" label="Oposição" size={aspectImgSize} />
+            <LegendItem image="/aspects/conjunction.png" label="Conjunção" size={aspectImgSize} />
           </div>
           <p className="rounded-xl bg-white/70 px-3 py-2 text-[0.8rem] text-slate-700">
-            Orbe fixa tradicional de 3\u00b0 para conjun\u00e7\u00e3o, sextil, quadratura, tr\u00edgono e oposi\u00e7\u00e3o.
+            {"Orbe fixa tradicional de 3° para conjunção, sextil, quadratura, trígono e oposição."}
           </p>
         </div>
 
         <div className="flex flex-col gap-1">
           <h2 className="text-[1rem] font-bold text-slate-900">Elementos</h2>
-          <div>(C): Casa astrol\u00f3gica</div>
+          <div>{"(C): Casa astrológica"}</div>
           <div>(E): Elementos do mapa externo</div>
         </div>
 
