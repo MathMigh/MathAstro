@@ -66,7 +66,7 @@ function getFixedOffsetTimezoneFromLongitude(longitude: number): string {
     : `Etc/GMT+${Math.abs(offsetHours)}`;
 }
 
-function resolveTimezone(coordinates: CoordinatesLike): string {
+export function resolveTimezone(coordinates: CoordinatesLike): string {
   const latitude = Number(coordinates.latitude);
   const longitude = Number(coordinates.longitude);
 

@@ -297,7 +297,7 @@ function getArabicPartDisplayName(partKey: string): string {
 function buildArabicPartAspectParticipants(
   chart: BirthChart
 ): ReportAspectParticipant[] {
-  const lots = calculateArabicLots(chart);
+  const lots = calculateArabicLots(chart, "traditional");
 
   return ORDERED_ARABIC_PART_KEYS.flatMap((partKey) => {
     const lot = lots[partKey];

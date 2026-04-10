@@ -118,6 +118,13 @@ function participantSupportsAspect(
     return aspectType === "conjunction";
   }
 
+  if (
+    participant.elementType === "house" ||
+    participant.elementType === "arabicPart"
+  ) {
+    return aspectType === "conjunction" || aspectType === "opposition";
+  }
+
   if (participant.isAntiscion) {
     return aspectType === "conjunction" || aspectType === "opposition";
   }

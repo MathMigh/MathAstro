@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { calculateBirthChart } from "@/app/lib/astrologyEngine";
-import { generateTraditionalReport } from "@/app/lib/traditionalReport";
+import { generateTraditionalReport } from "@/app/lib/traditionalReportV2";
 
 export async function POST(request: Request) {
   try {
@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     }
 
     const chartData = await calculateBirthChart(body.birthDate);
-    const traditionalReport = generateTraditionalReport(chartData);
+    const traditionalReport = await generateTraditionalReport(chartData);
 
     return NextResponse.json({
       ...chartData,
