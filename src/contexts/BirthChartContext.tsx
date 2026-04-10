@@ -96,6 +96,7 @@ export const BirthChartContextProvider: React.FC<{ children: ReactNode }> = ({
               antiscion: antiscionRaw,
               longitudeRaw,
               antiscionRaw,
+              longitudeSpeed: planet.longitudeSpeed ?? 0,
               type: planetTypes[planet.id],
             };
           }),

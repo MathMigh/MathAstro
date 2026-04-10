@@ -5,74 +5,58 @@ export default function InfoPopup() {
   const aspectImgSize = 15;
 
   return (
-    <div className="absolute w-full bg-white border-2 z-10 flex flex-col gap-1">
-      <h2 className="text-lg text-center font-bold border-b-2">Legenda</h2>
+    <div className="absolute z-10 w-full overflow-hidden rounded-[1.35rem] border border-amber-200 bg-[linear-gradient(180deg,#fffdf8_0%,#f5ead7_100%)] text-slate-800 shadow-[0_16px_45px_rgba(0,0,0,0.14)]">
+      <div className="border-b border-amber-200 px-4 py-3">
+        <h2 className="text-center text-lg font-bold">Legenda</h2>
+      </div>
 
-      <div className="p-2 flex flex-col gap-1">
-        <h2 className="text-sm md:text-[1rem] font-bold">Aspectos:</h2>
-        <div className="grid grid-cols-3 text-[1rem]">
-          <div className="flex flex-row items-center justify-start">
-            <Image
-              alt="sextile"
-              src="/aspects/sextile.png"
-              width={aspectImgSize}
-              height={aspectImgSize}
-              unoptimized
-            />
-            <span className="pl-2">Sextil</span>
-          </div>
-
-          <div className="flex flex-row items-center justify-start">
-            <Image
-              alt="sextile"
-              src="/aspects/square.png"
-              width={aspectImgSize}
-              height={aspectImgSize}
-              unoptimized
-            />
-            <span className="pl-2">Quadratura</span>
-          </div>
-
-          <div className="flex flex-row items-center justify-end md:justify-start">
-            <Image
-              alt="sextile"
-              src="/aspects/trine.png"
-              width={aspectImgSize}
-              height={aspectImgSize}
-              unoptimized
-            />
-            <span className="pl-2">Trígono</span>
-          </div>
-
-          <div className="flex flex-row items-center justify-start">
-            <Image
-              alt="sextile"
-              src="/aspects/opposition.png"
-              width={aspectImgSize}
-              height={aspectImgSize}
-              unoptimized
-            />
-            <span className="pl-2">Oposição</span>
-          </div>
-
-          <div className="flex flex-row items-center justify-start">
-            <Image
-              alt="sextile"
-              src="/aspects/conjunction.png"
-              width={aspectImgSize}
-              height={aspectImgSize}
-              unoptimized
-            />
-            <span className="pl-2">Conjunção</span>
+      <div className="flex flex-col gap-4 p-4 text-sm">
+        <div className="flex flex-col gap-2">
+          <h2 className="text-[1rem] font-bold text-slate-900">Aspectos</h2>
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-3">
+            <LegendItem image="/aspects/sextile.png" label="Sextil" size={aspectImgSize} />
+            <LegendItem image="/aspects/square.png" label="Quadratura" size={aspectImgSize} />
+            <LegendItem image="/aspects/trine.png" label="Trígono" size={aspectImgSize} />
+            <LegendItem image="/aspects/opposition.png" label="Oposição" size={aspectImgSize} />
+            <LegendItem image="/aspects/conjunction.png" label="Conjunção" size={aspectImgSize} />
           </div>
         </div>
-        <h2 className="text-sm md:text-[1rem] font-bold">Elementos:</h2>
-        <div>(C): Casa astrológica</div>
-        <div>(E): Elementos do mapa externo</div>
-        <h2 className="text-sm md:text-[1rem] font-bold">Tipo de aspecto:</h2>
-        <div>(A): Aplicativo</div>
-        <div>(S): Separativo</div>
+
+        <div className="flex flex-col gap-1">
+          <h2 className="text-[1rem] font-bold text-slate-900">Elementos</h2>
+          <div>(C): Casa astrológica</div>
+          <div>(E): Elementos do mapa externo</div>
+        </div>
+
+        <div className="flex flex-col gap-1">
+          <h2 className="text-[1rem] font-bold text-slate-900">Tipo de aspecto</h2>
+          <div>(A): Aplicativo</div>
+          <div>(S): Separativo</div>
+        </div>
       </div>
+    </div>
+  );
+}
+
+function LegendItem({
+  image,
+  label,
+  size,
+}: {
+  image: string;
+  label: string;
+  size: number;
+}) {
+  return (
+    <div className="flex flex-row items-center gap-2 rounded-xl bg-white/70 px-3 py-2">
+      <Image
+        alt={label}
+        src={image}
+        width={size}
+        height={size}
+        unoptimized
+      />
+      <span>{label}</span>
     </div>
   );
 }

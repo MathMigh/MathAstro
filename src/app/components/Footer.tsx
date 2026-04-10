@@ -1,78 +1,35 @@
 import { CgWebsite } from "react-icons/cg";
-import { FaLinkedin } from "react-icons/fa";
-import { SiGithub, SiGmail, SiInstagram, SiWhatsapp } from "react-icons/si";
+import { SiGithub } from "react-icons/si";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-gray-900 text-gray-200 py-3 sm:py-4">
-      <div className="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-        <p className="text-sm">
-          &copy; {new Date().getFullYear()} Lucas Zaranza
+    <footer className="mt-10 w-full border-t border-amber-300/10 pt-6 text-stone-300/80">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:gap-6">
+        <p className="text-sm tracking-[0.16em] uppercase text-stone-300/55">
+          &copy; {new Date().getFullYear()} MathAstro
         </p>
 
-        <div className="flex gap-6 text-lg">
+        <div className="flex flex-wrap items-center justify-center gap-5 text-lg">
           <a
-            href="https://instagram.com/lucaspzaranza"
+            href="https://mathastro.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Instagram - abre em nova aba"
-            className="hover:text-pink-400 transition-colors flex items-center gap-2"
-          >
-            <SiInstagram size={20} />
-            <span className="hidden sm:inline">Instagram</span>
-          </a>
-
-          <a
-            href="https://www.linkedin.com/in/lucaszaranza/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn - abre em nova aba"
-            className="hover:text-blue-400 transition-colors flex items-center gap-2"
-          >
-            <FaLinkedin size={20} />
-            <span className="hidden sm:inline">LinkedIn</span>
-          </a>
-
-          <a
-            href="https://api.whatsapp.com/send?phone=5585991753445"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="LinkedIn - abre em nova aba"
-            className="hover:text-blue-400 transition-colors flex items-center gap-2"
-          >
-            <SiWhatsapp size={20} />
-            <span className="hidden sm:inline">Whatsapp</span>
-          </a>
-
-          <a
-            href="mailto:lucaszaranza@gmail.com"
-            aria-label="E-mail"
-            className="hover:text-red-400 transition-colors flex items-center gap-2"
-          >
-            <SiGmail size={20} />
-            <span className="hidden sm:inline">E-mail</span>
-          </a>
-
-          <a
-            href="https://lucasz.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Website pessoal"
-            className="hover:text-green-400 transition-colors flex items-center gap-2"
+            aria-label="Abrir o site"
+            className="flex items-center gap-2 hover:text-amber-200"
           >
             <CgWebsite size={20} />
-            <span className="hidden sm:inline">Website</span>
+            <span className="hidden sm:inline">Site</span>
           </a>
 
           <a
-            href="https://github.com/lucaspzaranza"
+            href="https://github.com/MathMigh/MathAstro"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="GitHub"
-            className="hover:text-gray-400 transition-colors flex items-center gap-2"
+            aria-label="Abrir o repositório"
+            className="flex items-center gap-2 hover:text-amber-200"
           >
             <SiGithub size={20} />
-            <span className="hidden sm:inline">GitHub</span>
+            <span className="hidden sm:inline">Repositório</span>
           </a>
         </div>
       </div>

@@ -14,7 +14,7 @@ export default function PresavedChartsDropdown(props: DropdownProps) {
   return (
     <select
       disabled={disabled ?? false}
-      className="p-1 border-2 rounded-sm w-full disabled:opacity-50"
+      className="w-full disabled:opacity-50"
       onChange={(e) => {
         const key = e.target.value;
         const profile = profiles.find((p) => p.name === key)!;

@@ -4,8 +4,6 @@ import { useBirthChart } from "@/contexts/BirthChartContext";
 import { JSX, useEffect, useRef, useState } from "react";
 import {
   convertDegMinToDecimal,
-  getHousesProfection,
-  getPlanetsProfection,
   getProfectionChart,
   monthsNames,
 } from "../../utils/chartUtils";
@@ -13,7 +11,6 @@ import {
   BirthChartProfile,
   BirthDate,
   ReturnChartType,
-  BirthChart as BirthChartType
 } from "@/interfaces/BirthChartInterfaces";
 import { useArabicParts } from "@/contexts/ArabicPartsContext";
 import ChartAndData from ".././ChartAndData";
@@ -509,14 +506,21 @@ export default function BirthChart() {
   }
 
   const getInitialMenuContent = (): JSX.Element =>
-    <Container className="w-[90%] sm:w-1/4">
-      <h2 className="text-[1rem] sm:text-lg text-center sm:text-start pt-4 px-2 sm:pt-0 sm:mb-4 font-bold">
+    <Container className="mx-auto mt-10 w-[94%] sm:w-[32rem]">
+      <div className="w-full px-4 pt-2 text-center sm:px-2">
+        <p className="section-eyebrow mb-3">Leitura Classica</p>
+        <h2 className="section-title text-[1.8rem] font-semibold text-amber-50 sm:text-[2.1rem]">
         {getTitleMenuTitle()}
-      </h2>
+        </h2>
+        <p className="section-copy mt-3 text-sm">
+          Gere mapas natais, retornos, sinastrias e tecnicas tradicionais em um
+          painel pensado para consulta longa e leitura serena.
+        </p>
+      </div>
 
-      <div className="w-full p-4 sm:p-0 flex flex-col gap-2">
+      <div className="mt-8 w-full p-4 sm:p-0 flex flex-col gap-3">
         {menu === "home" && (
-          <div className="w-full flex flex-col gap-2">
+          <div className="w-full flex flex-col gap-3">
             <button
               className="default-btn"
               onClick={() => setMenu("birthChart")}
@@ -558,6 +562,16 @@ export default function BirthChart() {
             >
               Profecção
             </button>
+            <div className="mt-2 rounded-[1.35rem] border border-amber-300/12 bg-white/[0.03] px-4 py-4 text-left">
+              <p className="section-eyebrow mb-2 text-[0.62rem]!">
+                Metodo
+              </p>
+              <p className="section-copy text-sm">
+                Casas em Regiomontanus, calculo por Swiss Ephemeris e relatorio
+                tradicional com dignidades, anticios, partes arabes, secto e
+                temperamento.
+              </p>
+            </div>
           </div>
         )}
 
@@ -590,7 +604,7 @@ export default function BirthChart() {
             >
               <input
                 required
-                className="border-2 rounded-sm w-full p-1"
+                className="w-full"
                 placeholder="Ano Rev. Solar"
                 type="number"
                 onChange={(e) => {
@@ -648,7 +662,7 @@ export default function BirthChart() {
               <div className="w-full flex flex-row justify-between gap-1">
                 <input
                   required
-                  className="border-2 rounded-sm w-1/3 px-1"
+                  className="w-1/3"
                   placeholder="Dia"
                   type="number"
                   onChange={(e) => {
@@ -664,7 +678,7 @@ export default function BirthChart() {
 
                 <select
                   required
-                  className="border-2 w-1/2 rounded-sm"
+                  className="w-1/2"
                   value={lunarMonth}
                   onChange={(e) =>
                     setLunarMonth(Number.parseInt(e.target.value))
@@ -680,7 +694,7 @@ export default function BirthChart() {
                 <input
                   required
                   type="number"
-                  className="border-2 w-20 p-1 rounded-sm"
+                  className="w-20"
                   placeholder="Ano"
                   onChange={(e) => {
                     if (e.target.value.length > 0) {
@@ -716,12 +730,12 @@ export default function BirthChart() {
 
         {menu === "sinastry" && (
           <>
-            <span>Primeiro mapa:</span>
+            <span className="section-copy text-sm">Primeiro mapa:</span>
             <PresavedChartsDropdown
               onChange={(profile) => setChartProfile(profile)}
             />
 
-            <span>Segundo mapa:</span>
+            <span className="section-copy text-sm">Segundo mapa:</span>
             <PresavedChartsDropdown
               onChange={(profile) => setSinastryProfile(profile)}
             />
@@ -753,7 +767,7 @@ export default function BirthChart() {
               makeSecondaryProgression();
             }}
           >
-            <span>Selecione o mapa:</span>
+            <span className="section-copy text-sm">Selecione o mapa:</span>
             <PresavedChartsDropdown
               onChange={(profile) => setChartProfile(profile)}
             />
@@ -764,7 +778,7 @@ export default function BirthChart() {
                 required
                 type="number"
                 placeholder="ex: 30"
-                className="w-full border-2 p-1 rounded-sm"
+                className="w-full"
                 value={progressionYear ?? ""}
                 onChange={(e) => {
                   const parsed = Number.parseInt(e.target.value);
@@ -798,7 +812,7 @@ export default function BirthChart() {
               getBirthChart();
             }}
           >
-            <span>Selecione o mapa:</span>
+            <span className="section-copy text-sm">Selecione o mapa:</span>
             <PresavedChartsDropdown
               onChange={(profile) => setChartProfile(profile)}
             />
@@ -809,7 +823,7 @@ export default function BirthChart() {
                 required
                 type="number"
                 placeholder="ex: 30"
-                className="w-full border-2 p-1 rounded-sm"
+                className="w-full"
                 value={profectionYear ?? ""}
                 onChange={(e) => {
                   const parsed = Number.parseInt(e.target.value);
@@ -920,7 +934,7 @@ export default function BirthChart() {
   }
 
   return (
-    <div className="w-[98vw] min-h-[50vh] mt-4 flex flex-col items-center justify-center gap-2">
+    <div className="mt-8 flex min-h-[50vh] w-full flex-col items-center justify-center gap-2">
       {!canRenderChart() ? getInitialMenuContent() :
         <>
           {isTransitioning && (

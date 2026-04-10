@@ -1,9 +1,6 @@
 "use client";
 
-import {
-  BirthChart,
-  ChatDateProps,
-} from "@/interfaces/BirthChartInterfaces";
+import { BirthChart, ChatDateProps } from "@/interfaces/BirthChartInterfaces";
 import React, { JSX, useCallback, useEffect, useState } from "react";
 import { ArabicPart, ArabicPartsType } from "@/interfaces/ArabicPartInterfaces";
 import AspectsTable from "./aspect-table/AspectsTable";
@@ -23,6 +20,7 @@ import {
   SKELETON_LOADER_TIME,
 } from "../utils/constants";
 import Spinner from "./Spinner";
+import ChartPositionsSummary from "./ChartPositionsSummary";
 
 interface Props {
   innerChart: BirthChart;
@@ -46,9 +44,7 @@ export default function ChartAndData(props: Props) {
     chartDateProps,
     outerChartDateProps,
     title,
-  } = {
-    ...props,
-  };
+  } = props;
 
   const [loading, setLoading] = useState(true);
   const { isMobileBreakPoint } = useScreenDimensions();
@@ -66,7 +62,6 @@ export default function ChartAndData(props: Props) {
   const {
     resetChartMenus,
     isReturnChart,
-    isSinastryChart,
     isProgressionChart,
     isProfectionChart,
   } = useChartMenu();
@@ -102,11 +97,7 @@ export default function ChartAndData(props: Props) {
   }
 
   useEffect(() => {
-    if (!loadingNextChart) {
-      setNextChartContentLoaded(true);
-    } else {
-      setNextChartContentLoaded(false);
-    }
+    setNextChartContentLoaded(!loadingNextChart);
   }, [loadingNextChart]);
 
   const handleReset = useCallback(() => {
@@ -142,146 +133,99 @@ export default function ChartAndData(props: Props) {
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
-    link.download = `Mapa_Natal_${chartDateProps.birthChart?.birthDate?.year ?? "Zazastro"}.txt`;
+    link.download = `Mapa_Natal_${chartDateProps.birthChart?.birthDate?.year ?? "MathAstro"}.txt`;
     link.click();
     URL.revokeObjectURL(url);
   }
 
   function renderChart(): JSX.Element {
-    const content = (
-      <div className="w-full md:min-w-[46rem] 2xl:min-w-[46rem] 3xl:min-w-48rem flex flex-col items-center justify-center relative">
-        {(loadingNextChart || isMountingChart) && (
-          <div
-            className={`absolute w-full h-full top-0 md:top-auto md:h-[108%] px-3 md:px-0 bg-white/10 backdrop-blur-sm flex flex-col items-center justify-center z-10 
-              md:rounded-2xl transition-all duration-200 ease-in-out opacity-0 animate-[fadeIn_0.2s_forwards]`}
-          >
-            <Spinner size="16" />
-            <h2 className="font-bold text-lg pl-10 mt-3">Carregando...</h2>
-          </div>
-        )}
+    return (
+      <Container className="w-full px-2! py-6! sm:px-4! lg:px-0!">
+        <div className="relative flex w-full flex-col items-center justify-center md:min-w-[46rem] 2xl:min-w-[46rem] 3xl:min-w-48rem">
+          {(loadingNextChart || isMountingChart) && (
+            <div className="absolute left-0 top-0 z-10 flex h-full w-full flex-col items-center justify-center bg-white/10 px-3 opacity-0 backdrop-blur-sm animate-[fadeIn_0.2s_forwards] md:h-[108%] md:rounded-2xl md:px-0">
+              <Spinner size="16" />
+              <h2 className="mt-3 pl-10 text-lg font-bold">Carregando...</h2>
+            </div>
+          )}
 
-        <>
-          <ChartSelectorArrows className="w-full mb-2 md:px-6">
+          <ChartSelectorArrows className="mb-2 w-full md:px-6">
             {title && (
-              <h1 className="text-lg md:text-2xl font-bold text-center">
+              <h1 className="text-center text-lg font-bold text-amber-50 md:text-2xl">
                 {title}
               </h1>
             )}
           </ChartSelectorArrows>
-          <div className="mb-2">
+
+          <div className="mb-2 flex flex-col items-center gap-2">
             <ChartDate {...chartDateProps} />
             {outerChartDateProps && <ChartDate {...outerChartDateProps} />}
           </div>
 
-          {innerChart && (
-            <AstroChart
-              props={{
-                planets: innerChart.planets,
-                housesData: innerChart.housesData,
-                arabicParts: arabicParts,
-                outerPlanets: outerChart?.planets,
-                outerHouses: outerChart?.housesData,
-                outerArabicParts,
-                fixedStars: innerChart.fixedStars,
-                onUpdateAspectsData: handleOnUpdateAspectsData,
-                useReturnSelectorArrows:
-                  isReturnChart() ||
-                  isProgressionChart() ||
-                  isProfectionChart(),
-              }}
-            />
-          )}
+          <AstroChart
+            props={{
+              planets: innerChart.planets,
+              housesData: innerChart.housesData,
+              arabicParts,
+              outerPlanets: outerChart?.planets,
+              outerHouses: outerChart?.housesData,
+              outerArabicParts,
+              fixedStars: innerChart.fixedStars,
+              onUpdateAspectsData: handleOnUpdateAspectsData,
+              useReturnSelectorArrows:
+                isReturnChart() || isProgressionChart() || isProfectionChart(),
+            }}
+          />
 
           <button
             type="button"
-            className="default-btn w-full! md:w-[25.5rem]! mt-6 mb-2"
+            className="default-btn mt-6 mb-2 w-full md:w-[25.5rem]"
             onClick={handleReset}
           >
             Menu Principal
           </button>
-        </>
-      </div>
-    );
-
-    return isMobileBreakPoint() ? (
-      <div className="flex flex-col items-center">{content}</div>
-    ) : (
-      <Container
-        className={`px-0! lg:mx-2 2xl:mx-6 ${isSinastryChart() ? "px-0!" : ""}`}
-      >
-        {content}
+        </div>
       </Container>
     );
   }
 
-  function renderArabicPartsAndAspectsTable(): JSX.Element {
-    const tableContent = (
-      <>
-        <AspectsTable
-          aspects={aspectsData}
-          birthChart={innerChart}
-          outerChart={outerChart}
-          arabicParts={arabicParts!}
-          outerArabicParts={outerArabicParts}
-          initialItemsPerPage={itemsPerPage}
+  function renderArabicPartsAndAspectsTable(): JSX.Element | null {
+    if (!arabicParts || !innerChart) {
+      return null;
+    }
+
+    const arabicPartsContent =
+      loading || loadingNextChart ? (
+        <div className="w-full">
+          <SkeletonLine width="w-1/3" className="mb-4" />
+          <SkeletonTable rows={8} />
+        </div>
+      ) : (
+        <ArabicPartsLayout
+          parts={partsArray}
+          showMenuButtons={true}
+          showSwitchParts
+          onToggleInnerPartsVisualization={handleOnToggleInnerPartsVisualization}
         />
-      </>
-    );
+      );
 
     return (
-      <>
-        {!isMobileBreakPoint() && (
-          <div className="md:w-[450px] 2xl:w-[450px] 3xl:w-[500px] flex flex-col gap-4 2xl:mr-[-15px] 3xl:mr-zero">
-            <Container>
-              {loading || loadingNextChart ? (
-                <div className="w-full">
-                  <SkeletonLine width="w-1/3" className="mb-4" />
-                  <SkeletonTable rows={8} />
-                </div>
-              ) : (
-                <ArabicPartsLayout
-                  parts={partsArray}
-                  showMenuButtons={true}
-                  showSwitchParts
-                  onToggleInnerPartsVisualization={
-                    handleOnToggleInnerPartsVisualization
-                  }
-                />
-              )}
-            </Container>
+      <section className="grid w-full gap-5 xl:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
+        <Container className="w-full px-4! py-6! sm:px-6!">
+          {arabicPartsContent}
+        </Container>
 
-            {arabicParts && innerChart && (
-              <Container className="">{tableContent}</Container>
-            )}
-          </div>
-        )}
-
-        {isMobileBreakPoint() && (
-          <>
-            {loading || loadingNextChart ? (
-              <div className="w-full">
-                <SkeletonLine width="w-1/3" className="mb-4" />
-                <SkeletonTable rows={8} />
-              </div>
-            ) : (
-              <ArabicPartsLayout
-                parts={partsArray}
-                showMenuButtons={true}
-                showSwitchParts
-                onToggleInnerPartsVisualization={
-                  handleOnToggleInnerPartsVisualization
-                }
-              />
-            )}
-
-            {arabicParts && innerChart && (
-              <div className="md:absolute md:top-full mb-4 md:mb-0">
-                {tableContent}
-              </div>
-            )}
-          </>
-        )}
-      </>
+        <Container className="w-full px-4! py-6! sm:px-6!">
+          <AspectsTable
+            aspects={aspectsData}
+            birthChart={innerChart}
+            outerChart={outerChart}
+            arabicParts={arabicParts}
+            outerArabicParts={outerArabicParts}
+            initialItemsPerPage={itemsPerPage}
+          />
+        </Container>
+      </section>
     );
   }
 
@@ -289,19 +233,11 @@ export default function ChartAndData(props: Props) {
     const reportChart = getTraditionalReportChart();
 
     if (!reportChart && !nextChartContentLoaded) {
-      const skeleton = (
-        <div className="w-full h-full flex flex-col">
+      return (
+        <div className="w-full rounded-[1.75rem] border border-white/10 bg-white/[0.03] px-5 py-6">
           <SkeletonLine width="w-1/3" className="mb-4" />
           <SkeletonTable rows={12} cols={1} />
         </div>
-      );
-
-      return isMobileBreakPoint() ? (
-        <div className="w-full md:w-[26rem]">{skeleton}</div>
-      ) : (
-        <Container className="xl:w-full 2xl:w-[18.5rem] 3xl:w-29rem px-6! 2xl:ml-[-15px] 3xl:ml-zero">
-          {skeleton}
-        </Container>
       );
     }
 
@@ -309,53 +245,43 @@ export default function ChartAndData(props: Props) {
       return null;
     }
 
-    const reportContent = (
-      <div className="w-full flex flex-col gap-3">
-        <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3">
-          <h2 className="font-bold self-start text-lg">
-            Relatorio Tradicional
-          </h2>
+    return (
+      <section className="w-full overflow-hidden rounded-[1.75rem] traditional-report-shell">
+        <div className="flex flex-col gap-4 border-b border-slate-400/15 px-5 pb-4 pt-5 sm:flex-row sm:items-start sm:justify-between">
+          <div className="flex flex-col gap-1">
+            <span className="section-eyebrow text-[0.62rem]!">
+              MathAstro
+            </span>
+            <h2 className="section-title text-2xl font-semibold text-slate-900">
+              Relatório Tradicional
+            </h2>
+            <p className="text-sm text-slate-600">
+              Leitura corrida, mais clara e posicionada no fim da página.
+            </p>
+          </div>
+
           <button
             type="button"
             onClick={() => downloadTraditionalReport(reportChart)}
-            className="text-xs bg-white/10 hover:bg-white/20 transition-colors px-3 py-1 rounded-full text-white/70"
+            className="rounded-full border border-amber-700/20 bg-white/70 px-4 py-2 text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-amber-900 transition-colors hover:bg-white"
           >
-            Download .txt
+            Baixar .txt
           </button>
         </div>
 
-        <pre className="whitespace-pre-wrap font-mono text-[0.8rem] md:text-[0.9rem] leading-relaxed text-indigo-100/90 overflow-x-auto max-h-[70vh] scrollbar-thin scrollbar-thumb-white/10">
+        <pre className="traditional-report-text max-h-[70vh] overflow-x-auto whitespace-pre-wrap px-5 pb-5 pt-4 font-mono text-[0.8rem] leading-7 md:text-[0.92rem]">
           {reportChart.traditionalReport}
         </pre>
-      </div>
-    );
-
-    return isMobileBreakPoint() ? (
-      <div className="w-full md:w-[26rem]">{reportContent}</div>
-    ) : (
-      <Container className="xl:w-full 2xl:w-[18.5rem] 3xl:w-29rem px-6! 2xl:ml-[-15px] 3xl:ml-zero">
-        {reportContent}
-      </Container>
+      </section>
     );
   }
 
   return (
-    <div className="w-[95%] md:w-full flex flex-col md:flex-row md:items-start md:justify-center mt-1 mb:mb-4">
-      {isMobileBreakPoint() && (
-        <>
-          {renderChart()}
-          {renderTraditionalReport()}
-          {renderArabicPartsAndAspectsTable()}
-        </>
-      )}
-
-      {!isMobileBreakPoint() && (
-        <div className="w-full flex flex-row items-start justify-center mb-4">
-          {renderArabicPartsAndAspectsTable()}
-          {renderChart()}
-          {renderTraditionalReport()}
-        </div>
-      )}
+    <div className="mt-1 mb-8 flex w-[95%] flex-col gap-6 md:w-full">
+      {renderChart()}
+      <ChartPositionsSummary chart={innerChart} />
+      {renderArabicPartsAndAspectsTable()}
+      {renderTraditionalReport()}
     </div>
   );
 }

@@ -12,31 +12,68 @@ import Footer from "./components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen sm:min-h-[100vh] flex flex-col items-center justify-between font-[family-name:var(--font-geist-mono)] bg-gradient-to-b from-blue-50 via-slate-50 to-blue-200">
-      <div className=" flex flex-row items-center gap-2 pt-4">
-        <h1 className="text-3xl font-bold">Zazastro</h1>
-        <Image
-          alt="logo"
-          src="/pisces.png"
-          width={30}
-          height={30}
-          unoptimized
-        />
+    <div className="relative min-h-screen overflow-hidden">
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <div className="absolute left-1/2 top-0 h-[26rem] w-[26rem] -translate-x-1/2 rounded-full bg-amber-300/8 blur-3xl" />
+        <div className="absolute left-[8%] top-[18%] h-3 w-3 rounded-full bg-amber-200/60 shadow-[0_0_35px_rgba(245,214,149,0.6)]" />
+        <div className="absolute right-[12%] top-[12%] h-2 w-2 rounded-full bg-white/60 shadow-[0_0_28px_rgba(255,255,255,0.55)]" />
+        <div className="absolute left-[16%] top-[64%] h-2 w-2 rounded-full bg-white/45 shadow-[0_0_24px_rgba(255,255,255,0.4)]" />
+        <div className="absolute right-[18%] top-[58%] h-3 w-3 rounded-full bg-amber-200/40 shadow-[0_0_28px_rgba(245,214,149,0.5)]" />
       </div>
-      <ProfilesContextProvider>
-        <ChartMenuContextProvider>
-          <BirthChartContextProvider>
-            <ArabicPartsContextProvider>
-              <AspectsContextProvider>
-                <ScreenDimensionsContextProvider>
-                  <BirthChart />
-                </ScreenDimensionsContextProvider>
-              </AspectsContextProvider>
-            </ArabicPartsContextProvider>
-          </BirthChartContextProvider>
-        </ChartMenuContextProvider>
-      </ProfilesContextProvider>
-      <Footer />
+
+      <main className="relative z-10 flex min-h-screen flex-col items-center justify-between px-4 pb-8 pt-8 md:px-8">
+        <div className="w-full max-w-6xl">
+          <header className="mx-auto flex max-w-4xl flex-col items-center text-center">
+            <div className="mb-6 flex h-24 w-24 items-center justify-center rounded-full border border-amber-300/25 bg-white/[0.03] shadow-[0_0_50px_rgba(215,170,79,0.14)] backdrop-blur">
+              <Image
+                alt="logo"
+                src="/pisces.png"
+                width={42}
+                height={42}
+                unoptimized
+                className="opacity-90"
+              />
+            </div>
+
+            <p className="section-eyebrow mb-4">MathAstro</p>
+            <h1 className="section-title text-4xl font-semibold tracking-[0.08em] text-amber-100 sm:text-5xl md:text-6xl">
+              Math, o Mágico
+            </h1>
+            <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.38em] text-amber-200/80">
+              Astrologia Tradicional Ocidental
+            </p>
+            <p className="section-copy mt-5 max-w-3xl text-sm md:text-base">
+              Mapas natais com Swiss Ephemeris, leitura tradicional mais clara
+              e uma interface mais elegante para consulta longa, sem ruído
+              visual.
+            </p>
+
+            <div className="mt-8 flex w-full max-w-xl items-center justify-center gap-4 text-amber-200/80">
+              <span className="gold-divider" />
+              <span className="text-[0.68rem] font-semibold uppercase tracking-[0.42em]">
+                Mapa Natal
+              </span>
+              <span className="gold-divider" />
+            </div>
+          </header>
+
+          <ProfilesContextProvider>
+            <ChartMenuContextProvider>
+              <BirthChartContextProvider>
+                <ArabicPartsContextProvider>
+                  <AspectsContextProvider>
+                    <ScreenDimensionsContextProvider>
+                      <BirthChart />
+                    </ScreenDimensionsContextProvider>
+                  </AspectsContextProvider>
+                </ArabicPartsContextProvider>
+              </BirthChartContextProvider>
+            </ChartMenuContextProvider>
+          </ProfilesContextProvider>
+        </div>
+
+        <Footer />
+      </main>
     </div>
   );
 }

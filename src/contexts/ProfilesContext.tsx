@@ -17,7 +17,8 @@ interface ProfilesContextType {
   deleteProfile: (id: string) => boolean;
 }
 
-const PROFILE_KEY = "zazastro:profile-";
+const PROFILE_KEY = "mathastro:profile-";
+const LEGACY_PROFILE_KEY = "zazastro:profile-";
 
 const ProfilesContext = createContext<ProfilesContextType | undefined>(
   undefined
@@ -35,7 +36,12 @@ export const ProfilesContextProvider: React.FC<{ children: ReactNode }> = ({
 
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      if (key === null || !key.startsWith(PROFILE_KEY)) continue;
+      if (
+        key === null ||
+        (!key.startsWith(PROFILE_KEY) && !key.startsWith(LEGACY_PROFILE_KEY))
+      ) {
+        continue;
+      }
 
       const rawProfile = localStorage.getItem(key);
       if (rawProfile !== null) {

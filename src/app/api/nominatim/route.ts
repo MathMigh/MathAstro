@@ -20,8 +20,8 @@ export async function GET(req: Request) {
     headers: {
       "User-Agent":
         process.env.NOMINATIM_USER_AGENT ||
-        `Zazastro/1.0 (${
-          process.env.NOMINATIM_EMAIL || "lucaszaranza@gmail.com"
+        `MathAstro/1.0 (${
+          process.env.NOMINATIM_EMAIL || "https://mathastro.vercel.app"
         })`,
       Referer: process.env.NOMINATIM_REFERER || "",
     },

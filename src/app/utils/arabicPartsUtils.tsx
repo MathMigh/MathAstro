@@ -59,8 +59,8 @@ const getAntiscionLocal = (total: number): number => {
 
 function getHouseIndexLocal(longitude: number, cusps: number[]): number {
   for (let i = 0; i < 11; i++) {
-    let start = cusps[i];
-    let end = cusps[i + 1];
+    const start = cusps[i];
+    const end = cusps[i + 1];
     if (end < start) {
       if (longitude >= start || longitude < end) return i + 1;
     } else {

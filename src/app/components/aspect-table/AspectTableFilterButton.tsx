@@ -109,7 +109,7 @@ function AspectTableFilterButtonFn(
     <div className="w-full relative">
       <button
         disabled={disableFilterBtn}
-        className="w-full disabled:bg-white h-5 flex flex-row text-[0.7rem] pt-px items-center justify-center bg-gray-200 hover:bg-gray-300 active:bg-gray-400"
+        className="flex h-9 w-full flex-row items-center justify-center border-t border-amber-100 bg-amber-50/80 text-[0.7rem] transition-colors hover:bg-amber-100 active:bg-amber-200 disabled:bg-white"
         onClick={() =>
           /* Toggle Filter Modal On/Off */
           onModalButtonClick?.(modalIndex)

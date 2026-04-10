@@ -1,36 +1,88 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #050814;
+  --foreground: #f5eddc;
+  --ink: #182132;
+  --muted: #a7afc7;
+  --gold: #d7aa4f;
+  --gold-soft: #f3d38a;
+  --panel-border: rgba(215, 170, 79, 0.22);
 }
 
 @theme inline {
   --color-background: var(--background);
-  --color-foreground: var(--background);
-  --font-sans: var(--font-geist-sans);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-body);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #fdfdfd;
-    --foreground: #0a0a0a;
-  }
+html {
+  background: var(--background);
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(31, 53, 112, 0.3), transparent 28%),
+    radial-gradient(circle at 20% 20%, rgba(215, 170, 79, 0.08), transparent 18%),
+    radial-gradient(circle at 80% 0%, rgba(58, 91, 198, 0.1), transparent 24%),
+    linear-gradient(180deg, #070a17 0%, #050814 55%, #04060f 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), sans-serif;
+}
+
+a {
+  transition: color 180ms ease, opacity 180ms ease;
+}
+
+button {
+  cursor: pointer;
 }
 
 input[type="checkbox"],
 input[type="radio"],
 input[type="range"],
 progress {
-  accent-color: #3b82f6;
-  /* Tailwind blue-500 */
+  accent-color: var(--gold);
+}
+
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+select,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(215, 170, 79, 0.22);
+  background: rgba(8, 11, 27, 0.88);
+  color: #f8f1e2;
+  border-radius: 0.95rem;
+  padding: 0.8rem 0.95rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 0 0 1px rgba(8, 11, 27, 0.3);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(220, 215, 204, 0.42);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: rgba(243, 211, 138, 0.7);
+  box-shadow:
+    0 0 0 1px rgba(243, 211, 138, 0.55),
+    0 0 0 6px rgba(215, 170, 79, 0.1);
+}
+
+select option {
+  background: #0b1024;
+  color: #f8f1e2;
 }
 
 @keyframes shimmer {
@@ -49,10 +101,12 @@ progress {
   position: absolute;
   inset: 0;
   transform: translateX(-100%);
-  background: linear-gradient(90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   animation: shimmer 1s infinite;
 }
 
@@ -69,11 +123,112 @@ progress {
 }
 
 .antiscion {
-  @apply text-[#ff914d];
+  @apply text-[#ffb26c];
 }
 
 .default-btn {
-  @apply bg-gradient-to-b from-blue-600 via-blue-800 from-10% to-blue-900 to-100% w-full text-white px-4 py-2 rounded hover:from-blue-600 hover:via-blue-900 hover:to-blue-950 transition-all;
+  width: 100%;
+  border: 1px solid rgba(245, 214, 149, 0.3);
+  border-radius: 1rem;
+  padding: 0.95rem 1.15rem;
+  background: linear-gradient(135deg, #f1cf7c 0%, #cea146 46%, #9b6d18 100%);
+  color: #191206;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  box-shadow:
+    0 16px 35px rgba(115, 78, 16, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+}
+
+.default-btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow:
+    0 20px 42px rgba(115, 78, 16, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.52);
+}
+
+.default-btn:active {
+  transform: translateY(0);
+}
+
+.panel-surface {
+  background: linear-gradient(
+    180deg,
+    rgba(14, 19, 44, 0.94) 0%,
+    rgba(8, 11, 28, 0.92) 100%
+  );
+  border: 1px solid var(--panel-border);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.section-eyebrow {
+  color: rgba(215, 170, 79, 0.82);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-display), serif;
+  letter-spacing: 0.06em;
+}
+
+.section-copy {
+  color: rgba(228, 224, 214, 0.76);
+  line-height: 1.7;
+}
+
+.traditional-report-shell {
+  background: linear-gradient(
+    180deg,
+    rgba(251, 246, 235, 0.98) 0%,
+    rgba(241, 233, 218, 0.97) 100%
+  );
+  border: 1px solid rgba(151, 125, 77, 0.34);
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.75);
+}
+
+.traditional-report-text {
+  color: var(--ink);
+  scrollbar-color: rgba(92, 62, 17, 0.45) transparent;
+}
+
+.traditional-report-text::-webkit-scrollbar {
+  width: 10px;
+}
+
+.traditional-report-text::-webkit-scrollbar-thumb {
+  background: rgba(92, 62, 17, 0.45);
+  border-radius: 999px;
+}
+
+.traditional-report-text::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gold-divider {
+  height: 1px;
+  width: min(100%, 320px);
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(215, 170, 79, 0.55) 20%,
+    rgba(215, 170, 79, 1) 50%,
+    rgba(215, 170, 79, 0.55) 80%,
+    transparent 100%
+  );
 }
 
 @media (min-width: 1600px) {
@@ -103,11 +258,11 @@ progress {
   }
 
   .\33 xl\:ml-zero {
-    margin-left: 0px;
+    margin-left: 0;
   }
 
   .\33 xl\:mr-zero {
-    margin-right: 0px;
+    margin-right: 0;
   }
 
   .\33 xl\:w-\[470px\] {

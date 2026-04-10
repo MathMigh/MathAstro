@@ -119,10 +119,10 @@ export default function CitySearch({
   }, [query, selectedCity, queryError]);
 
   return (
-    <div ref={wrapperRef} className="flex flex-col gap-1 mb-5">
+    <div ref={wrapperRef} className="mb-5 flex flex-col gap-2">
       <input
         required
-        className="border-2 p-1 rounded"
+        className="w-full"
         type="text"
         placeholder="Digite a cidade"
         value={query}
@@ -149,16 +149,16 @@ export default function CitySearch({
 
       <div className="relative">
         <div className="absolute">
-          {isLoading && <p>Buscando...</p>}
-          {queryError && <p>Sem resultados.</p>}
+          {isLoading && <p className="text-sm text-stone-300/75">Buscando...</p>}
+          {queryError && <p className="text-sm text-amber-200/80">Sem resultados.</p>}
         </div>
 
         {results.length > 0 && !isLoading && (
-          <ul className="absolute bg-white border rounded shadow p-2">
+          <ul className="absolute z-20 mt-2 max-h-56 w-full overflow-y-auto rounded-2xl border border-amber-300/15 bg-[#0a0f24]/98 p-2 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
             {results.map((city, index) => (
               <li
                 key={index}
-                className="cursor-pointer hover:bg-gray-100 p-1"
+                className="cursor-pointer rounded-xl px-3 py-2 text-sm text-stone-100/90 transition-colors hover:bg-white/8"
                 onClick={() => {
                   selectedCityNameRef.current = city.display_name;
                   onSelect({

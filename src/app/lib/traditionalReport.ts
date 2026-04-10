@@ -1,67 +1,88 @@
-import { 
-  formatDegrees, getSect, getHouseIndex, getAlmuten, 
-  calculateArabicParts, getFixedStarConjunctions, 
-  getAspects, getEssentialDignities 
-} from "./traditionalCalculations";
 import { BirthChart, Planet } from "@/interfaces/BirthChartInterfaces";
-import { SIGNS, FIXED_STARS, PRECESSION_RATE } from "./traditionalTables";
+import {
+  calculateArabicParts,
+  formatDegrees,
+  getAlmuten,
+  getAspects,
+  getEssentialDignities,
+  getFixedStarConjunctions,
+  getHouseIndex,
+  getSect,
+} from "./traditionalCalculations";
+import { AVERAGE_DAILY_SPEED, SIGNS } from "./traditionalTables";
+import { calculateTemperament } from "./traditionalTemperament";
+
+const DOMICILE_RULER: string[] = [
+  "Marte",
+  "Venus",
+  "Mercurio",
+  "Lua",
+  "Sol",
+  "Mercurio",
+  "Venus",
+  "Marte",
+  "Jupiter",
+  "Saturno",
+  "Saturno",
+  "Jupiter",
+];
+
+const OUTER_PLANET_TYPES = new Set(["uranus", "neptune", "pluto"]);
+const NODE_TYPES = new Set(["northNode", "southNode"]);
 
 export function generateTraditionalReport(chart: BirthChart): string {
   const sect = getSect(
-    chart.planets.find(p => p.type === "sun")!.longitudeRaw, 
-    chart.housesData.ascendant, 
-    chart.housesData.house
+    chart.planets.find((p) => p.type === "sun")!.longitudeRaw,
+    chart.housesData.ascendant,
+    chart.housesData.house,
   );
-  
+
   const planets = chart.planets;
-  const sun = planets.find(p => p.type === "sun")!;
-  const moon = planets.find(p => p.type === "moon")!;
-  const merc = planets.find(p => p.type === "mercury")!;
-  const ven = planets.find(p => p.type === "venus")!;
-  const mars = planets.find(p => p.type === "mars")!;
-  const jup = planets.find(p => p.type === "jupiter")!;
-  const sat = planets.find(p => p.type === "saturn")!;
-  
+  const sun = planets.find((p) => p.type === "sun")!;
+  const moon = planets.find((p) => p.type === "moon")!;
+  const merc = planets.find((p) => p.type === "mercury")!;
+  const ven = planets.find((p) => p.type === "venus")!;
+  const mars = planets.find((p) => p.type === "mars")!;
+  const jup = planets.find((p) => p.type === "jupiter")!;
+  const sat = planets.find((p) => p.type === "saturn")!;
+
   const asc = chart.housesData.ascendant;
   const mc = chart.housesData.mc;
   const desc = (asc + 180) % 360;
   const ic = (mc + 180) % 360;
+  const temperament = calculateTemperament(chart);
 
-  let report = `MAPA TRADICIONAL OCIDENTAL:\n\n`;
+  let report = "MAPA TRADICIONAL OCIDENTAL:\n\n";
   report += `Ascendente em ${formatDegrees(asc)} (Lento).\n`;
   report += `Descendente em ${formatDegrees(desc)} (Lento).\n`;
-  report += `Meio do Céu (MC) em ${formatDegrees(mc)} (Lento).\n`;
-  report += `Fundo do Céu (IC) em ${formatDegrees(ic)} (Lento).\n\n`;
+  report += `Meio do Ceu (MC) em ${formatDegrees(mc)} (Lento).\n`;
+  report += `Fundo do Ceu (IC) em ${formatDegrees(ic)} (Lento).\n\n`;
 
-  const tradPlanets = [sun, moon, merc, ven, mars, jup, sat];
-  tradPlanets.forEach(p => {
-    const hIdx = getHouseIndex(p.longitudeRaw, chart.housesData.house);
-    report += `${p.name} em ${formatDegrees(p.longitudeRaw)}, na Casa ${romanize(hIdx)} (${p.isRetrograde ? "Retrógrado" : "Movimento Direto"}).\n`;
+  const orderedPlanets = [
+    sun,
+    moon,
+    merc,
+    ven,
+    mars,
+    jup,
+    sat,
+    ...planets.filter((p) => OUTER_PLANET_TYPES.has(p.type)),
+    ...planets.filter((p) => NODE_TYPES.has(p.type)),
+  ];
+
+  orderedPlanets.forEach((planet) => {
+    report += `${formatPlanetReportLine(planet, chart)}\n`;
   });
 
-  report += `\n`;
-  const outer = planets.filter(p => ["uranus", "neptune", "pluto"].includes(p.type));
-  outer.forEach(p => {
-    const hIdx = getHouseIndex(p.longitudeRaw, chart.housesData.house);
-    report += `${p.name} em ${formatDegrees(p.longitudeRaw)} na Casa ${romanize(hIdx)} (${p.isRetrograde ? "Retrógrado" : "Movimento Direto"}) (Só considerado como Estrela Fixa na Astrologia Tradicional).\n`;
-  });
-
-  report += `\n`;
-  const nodes = planets.filter(p => ["northNode", "southNode"].includes(p.type));
-  nodes.forEach(p => {
-    const hIdx = getHouseIndex(p.longitudeRaw, chart.housesData.house);
-    report += `${p.name} em ${formatDegrees(p.longitudeRaw)}, na Casa ${romanize(hIdx)} (Retrógrado).\n`;
-  });
-
-  report += `--------------------------------------------------------------------\n`;
+  report += "--------------------------------------------------------------------\n";
   report += `Secto: ${sect}.\n`;
-  report += `--------------------------------------------------------------------\n`;
-  report += `Temperamento: (Processando...)\n`; // Simplified for now
-  report += `--------------------------------------------------------------------\n`;
-  report += `Mentalidade: (Desejado...)\n`;
-  report += `--------------------------------------------------------------------\n`;
-  
-  report += `CÚSPIDES DAS CASAS:\n\n`;
+  report += "--------------------------------------------------------------------\n";
+  report += `Temperamento: ${temperament.summary}.\n`;
+  report += "--------------------------------------------------------------------\n";
+  report += "Mentalidade: (Desejado...)\n";
+  report += "--------------------------------------------------------------------\n";
+
+  report += "CUSPIDES DAS CASAS:\n\n";
   chart.housesData.house.forEach((cuspLon, idx) => {
     const hNum = idx + 1;
     const almuten = getAlmuten(cuspLon, sect);
@@ -69,80 +90,143 @@ export function generateTraditionalReport(chart: BirthChart): string {
     report += `Casa ${hNum} em ${formatDegrees(cuspLon)}, almuten ${almuten}. (antiscion: ${formatDegrees(antiscionLon)}).\n`;
   });
 
-  report += `--------------------------------------------------------------------\n`;
-  report += `PARTES ÁRABES:\n\n`;
+  report += "--------------------------------------------------------------------\n";
+  report += "PARTES ARABES:\n\n";
   const parts = calculateArabicParts(chart);
-  parts.forEach(p => {
-    report += `Parte d${p.name.endsWith('o') || p.name === 'Valor' || p.name === 'Espírito' ? 'o' : 'a'} ${p.name} em ${p.posFormatted} na ${p.house}. (Dispositor: ${p.dispositor}). Antiscion: ${p.antiscion}.\n`;
+  parts.forEach((p) => {
+    report += `Parte d${p.name.endsWith("o") || p.name === "Valor" || p.name === "Espirito" ? "o" : "a"} ${p.name} em ${p.posFormatted} na ${p.house}. (Dispositor: ${p.dispositor}). Antiscion: ${p.antiscion}.\n`;
   });
 
-  report += `--------------------------------------------------------------------\n`;
-  report += `ANTÍSCIOS:\n\n`;
-  // List antiscia and check fixed star contact
-  planets.concat(parts.map(p => ({ 
-    name: p.name, 
-    longitudeRaw: p.longitude 
-  } as any))).forEach(p => {
-    const antLon = (540 - p.longitudeRaw) % 360;
-    const contraStr = formatDegrees((antLon + 180) % 360);
-    report += `${p.name} — antiscion: ${formatDegrees(antLon)} · contrantiscion: ${contraStr}.\n`;
-  });
+  report += "--------------------------------------------------------------------\n";
+  report += "ANTISCIOS:\n\n";
+  planets
+    .concat(parts.map((p) => ({ name: p.name, longitudeRaw: p.longitude } as Planet)))
+    .forEach((p) => {
+      const antLon = (540 - p.longitudeRaw) % 360;
+      const contraStr = formatDegrees((antLon + 180) % 360);
+      report += `${p.name} - antiscion: ${formatDegrees(antLon)} | contrantiscion: ${contraStr}.\n`;
+    });
 
-  report += `--------------------------------------------------------------------\n`;
-  report += `ESTRELAS FIXAS:\n\n`;
-  // Check angles and planets
+  report += "--------------------------------------------------------------------\n";
+  report += "ESTRELAS FIXAS:\n\n";
   const starCheckList = [
     { name: "ASC", lon: asc },
     { name: "MC", lon: mc },
-    sun, moon, merc, ven, mars, jup, sat
+    sun,
+    moon,
+    merc,
+    ven,
+    mars,
+    jup,
+    sat,
   ];
-  starCheckList.forEach(item => {
-    const name = (item as any).name;
-    const lon = (item as any).longitudeRaw !== undefined ? (item as any).longitudeRaw : (item as any).lon;
+
+  starCheckList.forEach((item) => {
+    const name = item.name;
+    const lon = "longitudeRaw" in item ? item.longitudeRaw : item.lon;
     const stars = getFixedStarConjunctions(lon, chart.birthDate.year);
     if (stars.length > 0) {
       report += `${name} em ${formatDegrees(lon)}: ${stars.join("; ")};\n`;
     }
   });
 
-  report += `--------------------------------------------------------------------\n`;
-  report += `ASPECTOS ENTRE PLANETAS:\n\n`;
+  report += "--------------------------------------------------------------------\n";
+  report += "ASPECTOS ENTRE PLANETAS:\n\n";
   const aspList = getAspects(chart);
-  aspList.forEach(a => {
-    report += a + "\n";
+  aspList.forEach((aspect) => {
+    report += `${aspect}\n`;
   });
 
-  report += `-------------------------------------------------------------------\n`;
-  report += `DIGNIDADES E DEBILIDADES ESSENCIAIS:\n\n`;
-  tradPlanets.forEach(p => {
-    report += getEssentialDignities(p.longitudeRaw, p.name, sect) + "\n";
+  report += "-------------------------------------------------------------------\n";
+  report += "DIGNIDADES E DEBILIDADES ESSENCIAIS:\n\n";
+  [sun, moon, merc, ven, mars, jup, sat].forEach((planet) => {
+    report += `${getEssentialDignities(planet.longitudeRaw, planet.name, sect)}\n`;
   });
 
-  report += `--------------------------------------------------------------------\n`;
-  report += `DISPOSITORES:\n\n`;
-  // Simple chain report
-  tradPlanets.forEach(p => {
-    const currentSignIdx = Math.floor(p.longitudeRaw / 30) % 12;
+  report += "--------------------------------------------------------------------\n";
+  report += "DISPOSITORES:\n\n";
+  [sun, moon, merc, ven, mars, jup, sat].forEach((planet) => {
+    const currentSignIdx = Math.floor(planet.longitudeRaw / 30) % 12;
     const ruler = DOMICILE_RULER[currentSignIdx];
-    report += `${p.name} em ${SIGNS[currentSignIdx]} → Dispositor: ${ruler}.\n`;
+    report += `${planet.name} em ${SIGNS[currentSignIdx]} -> Dispositor: ${ruler}.\n`;
   });
-  
-  report += `--------------------------------------------------------------------\n`;
+
+  report += "--------------------------------------------------------------------\n";
 
   return report;
 }
 
-function romanize(num: number): string {
-  const lookup: any = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
-  let roman = '';
-  let i;
-  for ( i in lookup ) {
-    while ( num >= lookup[i] ) {
-      roman += i;
-      num -= lookup[i];
-    }
-  }
-  return roman;
+function formatPlanetReportLine(planet: Planet, chart: BirthChart): string {
+  const hIdx = getHouseIndex(planet.longitudeRaw, chart.housesData.house);
+  const { sign, degrees } = formatSignAndDegrees(planet.longitudeRaw);
+  const motion = getPlanetMotionDescription(planet);
+  const note = getTraditionalPlanetNote(planet);
+
+  return `${planet.name} em ${sign}, a ${degrees} na Casa ${romanize(hIdx)} (${motion})${note}.`;
 }
 
-const DOMICILE_RULER: string[] = ["Marte","Vênus","Mercúrio","Lua","Sol","Mercúrio","Vênus","Marte","Júpiter","Saturno","Saturno","Júpiter"];
+function formatSignAndDegrees(longitude: number): { sign: string; degrees: string } {
+  const totalMinutes = ((Math.round(longitude * 60) % 21600) + 21600) % 21600;
+  const signIdx = Math.floor(totalMinutes / 1800) % 12;
+  const remaining = totalMinutes - signIdx * 1800;
+  const degree = Math.floor(remaining / 60);
+  const minute = remaining % 60;
+
+  return {
+    sign: SIGNS[signIdx],
+    degrees: `${degree}°${minute.toString().padStart(2, "0")}’`,
+  };
+}
+
+function getPlanetMotionDescription(planet: Planet): string {
+  if (NODE_TYPES.has(planet.type) || planet.isRetrograde || planet.longitudeSpeed < 0) {
+    return "Retrógrado";
+  }
+
+  const averageSpeed = AVERAGE_DAILY_SPEED[planet.name];
+  if (averageSpeed && Math.abs(planet.longitudeSpeed) >= averageSpeed * 0.85) {
+    return "Movimento Direto, Rápido";
+  }
+
+  return "Movimento Direto";
+}
+
+function getTraditionalPlanetNote(planet: Planet): string {
+  if (OUTER_PLANET_TYPES.has(planet.type)) {
+    return " (Só considerado como Estrela Fixa na Astrologia Tradicional, e seu valor só importa enquanto conjunção ou oposição)";
+  }
+
+  if (NODE_TYPES.has(planet.type)) {
+    return " (Na Astrologia Tradicional seu valor só importa enquanto conjunção ou oposição)";
+  }
+
+  return "";
+}
+
+function romanize(num: number): string {
+  const lookup: Record<string, number> = {
+    M: 1000,
+    CM: 900,
+    D: 500,
+    CD: 400,
+    C: 100,
+    XC: 90,
+    L: 50,
+    XL: 40,
+    X: 10,
+    IX: 9,
+    V: 5,
+    IV: 4,
+    I: 1,
+  };
+  let roman = "";
+
+  for (const [symbol, value] of Object.entries(lookup)) {
+    while (num >= value) {
+      roman += symbol;
+      num -= value;
+    }
+  }
+
+  return roman;
+}

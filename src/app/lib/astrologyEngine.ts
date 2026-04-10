@@ -293,7 +293,7 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
     throw new Error("Selecione uma cidade válida na lista antes de gerar o mapa.");
   }
 
-  // O frontend Zazastro envia 'time' convertido pra hora decimal (Ex: 06:45 = "6.75")!
+  // O frontend MathAstro envia 'time' convertido pra hora decimal (Ex: 06:45 = "6.75")!
   let decimalTime = 12;
   if (typeof time === 'string' && time.includes(':')) {
      const parts = time.split(":");
@@ -386,6 +386,7 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
       name: p.name,
       longitude: pos.longitude,
       longitudeRaw: pos.longitude,
+      longitudeSpeed: pos.longitudeSpeed,
       sign: getSignName(pos.longitude),
       antiscion: computeAntiscion(pos.longitude),
       antiscionRaw: computeAntiscion(pos.longitude),
@@ -402,6 +403,7 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
     name: "Nodo Sul",
     longitude: southNodeLon,
     longitudeRaw: southNodeLon,
+    longitudeSpeed: northNode.longitudeSpeed,
     sign: getSignName(southNodeLon),
     antiscion: computeAntiscion(southNodeLon),
     antiscionRaw: computeAntiscion(southNodeLon),

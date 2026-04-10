@@ -99,13 +99,13 @@ export default function AspectsTable({
   const distanceTypes: AspectDistanceTypeInterface[] = [];
 
   const tdClasses =
-    "w-full border-r-2 flex flex-row items-center justify-center";
+    "w-full min-h-[2.75rem] border-r border-amber-200 px-2 py-2 flex flex-row items-center justify-center text-slate-800";
 
   const tdClasses3W4 =
-    "w-3/4 border-r-2 flex flex-row items-center justify-center";
+    "w-3/4 min-h-[2.75rem] border-r border-amber-200 px-2 py-2 flex flex-row items-center justify-center text-slate-800";
 
   const tdClasses10W12 =
-    "w-10/12 border-r-2 flex flex-row items-center justify-center";
+    "w-10/12 min-h-[2.75rem] border-r border-amber-200 px-2 py-2 flex flex-row items-center justify-center text-slate-800";
 
   useEffect(() => {
     clearFilters();
@@ -440,7 +440,7 @@ export default function AspectsTable({
     const rows: React.ReactNode[] = [];
 
     for (let index = 0; index < emptyRowsCount; index++) {
-      const trClasses = `flex flex-row border-t-2 ${index > 0 ? "border-[#fdfdfd]" : ""
+      const trClasses = `flex flex-row border-t border-amber-100 ${index > 0 ? "border-[#f5ede0]" : ""
         }`;
       rows.push(
         <tr key={index} className={trClasses}>
@@ -635,38 +635,54 @@ export default function AspectsTable({
     setCumulatedOptions(undefined);
   }
 
-  return (
-    (loading || loadingNextChart || isMountingChart) ? (
+  if (loading || loadingNextChart || isMountingChart) {
+    return (
       <div className="w-full">
         <SkeletonTable rows={12} />
-      </div>) :
-      <>
-        <div className="w-full 2xl:w-[420px] 3xl:w-[470px] flex flex-row items-center justify-between">
-          <h2 className="font-bold text-lg mb-2">Aspectos:</h2>
-          <Image
-            alt="info"
-            src="/info.png"
-            width={20}
-            height={20}
-            className="hover:scale-110"
+      </div>
+    );
+  }
+
+  return (
+    <>
+        <div className="mb-3 flex w-full items-center justify-between gap-3">
+          <div>
+            <p className="section-eyebrow text-[0.62rem]!">Leitura Visual</p>
+            <h2 className="text-lg font-bold text-slate-900 md:text-xl">Aspectos</h2>
+          </div>
+          <button
+            type="button"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-200 bg-white shadow-sm transition-transform hover:scale-105 hover:bg-amber-50"
             onClick={() => setOpenInfoPopup((prev) => !prev)}
-            unoptimized
-          />
+            aria-label="Abrir legenda"
+          >
+            <Image
+              alt="info"
+              src="/info.png"
+              width={18}
+              height={18}
+              unoptimized
+            />
+          </button>
         </div>
 
-        {openInfoPopup && <div className="w-full 2xl:w-[420px] 3xl:w-[470px] relative"><InfoPopup /></div>}
+        {openInfoPopup && (
+          <div className="relative mb-4 w-full">
+            <InfoPopup />
+          </div>
+        )}
 
-        <table className="w-full 2xl:w-[420px] 3xl:w-[470px] flex flex-col border-2 text-[0.75rem] md:text-sm text-center bg-white">
-          <thead>
-            <tr className="flex flex-row justify-between">
-              <th className="w-3/4 text-center border-r-2">Elemento</th>
-              <th className="w-3/4 text-center border-r-2">Aspecto</th>
-              <th className="w-full text-center border-r-2">Aspectado</th>
+        <table className="flex w-full flex-col overflow-visible rounded-[1.6rem] border border-amber-200 bg-[#fffdfa] text-center text-[0.75rem] text-slate-800 shadow-[0_18px_45px_rgba(0,0,0,0.08)] md:text-sm">
+          <thead className="overflow-hidden rounded-t-[1.6rem] bg-[linear-gradient(180deg,#fffaf0_0%,#f6ead5_100%)]">
+            <tr className="flex flex-row justify-between border-b border-amber-200 text-[0.72rem] font-semibold uppercase tracking-[0.14em] text-slate-700 md:text-[0.76rem]">
+              <th className="w-3/4 border-r border-amber-200 px-2 py-3 text-center">Elemento</th>
+              <th className="w-3/4 border-r border-amber-200 px-2 py-3 text-center">Aspecto</th>
+              <th className="w-full border-r border-amber-200 px-2 py-3 text-center">Aspectado</th>
               <th className="w-10/12 text-center border-r-2">Distância</th>
               <th className="w-1/2 text-center">Tipo</th>
             </tr>
-            <tr className="flex flex-row items-center justify-between border-t-2">
-              <th className="w-3/4 h-full text-center border-r-2 text-[0.85rem]">
+            <tr className="flex flex-row items-center justify-between border-t border-amber-100 bg-white/70">
+              <th className="h-full w-3/4 border-r border-amber-200 text-center text-[0.85rem]">
                 <AspectTableFilterButton
                   ref={elementButtonRef}
                   type="element"
@@ -679,7 +695,7 @@ export default function AspectsTable({
                   getElementImage={getElementImage}
                 />
               </th>
-              <th className="w-3/4 text-center border-r-2">
+              <th className="w-3/4 border-r border-amber-200 text-center">
                 <AspectTableFilterButton
                   ref={aspectButtonRef}
                   type="aspect"
@@ -690,7 +706,7 @@ export default function AspectsTable({
                   onConfirm={handleOnConfirmFilter}
                 />
               </th>
-              <th className="w-full text-center border-r-2">
+              <th className="w-full border-r border-amber-200 text-center">
                 <AspectTableFilterButton
                   ref={aspectedElementButtonRef}
                   type="aspectedElement"
@@ -703,7 +719,7 @@ export default function AspectsTable({
                   getElementImage={getElementImage}
                 />
               </th>
-              <th className="w-10/12 text-center border-r-2">
+              <th className="w-10/12 border-r border-amber-200 text-center">
                 <AspectTableFilterButton
                   ref={distanceButtonRef}
                   type="distance"
@@ -729,7 +745,7 @@ export default function AspectsTable({
             </tr>
           </thead>
           {filteredAspects && filteredAspects.length > 0 && (
-            <tbody className="flex flex-col border-b-2">
+            <tbody className="flex flex-col border-b border-amber-200 bg-white">
               {filteredAspects
                 .filter(
                   (_, index) =>
@@ -738,7 +754,7 @@ export default function AspectsTable({
                 )
                 .map((aspect, index) => {
                   return (
-                    <tr className="flex flex-row border-t-2" key={index}>
+                    <tr className="flex flex-row border-t border-amber-100 even:bg-amber-50/30" key={index}>
                       <td className={tdClasses3W4}>
                         {getElementImage(aspect.element)}
                       </td>
@@ -747,7 +763,6 @@ export default function AspectsTable({
                       </td>
                       {aspect.aspectedElement.elementType !== "fixedStar" && (
                         <td className={tdClasses}>
-                          {" "}
                           {getElementImage(aspect.aspectedElement)}
                         </td>
                       )}
@@ -756,7 +771,7 @@ export default function AspectsTable({
                         <td className={tdClasses}>
                           <div
                             className={
-                              "w-full pl-1 flex flex-row items-center gap-1 text-[0.65rem] md:text-[0.7rem] font-bold break-words"
+                              "flex w-full flex-row items-center gap-1 break-words pl-1 text-[0.65rem] font-bold md:text-[0.7rem]"
                             }
                           >
                             <Image
@@ -773,7 +788,7 @@ export default function AspectsTable({
                       <td className={tdClasses10W12}>
                         {getAspectDistance(aspect)}
                       </td>
-                      <td className="w-1/2 flex flex-row items-center justify-center">
+                      <td className="w-1/2 min-h-[2.75rem] px-2 py-2 flex flex-row items-center justify-center text-slate-800">
                         {getAspectDistanceType(aspect)}
                       </td>
                     </tr>
@@ -785,15 +800,15 @@ export default function AspectsTable({
           )}
 
           {(filteredAspects === undefined || filteredAspects.length === 0) && (
-            <tbody className="flex flex-col border-y-2">
+            <tbody className="flex flex-col border-y border-amber-200 bg-white">
               <tr className="flex flex-row">
-                <td className="w-full">Nenhum aspecto encontrado.</td>
+                <td className="w-full px-3 py-6 text-slate-700">Nenhum aspecto encontrado.</td>
               </tr>
             </tbody>
           )}
-          <tfoot className="h-7 flex flex-row items-center justify-around p-2 font-bold">
-            <tr className="w-full flex flex-row justify-between">
-              <td className="w-1/2 text-start md:text-center flex flex-row items-center tracking-tight">
+          <tfoot className="flex flex-row items-center justify-around border-t border-amber-200 bg-[#f9f2e6] p-3 font-semibold text-slate-700">
+            <tr className="flex w-full flex-col gap-3 md:flex-row md:items-center md:justify-between">
+              <td className="flex w-full flex-row items-center gap-2 text-start md:w-auto md:text-center">
                 {isMobileBreakPoint() && <span>Ítens</span>}
                 {!isMobileBreakPoint() && (
                   <span className="w-full text-nowrap">Ítens por página</span>
@@ -801,7 +816,7 @@ export default function AspectsTable({
 
                 <select
                   value={itemsPerPage}
-                  className="border-2 ml-1"
+                  className="w-auto rounded-full border border-amber-300 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm"
                   onChange={(e) => {
                     updateTableItemsPerPage(Number.parseInt(e.target.value));
                   }}
@@ -813,12 +828,12 @@ export default function AspectsTable({
                 </select>
               </td>
 
-              <td className="w-full flex flex-row items-center justify-end gap-1">
-                <div className="w-full flex flex-row items-center">
+              <td className="flex w-full flex-row items-center justify-between gap-3 md:w-auto md:justify-end">
+                <div className="flex flex-row items-center gap-3">
                   <button
-                    className="hover:outline-2 outline-offset-[-2px] p-1 active:bg-gray-200"
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-amber-300 bg-white shadow-sm transition-colors hover:bg-amber-50"
                     onClick={() => clearFilters()}
-                    title="Limpar Filtros"
+                    title="Limpar filtros"
                   >
                     <Image
                       alt="trash-can"
@@ -829,32 +844,32 @@ export default function AspectsTable({
                     />
                   </button>
 
-                  <div className="w-min pl-1 tracking-tight">
+                  <div className="text-sm tracking-tight text-slate-700">
                     {tableCurrentPage}/{tablePageCount}
                   </div>
                 </div>
 
-                <div className="w-fit flex flex-row items-center justify-between gap-2">
+                <div className="flex w-fit flex-row items-center justify-between gap-2">
                   <button
-                    className="border-2 w-[30px] hover:bg-gray-200 active:bg-gray-300"
+                    className="min-w-[2.35rem] rounded-full border border-amber-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm transition-colors hover:bg-amber-50 active:bg-amber-100"
                     onClick={() => updateTableCurrentPage(-999)}
                   >
                     |◀
                   </button>
                   <button
-                    className="border-2 w-[30px] hover:bg-gray-200 active:bg-gray-300"
+                    className="min-w-[2.35rem] rounded-full border border-amber-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm transition-colors hover:bg-amber-50 active:bg-amber-100"
                     onClick={() => updateTableCurrentPage(-1)}
                   >
                     ◀
                   </button>
                   <button
-                    className="border-2 w-[30px] hover:bg-gray-200 active:bg-gray-300"
+                    className="min-w-[2.35rem] rounded-full border border-amber-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm transition-colors hover:bg-amber-50 active:bg-amber-100"
                     onClick={() => updateTableCurrentPage(1)}
                   >
                     ▶
                   </button>
                   <button
-                    className="border-2 w-[30px] hover:bg-gray-200 active:bg-gray-300"
+                    className="min-w-[2.35rem] rounded-full border border-amber-300 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm transition-colors hover:bg-amber-50 active:bg-amber-100"
                     onClick={() => updateTableCurrentPage(999)}
                   >
                     ▶|

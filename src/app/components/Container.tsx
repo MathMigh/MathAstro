@@ -11,10 +11,7 @@ export default function Container({
 }) {
   return (
     <div
-      className={
-        className +
-        " flex flex-col items-center justify-center sm:p-8 xl:p-5 2xl:p-8 rounded-2xl bg-white/70 shadow-[0_0_50px_rgba(0,0,0,0.12)] sm:shadow-lg"
-      }
+      className={`${className ?? ""} panel-surface flex flex-col items-center justify-center rounded-[2rem] sm:p-8 xl:p-5 2xl:p-8`}
     >
       {children}
     </div>

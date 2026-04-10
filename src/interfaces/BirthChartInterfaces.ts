@@ -73,6 +73,7 @@ export interface Planet {
   id: number;
   longitude: number;
   longitudeRaw: number;
+  longitudeSpeed: number;
   sign: string;
   antiscion: number;
   antiscionRaw: number;

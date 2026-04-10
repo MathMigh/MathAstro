@@ -1,5 +1,5 @@
 import { 
-  SIGNS, SIGN_ELEMENT, TRIPLICITY_RULERS, EGYPTIAN_TERMS, FACES, 
+  SIGNS, SIGN_ELEMENT, TRIPLICITY_RULERS, EGYPTIAN_TERMS, FACES,
   DOMICILE_RULER, EXALTATION, FALL, DETRIMENT, 
   AVERAGE_DAILY_SPEED, HOUSE_SCORES, HOUSE_TYPE, JUBILEE_HOUSE,
   FIXED_STARS, PRECESSION_RATE, TRADITIONAL_PLANETS
@@ -26,8 +26,8 @@ export function getHouseIndex(longitude: number, cusps: number[]): number {
   // cusps is an array of 12 longitudes.
   // Regiomontanus: House 1 starts at cusp[0], House 2 at cusp[1], etc.
   for (let i = 0; i < 11; i++) {
-    let start = cusps[i];
-    let end = cusps[i + 1];
+    const start = cusps[i];
+    const end = cusps[i + 1];
     if (end < start) {
       // Wraps around 360
       if (longitude >= start || longitude < end) return i + 1;
@@ -62,8 +62,7 @@ export function getAlmuten(longitude: number, sect: "Diurno" | "Noturno"): strin
   }
   // Triplicity (+3)
   const trip = TRIPLICITY_RULERS[element];
-  add(trip.day, 3);
-  add(trip.night, 3); // Traditional Almuten often counts all 3 triplicity rulers, but usually we use diurno/noturno
+  add(sect === "Diurno" ? trip.day : trip.night, 3);
   // Terms (+2)
   const signTerms = EGYPTIAN_TERMS[signIdx];
   const term = signTerms.find(t => deg < t.endDeg);

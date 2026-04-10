@@ -125,8 +125,8 @@ export default function BirthChartForm(props: BirthChartFormProps) {
       }}
     >
       {!editProfile && !showDeleteProfileMenu && (
-        <div className="w-full flex flex-row gap-2">
-          <label htmlFor="load" className="w-1/2 gap-2 flex flex-row">
+        <div className="w-full flex flex-row gap-2 text-sm text-stone-200/85">
+          <label htmlFor="load" className="w-1/2 gap-2 flex flex-row items-center">
             <input
               type="radio"
               id="load"
@@ -174,7 +174,7 @@ export default function BirthChartForm(props: BirthChartFormProps) {
           <input
             required
             placeholder="Nome"
-            className="border-2 p-1 rounded-sm"
+            className="w-full"
             value={name}
             onChange={(e) => {
               setName(e.target.value);
@@ -183,7 +183,7 @@ export default function BirthChartForm(props: BirthChartFormProps) {
           <div className="w-full flex flex-row justify-between gap-1">
             <input
               required
-              className="border-2 rounded-sm w-1/3 px-1"
+              className="w-1/3"
               placeholder="Dia"
               type="number"
               value={day ?? ""}
@@ -202,7 +202,7 @@ export default function BirthChartForm(props: BirthChartFormProps) {
             />
             <select
               required
-              className="border-2 w-1/2 rounded-sm"
+              className="w-1/2"
               value={month}
               onChange={(e) => setMonth(Number.parseInt(e.target.value))}
             >
@@ -215,7 +215,7 @@ export default function BirthChartForm(props: BirthChartFormProps) {
             <input
               required
               type="number"
-              className="border-2 w-20 p-1 rounded-sm"
+              className="w-20"
               value={year ?? ""}
               placeholder="Ano"
               onChange={(e) => {
@@ -236,7 +236,7 @@ export default function BirthChartForm(props: BirthChartFormProps) {
             <input
               required
               type="number"
-              className="border-2 w-16 p-1 rounded-sm"
+              className="w-16"
               placeholder="16"
               value={hour ?? ""}
               onChange={(e) => {
@@ -256,7 +256,7 @@ export default function BirthChartForm(props: BirthChartFormProps) {
             <input
               required
               type="number"
-              className="border-2 w-16 p-1 rounded-sm"
+              className="w-16"
               placeholder="30"
               value={minutes ?? ""}
               onChange={(e) => {
