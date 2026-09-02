@@ -89,14 +89,22 @@ export function classicalConditions(chart: BirthChart): Partial<Record<PlanetTyp
 export function electionToNatalContacts(election: BirthChart, natal: BirthChart, eType: PlanetType, nType: PlanetType): string[] {
   const e = planet(election,eType); const n = planet(natal,nType);
   if (!e || !n) return [];
-  const aspect = resolveTraditionalAspect({
-    firstLongitude: e.longitudeRaw,
-    secondLongitude: n.longitudeRaw,
-    firstPlanetType: e.type,
-    secondPlanetType: n.type,
-  });
-  if (!aspect || aspect.orb > aspect.maxOrb) return [];
-  return [`${e.name} eletivo ${aspect.type} ${n.name} natal (orbe ${aspect.orb.toFixed(2)}°)`];
+  const aspect = resolveTraditionalAspect(
+    {
+      longitude: e.longitudeRaw,
+      speed: e.longitudeSpeed,
+      elementType: "planet",
+      planetType: e.type,
+    },
+    {
+      longitude: n.longitudeRaw,
+      speed: n.longitudeSpeed,
+      elementType: "planet",
+      planetType: n.type,
+    }
+  );
+  if (!aspect || aspect.orbDistance > aspect.maxOrb) return [];
+  return [`${e.name} eletivo ${aspect.aspectType} ${n.name} natal (orbe ${aspect.orbDistance.toFixed(2)}°)`];
 }
 
 export function closeToAngle(chart: BirthChart, type: PlanetType, orb = 5): string[] {
@@ -117,13 +125,12 @@ export interface ElectionalAspectState {
 export function electionalAspect(chart: BirthChart, first: PlanetType, second: PlanetType): ElectionalAspectState {
   const a=planet(chart,first), b=planet(chart,second);
   if(!a||!b) return {first,second};
-  const match=resolveTraditionalAspect({
-    firstLongitude:a.longitudeRaw, secondLongitude:b.longitudeRaw,
-    firstPlanetType:a.type, secondPlanetType:b.type,
-    firstSpeed:a.longitudeSpeed, secondSpeed:b.longitudeSpeed,
-  });
+  const match=resolveTraditionalAspect(
+    { longitude:a.longitudeRaw, speed:a.longitudeSpeed, elementType:"planet", planetType:a.type },
+    { longitude:b.longitudeRaw, speed:b.longitudeSpeed, elementType:"planet", planetType:b.type },
+  );
   if(!match) return {first,second};
-  return {first,second,type:match.type,orb:match.orb,maxOrb:match.maxOrb,applying:match.applying};
+  return {first,second,type:match.aspectType,orb:match.orbDistance,maxOrb:match.maxOrb,applying:match.applying};
 }
 
 const TYPE_TO_NAME: Partial<Record<PlanetType,string>> = {

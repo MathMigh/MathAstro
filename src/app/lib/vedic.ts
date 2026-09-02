@@ -1187,9 +1187,9 @@ function mapPlanetToPoint(
     {
       sourceLongitude: planet.longitudeRaw ?? planet.longitude,
       longitudeSpeed: planet.longitudeSpeed,
-      latitude: planet.latitude,
+      latitude: planet.latitudeRaw,
       declination: planet.declination,
-      distance: planet.distance,
+      distance: planet.distanceRaw,
     }
   );
 }

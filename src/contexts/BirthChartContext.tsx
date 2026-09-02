@@ -1,3 +1,5 @@
+"use client";
+
 import { getDegreeAndSign } from "@/app/utils/chartUtils";
 import {
   BirthChart,

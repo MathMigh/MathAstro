@@ -73,6 +73,7 @@ export interface BirthChart {
   targetDate?: BirthDate;
   returnTime?: string;
   timezone?: string;
+  profectionYears?: number;
 }
 
 export interface Planet {
