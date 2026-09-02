@@ -18,6 +18,8 @@ export interface AstroChartProps {
     outerArabicParts?: ArabicPartsType;
     fixedStars?: FixedStar[];
     useReturnSelectorArrows?: boolean;
+    /** Isolated traditional synastry view: only cross-chart traditional contacts and ASC/DSC axes. */
+    synastryMode?: boolean;
     onUpdateAspectsData?: (aspectsData: PlanetAspectData[]) => void;
   };
 }

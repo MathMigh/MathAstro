@@ -1,0 +1,32 @@
+{
+  "schema": "mathastro.predictive.reference/1.0",
+  "fixture": "barra-mansa-santa-casa-2001-precision.json",
+  "targetUtc": "2026-08-31T15:00:00Z",
+  "ageYears": 25.361831522892324,
+  "progressedJulianDayUt": 2452046.268081523,
+  "solarReturn": {
+    "julianDayUt": 2461151.9497336675,
+    "longitude": 31.348616559649518,
+    "targetLongitude": 31.34861655952354,
+    "residualArcSeconds": 4.5352521738095675e-07
+  },
+  "lunarReturn": {
+    "julianDayUt": 2461282.979160059,
+    "longitude": 4.907786851956387,
+    "targetLongitude": 4.907786849688486,
+    "residualArcSeconds": 8.164441922531296e-06
+  },
+  "derivedLunarReturn": {
+    "julianDayUt": 2461261.5661202827,
+    "longitude": 86.22524817728389,
+    "targetLongitude": 86.22524817726544,
+    "solarMoonLongitude": 86.22524817726544,
+    "residualArcSeconds": 6.640448191319592e-08
+  },
+  "profection": {
+    "ageCompleted": 25,
+    "house": 2,
+    "profectedSignIndex": 2,
+    "lordOfYear": "Mercúrio"
+  }
+}

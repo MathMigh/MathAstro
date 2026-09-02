@@ -1,7 +1,12 @@
 import { SwissEphemeris } from "@swisseph/browser";
 import { BirthChart, BirthDate, Planet, HousesData, PlanetType } from "@/interfaces/BirthChartInterfaces";
 import moment from "moment-timezone";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 import {
+  buildFixedStarsFromExactMatches,
+  calculateFixedStarMatchesFromSky,
+  calculateFullFixedStarSky,
   decorateChartWithFixedStars,
   getDecimalYearFromDate,
 } from "./fixedStars";
@@ -12,12 +17,16 @@ interface CoordinatesLike {
   latitude: number;
   longitude: number;
   name?: string;
+  timezone?: string;
 }
 
 export async function getSwe(): Promise<SwissEphemeris> {
   if (!swe) {
     swe = new SwissEphemeris();
-    await swe.init("https://unpkg.com/@swisseph/browser@1.1.1/dist/swisseph.wasm");
+    const wasmPath = path.join(process.cwd(), "public", "vendor", "swisseph.wasm");
+    const wasmBytes = await readFile(wasmPath);
+    const wasmDataUrl = `data:application/wasm;base64,${wasmBytes.toString("base64")}`;
+    await swe.init(wasmDataUrl);
   }
   return swe;
 }
@@ -40,145 +49,24 @@ function normalizeLocationText(value?: string): string {
     .toLowerCase();
 }
 
-function isWithinBox(
-  latitude: number,
-  longitude: number,
-  bounds: {
-    south: number;
-    north: number;
-    west: number;
-    east: number;
-  }
-): boolean {
-  return (
-    latitude >= bounds.south &&
-    latitude <= bounds.north &&
-    longitude >= bounds.west &&
-    longitude <= bounds.east
-  );
-}
-
-function getFixedOffsetTimezoneFromLongitude(longitude: number): string {
-  const offsetHours = Math.max(-12, Math.min(14, Math.round(longitude / 15)));
-  if (offsetHours === 0) return "Etc/GMT";
-  return offsetHours > 0
-    ? `Etc/GMT-${offsetHours}`
-    : `Etc/GMT+${Math.abs(offsetHours)}`;
-}
-
 function resolveTimezone(coordinates: CoordinatesLike): string {
   const latitude = Number(coordinates.latitude);
   const longitude = Number(coordinates.longitude);
 
   if (!Number.isFinite(latitude) || !Number.isFinite(longitude)) {
-    return "America/Sao_Paulo";
+    throw new Error("Coordenadas inválidas para resolver o fuso horário.");
   }
 
-  const locationText = normalizeLocationText(coordinates.name);
-  const isInBrazil =
-    latitude >= -34 &&
-    latitude <= 6 &&
-    longitude >= -75 &&
-    longitude <= -28;
-
-  const matches = (...keywords: string[]) =>
-    keywords.some((keyword) => locationText.includes(keyword));
-
-  if (
-    matches("fernando de noronha") ||
-    isWithinBox(latitude, longitude, {
-      south: -4.2,
-      north: -3.5,
-      west: -32.8,
-      east: -32.1,
-    })
-  ) {
-    return "America/Noronha";
+  if (!coordinates.timezone) {
+    throw new Error(
+      "Fuso IANA obrigatório. O motor natal não infere fuso por longitude, nome de cidade ou caixa geográfica; informe um timezone IANA explícito (ex.: America/Sao_Paulo).",
+    );
   }
 
-  if (
-    matches(
-      "acre",
-      "rio branco",
-      "cruzeiro do sul",
-      "tarauaca",
-      "sena madureira",
-      "feijo",
-      "brasileia",
-      "epitaciolandia",
-      "xapuri"
-    ) ||
-    isWithinBox(latitude, longitude, {
-      south: -11.5,
-      north: -6,
-      west: -74.2,
-      east: -66.5,
-    })
-  ) {
-    return "America/Rio_Branco";
+  if (!moment.tz.zone(coordinates.timezone)) {
+    throw new Error(`Fuso IANA inválido: ${coordinates.timezone}`);
   }
-
-  if (
-    matches(
-      "amazonas",
-      "manaus",
-      "itacoatiara",
-      "tefe",
-      "tabatinga",
-      "parintins",
-      "roraima",
-      "boa vista",
-      "rondonia",
-      "porto velho",
-      "ji-parana",
-      "mato grosso",
-      "cuiaba",
-      "rondonopolis",
-      "sinop",
-      "mato grosso do sul",
-      "campo grande",
-      "dourados",
-      "corumba"
-    ) ||
-    isWithinBox(latitude, longitude, {
-      south: -24.7,
-      north: -17,
-      west: -58.5,
-      east: -50.8,
-    }) ||
-    isWithinBox(latitude, longitude, {
-      south: -18.2,
-      north: -7.2,
-      west: -61.8,
-      east: -50.6,
-    }) ||
-    isWithinBox(latitude, longitude, {
-      south: -13.8,
-      north: -7.6,
-      west: -66.9,
-      east: -59.7,
-    }) ||
-    isWithinBox(latitude, longitude, {
-      south: 0.5,
-      north: 5.5,
-      west: -64.9,
-      east: -58.4,
-    }) ||
-    isWithinBox(latitude, longitude, {
-      south: -9.9,
-      north: 2.6,
-      west: -73.9,
-      east: -56.1,
-    })
-  ) {
-    return "America/Manaus";
-  }
-
-  if (isInBrazil) {
-    return "America/Sao_Paulo";
-  }
-
-  return getFixedOffsetTimezoneFromLongitude(longitude);
+  return coordinates.timezone;
 }
 
 // ==========================================
@@ -202,7 +90,7 @@ function safeCalculatePosition(sw: any, julianDay: number, bodyId: number, flags
     m._free(serrPtr);
     throw new Error(error);
   }
-  const xx = [];
+  const xx: number[] = [];
   for (let i = 0; i < 6; i++) {
     xx[i] = m.getValue(xxPtr + i * 8, "double");
   }
@@ -219,6 +107,48 @@ function safeCalculatePosition(sw: any, julianDay: number, bodyId: number, flags
   };
 }
 
+export interface PlanetaryEphemerisPoint {
+  longitude: number;
+  longitudeSpeed: number;
+  isRetrograde: boolean;
+}
+
+/**
+ * Astronomia neutra compartilhada: posições tropicais e velocidades em Dia Juliano UT.
+ * Não executa julgamento natal ou horário; serve aos solvers cronológicos especializados.
+ */
+export async function calculatePlanetarySnapshotAtJulianDay(
+  julianDay: number,
+  types: PlanetType[] = ["sun", "moon", "mercury", "venus", "mars", "jupiter", "saturn"],
+): Promise<Partial<Record<PlanetType, PlanetaryEphemerisPoint>>> {
+  const sw = await getSwe();
+  const ids: Partial<Record<PlanetType, number>> = {
+    sun: 0, moon: 1, mercury: 2, venus: 3, mars: 4, jupiter: 5, saturn: 6,
+    uranus: 7, neptune: 8, pluto: 9, northNode: 11,
+  };
+  const out: Partial<Record<PlanetType, PlanetaryEphemerisPoint>> = {};
+  for (const type of types) {
+    if (type === "southNode") {
+      const n = safeCalculatePosition(sw, julianDay, 11, 258);
+      out.southNode = {
+        longitude: (n.longitude + 180) % 360,
+        longitudeSpeed: n.longitudeSpeed,
+        isRetrograde: n.longitudeSpeed < 0,
+      };
+      continue;
+    }
+    const id = ids[type];
+    if (id === undefined) continue;
+    const x = safeCalculatePosition(sw, julianDay, id, 258);
+    out[type] = {
+      longitude: x.longitude,
+      longitudeSpeed: x.longitudeSpeed,
+      isRetrograde: x.longitudeSpeed < 0,
+    };
+  }
+  return out;
+}
+
 function safeCalculateHouses(sw: any, julianDay: number, latitude: number, longitude: number, houseSystem: string) {
   const m = sw.module;
   const cuspsPtr = m._malloc(13 * 8); // 13 doubles
@@ -230,11 +160,11 @@ function safeCalculateHouses(sw: any, julianDay: number, latitude: number, longi
     ["number", "number", "number", "number", "number", "number"],
     [julianDay, latitude, longitude, hsysCode, cuspsPtr, ascmcPtr]
   );
-  const cusps = [];
+  const cusps: number[] = [];
   for (let i = 0; i < 13; i++) {
     cusps[i] = m.getValue(cuspsPtr + i * 8, "double");
   }
-  const ascmc = [];
+  const ascmc: number[] = [];
   for (let i = 0; i < 10; i++) {
     ascmc[i] = m.getValue(ascmcPtr + i * 8, "double");
   }
@@ -281,12 +211,8 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
     time = birthDate.time;
   }
   
-  if (!year || !month || !day || !time) {
-     const d = new Date();
-     year = d.getFullYear();
-     month = d.getMonth() + 1;
-     day = d.getDate();
-     time = "12:00"; 
+  if (!year || !month || !day || time === undefined || time === null || time === "") {
+    throw new Error("Data e hora de nascimento são obrigatórias e não podem ser inferidas.");
   }
 
   const coordinates = (birthDate && (birthDate as any).coordinates)
@@ -301,40 +227,42 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
     throw new Error("Selecione uma cidade válida na lista antes de gerar o mapa.");
   }
 
-  // O frontend MathAstro envia 'time' convertido pra hora decimal (Ex: 06:45 = "6.75")!
-  let decimalTime = 12;
-  if (typeof time === 'string' && time.includes(':')) {
-     const parts = time.split(":");
-     decimalTime = (Number(parts[0]) || 0) + (Number(parts[1]) || 0) / 60;
-  } else if (time !== undefined && time !== null) {
-     decimalTime = Number(time) || 12;
+  // O frontend pode enviar HH:mm ou hora decimal (ex.: 06:45 / 6.75).
+  // Nao usamos fallback: qualquer valor invalido interrompe o calculo.
+  let decimalTime: number;
+  if (typeof time === "string" && time.includes(":")) {
+    const match = time.match(/^(\d{1,2}):(\d{2})(?::(\d{2}(?:\.\d+)?))?$/);
+    if (!match) throw new Error(`Hora local invalida: ${time}`);
+    const hours = Number(match[1]);
+    const minutes = Number(match[2]);
+    const seconds = Number(match[3] ?? 0);
+    if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59 || seconds < 0 || seconds >= 60) {
+      throw new Error(`Hora local fora do intervalo permitido: ${time}`);
+    }
+    decimalTime = hours + minutes / 60 + seconds / 3600;
+  } else {
+    decimalTime = Number(time);
+    if (!Number.isFinite(decimalTime) || decimalTime < 0 || decimalTime >= 24) {
+      throw new Error(`Hora decimal invalida: ${String(time)}`);
+    }
   }
-  
-  let hh = Math.floor(decimalTime);
-  let mm = Math.round((decimalTime - hh) * 60);
 
-  if (mm === 60) {
-    hh += 1;
-    mm = 0;
-  }
+  let hh = Math.floor(decimalTime);
+  let mm = Math.floor((decimalTime - hh) * 60);
+  let ss = Math.round((((decimalTime - hh) * 60) - mm) * 60);
+  if (ss === 60) { ss = 0; mm += 1; }
+  if (mm === 60) { mm = 0; hh += 1; }
+  if (hh >= 24) throw new Error("Hora decimal arredondou para o dia seguinte; forneca hora em HH:mm:ss.");
 
   let uYear: number, uMonth: number, uDate: number, uHour: number;
 
-  // === DETECÇÃO DE TIMEZONE DINÂMICO ===
-  // Resolve o fuso horário correto baseado nas coordenadas (Foco Brasil)
-  /* const determineTimezone = (lat: number, lon: number): string => {
-    // Lógica simplificada de fusos brasileiros baseada em longitudes (meridianos)
-    return resolveTimezone({
-    if (lon > -45) return "America/Sao_Paulo";        // UTC-3 (Brasília/SP/RJ)
-    if (lon > -67.5) return "America/Manaus";         // UTC-4 (AM/MT/MS/RO/RR)
-    return "America/Rio_Branco";                      // UTC-5 (AC/AM-Oeste)
-  }; */
-
+  // O fuso deve vir explicitamente da geocodificação/entrada do usuário.
   const determineTimezone = (lat: number, lon: number): string => {
     return resolveTimezone({
       latitude: lat,
       longitude: lon,
       name: (coordinates as CoordinatesLike).name,
+      timezone: (coordinates as CoordinatesLike).timezone,
     });
   };
 
@@ -343,18 +271,16 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
   // Usamos moment-timezone para converter hora local da cidade em UTC real
   // Isso lida automaticamente com Horário de Verão (DST) histórico da região!
   const m = moment.tz(
-    `${year}-${month}-${day} ${hh.toString().padStart(2, '0')}:${mm.toString().padStart(2, '0')}`, 
-    "YYYY-M-D HH:mm", 
+    `${year}-${month}-${day} ${hh.toString().padStart(2, "0")}:${mm.toString().padStart(2, "0")}:${ss.toString().padStart(2, "0")}`,
+    "YYYY-M-D HH:mm:ss",
+    true,
     zone
   );
 
   const dateObj = m.toDate();
   
-  if (isNaN(dateObj.getTime())) { 
-     console.error("FALHA AO PARSEAR DATA COM MOMENT:", birthDate, "Zone:", zone);
-     // Fallback de segurança se falhar
-     const failDate = new Date();
-     uYear = failDate.getUTCFullYear(); uMonth = failDate.getUTCMonth() + 1; uDate = failDate.getUTCDate(); uHour = failDate.getUTCHours();
+  if (isNaN(dateObj.getTime()) || !m.isValid()) { 
+    throw new Error(`Data/hora inválida para o fuso ${zone}; o motor não usa fallback temporal.`);
   } else {
      uYear = dateObj.getUTCFullYear();
      uMonth = dateObj.getUTCMonth() + 1;
@@ -377,17 +303,19 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
     { type: "uranus", swId: 7, name: "Urano" },
     { type: "neptune", swId: 8, name: "Netuno" },
     { type: "pluto", swId: 9, name: "Plutão" },
-    { type: "northNode", swId: 10, name: "Nodo Norte" }
+    { type: "northNode", swId: 11, name: "Nodo Norte" }
   ];
 
   const planets: Planet[] = [];
   let idCounter = 0;
 
   for (const p of planetMapping) {
-    // 258 = SwissEphemeris | Speed flag
+    // 258 = SEFLG_SWIEPH (2) | SEFLG_SPEED (256).
+    // 2306 adiciona SEFLG_EQUATORIAL (2048), preservando RA/declinacao na mesma efemeride.
     const pos = safeCalculatePosition(sw, jd, p.swId, 258);
+    const equatorial = safeCalculatePosition(sw, jd, p.swId, 2306);
     const isRet = hasRetrogradeMotion(pos.longitudeSpeed);
-    
+
     planets.push({
       id: idCounter++,
       type: p.type,
@@ -395,6 +323,13 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
       longitude: pos.longitude,
       longitudeRaw: pos.longitude,
       longitudeSpeed: pos.longitudeSpeed,
+      latitudeRaw: pos.latitude,
+      latitudeSpeed: pos.latitudeSpeed,
+      distanceRaw: pos.distance,
+      rightAscension: equatorial.longitude,
+      declination: equatorial.latitude,
+      rightAscensionSpeed: equatorial.longitudeSpeed,
+      declinationSpeed: equatorial.latitudeSpeed,
       sign: getSignName(pos.longitude),
       antiscion: computeAntiscion(pos.longitude),
       antiscionRaw: computeAntiscion(pos.longitude),
@@ -412,17 +347,36 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
     longitude: southNodeLon,
     longitudeRaw: southNodeLon,
     longitudeSpeed: northNode.longitudeSpeed,
+    latitudeRaw: northNode.latitudeRaw !== undefined ? -northNode.latitudeRaw : undefined,
+    latitudeSpeed: northNode.latitudeSpeed !== undefined ? -northNode.latitudeSpeed : undefined,
+    distanceRaw: northNode.distanceRaw,
+    rightAscension: northNode.rightAscension !== undefined
+      ? (northNode.rightAscension + 180) % 360
+      : undefined,
+    declination: northNode.declination !== undefined
+      ? -northNode.declination
+      : undefined,
+    rightAscensionSpeed: northNode.rightAscensionSpeed,
+    declinationSpeed: northNode.declinationSpeed !== undefined
+      ? -northNode.declinationSpeed
+      : undefined,
     sign: getSignName(southNodeLon),
     antiscion: computeAntiscion(southNodeLon),
     antiscionRaw: computeAntiscion(southNodeLon),
     isRetrograde: northNode.isRetrograde,
   });
 
+  // Nodo medio e preservado apenas como dado auxiliar; a variante Marcos usa o Nodo verdadeiro.
+  const meanNorthNode = safeCalculatePosition(sw, jd, 10, 258);
+  const meanSouthNodeLongitude = (meanNorthNode.longitude + 180) % 360;
+
   const housesCalc = safeCalculateHouses(sw, jd, coordinates.latitude, coordinates.longitude, "R");
-  
-  // Custom logic usually drops index 0 since cusps are 1-indexed in C
+  const placidusCalc = safeCalculateHouses(sw, jd, coordinates.latitude, coordinates.longitude, "P");
+
+  // As cuspides retornadas pelo wrapper C sao indexadas de 1 a 12.
   const rawCusps = housesCalc.cusps.slice(1, 13);
-  
+  const placidusCusps = placidusCalc.cusps.slice(1, 13);
+
   const housesData: HousesData = {
     house: rawCusps,
     housesWithSigns: rawCusps.map((h: number) => getSignName(h)),
@@ -434,6 +388,24 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
     kochCoAscendant: housesCalc.coAscendant1,
     munkaseyCoAscendant: housesCalc.coAscendant1,
     munkaseyPolarAscendant: housesCalc.polarAscendant,
+    houseSystem: "Regiomontanus",
+    houseSystemCode: "R",
+    variants: {
+      regiomontanus: {
+        system: "Regiomontanus", code: "R", cusps: rawCusps,
+        ascendant: housesCalc.ascendant, mc: housesCalc.mc, armc: housesCalc.armc,
+        vertex: housesCalc.vertex, equatorialAscendant: housesCalc.equatorialAscendant,
+        kochCoAscendant: housesCalc.coAscendant1, munkaseyCoAscendant: housesCalc.coAscendant1,
+        munkaseyPolarAscendant: housesCalc.polarAscendant,
+      },
+      placidus: {
+        system: "Placidus", code: "P", cusps: placidusCusps,
+        ascendant: placidusCalc.ascendant, mc: placidusCalc.mc, armc: placidusCalc.armc,
+        vertex: placidusCalc.vertex, equatorialAscendant: placidusCalc.equatorialAscendant,
+        kochCoAscendant: placidusCalc.coAscendant1, munkaseyCoAscendant: placidusCalc.coAscendant1,
+        munkaseyPolarAscendant: placidusCalc.polarAscendant,
+      },
+    },
   };
 
   const chart: BirthChart = {
@@ -443,7 +415,70 @@ export async function calculateBirthChart(birthDate: BirthDate): Promise<BirthCh
       year, month, day, time, coordinates
     },
     fixedStars: [],
+    calculationMetadata: {
+      engine: "Swiss Ephemeris",
+      enginePackage: "@swisseph/browser",
+      enginePackageVersion: "1.1.1",
+      julianDayUt: jd,
+      utcIso: dateObj.toISOString(),
+      timezone: zone,
+      zodiac: "Tropical",
+      houseSystem: "Regiomontanus",
+      houseSystemCode: "R",
+      availableHouseSystems: ["Regiomontanus", "Placidus"],
+      nodeMode: "Nodo verdadeiro",
+      auxiliaryNodes: {
+        trueNorthLongitude: northNode.longitudeRaw,
+        trueSouthLongitude: southNodeLon,
+        meanNorthLongitude: meanNorthNode.longitude,
+        meanSouthLongitude: meanSouthNodeLongitude,
+      },
+      calendar: "Gregoriano",
+      ephemerisFlags: ["SEFLG_SWIEPH", "SEFLG_SPEED", "SEFLG_EQUATORIAL"],
+      coordinatePrecision:
+        coordinates.precision === "exactAddress" ? "endereco"
+        : coordinates.precision === "street" ? "rua"
+        : coordinates.precision === "locality" ? "cidade"
+        : coordinates.precision === "municipality" ? "municipio"
+        : normalizeLocationText(coordinates.name).includes("santa casa") ? "endereco"
+        : "informada",
+      timezoneSource: coordinates.timezoneSource ?? "user",
+      locationSource: coordinates.source ?? (coordinates.name ? "legacy" : "manual"),
+      locationPrecision: coordinates.precision ?? "coordinates",
+    },
   };
 
-  return decorateChartWithFixedStars(chart, getDecimalYearFromDate(dateObj));
+  try {
+    const starSky = await calculateFullFixedStarSky(chart, sw as any, jd);
+    const exactMatches = calculateFixedStarMatchesFromSky(chart, starSky.positions);
+    return {
+      ...chart,
+      fixedStarCatalog: starSky.positions,
+      fixedStarCatalogMetadata: starSky.metadata,
+      fixedStarMatches: exactMatches,
+      fixedStars: buildFixedStarsFromExactMatches(exactMatches),
+      calculationMetadata: {
+        ...chart.calculationMetadata!,
+        ephemerisFlags: [
+          ...(chart.calculationMetadata?.ephemerisFlags ?? []),
+          `FIXED_STARS_FULL_SKY_${starSky.metadata.calculationMode.toUpperCase()}`,
+        ],
+      },
+    };
+  } catch (error) {
+    // Legacy fallback is kept only as an emergency path. Crucially, a star-engine
+    // failure is explicit in metadata and can no longer masquerade as "no stars".
+    console.warn("Full fixed-star sky unavailable; using audited legacy fallback:", error);
+    const fallback = decorateChartWithFixedStars(chart, getDecimalYearFromDate(dateObj));
+    return {
+      ...fallback,
+      fixedStarCatalogMetadata: {
+        source: "Swiss Ephemeris sefstars.txt",
+        rawRecords: 0, uniqueEntries: 0, calculatedEntries: 0, failedEntries: 0,
+        calculationMode: "failed",
+        astroSeekReferenceMode: "15-major-plus-full-catalog",
+        notes: [`FIXED_STAR_ENGINE_FAILURE: ${error instanceof Error ? error.message : String(error)}`],
+      },
+    };
+  }
 }

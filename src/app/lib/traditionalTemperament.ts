@@ -2,15 +2,16 @@ import { BirthChart, Planet } from "@/interfaces/BirthChartInterfaces";
 import {
   DETRIMENT,
   DOMICILE_RULER,
-  EGYPTIAN_TERMS,
+  LILLY_TERMS,
   EXALTATION,
   FACES,
   FALL,
+  HOUSE_SCORES,
   SIGN_QUALITIES,
   SIGNS,
   TRIPLICITY_RULERS,
 } from "./traditionalTables";
-import { getSect } from "./traditionalCalculations";
+import { getHouseIndex, getSect } from "./traditionalCalculations";
 
 export interface TemperamentTotals {
   hot: number;
@@ -21,29 +22,62 @@ export interface TemperamentTotals {
 
 export interface TemperamentWitness {
   label: string;
+  /** Raw compatibility trace; audit only. */
   details: string;
+  /** Canonical human-readable evidence without invented weighting. */
+  qualitativeDetails: string;
+  /** Qualities contributed by this witness, categorical only. */
+  qualitativeContributions: Array<"quente" | "frio" | "seco" | "úmido">;
   contributions: TemperamentTotals;
 }
 
 export interface LordOfNativityResult {
-  planet: string;
+  planet: string | null;
   longitude: number;
   sign: string;
   score: number;
   easyAspects: number;
   hardAspects: number;
+  houseScore: number;
+  essentialHierarchy: {
+    domicile: boolean;
+    exaltation: boolean;
+    triplicity: boolean;
+    term: boolean;
+    face: boolean;
+  };
+  resolution:
+    | "essential-hierarchy"
+    | "essential-tie-accidental-angularity"
+    | "unresolved";
+  tiedCandidates: string[];
   contributions: TemperamentTotals;
 }
 
+export interface TemperamentComponentScore {
+  temperament: "Colerico" | "Sanguineo" | "Melancolico" | "Fleumatico";
+  score: number;
+  rank: number;
+}
+
 export interface TemperamentResult {
+  method: "Marcos Monteiro - cinco testemunhos";
+  methodVersion: "1.3.0";
+  status: "pronto-para-julgamento-qualitativo" | "incompleto-senhor-da-natividade";
   temperament: string;
   dominantTemperament: string;
   inferiorTemperament: string;
+  strongestTemperament: string;
+  weakestTemperament: string;
+  mixture: TemperamentComponentScore[];
   summary: string;
   totals: TemperamentTotals;
   hotDelta: number;
   dryDelta: number;
+  intensity: "leve" | "definido" | "equilibrado" | "indeterminado";
   witnesses: TemperamentWitness[];
+  canonicalConclusion: null;
+  compatibilityOnly: { summary: string; totals: TemperamentTotals; hotDelta: number; dryDelta: number; mixture: TemperamentComponentScore[] };
   lordOfNativity: LordOfNativityResult;
 }
 
@@ -183,16 +217,28 @@ function getPlanetContributions(
 
 function modulateBySign(
   baseContributions: TemperamentTotals,
-  signIndex: number
+  _signIndex: number
 ): TemperamentTotals {
-  const sign = getSignContributions(signIndex);
+  // Marcos descreve reforço/atenuação qualitativamente ("muito", "pouco").
+  // O corpus não fornece multiplicadores universais. Portanto preservamos
+  // o testemunho-base sem inventar 1.25/0.75; a modulação pelo signo fica
+  // explícita no texto de evidência, não numa aritmética apresentada como fonte.
+  return cloneTotals(baseContributions);
+}
 
-  return {
-    hot: baseContributions.hot > 0 ? (sign.hot > 0 ? 1.25 : 0.75) : 0,
-    cold: baseContributions.cold > 0 ? (sign.cold > 0 ? 1.25 : 0.75) : 0,
-    dry: baseContributions.dry > 0 ? (sign.dry > 0 ? 1.25 : 0.75) : 0,
-    moist: baseContributions.moist > 0 ? (sign.moist > 0 ? 1.25 : 0.75) : 0,
+function describeSignModulation(base: TemperamentTotals, signIndex: number): string {
+  const sign = getSignContributions(signIndex);
+  const notes: string[] = [];
+  const compare = (quality: keyof TemperamentTotals, opposite: keyof TemperamentTotals, label: string) => {
+    if (base[quality] <= 0) return;
+    if (sign[quality] > 0) notes.push(`${label} reforçado pelo signo`);
+    else if (sign[opposite] > 0) notes.push(`${label} atenuado/contrariado pelo signo`);
   };
+  compare("hot", "cold", "quente");
+  compare("cold", "hot", "frio");
+  compare("dry", "moist", "seco");
+  compare("moist", "dry", "úmido");
+  return notes.join("; ") || "modulação sem quantificação adicional";
 }
 
 function getSeasonWitness(signIndex: number): {
@@ -257,9 +303,11 @@ function getMoonPhaseWitness(angleFromSun: number): {
   };
 }
 
-function getEssentialScore(planet: Planet, sect: "Diurno" | "Noturno"): number {
+type EssentialHierarchy = LordOfNativityResult["essentialHierarchy"];
+
+function getEssentialHierarchy(planet: Planet, sect: "Diurno" | "Noturno"): EssentialHierarchy {
   if (!TRADITIONAL_PLANET_TYPES.has(planet.type as TraditionalPlanetType)) {
-    return 0;
+    return { domicile: false, exaltation: false, triplicity: false, term: false, face: false };
   }
 
   const planetType = planet.type as TraditionalPlanetType;
@@ -267,60 +315,56 @@ function getEssentialScore(planet: Planet, sect: "Diurno" | "Noturno"): number {
   const degreeInSign = normalizeLongitude(planet.longitudeRaw) % 30;
   const signContributions = getSignContributions(signIndex);
   const elementIndex =
-    signContributions.hot && signContributions.dry
-      ? 0
-      : signContributions.cold && signContributions.dry
-        ? 1
-        : signContributions.hot && signContributions.moist
-          ? 2
-          : 3;
+    signContributions.hot && signContributions.dry ? 0
+      : signContributions.cold && signContributions.dry ? 1
+        : signContributions.hot && signContributions.moist ? 2 : 3;
 
-  let score = 0;
-
-  if (nameToTraditionalType(DOMICILE_RULER[signIndex]) === planetType) score += 5;
-
-  for (const [name, exaltSign] of Object.entries(EXALTATION)) {
-    if (exaltSign === signIndex && nameToTraditionalType(name) === planetType) {
-      score += 4;
-      break;
-    }
-  }
-
-  const triplicity = TRIPLICITY_RULERS[elementIndex];
-  if (
-    nameToTraditionalType(sect === "Diurno" ? triplicity.day : triplicity.night) ===
-    planetType
-  ) {
-    score += 3;
-  }
-
-  const term = EGYPTIAN_TERMS[signIndex].find((item) => degreeInSign < item.endDeg);
-  if (term && nameToTraditionalType(term.ruler) === planetType) score += 2;
-
+  const domicile = nameToTraditionalType(DOMICILE_RULER[signIndex]) === planetType;
+  const exaltation = Object.entries(EXALTATION).some(
+    ([name, exaltSign]) => exaltSign === signIndex && nameToTraditionalType(name) === planetType,
+  );
+  const triplicityRulers = TRIPLICITY_RULERS[elementIndex];
+  const triplicity = nameToTraditionalType(sect === "Diurno" ? triplicityRulers.day : triplicityRulers.night) === planetType;
+  const term = LILLY_TERMS[signIndex].find((item) => degreeInSign < item.endDeg);
   const face = FACES[signIndex][Math.floor(degreeInSign / 10)];
-  if (nameToTraditionalType(face) === planetType) score += 1;
 
-  for (const [name, signs] of Object.entries(DETRIMENT)) {
-    if (nameToTraditionalType(name) === planetType && signs.includes(signIndex)) {
-      score -= 5;
-      break;
-    }
+  return {
+    domicile,
+    exaltation,
+    triplicity,
+    term: Boolean(term && nameToTraditionalType(term.ruler) === planetType),
+    face: nameToTraditionalType(face) === planetType,
+  };
+}
+
+function hierarchyVector(hierarchy: EssentialHierarchy): number[] {
+  return [hierarchy.domicile, hierarchy.exaltation, hierarchy.triplicity, hierarchy.term, hierarchy.face].map((value) => value ? 1 : 0);
+}
+
+function compareHierarchy(first: EssentialHierarchy, second: EssentialHierarchy): number {
+  const a = hierarchyVector(first);
+  const b = hierarchyVector(second);
+  for (let index = 0; index < a.length; index += 1) {
+    if (a[index] !== b[index]) return a[index] - b[index];
   }
+  return 0;
+}
 
-  for (const [name, fallSign] of Object.entries(FALL)) {
-    if (nameToTraditionalType(name) === planetType && fallSign === signIndex) {
-      score -= 4;
-      break;
-    }
-  }
-
-  return score;
+function hierarchyPriorityValue(hierarchy: EssentialHierarchy): number {
+  if (hierarchy.domicile) return 5;
+  if (hierarchy.exaltation) return 4;
+  if (hierarchy.triplicity) return 3;
+  if (hierarchy.term) return 2;
+  if (hierarchy.face) return 1;
+  return 0;
 }
 
 function getAspectDifficultyCounts(planets: Planet[], target: Planet): {
   easy: number;
   hard: number;
 } {
+  const MAX_ASPECT_ORB = 3;
+  const CAZIMI_ORB = 17 / 60;
   let easy = 0;
   let hard = 0;
 
@@ -329,10 +373,36 @@ function getAspectDifficultyCounts(planets: Planet[], target: Planet): {
     .forEach((planet) => {
       const rawDiff = Math.abs(target.longitudeRaw - planet.longitudeRaw);
       const diff = rawDiff > 180 ? 360 - rawDiff : rawDiff;
+      const targetSign = getSignIndex(target.longitudeRaw);
+      const planetSign = getSignIndex(planet.longitudeRaw);
+      const signDistance = (planetSign - targetSign + 12) % 12;
 
-      if (Math.abs(diff - 60) <= 5 || Math.abs(diff - 120) <= 5) {
+      if (signDistance === 0 && diff <= MAX_ASPECT_ORB) {
+        const involvesSun = target.type === "sun" || planet.type === "sun";
+
+        if (involvesSun) {
+          if (diff <= CAZIMI_ORB) easy += 1;
+          else hard += 1;
+        }
+
+        return;
+      }
+
+      const isSextile =
+        (signDistance === 2 || signDistance === 10) &&
+        Math.abs(diff - 60) <= MAX_ASPECT_ORB;
+      const isTrine =
+        (signDistance === 4 || signDistance === 8) &&
+        Math.abs(diff - 120) <= MAX_ASPECT_ORB;
+      const isSquare =
+        (signDistance === 3 || signDistance === 9) &&
+        Math.abs(diff - 90) <= MAX_ASPECT_ORB;
+      const isOpposition =
+        signDistance === 6 && Math.abs(diff - 180) <= MAX_ASPECT_ORB;
+
+      if (isSextile || isTrine) {
         easy += 1;
-      } else if (Math.abs(diff - 90) <= 5 || Math.abs(diff - 180) <= 5) {
+      } else if (isSquare || isOpposition) {
         hard += 1;
       }
     });
@@ -344,51 +414,71 @@ export function getLordOfNativity(chart: BirthChart): LordOfNativityResult {
   const sect = getSect(
     chart.planets.find((planet) => planet.type === "sun")!.longitudeRaw,
     chart.housesData.ascendant,
-    chart.housesData.house
+    chart.housesData.house,
   );
 
   const traditionalPlanets = chart.planets.filter((planet) =>
-    TRADITIONAL_PLANET_TYPES.has(planet.type as TraditionalPlanetType)
+    TRADITIONAL_PLANET_TYPES.has(planet.type as TraditionalPlanetType),
   );
 
-  const rankedPlanets = traditionalPlanets
-    .map((planet) => {
-      const aspectCounts = getAspectDifficultyCounts(traditionalPlanets, planet);
-      const signIndex = getSignIndex(planet.longitudeRaw);
+  if (traditionalPlanets.length === 0) {
+    throw new Error("Nao ha planetas tradicionais para calcular o Senhor da Natividade.");
+  }
 
-      return {
-        planet,
-        signIndex,
-        score: getEssentialScore(planet, sect),
-        easyAspects: aspectCounts.easy,
-        hardAspects: aspectCounts.hard,
-      };
-    })
-    .sort((left, right) => {
-      if (right.score !== left.score) return right.score - left.score;
-      if (right.easyAspects !== left.easyAspects) {
-        return right.easyAspects - left.easyAspects;
-      }
-      if (left.hardAspects !== right.hardAspects) {
-        return left.hardAspects - right.hardAspects;
-      }
+  const candidates = traditionalPlanets.map((planet) => {
+    const aspectCounts = getAspectDifficultyCounts(traditionalPlanets, planet);
+    const signIndex = getSignIndex(planet.longitudeRaw);
+    const houseIndex = getHouseIndex(planet.longitudeRaw, chart.housesData.house);
+    const essentialHierarchy = getEssentialHierarchy(planet, sect);
+    return {
+      planet,
+      signIndex,
+      essentialHierarchy,
+      score: hierarchyPriorityValue(essentialHierarchy),
+      easyAspects: aspectCounts.easy,
+      hardAspects: aspectCounts.hard,
+      houseScore: HOUSE_SCORES[houseIndex - 1] ?? 0,
+    };
+  });
 
-      return left.planet.longitudeRaw - right.planet.longitudeRaw;
-    });
+  const sorted = [...candidates].sort((first, second) => {
+    const hierarchy = compareHierarchy(second.essentialHierarchy, first.essentialHierarchy);
+    if (hierarchy !== 0) return hierarchy;
+    return first.planet.name.localeCompare(second.planet.name);
+  });
+  const best = sorted[0];
+  const finalists = sorted.filter((item) => compareHierarchy(item.essentialHierarchy, best.essentialHierarchy) === 0);
+  const angularHouses = new Set([1, 4, 7, 10]);
+  const angularFinalists = finalists.filter((item) => angularHouses.has(getHouseIndex(item.planet.longitudeRaw, chart.housesData.house)));
+  const winner = finalists.length === 1
+    ? finalists[0]
+    : angularFinalists.length === 1
+      ? angularFinalists[0]
+      : null;
+  const tiedCandidates = winner ? [] : finalists.map((item) => item.planet.name);
+  const contributions = winner
+    ? modulateBySign(
+        getPlanetContributions(winner.planet.type as TraditionalPlanetType),
+        winner.signIndex,
+      )
+    : ZERO_TOTALS();
 
-  const winner = rankedPlanets[0];
-  const contributions = modulateBySign(
-    getPlanetContributions(winner.planet.type as TraditionalPlanetType),
-    winner.signIndex
-  );
-
+  // Marcos usa a condição acidental para desempatar candidatos essencialmente equivalentes.
+  // O motor só automatiza o caso source-locked e inequívoco de angularidade exclusiva;
+  // aspectos, estrelas e demais condições permanecem evidência qualitativa, sem score inventado.
   return {
-    planet: winner.planet.name,
-    longitude: winner.planet.longitudeRaw,
-    sign: SIGNS[winner.signIndex],
-    score: winner.score,
-    easyAspects: winner.easyAspects,
-    hardAspects: winner.hardAspects,
+    planet: winner?.planet.name ?? null,
+    longitude: winner?.planet.longitudeRaw ?? Number.NaN,
+    sign: winner ? SIGNS[winner.signIndex] : "Indeterminado",
+    score: winner?.score ?? best.score,
+    easyAspects: winner?.easyAspects ?? Math.max(...finalists.map((item) => item.easyAspects)),
+    hardAspects: winner?.hardAspects ?? Math.min(...finalists.map((item) => item.hardAspects)),
+    houseScore: winner?.houseScore ?? 0,
+    essentialHierarchy: winner?.essentialHierarchy ?? best.essentialHierarchy,
+    resolution: winner
+      ? (finalists.length === 1 ? "essential-hierarchy" : "essential-tie-accidental-angularity")
+      : "unresolved",
+    tiedCandidates,
     contributions,
   };
 }
@@ -416,7 +506,13 @@ export function calculateTemperament(chart: BirthChart): TemperamentResult {
     contributions: TemperamentTotals
   ) => {
     totals = sumTotals(totals, contributions);
-    witnesses.push({ label, details, contributions });
+    const qualitativeDetails = details.replace(/\s*->\s*[^;]+(?:;\s*)?/, "; ").replace(/;\s*;/g, ";").replace(/;\s*$/, "");
+    const qualitativeContributions: TemperamentWitness["qualitativeContributions"] = [];
+    if (contributions.hot > 0) qualitativeContributions.push("quente");
+    if (contributions.cold > 0) qualitativeContributions.push("frio");
+    if (contributions.dry > 0) qualitativeContributions.push("seco");
+    if (contributions.moist > 0) qualitativeContributions.push("úmido");
+    witnesses.push({ label, details, qualitativeDetails, qualitativeContributions, contributions });
   };
 
   const ascContributions = getSignContributions(ascSignIndex);
@@ -435,7 +531,7 @@ export function calculateTemperament(chart: BirthChart): TemperamentResult {
 
     addWitness(
       "Regente do ascendente",
-      `${ascRuler.name} em ${SIGNS[ascRulerSignIndex]} -> ${describeContributions(ascRulerContributions)}`,
+      `${ascRuler.name} em ${SIGNS[ascRulerSignIndex]} -> ${describeContributions(ascRulerContributions)}; ${describeSignModulation(getPlanetContributions(ascRuler.type as TraditionalPlanetType), ascRulerSignIndex)}`,
       ascRulerContributions
     );
   }
@@ -444,7 +540,7 @@ export function calculateTemperament(chart: BirthChart): TemperamentResult {
   const seasonContributions = modulateBySign(seasonWitness.base, sunSignIndex);
   addWitness(
     "Estacao do Sol",
-    `${seasonWitness.label} modulada por ${SIGNS[sunSignIndex]} -> ${describeContributions(seasonContributions)}`,
+    `${seasonWitness.label} em ${SIGNS[sunSignIndex]} -> ${describeContributions(seasonContributions)}; ${describeSignModulation(seasonWitness.base, sunSignIndex)}`,
     seasonContributions
   );
 
@@ -455,13 +551,15 @@ export function calculateTemperament(chart: BirthChart): TemperamentResult {
   );
   addWitness(
     "Fase da Lua",
-    `${moonPhaseWitness.label} modulada por ${SIGNS[moonSignIndex]} -> ${describeContributions(moonPhaseContributions)}`,
+    `${moonPhaseWitness.label} com Lua em ${SIGNS[moonSignIndex]} -> ${describeContributions(moonPhaseContributions)}; ${describeSignModulation(moonPhaseWitness.base, moonSignIndex)}`,
     moonPhaseContributions
   );
 
   addWitness(
     "Senhor da natividade",
-    `${lordOfNativity.planet} em ${lordOfNativity.sign} (essenciais ${lordOfNativity.score}, faceis ${lordOfNativity.easyAspects}, dificeis ${lordOfNativity.hardAspects}) -> ${describeContributions(lordOfNativity.contributions)}`,
+    lordOfNativity.planet
+      ? `${lordOfNativity.planet} em ${lordOfNativity.sign} (${lordOfNativity.resolution === "essential-tie-accidental-angularity" ? "empate essencial resolvido por angularidade acidental exclusiva" : "seleção por hierarquia essencial"}; aspectos permanecem evidência) -> ${describeContributions(lordOfNativity.contributions)}`
+      : `Empate não resolvido após hierarquia essencial e gate acidental inequívoco: ${lordOfNativity.tiedCandidates.join(", ")}. Aspectos/estrelas não recebem desempate numérico inventado.`,
     lordOfNativity.contributions
   );
 
@@ -477,42 +575,57 @@ export function calculateTemperament(chart: BirthChart): TemperamentResult {
     "Frio/Umido": "Fleumatico",
   };
 
-  const dominantTemperament = temperamentMap[`${dominantHeat}/${dominantHumidity}`];
-  const oppositeHeat = dominantHeat === "Quente" ? "Frio" : "Quente";
-  const oppositeHumidity = dominantHumidity === "Seco" ? "Umido" : "Seco";
+  const componentScores = ([
+    { temperament: "Colerico", score: totals.hot + totals.dry, rank: 0 },
+    { temperament: "Sanguineo", score: totals.hot + totals.moist, rank: 0 },
+    { temperament: "Melancolico", score: totals.cold + totals.dry, rank: 0 },
+    { temperament: "Fleumatico", score: totals.cold + totals.moist, rank: 0 },
+  ] satisfies TemperamentComponentScore[])
+    .sort((left, right) => right.score - left.score || left.temperament.localeCompare(right.temperament))
+    .map((item, index) => ({ ...item, rank: index + 1 }));
 
-  let inferiorTemperament = dominantTemperament;
+  const dominantTemperament = componentScores[0].temperament;
+  const inferiorTemperament = componentScores[1]?.temperament ?? dominantTemperament;
+  const strongestTemperament = componentScores[0].temperament;
+  const weakestTemperament = componentScores[componentScores.length - 1].temperament;
 
-  if (Math.abs(dryDelta) > Math.abs(hotDelta)) {
-    inferiorTemperament = temperamentMap[`${oppositeHeat}/${dominantHumidity}`];
-  } else if (Math.abs(hotDelta) > Math.abs(dryDelta)) {
-    inferiorTemperament = temperamentMap[`${dominantHeat}/${oppositeHumidity}`];
-  } else {
-    const temperamentScores: Array<{ name: string; score: number }> = [
-      { name: "Colerico", score: totals.hot + totals.dry },
-      { name: "Sanguineo", score: totals.hot + totals.moist },
-      { name: "Melancolico", score: totals.cold + totals.dry },
-      { name: "Fleumatico", score: totals.cold + totals.moist },
-    ].sort((left, right) => right.score - left.score);
+  const BALANCE_EPSILON = 1e-9;
+  const heatIsBalanced = Math.abs(hotDelta) <= BALANCE_EPSILON;
+  const humidityIsBalanced = Math.abs(dryDelta) <= BALANCE_EPSILON;
+  const weakestExcess = Math.min(Math.abs(hotDelta), Math.abs(dryDelta));
 
-    const secondBest = temperamentScores.find(
-      (item) => item.name !== dominantTemperament,
-    );
+  let intensity: TemperamentResult["intensity"] = "definido";
+  let summary: string = dominantTemperament;
 
-    inferiorTemperament = secondBest?.name ?? dominantTemperament;
+  if (heatIsBalanced && humidityIsBalanced) {
+    intensity = "equilibrado";
+    summary = "Equilibrado";
+  } else if (heatIsBalanced || humidityIsBalanced) {
+    intensity = "indeterminado";
+    summary = `Indeterminado (${dominantTemperament})`;
+  } else if (weakestExcess <= 1) {
+    intensity = "leve";
+    summary = `Levemente ${dominantTemperament}`;
   }
 
-  const summary = `${dominantTemperament}-${inferiorTemperament}`;
-
   return {
-    temperament: summary,
-    dominantTemperament,
-    inferiorTemperament,
-    summary,
+    method: "Marcos Monteiro - cinco testemunhos",
+    methodVersion: "1.3.0",
+    status: lordOfNativity.planet ? "pronto-para-julgamento-qualitativo" : "incompleto-senhor-da-natividade",
+    temperament: "JULGAMENTO_QUALITATIVO_PENDENTE",
+    dominantTemperament: "NOT_CANONICALLY_RESOLVED",
+    inferiorTemperament: "NOT_CANONICALLY_RESOLVED",
+    strongestTemperament: "NOT_CANONICALLY_RESOLVED",
+    weakestTemperament: "NOT_CANONICALLY_RESOLVED",
+    mixture: componentScores,
+    summary: "Julgamento qualitativo pendente — não decidir por votação/score",
     totals,
     hotDelta,
     dryDelta,
+    intensity: "indeterminado",
     witnesses,
+    canonicalConclusion: null,
+    compatibilityOnly: { summary, totals, hotDelta, dryDelta, mixture: componentScores },
     lordOfNativity,
   };
 }

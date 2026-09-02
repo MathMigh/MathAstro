@@ -1,0 +1,6 @@
+[
+  {"name":"one-shared-one-different","similarCount":1,"complementaryCount":1,"anyIndeterminate":false,"expected":"integracao-preferencial"},
+  {"name":"two-shared","similarCount":2,"complementaryCount":0,"anyIndeterminate":false,"expected":"similaridade-forte"},
+  {"name":"two-opposite","similarCount":0,"complementaryCount":2,"anyIndeterminate":false,"expected":"oposicao-polar"},
+  {"name":"indeterminate","similarCount":1,"complementaryCount":0,"anyIndeterminate":true,"expected":"indeterminado"}
+]

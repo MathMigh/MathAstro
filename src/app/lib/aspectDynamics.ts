@@ -132,6 +132,10 @@ function participantSupportsAspect(
     return aspectType === "conjunction";
   }
 
+  if (participant.elementType === "arabicPart") {
+    return aspectType === "conjunction" || aspectType === "opposition";
+  }
+
   if (participant.isAntiscion) {
     return aspectType === "conjunction" || aspectType === "opposition";
   }
@@ -179,12 +183,11 @@ function canUseCrossSignConjunction(
   firstParticipant: TraditionalAspectParticipant,
   secondParticipant: TraditionalAspectParticipant
 ): boolean {
-  const signDistance = getSignDistance(
+  // Conjuncao zodiacal: a fronteira de signo encerra a conjuncao.
+  return getSignDistance(
     firstParticipant.longitude,
     secondParticipant.longitude
-  );
-
-  return signDistance === 0 || signDistance === 1 || signDistance === 11;
+  ) === 0;
 }
 
 function buildTraditionalAspectMatch(

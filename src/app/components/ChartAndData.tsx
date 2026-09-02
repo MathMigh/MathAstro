@@ -32,6 +32,11 @@ interface Props {
   chartDateProps: ChatDateProps;
   outerChartDateProps?: ChatDateProps;
   title?: string;
+  showPositionsSummary?: boolean;
+  showFixedStarsTable?: boolean;
+  showTraditionalReport?: boolean;
+  showFixedStarsOnWheel?: boolean;
+  synastryMode?: boolean;
 }
 
 export default function ChartAndData(props: Props) {
@@ -44,6 +49,11 @@ export default function ChartAndData(props: Props) {
     chartDateProps,
     outerChartDateProps,
     title,
+    showPositionsSummary = true,
+    showFixedStarsTable = true,
+    showTraditionalReport = true,
+    showFixedStarsOnWheel = true,
+    synastryMode = false,
   } = props;
 
   const [loading, setLoading] = useState(true);
@@ -169,10 +179,11 @@ export default function ChartAndData(props: Props) {
               outerPlanets: outerChart?.planets,
               outerHouses: outerChart?.housesData,
               outerArabicParts,
-              fixedStars: innerChart.fixedStars,
+              fixedStars: showFixedStarsOnWheel ? innerChart.fixedStars : undefined,
               onUpdateAspectsData: handleOnUpdateAspectsData,
               useReturnSelectorArrows:
                 isReturnChart() || isProgressionChart() || isProfectionChart(),
+              synastryMode,
             }}
           />
 
@@ -235,7 +246,7 @@ export default function ChartAndData(props: Props) {
 
     return (
       <Container className="w-full px-4! py-6! sm:px-6!">
-        <FixedStarsTable matches={innerChart.fixedStarMatches} />
+        <FixedStarsTable matches={innerChart.fixedStarMatches} catalog={innerChart.fixedStarCatalog} metadata={innerChart.fixedStarCatalogMetadata} />
       </Container>
     );
   }
@@ -290,10 +301,10 @@ export default function ChartAndData(props: Props) {
   return (
     <div className="mt-1 mb-8 flex w-[95%] flex-col gap-6 md:w-full">
       {renderChart()}
-      <ChartPositionsSummary chart={innerChart} />
-      {renderFixedStarsTable()}
+      {showPositionsSummary && <ChartPositionsSummary chart={innerChart} />}
+      {showFixedStarsTable && renderFixedStarsTable()}
       {renderArabicPartsAndAspectsTable()}
-      {renderTraditionalReport()}
+      {showTraditionalReport && renderTraditionalReport()}
     </div>
   );
 }

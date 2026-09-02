@@ -94,7 +94,7 @@ function renderLongitude(longitude: number) {
 
   return (
     <>
-      <span>{degree}° {minute.toString().padStart(2, "0")}' </span>
+      <span>{degree}° {minute.toString().padStart(2, "0")}′ </span>
       <span style={{ color: SIGN_COLORS[signIndex] }}>
         {SIGN_GLYPHS[signIndex]}
       </span>

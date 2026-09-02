@@ -89,46 +89,51 @@ export const FALL: Record<string, number> = {
 };
 
 // ============================================================
-// TRIPLICIDADES (Dorothean) — elemento → regente diurno/noturno
+// TRIPLICIDADES — sistema de dois regentes usado por Marcos Monteiro.
+// A tabela de tres regentes (doroteia) e uma variante valida, mas nao e
+// misturada silenciosamente ao metodo canonico do MathAstro.
 // ============================================================
 export const TRIPLICITY_RULERS: Record<number, {day: string; night: string}> = {
   0: { day: "Sol",     night: "Júpiter" }, // Fogo
   1: { day: "Vênus",   night: "Lua" },     // Terra
   2: { day: "Saturno", night: "Mercúrio" },// Ar
-  3: { day: "Vênus",   night: "Marte" },   // Água (Mars por noite, Venus por dia)
+  3: { day: "Marte",   night: "Marte" },   // Água
 };
 
 // ============================================================
-// TERMOS EGÍPCIOS
+// TERMOS DE LILLY
 // Para cada signo (0-11), array de { ruler, endDeg } — limites acumulados
 // Grau do planeta (0-29.99) → primeiro termo onde grau < endDeg
 // ============================================================
-export const EGYPTIAN_TERMS: {ruler: string; endDeg: number}[][] = [
+export const LILLY_TERMS: {ruler: string; endDeg: number}[][] = [
   // Áries
-  [{ ruler:"Júpiter", endDeg:6 },{ ruler:"Vênus", endDeg:12 },{ ruler:"Mercúrio", endDeg:20 },{ ruler:"Marte", endDeg:25 },{ ruler:"Saturno", endDeg:30 }],
+  [{ ruler:"Júpiter", endDeg:6 },{ ruler:"Vênus", endDeg:14 },{ ruler:"Mercúrio", endDeg:21 },{ ruler:"Marte", endDeg:26 },{ ruler:"Saturno", endDeg:30 }],
   // Touro
-  [{ ruler:"Vênus", endDeg:8 },{ ruler:"Mercúrio", endDeg:14 },{ ruler:"Júpiter", endDeg:22 },{ ruler:"Saturno", endDeg:27 },{ ruler:"Marte", endDeg:30 }],
+  [{ ruler:"Vênus", endDeg:8 },{ ruler:"Mercúrio", endDeg:15 },{ ruler:"Júpiter", endDeg:22 },{ ruler:"Saturno", endDeg:26 },{ ruler:"Marte", endDeg:30 }],
   // Gêmeos
-  [{ ruler:"Mercúrio", endDeg:6 },{ ruler:"Júpiter", endDeg:12 },{ ruler:"Vênus", endDeg:17 },{ ruler:"Marte", endDeg:24 },{ ruler:"Saturno", endDeg:30 }],
+  [{ ruler:"Mercúrio", endDeg:7 },{ ruler:"Júpiter", endDeg:14 },{ ruler:"Vênus", endDeg:21 },{ ruler:"Saturno", endDeg:25 },{ ruler:"Marte", endDeg:30 }],
   // Câncer
-  [{ ruler:"Marte", endDeg:7 },{ ruler:"Vênus", endDeg:13 },{ ruler:"Mercúrio", endDeg:19 },{ ruler:"Júpiter", endDeg:26 },{ ruler:"Saturno", endDeg:30 }],
+  [{ ruler:"Marte", endDeg:6 },{ ruler:"Júpiter", endDeg:13 },{ ruler:"Mercúrio", endDeg:20 },{ ruler:"Vênus", endDeg:27 },{ ruler:"Saturno", endDeg:30 }],
   // Leão
-  [{ ruler:"Júpiter", endDeg:6 },{ ruler:"Vênus", endDeg:11 },{ ruler:"Saturno", endDeg:18 },{ ruler:"Mercúrio", endDeg:24 },{ ruler:"Marte", endDeg:30 }],
+  [{ ruler:"Saturno", endDeg:6 },{ ruler:"Mercúrio", endDeg:13 },{ ruler:"Vênus", endDeg:19 },{ ruler:"Júpiter", endDeg:25 },{ ruler:"Marte", endDeg:30 }],
   // Virgem
-  [{ ruler:"Mercúrio", endDeg:7 },{ ruler:"Vênus", endDeg:17 },{ ruler:"Júpiter", endDeg:21 },{ ruler:"Marte", endDeg:28 },{ ruler:"Saturno", endDeg:30 }],
+  [{ ruler:"Mercúrio", endDeg:7 },{ ruler:"Vênus", endDeg:13 },{ ruler:"Júpiter", endDeg:18 },{ ruler:"Saturno", endDeg:24 },{ ruler:"Marte", endDeg:30 }],
   // Libra
-  [{ ruler:"Saturno", endDeg:6 },{ ruler:"Mercúrio", endDeg:14 },{ ruler:"Júpiter", endDeg:21 },{ ruler:"Vênus", endDeg:28 },{ ruler:"Marte", endDeg:30 }],
+  [{ ruler:"Saturno", endDeg:6 },{ ruler:"Vênus", endDeg:11 },{ ruler:"Júpiter", endDeg:18 },{ ruler:"Mercúrio", endDeg:24 },{ ruler:"Marte", endDeg:30 }],
   // Escorpião
-  [{ ruler:"Marte", endDeg:7 },{ ruler:"Vênus", endDeg:11 },{ ruler:"Mercúrio", endDeg:19 },{ ruler:"Júpiter", endDeg:24 },{ ruler:"Saturno", endDeg:30 }],
+  [{ ruler:"Marte", endDeg:6 },{ ruler:"Júpiter", endDeg:14 },{ ruler:"Vênus", endDeg:21 },{ ruler:"Mercúrio", endDeg:27 },{ ruler:"Saturno", endDeg:30 }],
   // Sagitário
-  [{ ruler:"Júpiter", endDeg:12 },{ ruler:"Vênus", endDeg:17 },{ ruler:"Mercúrio", endDeg:21 },{ ruler:"Saturno", endDeg:26 },{ ruler:"Marte", endDeg:30 }],
+  [{ ruler:"Júpiter", endDeg:8 },{ ruler:"Vênus", endDeg:14 },{ ruler:"Mercúrio", endDeg:19 },{ ruler:"Saturno", endDeg:25 },{ ruler:"Marte", endDeg:30 }],
   // Capricórnio
-  [{ ruler:"Mercúrio", endDeg:7 },{ ruler:"Júpiter", endDeg:14 },{ ruler:"Vênus", endDeg:22 },{ ruler:"Saturno", endDeg:26 },{ ruler:"Marte", endDeg:30 }],
+  [{ ruler:"Vênus", endDeg:6 },{ ruler:"Mercúrio", endDeg:12 },{ ruler:"Júpiter", endDeg:19 },{ ruler:"Marte", endDeg:25 },{ ruler:"Saturno", endDeg:30 }],
   // Aquário
-  [{ ruler:"Mercúrio", endDeg:7 },{ ruler:"Vênus", endDeg:13 },{ ruler:"Júpiter", endDeg:20 },{ ruler:"Marte", endDeg:25 },{ ruler:"Saturno", endDeg:30 }],
+  [{ ruler:"Saturno", endDeg:6 },{ ruler:"Mercúrio", endDeg:12 },{ ruler:"Vênus", endDeg:20 },{ ruler:"Júpiter", endDeg:25 },{ ruler:"Marte", endDeg:30 }],
   // Peixes
-  [{ ruler:"Vênus", endDeg:12 },{ ruler:"Júpiter", endDeg:16 },{ ruler:"Mercúrio", endDeg:19 },{ ruler:"Marte", endDeg:28 },{ ruler:"Saturno", endDeg:30 }],
+  [{ ruler:"Vênus", endDeg:8 },{ ruler:"Júpiter", endDeg:14 },{ ruler:"Mercúrio", endDeg:20 },{ ruler:"Marte", endDeg:26 },{ ruler:"Saturno", endDeg:30 }],
 ];
+
+// Alias temporario para modulos antigos. Novos calculos devem usar LILLY_TERMS.
+export const EGYPTIAN_TERMS = LILLY_TERMS;
 
 // ============================================================
 // FACES / DECANATOS (Ordem Caldeia)
@@ -171,7 +176,7 @@ export const AVERAGE_DAILY_SPEED: Record<string, number> = {
 export const HOUSE_SCORES: number[] = [
   +5, // Casa 1 (Angular)
   +3, // Casa 2 (Sucedente)
-  -3, // Casa 3 (Cadente)
+  +1, // Casa 3
   +4, // Casa 4 (Angular)
   +3, // Casa 5 (Sucedente)
   -4, // Casa 6 (Cadente — pior)
@@ -338,3 +343,166 @@ export const PRECESSION_RATE = 0.01397; // ~50.29"/ano
 // Planetas tradicionais (os 7 visíveis)
 export const TRADITIONAL_PLANETS = ["Sol","Lua","Mercúrio","Vênus","Marte","Júpiter","Saturno"];
 export const OUTER_PLANETS = ["Urano","Netuno","Plutão"];
+
+// ============================================================
+// PROPRIEDADES DOS SIGNOS USADAS POR FRAWLEY
+// Fontes: The Horary Textbook (divisões práticas dos signos) e
+// The Real Astrology Applied (aplicações natais: mente, filhos, vocação).
+// Estas propriedades são testemunhos contextuais, nunca vereditos isolados.
+// ============================================================
+export type SignFertility = "fértil" | "estéril" | "neutro";
+export type SignVoice = "mudo" | "voz-alta" | "meia-voz" | "voz-fraca";
+export type SignCreatureType = "humano" | "bestial" | "neutro";
+
+// Água = fértil; Gêmeos/Leão/Virgem = estéreis; os demais ficam neutros
+// neste núcleo conservador. Frawley observa que no natal os neutros podem
+// ser refinados em levemente férteis/estéreis, mas a divisão completa não
+// foi publicada na fonte auditada, portanto não a inventamos.
+export const SIGN_FERTILITY: SignFertility[] = [
+  "neutro", "neutro", "estéril", "fértil", "estéril", "estéril",
+  "neutro", "fértil", "neutro", "neutro", "neutro", "fértil",
+];
+
+export const SIGN_VOICE: SignVoice[] = [
+  "meia-voz", "meia-voz", "voz-alta", "mudo", "meia-voz", "voz-alta",
+  "voz-alta", "mudo", "meia-voz", "voz-fraca", "voz-fraca", "mudo",
+];
+
+// Signos de ar + Virgem = humanos. Áries, Touro, Leão, Sagitário e
+// Capricórnio = bestiais. Câncer/Escorpião/Peixes ficam neutros nesta divisão.
+export const SIGN_CREATURE_TYPE: SignCreatureType[] = [
+  "bestial", "bestial", "humano", "neutro", "bestial", "humano",
+  "humano", "neutro", "bestial", "bestial", "humano", "neutro",
+];
+
+export const SIGN_FERAL: boolean[] = [
+  false, false, false, false, true, false, false, false,
+  false, false, false, false,
+];
+
+// Segunda metade de Sagitário é feral; função necessária porque a propriedade
+// depende do grau, não apenas do signo.
+export function isFeralLongitude(longitude: number): boolean {
+  const normalized = ((longitude % 360) + 360) % 360;
+  const signIndex = Math.floor(normalized / 30);
+  if (signIndex === 4) return true; // Leão inteiro
+  if (signIndex === 8) return (normalized % 30) >= 15; // metade final de Sagitário
+  return false;
+}
+
+export const SIGN_DOUBLE_BODIED: boolean[] = [
+  false, false, true, false, false, true, false, false, true, false, false, true,
+];
+
+export const SIGN_MAIMED: boolean[] = [
+  true, true, false, false, true, false, false, false, false, false, false, true,
+];
+
+// ============================================================
+// ASTROLOGIA MÉDICA TRADICIONAL — PLANETA NO SIGNO → MEMBROS
+// William Lilly, Christian Astrology I (1647), p.119–120.
+// Marcos Monteiro usa explicitamente esta classe de tabela no exemplo natal
+// de saúde de Bento XVI (Sol/Áries, Júpiter/Peixes, Lua/Libra). O motor a
+// materializa como correspondência tradicional auxiliar, nunca como diagnóstico.
+// Ordem externa: signo 0=Áries ... 11=Peixes.
+// ============================================================
+export const LILLY_PLANET_SIGN_BODY_PARTS: Record<string, string[][]> = {
+  "Saturno": [
+    ["peito", "braço"],
+    ["coração", "peito"],
+    ["barriga", "coração"],
+    ["rins/lombos", "barriga", "genitais"],
+    ["genitais", "rins/lombos"],
+    ["coxas", "genitais", "pés"],
+    ["joelhos", "coxas"],
+    ["joelhos", "pernas"],
+    ["pernas", "pés"],
+    ["cabeça", "pés"],
+    ["pescoço", "cabeça"],
+    ["braços", "ombros", "pescoço"],
+  ],
+  "Júpiter": [
+    ["pescoço", "garganta", "coração", "barriga"],
+    ["ombros", "braços", "barriga", "pescoço"],
+    ["peito", "rins/lombos", "genitais"],
+    ["coração", "genitais", "coxas"],
+    ["barriga", "coxas", "joelhos"],
+    ["rins/lombos", "joelhos"],
+    ["genitais", "pernas", "cabeça", "olhos"],
+    ["coxas", "pés"],
+    ["joelhos", "cabeça", "coxas"],
+    ["pernas", "pescoço", "olhos", "joelhos"],
+    ["pés", "braços", "ombros", "peito"],
+    ["cabeça", "peito", "coração"],
+  ],
+  "Marte": [
+    ["barriga", "cabeça"],
+    ["rins/lombos", "garganta"],
+    ["genitais", "braços", "peito"],
+    ["coxas", "peito"],
+    ["joelhos", "coração", "barriga"],
+    ["pernas", "barriga"],
+    ["pés", "rins/lombos", "genitais"],
+    ["cabeça", "genitais", "braços", "coxas"],
+    ["garganta", "coxas", "mãos", "pés"],
+    ["braços", "ombros", "joelhos", "pernas"],
+    ["peito", "pernas", "coração"],
+    ["coração", "pés", "barriga", "tornozelos"],
+  ],
+  "Sol": [
+    ["coxas"],
+    ["joelhos"],
+    ["pernas", "tornozelos"],
+    ["joelhos"],
+    ["cabeça"],
+    ["garganta"],
+    ["ombros", "braços"],
+    ["peito", "coração"],
+    ["coração", "barriga"],
+    ["barriga", "costas"],
+    ["rins/lombos", "genitais"],
+    ["genitais", "coxas"],
+  ],
+  "Vênus": [
+    ["rins/lombos", "pés"],
+    ["genitais", "cabeça"],
+    ["coxas", "garganta"],
+    ["joelhos", "ombros", "braços"],
+    ["pernas", "peito", "coração"],
+    ["pés", "estômago", "coração", "barriga"],
+    ["cabeça", "intestino delgado"],
+    ["garganta", "rins/lombos", "genitais"],
+    ["ombros", "braços", "genitais", "coxas"],
+    ["peito", "coração", "coxas"],
+    ["coração", "joelhos"],
+    ["barriga", "pernas", "pescoço", "garganta"],
+  ],
+  "Mercúrio": [
+    ["genitais", "pernas"],
+    ["coxas", "pés"],
+    ["joelhos", "cabeça"],
+    ["pernas", "garganta", "olhos"],
+    ["pés", "braços", "ombros", "garganta"],
+    ["cabeça", "peito", "coração"],
+    ["garganta", "coração", "estômago", "barriga"],
+    ["ombros", "braços", "intestinos", "costas"],
+    ["peito", "rins/lombos", "coração", "genitais"],
+    ["estômago", "coração", "genitais"],
+    ["intestinos", "coxas", "coração"],
+    ["rins/lombos", "joelhos", "genitais", "coxas"],
+  ],
+  "Lua": [
+    ["joelhos", "cabeça"],
+    ["pernas", "garganta"],
+    ["pés", "ombros", "braços", "coxas"],
+    ["cabeça", "peito", "estômago"],
+    ["garganta", "estômago", "coração"],
+    ["braços", "ombros", "intestinos"],
+    ["peito", "rins/lombos", "coração", "barriga"],
+    ["estômago", "coração", "genitais", "barriga"],
+    ["intestinos", "coxas", "costas"],
+    ["rins/lombos", "joelhos", "coxas"],
+    ["genitais", "pernas", "tornozelos"],
+    ["coxas", "pés"],
+  ],
+};

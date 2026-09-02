@@ -1,10 +1,31 @@
 import { ArabicPart, ArabicPartsType } from "@/interfaces/ArabicPartInterfaces";
 import { BirthChart, PlanetType } from "@/interfaces/BirthChartInterfaces";
 
-export type ArabicLotCalculationMode = "traditional" | "simplified";
+export type ArabicLotCalculationMode =
+  | "marcos-monteiro"
+  | "simplified"
+  | "traditional";
 
 export const ARABIC_PARTS_CYCLE = 21600;
-export const DEFAULT_ARABIC_PARTS_MODE: ArabicLotCalculationMode = "simplified";
+export const DEFAULT_ARABIC_PARTS_MODE: ArabicLotCalculationMode =
+  "marcos-monteiro";
+export const MARCOS_MONTEIRO_ARABIC_PARTS_METHOD = {
+  name: "Marcos Monteiro - planilha de partes \u00e1rabes",
+  version: "1.0.0",
+  source:
+    "https://www.patreon.com/marcosmonteiro/posts/planilha-para-99870705",
+} as const;
+export const MARCOS_MONTEIRO_ARABIC_PART_FORMULAS: Readonly<
+  Record<keyof ArabicPartsType, string>
+> = {
+  fortune: "AC + Lua - Sol",
+  spirit: "AC + Sol - Lua",
+  necessity: "AC + Fortuna - Esp\u00edrito",
+  love: "AC + Esp\u00edrito - Fortuna",
+  valor: "AC + Fortuna - Marte",
+  victory: "AC + J\u00fapiter - Esp\u00edrito",
+  captivity: "AC + Fortuna - Saturno",
+};
 export const ORDERED_ARABIC_PART_KEYS: (keyof ArabicPartsType)[] = [
   "fortune",
   "spirit",
@@ -63,6 +84,13 @@ interface ArabicLotBuildOptions {
   ascendantTotal: number;
   total: number;
   partKey: keyof ArabicPartsType;
+  method?: string;
+  methodVersion?: string;
+  methodSource?: string;
+}
+
+function isMarcosMonteiroMode(mode: ArabicLotCalculationMode): boolean {
+  return mode === "marcos-monteiro" || mode === "simplified";
 }
 
 function normalizeLongitude(longitude: number): number {
@@ -74,8 +102,7 @@ export function toTotal(signo: number, grau: number, minuto: number): number {
 }
 
 export function normalize(total: number): number {
-  const rounded = Math.round(total);
-  return ((rounded % ARABIC_PARTS_CYCLE) + ARABIC_PARTS_CYCLE) % ARABIC_PARTS_CYCLE;
+  return ((total % ARABIC_PARTS_CYCLE) + ARABIC_PARTS_CYCLE) % ARABIC_PARTS_CYCLE;
 }
 
 export function fromTotal(total: number): {
@@ -93,7 +120,9 @@ export function fromTotal(total: number): {
 }
 
 export function longitudeToAbsoluteMinutes(longitude: number): number {
-  return normalize(Math.round(normalizeLongitude(longitude) * 60));
+  // Preserve a precisao interna da efemeride. Arredondamento e apenas de
+  // apresentacao, nunca de calculo.
+  return normalize(normalizeLongitude(longitude) * 60);
 }
 
 export function calcPart(
@@ -101,9 +130,9 @@ export function calcPart(
   bTotal: number,
   cTotal: number,
   isDiurno = true,
-  mode: ArabicLotCalculationMode = "simplified",
+  mode: ArabicLotCalculationMode = DEFAULT_ARABIC_PARTS_MODE,
 ): number {
-  if (mode === "simplified" || isDiurno) {
+  if (isMarcosMonteiroMode(mode) || isDiurno) {
     return normalize(ascendantTotal + bTotal - cTotal);
   }
 
@@ -162,7 +191,7 @@ function getFormulaDescription(
   isDiurno: boolean,
   mode: ArabicLotCalculationMode,
 ): string {
-  if (mode === "simplified" || isDiurno) {
+  if (isMarcosMonteiroMode(mode) || isDiurno) {
     return `AC + ${bLabel} - ${cLabel}`;
   }
 
@@ -184,6 +213,9 @@ function buildArabicPart({
   ascendantTotal,
   total,
   partKey,
+  method = MARCOS_MONTEIRO_ARABIC_PARTS_METHOD.name,
+  methodVersion = MARCOS_MONTEIRO_ARABIC_PARTS_METHOD.version,
+  methodSource = MARCOS_MONTEIRO_ARABIC_PARTS_METHOD.source,
 }: ArabicLotBuildOptions): ArabicPart {
   const antiscion = getAntiscion(total);
   const rawDistanceFromASC = normalize(total - ascendantTotal);
@@ -193,6 +225,9 @@ function buildArabicPart({
     name: metadata.name,
     planet: metadata.planet,
     partKey,
+    method,
+    methodVersion,
+    methodSource,
     formulaDescription,
     longitudeRaw: total,
     longitude: total / 60,
@@ -209,14 +244,22 @@ export function calculateArabicLots(
   chart: BirthChart,
   mode: ArabicLotCalculationMode = DEFAULT_ARABIC_PARTS_MODE,
 ): ArabicPartsType {
-  const isDiurno = isDiurnalChart(chart);
+  const isMarcosMethod = isMarcosMonteiroMode(mode);
+  const isDiurno = isMarcosMethod ? true : isDiurnalChart(chart);
   const ascendantTotal = longitudeToAbsoluteMinutes(chart.housesData.ascendant);
   const sunTotal = getPlanetTotal(chart, "sun");
   const moonTotal = getPlanetTotal(chart, "moon");
-  const venusTotal = getPlanetTotal(chart, "venus");
   const marsTotal = getPlanetTotal(chart, "mars");
   const jupiterTotal = getPlanetTotal(chart, "jupiter");
   const saturnTotal = getPlanetTotal(chart, "saturn");
+  const venusTotal = isMarcosMethod ? 0 : getPlanetTotal(chart, "venus");
+
+  const legacyMethod = {
+    method: "Calculo tradicional legado",
+    methodVersion: "legacy",
+    methodSource: "internal://legacy-traditional-arabic-parts",
+  };
+  const methodMetadata = isMarcosMethod ? {} : legacyMethod;
 
   const fortuneTotal = calcPart(
     ascendantTotal,
@@ -259,58 +302,69 @@ export function calculateArabicLots(
       partKey: "fortune",
       total: fortuneTotal,
       ascendantTotal,
-      formulaDescription: getFormulaDescription("Lua", "Sol", isDiurno, mode),
+      formulaDescription: isMarcosMethod
+        ? MARCOS_MONTEIRO_ARABIC_PART_FORMULAS.fortune
+        : getFormulaDescription("Lua", "Sol", isDiurno, mode),
+      ...methodMetadata,
     }),
     spirit: buildArabicPart({
       partKey: "spirit",
       total: spiritTotal,
       ascendantTotal,
-      formulaDescription: getFormulaDescription("Sol", "Lua", isDiurno, mode),
+      formulaDescription: isMarcosMethod
+        ? MARCOS_MONTEIRO_ARABIC_PART_FORMULAS.spirit
+        : getFormulaDescription("Sol", "Lua", isDiurno, mode),
+      ...methodMetadata,
     }),
     necessity: buildArabicPart({
       partKey: "necessity",
       total: necessityTotal,
       ascendantTotal,
       formulaDescription:
-        mode === "traditional"
+        !isMarcosMethod
           ? getFormulaDescription("Fortuna", "Saturno", isDiurno, mode)
-          : "AC + Fortuna - Esp\u00edrito",
+          : MARCOS_MONTEIRO_ARABIC_PART_FORMULAS.necessity,
+      ...methodMetadata,
     }),
     love: buildArabicPart({
       partKey: "love",
       total: loveTotal,
       ascendantTotal,
       formulaDescription:
-        mode === "traditional"
+        !isMarcosMethod
           ? getFormulaDescription("V\u00eanus", "Sol", isDiurno, mode)
-          : "AC + Esp\u00edrito - Fortuna",
+          : MARCOS_MONTEIRO_ARABIC_PART_FORMULAS.love,
+      ...methodMetadata,
     }),
     valor: buildArabicPart({
       partKey: "valor",
       total: valorTotal,
       ascendantTotal,
       formulaDescription:
-        mode === "traditional"
+        !isMarcosMethod
           ? getFormulaDescription("Marte", "Sol", isDiurno, mode)
-          : "AC + Fortuna - Marte",
+          : MARCOS_MONTEIRO_ARABIC_PART_FORMULAS.valor,
+      ...methodMetadata,
     }),
     victory: buildArabicPart({
       partKey: "victory",
       total: victoryTotal,
       ascendantTotal,
       formulaDescription:
-        mode === "traditional"
+        !isMarcosMethod
           ? getFormulaDescription("J\u00fapiter", "Sol", isDiurno, mode)
-          : "AC + J\u00fapiter - Esp\u00edrito",
+          : MARCOS_MONTEIRO_ARABIC_PART_FORMULAS.victory,
+      ...methodMetadata,
     }),
     captivity: buildArabicPart({
       partKey: "captivity",
       total: captivityTotal,
       ascendantTotal,
       formulaDescription:
-        mode === "traditional"
+        !isMarcosMethod
           ? getFormulaDescription("Saturno", "Marte", isDiurno, mode)
-          : "AC + Fortuna - Saturno",
+          : MARCOS_MONTEIRO_ARABIC_PART_FORMULAS.captivity,
+      ...methodMetadata,
     }),
   };
 }
@@ -374,12 +428,15 @@ export function calculateBirthArchArabicPart(
   ascendant: number,
 ): ArabicPart {
   const ascendantTotal = longitudeToAbsoluteMinutes(ascendant);
-  const total = normalize(ascendantTotal + Math.round(arabicPart.rawDistanceFromASC));
+  const total = normalize(ascendantTotal + arabicPart.rawDistanceFromASC);
   const projectedPart = buildArabicPart({
     partKey: arabicPart.partKey,
     total,
     ascendantTotal,
     formulaDescription: arabicPart.formulaDescription,
+    method: arabicPart.method,
+    methodVersion: arabicPart.methodVersion,
+    methodSource: arabicPart.methodSource,
   });
 
   return {

@@ -1,5 +1,5 @@
 import { 
-  SIGNS, SIGN_ELEMENT, TRIPLICITY_RULERS, EGYPTIAN_TERMS, FACES,
+  SIGNS, SIGN_ELEMENT, TRIPLICITY_RULERS, LILLY_TERMS, FACES,
   DOMICILE_RULER, EXALTATION, FALL, DETRIMENT, 
   FIXED_STARS, PRECESSION_RATE
 } from "./traditionalTables";
@@ -7,7 +7,7 @@ import {
   BirthChart,
   PlanetType,
 } from "@/interfaces/BirthChartInterfaces";
-import { toTotal, TO_MIN, TO_SIGN_MIN, CIRCLE_MIN } from "../utils/chartUtils";
+import { toTotal, TO_MIN, TO_SIGN_MIN } from "../utils/chartUtils";
 import {
   resolveTraditionalAspect,
   TraditionalAspectParticipant,
@@ -18,10 +18,6 @@ import {
 } from "./arabicLots";
 
 // --- Helpers ---
-
-const normalizeMin = (min: number): number => {
-  return ((min % CIRCLE_MIN) + CIRCLE_MIN) % CIRCLE_MIN;
-};
 
 export function formatDegrees(longitude: number): string {
   const total = toTotal(longitude);
@@ -74,7 +70,7 @@ export function getAlmuten(longitude: number, sect: "Diurno" | "Noturno"): strin
   const trip = TRIPLICITY_RULERS[element];
   add(sect === "Diurno" ? trip.day : trip.night, 3);
   // Terms (+2)
-  const signTerms = EGYPTIAN_TERMS[signIdx];
+  const signTerms = LILLY_TERMS[signIdx];
   const term = signTerms.find(t => deg < t.endDeg);
   if (term) add(term.ruler, 2);
   // Face (+1)
@@ -103,105 +99,44 @@ export interface ArabicPart {
 }
 
 export function calculateArabicParts(chart: BirthChart): ArabicPart[] {
-  // --- 6. ESTRUTURA DE FUNÇÕES (SUGERIDA) ---
-  const toTotal = (signo: number, grau: number, minuto: number) => {
-    return (signo * 1800) + (grau * 60) + minuto;
-  };
+  const lots = calculateArabicLots(chart);
 
-  const fromTotal = (total: number) => {
-    const signo = Math.floor(total / 1800);
-    const grau = Math.floor((total - (signo * 1800)) / 60);
-    const minuto = total - (signo * 1800) - (grau * 60);
-    return { signo, grau, minuto };
-  };
+  return ORDERED_ARABIC_PART_KEYS.flatMap((partKey) => {
+    const lot = lots[partKey];
 
-  const normalize = (total: number) => {
-    let result = total;
-    if (result < 0) {
-      result += 21600;
+    if (!lot) {
+      return [];
     }
-    if (result >= 21600) {
-      result -= 21600;
-    }
-    return result;
-  };
 
-  const calcPart = (asc: number, b: number, c: number) => {
-    return normalize(asc + b - c);
-  };
+    const signIndex = Math.floor(lot.longitude / 30) % 12;
+    const dispositor = DOMICILE_RULER[signIndex];
+    const dispositorPlanet = chart.planets.find(
+      (planet) => planet.name === dispositor,
+    );
 
-  // Helper para isolar signo, grau e minuto antes de chamar toTotal
-  const getAbsoluteMin = (lon: number) => {
-    const signo = Math.floor(lon / 30);
-    const grau = Math.floor(lon % 30);
-    const minuto = Math.round((lon - (signo * 30 + grau)) * 60);
-    return toTotal(signo, grau, minuto);
-  };
-
-  const ascTotal = getAbsoluteMin(chart.housesData.ascendant);
-  const solTotal = getAbsoluteMin(chart.planets.find(p => p.type === "sun")!.longitudeRaw);
-  const luaTotal = getAbsoluteMin(chart.planets.find(p => p.type === "moon")!.longitudeRaw);
-  const venusTotal = getAbsoluteMin(chart.planets.find(p => p.type === "venus")!.longitudeRaw);
-  const marteTotal = getAbsoluteMin(chart.planets.find(p => p.type === "mars")!.longitudeRaw);
-  const jupiterTotal = getAbsoluteMin(chart.planets.find(p => p.type === "jupiter")!.longitudeRaw);
-  const saturnoTotal = getAbsoluteMin(chart.planets.find(p => p.type === "saturn")!.longitudeRaw);
-
-  const sect = getSect(chart.planets.find(p => p.type === "sun")!.longitudeRaw, chart.housesData.ascendant, chart.housesData.house);
-  const isNight = sect === "Noturno";
-
-  const fortunaTotal  = isNight ? calcPart(ascTotal, solTotal, luaTotal) : calcPart(ascTotal, luaTotal, solTotal);
-  const espiritoTotal = isNight ? calcPart(ascTotal, luaTotal, solTotal) : calcPart(ascTotal, solTotal, luaTotal);
-  const amorTotal     = isNight ? calcPart(ascTotal, fortunaTotal, espiritoTotal) : calcPart(ascTotal, espiritoTotal, fortunaTotal);
-  const vitoriaTotal  = isNight ? calcPart(ascTotal, espiritoTotal, jupiterTotal) : calcPart(ascTotal, jupiterTotal, espiritoTotal);
-  const valorTotal    = isNight ? calcPart(ascTotal, marteTotal, fortunaTotal) : calcPart(ascTotal, fortunaTotal, marteTotal);
-  const necessTotal   = isNight ? calcPart(ascTotal, espiritoTotal, fortunaTotal) : calcPart(ascTotal, fortunaTotal, espiritoTotal);
-  const cativTotal    = isNight ? calcPart(ascTotal, saturnoTotal, fortunaTotal) : calcPart(ascTotal, fortunaTotal, saturnoTotal);
-  
-  const partsDef = [
-    { name: "Parte da Fortuna", min: fortunaTotal },
-    { name: "Parte do Espírito", min: espiritoTotal },
-    { name: "Parte do Amor", min: amorTotal },
-    { name: "Parte da Vitória", min: vitoriaTotal },
-    { name: "Parte do Valor", min: valorTotal },
-    { name: "Parte da Necessidade", min: necessTotal },
-    { name: "Parte do Cativeiro", min: cativTotal }
-  ];
-
-  return partsDef.map(pd => {
-    const { signo, grau, minuto } = fromTotal(pd.min);
-    const rawLon = pd.min / 60; 
-    const hIdx = getHouseIndex(rawLon, chart.housesData.house);
-    
-    // Regra do 59' para Antíscia (32399 = 21599 + 10800, espelhamento)
-    const antiscionLon = normalize(32399 - pd.min); 
-    const antis = fromTotal(antiscionLon);
-
-    const disp = DOMICILE_RULER[signo % 12];
-    const dispPlanet = chart.planets.find(p => p.name === disp);
-
-    return {
-      name: pd.name,
-      longitude: rawLon,
-      sign: SIGNS[signo % 12],
-      posFormatted: `${SIGNS[signo % 12]} a ${grau}°${minuto.toString().padStart(2, '0')}’`,
-      house: `Casa ${hIdx}`,
-      dispositor: `${disp} em ${dispPlanet ? formatDegrees(dispPlanet.longitudeRaw) : "Nenhum"}, na Casa ${dispPlanet ? getHouseIndex(dispPlanet.longitudeRaw, chart.housesData.house) : "?"}`,
-      antiscion: `${SIGNS[antis.signo % 12]} a ${antis.grau}°${antis.minuto.toString().padStart(2, '0')}’`
-    };
+    return [
+      {
+        name: getArabicPartDisplayName(partKey),
+        longitude: lot.longitude,
+        sign: SIGNS[signIndex],
+        posFormatted: formatDegrees(lot.longitude),
+        house: `Casa ${getHouseIndex(lot.longitude, chart.housesData.house)}`,
+        dispositor: `${dispositor} em ${
+          dispositorPlanet
+            ? formatDegrees(dispositorPlanet.longitudeRaw)
+            : "Nenhum"
+        }, na Casa ${
+          dispositorPlanet
+            ? getHouseIndex(
+                dispositorPlanet.longitudeRaw,
+                chart.housesData.house,
+              )
+            : "?"
+        }`,
+        antiscion: formatDegrees(lot.antiscionRaw),
+      },
+    ];
   });
-}
-
-function romanize(num: number): string {
-  const lookup: any = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1};
-  let roman = '';
-  let i;
-  for ( i in lookup ) {
-    while ( num >= lookup[i] ) {
-      roman += i;
-      num -= lookup[i];
-    }
-  }
-  return roman;
 }
 
 export function getFixedStarConjunctions(longitude: number, year: number): string[] {
@@ -342,13 +277,6 @@ function shouldSkipAspectPair(
 
   if (
     firstParticipant.elementType === "arabicPart" &&
-    secondParticipant.elementType === "arabicPart"
-  ) {
-    return true;
-  }
-
-  if (
-    firstParticipant.elementType === "arabicPart" &&
     secondParticipant.elementType === "planet" &&
     isOuterPlanetOrNode(secondParticipant.planetType)
   ) {
@@ -441,9 +369,9 @@ export function getEssentialDignities(lon: number, planetName: string, sect: "Di
   const element = SIGN_ELEMENT[signIdx];
   
   const domicile = DOMICILE_RULER[signIdx];
-  const exaltation = Object.entries(EXALTATION).find(([p, idx]) => idx === signIdx)?.[0];
+  const exaltation = Object.entries(EXALTATION).find(([, idx]) => idx === signIdx)?.[0];
   const triplicity = sect === "Diurno" ? TRIPLICITY_RULERS[element].day : TRIPLICITY_RULERS[element].night;
-  const term = EGYPTIAN_TERMS[signIdx].find(t => deg < t.endDeg)?.ruler;
+  const term = LILLY_TERMS[signIdx].find(t => deg < t.endDeg)?.ruler;
   const face = FACES[signIdx][Math.floor(deg / 10)];
 
   let points = 0;
@@ -455,19 +383,30 @@ export function getEssentialDignities(lon: number, planetName: string, sect: "Di
   if (planetName === term) { points += 2; isPeregrine = false; }
   if (planetName === face) { points += 1; isPeregrine = false; }
 
-  // Check debilities
-  if (DETRIMENT[planetName]?.includes(signIdx)) points -= 5;
-  if (FALL[planetName] === signIdx) points -= 4;
+  // Debilidades segundo a tabela de referência usada por Frawley.
+  const debilities: string[] = [];
+  if (DETRIMENT[planetName]?.includes(signIdx)) {
+    points -= 5;
+    debilities.push("exílio −5");
+    isPeregrine = false;
+  }
+  if (FALL[planetName] === signIdx) {
+    points -= 4;
+    debilities.push("queda −4");
+    isPeregrine = false;
+  }
+  if (isPeregrine) {
+    points -= 3;
+    debilities.push("peregrino −3");
+  }
 
   let report = `${planetName} em ${SIGNS[signIdx]} ${Math.floor(deg)}°${Math.floor((deg%1)*60)}’ — Domicílio de ${domicile}`;
   if (exaltation) report += `, Exaltação de ${exaltation}`;
   report += `, Triplicidade de ${triplicity}, Termo de ${term}, Face de ${face}`;
   
-  if (isPeregrine) {
-    report += ` → Peregrino (0 pontos, –5 por debilidade essencial).`;
-  } else {
-    report += ` → ${points >= 0 ? "+" : ""}${points} pontos.`;
-  }
+  report += ` → ${points >= 0 ? "+" : ""}${points} pontos`;
+  if (debilities.length > 0) report += ` (${debilities.join(", ")})`;
+  report += ".";
   
   return report;
 }

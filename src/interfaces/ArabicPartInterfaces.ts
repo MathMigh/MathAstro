@@ -3,6 +3,9 @@ import { ElementType } from "./AstroChartInterfaces";
 
 export interface ArabicPart {
   name: string;
+  method?: string;
+  methodVersion?: string;
+  methodSource?: string;
   formulaDescription: string;
   longitude: number;
   longitudeRaw: number;

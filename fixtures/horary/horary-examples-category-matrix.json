@@ -1,0 +1,901 @@
+[
+  {
+    "id": "HE-01",
+    "section": "Contests",
+    "title": "Will Deirdre Be Sent Down?",
+    "topics": [
+      "prison",
+      "lawsuit"
+    ],
+    "intents": [
+      "event",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-02",
+    "section": "Contests",
+    "title": "Will Brazil Beat Argentina?",
+    "topics": [
+      "competition"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-03",
+    "section": "Contests",
+    "title": "Will Barrett Win?",
+    "topics": [
+      "competition"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-04",
+    "section": "Contests",
+    "title": "Will the Champion Retain His Belt?",
+    "topics": [
+      "competition"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-05",
+    "section": "Contests",
+    "title": "Has X Won the Election?",
+    "topics": [
+      "election"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-06",
+    "section": "Contests",
+    "title": "Will Romney Win the US Presidency?",
+    "topics": [
+      "election"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-07",
+    "section": "Contests",
+    "title": "Will Brazil Win the 2014 World Cup?",
+    "topics": [
+      "competition"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-08",
+    "section": "Contests",
+    "title": "Will the Brewers Make the Playoffs?",
+    "topics": [
+      "competition"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-09",
+    "section": "Contests",
+    "title": "When Will I Win the Money from This Trial?",
+    "topics": [
+      "lawsuit"
+    ],
+    "intents": [
+      "event",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-10",
+    "section": "Contests",
+    "title": "Will the Badgers Win the Rose Bowl?",
+    "topics": [
+      "competition"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-11",
+    "section": "Money & Jobs",
+    "title": "Will I Get a Good Yearly Review of My Work?",
+    "topics": [
+      "job_quality"
+    ],
+    "intents": [
+      "quality"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-12",
+    "section": "Money & Jobs",
+    "title": "Will My Tenant Send Full Payment?",
+    "topics": [
+      "debt",
+      "property"
+    ],
+    "intents": [
+      "event",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-13",
+    "section": "Money & Jobs",
+    "title": "Will I Get the Job at UW?",
+    "topics": [
+      "job_get"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-14",
+    "section": "Money & Jobs",
+    "title": "Will I Profit from This Bet?",
+    "topics": [
+      "bet"
+    ],
+    "intents": [
+      "event",
+      "quantity"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-15",
+    "section": "Money & Jobs",
+    "title": "Should I Make This Trip or Open a Co-Working Spot?",
+    "topics": [
+      "should_i",
+      "travel",
+      "career_choice"
+    ],
+    "intents": [
+      "choice",
+      "quality"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-16",
+    "section": "Money & Jobs",
+    "title": "Should I Start This Business?",
+    "topics": [
+      "should_i",
+      "career_choice"
+    ],
+    "intents": [
+      "choice",
+      "quality"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-17",
+    "section": "Money & Jobs",
+    "title": "When Will We Get Paid from X?",
+    "topics": [
+      "debt"
+    ],
+    "intents": [
+      "event",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-18",
+    "section": "Money & Jobs",
+    "title": "Will Investing in This Business Prove Profitable for Me?",
+    "topics": [
+      "investment"
+    ],
+    "intents": [
+      "choice",
+      "quantity"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-19",
+    "section": "Housing",
+    "title": "Will We Be Flooded?",
+    "topics": [
+      "property",
+      "weather"
+    ],
+    "intents": [
+      "event",
+      "state"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-20",
+    "section": "Housing",
+    "title": "Should I Stay Here or Move Back to X?",
+    "topics": [
+      "should_i",
+      "property",
+      "travel"
+    ],
+    "intents": [
+      "choice"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-21",
+    "section": "Housing",
+    "title": "Will the Bank Foreclose?",
+    "topics": [
+      "loan",
+      "property"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-22",
+    "section": "Housing",
+    "title": "Should I Move to My Friend’s House?",
+    "topics": [
+      "should_i",
+      "property"
+    ],
+    "intents": [
+      "choice"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-23",
+    "section": "Housing",
+    "title": "When Will the House Get Rented? Will We Need to Hire an Agent?",
+    "topics": [
+      "buy_sell",
+      "property",
+      "should_i"
+    ],
+    "intents": [
+      "event",
+      "timing",
+      "choice"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-24",
+    "section": "Housing",
+    "title": "Should I Buy This Flat?",
+    "topics": [
+      "buy_sell",
+      "property"
+    ],
+    "intents": [
+      "choice",
+      "quality"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-25",
+    "section": "Housing",
+    "title": "Will We Rent the House?",
+    "topics": [
+      "buy_sell",
+      "property"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-26",
+    "section": "Relationship",
+    "title": "Will the Relationship Last?",
+    "topics": [
+      "relationship"
+    ],
+    "intents": [
+      "relationship",
+      "state"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-27",
+    "section": "Relationship",
+    "title": "Will I Be Any Happier If I Leave Him?",
+    "topics": [
+      "separation",
+      "should_i"
+    ],
+    "intents": [
+      "choice",
+      "relationship"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-28",
+    "section": "Relationship",
+    "title": "Any Chance of a Romance with X?",
+    "topics": [
+      "relationship"
+    ],
+    "intents": [
+      "event",
+      "relationship"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-29",
+    "section": "Relationship",
+    "title": "Is There Any Hope for Us Getting Back Together? Should I Wait for Her?",
+    "topics": [
+      "relationship",
+      "should_i"
+    ],
+    "intents": [
+      "event",
+      "choice"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-30",
+    "section": "Relationship",
+    "title": "Will She Talk to Me Again? Am I Important to Her?",
+    "topics": [
+      "relationship",
+      "communication"
+    ],
+    "intents": [
+      "event",
+      "relationship"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-31",
+    "section": "Relationship",
+    "title": "Will I Find a New Relationship and When?",
+    "topics": [
+      "relationship"
+    ],
+    "intents": [
+      "event",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-32",
+    "section": "Pregnancy & Children",
+    "title": "Will I Conceive?",
+    "topics": [
+      "pregnancy"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-33",
+    "section": "Pregnancy & Children",
+    "title": "When Will The Baby Come?",
+    "topics": [
+      "pregnancy"
+    ],
+    "intents": [
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-34",
+    "section": "Pregnancy & Children",
+    "title": "Will They Put the Baby Up for Adoption?",
+    "topics": [
+      "pregnancy",
+      "adoption"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-35",
+    "section": "Pregnancy & Children",
+    "title": "Am I Pregnant?",
+    "topics": [
+      "pregnancy"
+    ],
+    "intents": [
+      "state"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-36",
+    "section": "Pregnancy & Children",
+    "title": "When Will My Friend Have Her Baby?",
+    "topics": [
+      "pregnancy"
+    ],
+    "intents": [
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-37",
+    "section": "Pregnancy & Children",
+    "title": "Is There Anything Wrong With the Baby? When It Will Be Born?",
+    "topics": [
+      "pregnancy",
+      "health"
+    ],
+    "intents": [
+      "state",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-38",
+    "section": "Pregnancy & Children",
+    "title": "Any Chance of Having My Own Child?",
+    "topics": [
+      "pregnancy"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-39",
+    "section": "Health",
+    "title": "Where’s the Inflammation?",
+    "topics": [
+      "health",
+      "illness"
+    ],
+    "intents": [
+      "location",
+      "cause"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-40",
+    "section": "Health",
+    "title": "Am I Overworking?",
+    "topics": [
+      "health"
+    ],
+    "intents": [
+      "state",
+      "cause"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-41",
+    "section": "Health",
+    "title": "What’s the Problem With My Stomach? What Can I Do to Relieve It?",
+    "topics": [
+      "health",
+      "illness",
+      "treatment"
+    ],
+    "intents": [
+      "cause",
+      "quality"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-42",
+    "section": "Health",
+    "title": "Will Dad Die Soon? If So, When?",
+    "topics": [
+      "death"
+    ],
+    "intents": [
+      "survival",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-43",
+    "section": "Health",
+    "title": "Will Mum’s Tumor Stop Growing?",
+    "topics": [
+      "health"
+    ],
+    "intents": [
+      "state",
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-44",
+    "section": "Health",
+    "title": "Will I Die Soon?",
+    "topics": [
+      "death"
+    ],
+    "intents": [
+      "survival",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-45",
+    "section": "Health",
+    "title": "Will Darryl Die?",
+    "topics": [
+      "death"
+    ],
+    "intents": [
+      "survival"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-46",
+    "section": "Health",
+    "title": "Is It Multiple Sclerosis?",
+    "topics": [
+      "health",
+      "illness"
+    ],
+    "intents": [
+      "truth",
+      "cause"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-47",
+    "section": "Health",
+    "title": "Will My Dog Get Better? Will It Survive?",
+    "topics": [
+      "health"
+    ],
+    "intents": [
+      "state",
+      "survival"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-48",
+    "section": "Health",
+    "title": "Will Zaza Recover?",
+    "topics": [
+      "health"
+    ],
+    "intents": [
+      "recovery"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-49",
+    "section": "Health",
+    "title": "Will Grandfather Survive This Time?",
+    "topics": [
+      "death",
+      "health"
+    ],
+    "intents": [
+      "survival"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-50",
+    "section": "Lost & Found",
+    "title": "Where Is My ATM Card?",
+    "topics": [
+      "lost_object"
+    ],
+    "intents": [
+      "location",
+      "recovery"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-51",
+    "section": "Lost & Found",
+    "title": "Where Is My Scarf?",
+    "topics": [
+      "lost_object"
+    ],
+    "intents": [
+      "location",
+      "recovery"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-52",
+    "section": "Lost & Found",
+    "title": "Where Is the Tape?",
+    "topics": [
+      "lost_object"
+    ],
+    "intents": [
+      "location",
+      "recovery"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-53",
+    "section": "Lost & Found",
+    "title": "Where’s My Passport?",
+    "topics": [
+      "lost_object"
+    ],
+    "intents": [
+      "location",
+      "recovery"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-54",
+    "section": "Lost & Found",
+    "title": "Where’s My Notebook?",
+    "topics": [
+      "lost_object"
+    ],
+    "intents": [
+      "location",
+      "recovery"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-55",
+    "section": "Lost & Found",
+    "title": "Where is my pendant? Did I misplace it or was it stolen?",
+    "topics": [
+      "lost_object",
+      "theft"
+    ],
+    "intents": [
+      "location",
+      "truth"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-56",
+    "section": "Miscellaneous",
+    "title": "Are the Electrical Parts I Bought Fake or Original?",
+    "topics": [
+      "authenticity"
+    ],
+    "intents": [
+      "truth",
+      "quality"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-57",
+    "section": "Miscellaneous",
+    "title": "Will Britain Join the Euro?",
+    "topics": [
+      "public_event",
+      "money"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-58",
+    "section": "Miscellaneous",
+    "title": "What Time Tomorrow Will the Wine Arrive?",
+    "topics": [
+      "delivery"
+    ],
+    "intents": [
+      "event",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-59",
+    "section": "Miscellaneous",
+    "title": "When Will the Power-Cut End?",
+    "topics": [
+      "service_change"
+    ],
+    "intents": [
+      "event",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-60",
+    "section": "Miscellaneous",
+    "title": "Will My Daughter Get the Funded Spot?",
+    "topics": [
+      "government_grant",
+      "study"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-61",
+    "section": "Miscellaneous",
+    "title": "Will the Thief Come Back?",
+    "topics": [
+      "theft"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-62",
+    "section": "Miscellaneous",
+    "title": "When Will the Internet Be Cut Off?",
+    "topics": [
+      "communication",
+      "service_change"
+    ],
+    "intents": [
+      "event",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-63",
+    "section": "Miscellaneous",
+    "title": "Will Scotland Leave the UK?",
+    "topics": [
+      "public_event"
+    ],
+    "intents": [
+      "event"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  },
+  {
+    "id": "HE-64",
+    "section": "Miscellaneous",
+    "title": "The Kidnapped Priest",
+    "topics": [
+      "kidnapping"
+    ],
+    "intents": [
+      "survival",
+      "release",
+      "timing"
+    ],
+    "representation": "preset_or_composite",
+    "source": "Horary Examples (2015)"
+  }
+]

@@ -1,0 +1,83 @@
+{
+  "schema": "mathastro.predictive.reference/1.3",
+  "fixture": "barra-mansa-santa-casa-2001-precision.json",
+  "targetUtc": "2026-08-31T15:00:00Z",
+  "ageYears": 25.361831522892324,
+  "progressedJulianDayUt": 2452046.268081523,
+  "solarReturn": {
+    "julianDayUt": 2461151.9497336675,
+    "longitude": 31.348616559649518,
+    "targetLongitude": 31.34861655952354,
+    "residualArcSeconds": 4.5352521738095675e-07
+  },
+  "lunarReturn": {
+    "julianDayUt": 2461282.979160059,
+    "longitude": 4.907786851956387,
+    "targetLongitude": 4.907786849688486,
+    "residualArcSeconds": 8.164441922531296e-06
+  },
+  "derivedLunarReturn": {
+    "julianDayUt": 2461261.5661202827,
+    "longitude": 86.22524817728389,
+    "targetLongitude": 86.22524817726544,
+    "solarMoonLongitude": 86.22524817726544,
+    "residualArcSeconds": 6.640448191319592e-08
+  },
+  "profection": {
+    "ageCompleted": 25,
+    "house": 2,
+    "profectedSignIndex": 2,
+    "lordOfYear": "Mercúrio"
+  },
+  "naibodProgressedHouses": {
+    "arcDegrees": 24.9978222853036,
+    "regiomontanus": {
+      "targetArmc": 336.605461450994,
+      "syntheticJulianDayUt": 2452045.907237905,
+      "asc": 60.02311295952114,
+      "mc": 334.7545512375488,
+      "cusps": [
+        60.02311295952114,
+        87.84165458995558,
+        120.05755520439273,
+        154.75455123754887,
+        186.6016259465255,
+        214.13729525496484,
+        240.02311295952114,
+        267.84165458995557,
+        300.0575552043927,
+        334.7545512375488,
+        6.6016259465255125,
+        34.137295254964826
+      ],
+      "oracleMaxErrorArcSeconds": 0.0001267222614842467
+    },
+    "placidus": {
+      "targetArmc": 336.605461450994,
+      "syntheticJulianDayUt": 2452045.907237905,
+      "asc": 60.02311295952114,
+      "mc": 334.7545512375488,
+      "cusps": [
+        60.02311295952114,
+        89.719739452358,
+        121.49736708153398,
+        154.75455123754887,
+        186.78783586618394,
+        215.15621953578244,
+        240.02311295952114,
+        269.719739452358,
+        301.497367081534,
+        334.7545512375488,
+        6.7878358661839355,
+        35.156219535782434
+      ],
+      "oracleMaxErrorArcSeconds": 0.0001267222614842467
+    },
+    "legacyPointwiseAsc": 62.65573088932432,
+    "legacyVsNaibodAscDifferenceDeg": 2.6326179298031747
+  },
+  "progressedLotsMarcos": {
+    "fortune": 344.7322155618575,
+    "spirit": 135.31401035718477
+  }
+}

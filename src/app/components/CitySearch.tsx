@@ -3,10 +3,9 @@
 import { SelectedCity } from "@/interfaces/BirthChartInterfaces";
 import { useState, useEffect, useRef } from "react";
 
-interface CityResult {
-  display_name: string;
-  lat: string;
-  lon: string;
+interface CityResult extends SelectedCity {
+  displayName: string;
+  objectType?: string;
 }
 
 export default function CitySearch({
@@ -35,6 +34,7 @@ export default function CitySearch({
     initialCoordinates?.name,
     initialCoordinates?.latitude,
     initialCoordinates?.longitude,
+    initialCoordinates?.timezone,
   ]);
 
   useEffect(() => {
@@ -160,18 +160,21 @@ export default function CitySearch({
                 key={index}
                 className="cursor-pointer rounded-xl px-3 py-2 text-sm text-stone-100/90 transition-colors hover:bg-white/8"
                 onClick={() => {
-                  selectedCityNameRef.current = city.display_name;
-                  onSelect({
-                    name: city.display_name,
-                    latitude: parseFloat(city.lat),
-                    longitude: parseFloat(city.lon),
-                  });
-                  setQuery(city.display_name); // opcional: coloca o nome no input
+                  selectedCityNameRef.current = city.displayName;
+                  onSelect({ ...city, name: city.displayName });
+                  setQuery(city.displayName);
                   setResults([]);
                   setSelectedCity(true);
                 }}
               >
-                {city.display_name}
+                <div className="flex flex-col gap-0.5">
+                  <span>{city.displayName}</span>
+                  <span className="text-[11px] text-stone-400">
+                    {[city.locality || city.municipality, city.region, city.country, city.timezone]
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </span>
+                </div>
               </li>
             ))}
           </ul>

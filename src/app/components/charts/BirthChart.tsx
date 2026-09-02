@@ -28,8 +28,16 @@ import SecondaryProgressionChart from "./SecondaryProgressionChart";
 import { useScreenDimensions } from "@/contexts/ScreenDimensionsContext";
 import ProfectionChart from "./ProfectionChart";
 import CitySearch from "../CitySearch";
+import type {
+  SynastryAIEvaluationPacket,
+  SynastryAnalysis,
+  SynastryCustomRoleInput,
+  SynastryInteractionKind,
+  SynastryUserContext,
+} from "@/traditions/western/synastry";
+import SynastrySetupPanel from "../synastry/SynastrySetupPanel";
 
-type MenuButtonChoice =
+export type MenuButtonChoice =
   | "home"
   | "birthChart"
   | "momentChart"
@@ -40,7 +48,7 @@ type MenuButtonChoice =
   | "profection"
   | "momentMap";
 
-export default function BirthChart() {
+export default function BirthChart({ initialMenu = "home" }: { initialMenu?: MenuButtonChoice } = {}) {
   const [loading, setLoading] = useState(false);
   const {
     profileName,
@@ -66,6 +74,20 @@ export default function BirthChart() {
   const [sinastryProfile, setSinastryProfile] = useState<
     BirthChartProfile | undefined
   >();
+  const [synastryResult, setSynastryResult] = useState<{
+    analysis: SynastryAnalysis;
+    report: string;
+    ai?: SynastryAIEvaluationPacket;
+  }>();
+  const [synastryInteractionKind, setSynastryInteractionKind] = useState<SynastryInteractionKind>("general");
+  const [synastryCustomRole, setSynastryCustomRole] = useState<SynastryCustomRoleInput>({
+    houseForA: 7,
+    houseForB: 7,
+    roleA: "outra pessoa B",
+    roleB: "outra pessoa A",
+  });
+  const [synastryUserContext, setSynastryUserContext] = useState<SynastryUserContext>({});
+  const [synastryError, setSynastryError] = useState<string>();
   const [progressionYear, setProgressionYear] = useState<number | undefined>(
     undefined
   );
@@ -81,7 +103,7 @@ export default function BirthChart() {
     useArabicParts();
   const { screenDimensions } = useScreenDimensions();
 
-  const [menu, setMenu] = useState<MenuButtonChoice>("home");
+  const [menu, setMenu] = useState<MenuButtonChoice>(initialMenu);
   const [isClientReady, setIsClientReady] = useState(false);
   const [activeChart, setActiveChart] = useState(chartMenu);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -154,12 +176,6 @@ export default function BirthChart() {
   }, [lunarDerivedChart]);
 
   useEffect(() => {
-    if (sinastryChart) {
-      calculateArabicParts(sinastryChart, "sinastry");
-    }
-  }, [sinastryChart]);
-
-  useEffect(() => {
     if (profectionChart) {
       calculateBirthArchArabicParts(profectionChart.housesData.ascendant);
     }
@@ -169,9 +185,11 @@ export default function BirthChart() {
     if (menu === "home") {
       firstProfileSetAtBeggining.current = false;
       setChartProfile(profiles[0]);
-      setSinastryProfile(profiles[0]);
+      setSinastryProfile(profiles[1] ?? profiles[0]);
+      setSynastryResult(undefined);
+      setSynastryError(undefined);
     }
-  }, [menu, chartProfile]);
+  }, [menu, profiles]);
 
   useEffect(() => {
     if (profiles.length > 0 && !firstProfileSetAtBeggining.current) {
@@ -300,61 +318,69 @@ export default function BirthChart() {
   };
 
   const makeSinastryCharts = async () => {
-    setLoading(true);
-
-    if (!chartProfile) {
-      setLoading(false);
+    if (!chartProfile?.birthDate || !sinastryProfile?.birthDate) {
+      setSynastryError("Selecione a Pessoa A e a Pessoa B antes de calcular.");
       return;
     }
 
-    if (chartProfile?.birthDate?.coordinates)
-      selectCity(chartProfile?.birthDate?.coordinates);
+    if (synastryInteractionKind === "custom") {
+      if (!synastryCustomRole.roleA.trim() || !synastryCustomRole.roleB.trim()) {
+        setSynastryError("No modo personalizado, descreva o papel de cada pessoa no mapa da outra.");
+        return;
+      }
+    }
+
+    setLoading(true);
+    setSynastryResult(undefined);
+    setSynastryError(undefined);
+
+    if (chartProfile.birthDate.coordinates) {
+      selectCity(chartProfile.birthDate.coordinates);
+    }
 
     try {
-      const data = await apiFetch("birth-chart", {
+      const data = await apiFetch("synastry", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          birthDate: chartProfile?.birthDate,
-        }),
-      });
-
-      const sinastryData = await apiFetch("birth-chart", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          birthDate: sinastryProfile?.birthDate,
+          birthDateA: chartProfile.birthDate,
+          birthDateB: sinastryProfile.birthDate,
+          labelA: chartProfile.name,
+          labelB: sinastryProfile.name,
+          interactionKind: synastryInteractionKind,
+          customRole: synastryInteractionKind === "custom" ? synastryCustomRole : undefined,
+          userContext: synastryUserContext,
         }),
       });
 
       updateBirthChart({
-        profileName: chartProfile?.name,
-        chartData: {
-          ...data,
-          birthDate: chartProfile?.birthDate,
-        },
+        profileName: chartProfile.name,
+        chartData: data.chartA,
         chartType: "birth",
       });
 
       updateBirthChart({
-        profileName: sinastryProfile?.name,
-        chartData: {
-          ...sinastryData,
-          birthDate: sinastryProfile?.birthDate,
-        },
+        chartData: data.chartB,
         chartType: "sinastry",
+      });
+
+      setSynastryResult({
+        analysis: data.synastryAnalysis as SynastryAnalysis,
+        report: data.synastryReport as string,
+        ai: data.synastryAI as SynastryAIEvaluationPacket | undefined,
       });
 
       const chartType: ChartMenuType = "sinastry";
       addChartMenu(chartType);
       updateChartMenuDirectly(chartType);
-      setLoading(false);
     } catch (error) {
-      console.error("Erro ao consultar mapa astral:", error);
+      console.error("Erro ao calcular sinastria tradicional:", error);
+      setSynastryError(error instanceof Error ? error.message : "Não foi possível calcular a sinastria. Verifique os dados e tente novamente.");
     } finally {
       setLoading(false);
     }
   };
+
 
   function getTitleMenuTitle(): string {
     if (menu === "home") return "Selecione o tipo de mapa que deseja";
@@ -729,24 +755,43 @@ export default function BirthChart() {
         )}
 
         {menu === "sinastry" && (
-          <>
-            <span className="section-copy text-sm">Primeiro mapa:</span>
-            <PresavedChartsDropdown
-              onChange={(profile) => setChartProfile(profile)}
-            />
-
-            <span className="section-copy text-sm">Segundo mapa:</span>
-            <PresavedChartsDropdown
-              onChange={(profile) => setSinastryProfile(profile)}
-            />
-
-            <button
-              onClick={() => makeSinastryCharts()}
-              className="default-btn"
-            >
-              Gerar sinastria
-            </button>
-          </>
+          <SynastrySetupPanel
+            personA={chartProfile}
+            personB={sinastryProfile}
+            interactionKind={synastryInteractionKind}
+            customRole={synastryCustomRole}
+            userContext={synastryUserContext}
+            loading={loading}
+            error={synastryError}
+            onPersonA={(profile) => { setChartProfile(profile); setSynastryError(undefined); }}
+            onPersonB={(profile) => { setSinastryProfile(profile); setSynastryError(undefined); }}
+            onInteractionKind={(kind) => { setSynastryInteractionKind(kind); setSynastryError(undefined); }}
+            onCustomRole={setSynastryCustomRole}
+            onUserContext={setSynastryUserContext}
+            onSwap={() => {
+              const previousA = chartProfile;
+              setChartProfile(sinastryProfile);
+              setSinastryProfile(previousA);
+              if (synastryInteractionKind === "teacher-student") setSynastryInteractionKind("student-teacher");
+              else if (synastryInteractionKind === "student-teacher") setSynastryInteractionKind("teacher-student");
+              else if (synastryInteractionKind === "employer-employee") setSynastryInteractionKind("employee-employer");
+              else if (synastryInteractionKind === "employee-employer") setSynastryInteractionKind("employer-employee");
+              else if (synastryInteractionKind === "father-child") setSynastryInteractionKind("child-father");
+              else if (synastryInteractionKind === "child-father") setSynastryInteractionKind("father-child");
+              else if (synastryInteractionKind === "mother-child") setSynastryInteractionKind("child-mother");
+              else if (synastryInteractionKind === "child-mother") setSynastryInteractionKind("mother-child");
+              else if (synastryInteractionKind === "custom") {
+                setSynastryCustomRole({
+                  houseForA: synastryCustomRole.houseForB,
+                  houseForB: synastryCustomRole.houseForA,
+                  roleA: synastryCustomRole.roleB,
+                  roleB: synastryCustomRole.roleA,
+                });
+              }
+              setSynastryError(undefined);
+            }}
+            onSubmit={makeSinastryCharts}
+          />
         )}
 
         {menu === "home" && (
@@ -913,6 +958,9 @@ export default function BirthChart() {
           <SinastryChart
             sinastryChart={sinastryChart}
             sinastryProfileName={sinastryProfile?.name}
+            synastryAnalysis={synastryResult?.analysis}
+            synastryReport={synastryResult?.report}
+            synastryAI={synastryResult?.ai}
           />
         ) : null;
 

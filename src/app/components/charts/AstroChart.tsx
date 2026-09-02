@@ -53,6 +53,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     outerArabicParts,
     fixedStars,
     useReturnSelectorArrows,
+    synastryMode = false,
     onUpdateAspectsData,
   } = { ...props };
 
@@ -493,6 +494,34 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     return `${elementKey}-${aspect.type}-${aspectedElementKey}`;
   }
 
+
+  function isCrossChartPair(first: ChartElement, second: ChartElement): boolean {
+    return first.isFromOuterChart !== second.isFromOuterChart;
+  }
+
+  function getHouseCuspIndex(element: ChartElement): number | null {
+    if (element.elementType !== "house") return null;
+    const value = Number.parseInt(element.name.split("-").at(-1) ?? "", 10);
+    return Number.isInteger(value) ? value : null;
+  }
+
+  function isSynastryContactPoint(element: ChartElement): boolean {
+    if (element.isAntiscion) return false;
+    if (element.elementType === "planet") return isTraditionalPlanet(element);
+    if (element.elementType === "house") {
+      const cusp = getHouseCuspIndex(element);
+      return cusp === 0 || cusp === 6;
+    }
+    return false;
+  }
+
+  function shouldSkipSynastryPair(first: ChartElement, second: ChartElement): boolean {
+    if (!synastryMode) return false;
+    if (!isCrossChartPair(first, second)) return true;
+    if (!isSynastryContactPoint(first) || !isSynastryContactPoint(second)) return true;
+    // The engine stores ASC/ASC and the two ASC/DSC directions, but omits DSC/DSC.
+    return getHouseCuspIndex(first) === 6 && getHouseCuspIndex(second) === 6;
+  }
   function bothElementsAreHouses(
     element: ChartElement,
     elToCheck: ChartElement
@@ -623,8 +652,12 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
       ) {
         const elToCheck = aspectableElements[compareIndex];
 
+        if (shouldSkipSynastryPair(element, elToCheck)) {
+          continue;
+        }
+
         if (
-          bothElementsAreHouses(element, elToCheck) ||
+          (!synastryMode && bothElementsAreHouses(element, elToCheck)) ||
           isAspectBetweenTransaturninesAndArabicParts(element, elToCheck)
         ) {
           continue;
@@ -645,6 +678,7 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
         };
 
         if (
+          !synastryMode &&
           elementsFromDifferentChartsWithIrrelevantAspect(
             element,
             elToCheck,
@@ -1930,7 +1964,8 @@ const AstroChart: React.FC<AstroChartProps> = ({ props }) => {
     showPlanetsAntiscia,
     showArabicPartsAntiscia,
     testValue,
-    showOuterChart
+    showOuterChart,
+    synastryMode
   ]);
 
   useEffect(() => {

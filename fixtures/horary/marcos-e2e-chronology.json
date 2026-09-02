@@ -1,0 +1,3241 @@
+{
+  "M-HE-TRIAL": [
+    {
+      "jd": 2455603.5173324007,
+      "daysFromQuestion": 0.5214990675449371,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "statement": "Lua e Mercúrio aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2455603.6759181875,
+      "daysFromQuestion": 0.6800848543643951,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Marte aperfeiçoam square."
+    },
+    {
+      "jd": 2455603.804367866,
+      "daysFromQuestion": 0.8085345327854156,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Sol aperfeiçoam square."
+    },
+    {
+      "jd": 2455604.4308877247,
+      "daysFromQuestion": 1.4350543916225433,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 1,
+      "toSign": 2,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2455604.7530703205,
+      "daysFromQuestion": 1.7572369873523712,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Júpiter aperfeiçoam sextile."
+    },
+    {
+      "jd": 2455605.588949408,
+      "daysFromQuestion": 2.5931160748004913,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2455605.7568928855,
+      "daysFromQuestion": 2.7610595524311066,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Saturno aperfeiçoam trine."
+    },
+    {
+      "jd": 2455605.9502047556,
+      "daysFromQuestion": 2.9543714225292206,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "statement": "Lua e Vênus aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2455606.188671674,
+      "daysFromQuestion": 3.192838340997696,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2455606.3527220744,
+      "daysFromQuestion": 3.3568887412548065,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    },
+    {
+      "jd": 2455606.620833333,
+      "daysFromQuestion": 3.625,
+      "kind": "combustion_entry",
+      "planets": [
+        "mercury",
+        "sun"
+      ],
+      "statement": "Mercúrio entra em combustão."
+    },
+    {
+      "jd": 2455606.7420074004,
+      "daysFromQuestion": 3.746174067258835,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 2,
+      "toSign": 3,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2455606.7442846554,
+      "daysFromQuestion": 3.7484513223171234,
+      "kind": "cusp_entry",
+      "planets": [
+        "moon"
+      ],
+      "house": 4,
+      "statement": "Lua cruza a cúspide da casa 4."
+    },
+    {
+      "jd": 2455606.866897132,
+      "daysFromQuestion": 3.8710637986660004,
+      "kind": "aspect",
+      "planets": [
+        "saturn",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Saturno e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2455607.0775454897,
+      "daysFromQuestion": 4.081712156534195,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Júpiter aperfeiçoam square."
+    },
+    {
+      "jd": 2455607.6542325276,
+      "daysFromQuestion": 4.658399194478989,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Vênus aperfeiçoam opposition."
+    },
+    {
+      "jd": 2455607.9659818667,
+      "daysFromQuestion": 4.970148533582687,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2455608.884787287,
+      "daysFromQuestion": 5.8889539539813995,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 3,
+      "toSign": 4,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2455609.228892829,
+      "daysFromQuestion": 6.233059495687485,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2455610.0245860475,
+      "daysFromQuestion": 7.028752714395523,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2455610.4409898776,
+      "daysFromQuestion": 7.445156544446945,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Mercúrio aperfeiçoam opposition."
+    },
+    {
+      "jd": 2455610.6461717742,
+      "daysFromQuestion": 7.650338441133499,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Marte aperfeiçoam opposition."
+    },
+    {
+      "jd": 2455610.8580845254,
+      "daysFromQuestion": 7.862251192331314,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Sol aperfeiçoam opposition."
+    },
+    {
+      "jd": 2455610.9019923466,
+      "daysFromQuestion": 7.90615901350975,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 4,
+      "toSign": 5,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2455611.306313898,
+      "daysFromQuestion": 8.310480564832687,
+      "kind": "aspect",
+      "planets": [
+        "venus",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Vênus e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2455611.517579462,
+      "daysFromQuestion": 8.521746128797531,
+      "kind": "sign_change",
+      "planets": [
+        "sun"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Sol muda de signo."
+    },
+    {
+      "jd": 2455611.620833333,
+      "daysFromQuestion": 8.625,
+      "kind": "combustion_exit",
+      "planets": [
+        "mars",
+        "sun"
+      ],
+      "statement": "Marte sai de combustão."
+    },
+    {
+      "jd": 2455611.620833333,
+      "daysFromQuestion": 8.625,
+      "kind": "combustion_exit",
+      "planets": [
+        "mercury",
+        "sun"
+      ],
+      "statement": "Mercúrio sai de combustão."
+    },
+    {
+      "jd": 2455611.7753639477,
+      "daysFromQuestion": 8.779530614614487,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "statement": "Lua e Saturno aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2455612.060454692,
+      "daysFromQuestion": 9.064621359109879,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Vênus aperfeiçoam trine."
+    },
+    {
+      "jd": 2455612.497540261,
+      "daysFromQuestion": 9.501706928014755,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "statement": "Lua e Júpiter aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2455612.8754365104,
+      "daysFromQuestion": 9.879603177309036,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 5,
+      "toSign": 6,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2455612.8774164575,
+      "daysFromQuestion": 9.881583124399185,
+      "kind": "cusp_entry",
+      "planets": [
+        "moon"
+      ],
+      "house": 7,
+      "statement": "Lua cruza a cúspide da casa 7."
+    },
+    {
+      "jd": 2455613.2663429636,
+      "daysFromQuestion": 10.270509630441666,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Júpiter aperfeiçoam opposition."
+    },
+    {
+      "jd": 2455613.446946706,
+      "daysFromQuestion": 10.451113373041153,
+      "kind": "aspect",
+      "planets": [
+        "mars",
+        "mercury"
+      ],
+      "aspect": "conjunction",
+      "statement": "Marte e Mercúrio aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2455613.9838108676,
+      "daysFromQuestion": 10.987977534532547,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Saturno aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2455614.221180286,
+      "daysFromQuestion": 11.225346952676773,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Vênus aperfeiçoam square."
+    },
+    {
+      "jd": 2455614.3703609365,
+      "daysFromQuestion": 11.374527603387833,
+      "kind": "sign_change",
+      "planets": [
+        "mercury"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Mercúrio muda de signo."
+    },
+    {
+      "jd": 2455614.370833333,
+      "daysFromQuestion": 11.375,
+      "kind": "combustion_entry",
+      "planets": [
+        "mercury",
+        "sun"
+      ],
+      "statement": "Mercúrio entra em combustão."
+    },
+    {
+      "jd": 2455614.6760685104,
+      "daysFromQuestion": 11.680235177278519,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua e Sol aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2455614.8368579405,
+      "daysFromQuestion": 11.841024607419968,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "statement": "Lua e Mercúrio aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2455614.8574383515,
+      "daysFromQuestion": 11.861605018377304,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2455614.8949150103,
+      "daysFromQuestion": 11.89908167719841,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 6,
+      "toSign": 7,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2455614.928553309,
+      "daysFromQuestion": 11.932719975709915,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "statement": "Lua e Marte aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2455614.9696853417,
+      "daysFromQuestion": 11.973852008581161,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2455615.148134436,
+      "daysFromQuestion": 12.152301102876663,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    },
+    {
+      "jd": 2455615.5457215565,
+      "daysFromQuestion": 12.549888223409653,
+      "kind": "sign_change",
+      "planets": [
+        "mars"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Marte muda de signo."
+    },
+    {
+      "jd": 2455615.620833333,
+      "daysFromQuestion": 12.625,
+      "kind": "combustion_entry",
+      "planets": [
+        "mars",
+        "sun"
+      ],
+      "statement": "Marte entra em combustão."
+    },
+    {
+      "jd": 2455616.5070703286,
+      "daysFromQuestion": 13.511236995458603,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Vênus aperfeiçoam sextile."
+    },
+    {
+      "jd": 2455617.031654324,
+      "daysFromQuestion": 14.035820990800858,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 7,
+      "toSign": 8,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2455617.1235636133,
+      "daysFromQuestion": 14.127730280160904,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Marte aperfeiçoam square."
+    },
+    {
+      "jd": 2455617.448083188,
+      "daysFromQuestion": 14.452249854803085,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Mercúrio aperfeiçoam square."
+    },
+    {
+      "jd": 2455617.4766239184,
+      "daysFromQuestion": 14.480790585279465,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Sol aperfeiçoam square."
+    },
+    {
+      "jd": 2455617.479538347,
+      "daysFromQuestion": 14.483705013990402,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "statement": "Lua e Vênus aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2455617.5403622645,
+      "daysFromQuestion": 14.544528931379318,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2455617.866402294,
+      "daysFromQuestion": 14.870568960905075,
+      "kind": "solar_conjunction",
+      "planets": [
+        "sun",
+        "mercury"
+      ],
+      "aspect": "conjunction",
+      "statement": "Sol e Mercúrio aperfeiçoam conjunction."
+    }
+  ],
+  "M-HE-BET": [
+    {
+      "jd": 2456678.3716973695,
+      "daysFromQuestion": 0.15989181399345398,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456679.0300810966,
+      "daysFromQuestion": 0.8182755410671234,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 5,
+      "toSign": 6,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456679.153148535,
+      "daysFromQuestion": 0.9413429796695709,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    },
+    {
+      "jd": 2456680.096983019,
+      "daysFromQuestion": 1.8851774632930756,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Júpiter aperfeiçoam square."
+    },
+    {
+      "jd": 2456680.254143599,
+      "daysFromQuestion": 2.042338043451309,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Vênus aperfeiçoam square."
+    },
+    {
+      "jd": 2456680.5001103315,
+      "daysFromQuestion": 2.288304775953293,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2456680.6600090894,
+      "daysFromQuestion": 2.448203533887863,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Marte aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456681.4051982197,
+      "daysFromQuestion": 3.193392664194107,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 6,
+      "toSign": 7,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456681.7215037975,
+      "daysFromQuestion": 3.5096982419490814,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Sol aperfeiçoam square."
+    },
+    {
+      "jd": 2456682.1007035407,
+      "daysFromQuestion": 3.8888979852199554,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "statement": "Lua e Mercúrio aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456682.122811142,
+      "daysFromQuestion": 3.911005586385727,
+      "kind": "aspect",
+      "planets": [
+        "mercury",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Mercúrio e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2456682.3910895023,
+      "daysFromQuestion": 4.179283946752548,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2456682.5041628513,
+      "daysFromQuestion": 4.292357295751572,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Vênus aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456682.996912721,
+      "daysFromQuestion": 4.7851071655750275,
+      "kind": "aspect",
+      "planets": [
+        "mercury",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Mercúrio e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2456683.071202341,
+      "daysFromQuestion": 4.859396785497665,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Saturno aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456683.0798684987,
+      "daysFromQuestion": 4.8680629432201385,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Mercúrio aperfeiçoam square."
+    },
+    {
+      "jd": 2456683.225529376,
+      "daysFromQuestion": 5.013723820447922,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua e Sol aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456683.633785728,
+      "daysFromQuestion": 5.421980172395706,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 7,
+      "toSign": 8,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456684.099192563,
+      "daysFromQuestion": 5.887387007474899,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Sol aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456684.759025756,
+      "daysFromQuestion": 6.547220200300217,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "statement": "Lua e Vênus aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456684.8462607297,
+      "daysFromQuestion": 6.634455174207687,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "statement": "Lua e Júpiter aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456685.1613034043,
+      "daysFromQuestion": 6.949497848749161,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Marte aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456685.1897833976,
+      "daysFromQuestion": 6.977977842092514,
+      "kind": "antiscion",
+      "planets": [
+        "sun",
+        "saturn"
+      ],
+      "statement": "Sol e Saturno aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456685.417985681,
+      "daysFromQuestion": 7.20618012547493,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Mercúrio aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456685.7112819585,
+      "daysFromQuestion": 7.499476402997971,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 8,
+      "toSign": 9,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456686.545641366,
+      "daysFromQuestion": 8.333835810422897,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Júpiter aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456686.622892979,
+      "daysFromQuestion": 8.411087423563004,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Vênus aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456687.1967206034,
+      "daysFromQuestion": 8.984915047883987,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456687.199307147,
+      "daysFromQuestion": 8.987501591444016,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Marte aperfeiçoam square."
+    },
+    {
+      "jd": 2456687.6895762715,
+      "daysFromQuestion": 9.47777071595192,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 9,
+      "toSign": 10,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456687.8368055555,
+      "daysFromQuestion": 9.625,
+      "kind": "combustion_entry",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua entra em combustão."
+    },
+    {
+      "jd": 2456688.1782865557,
+      "daysFromQuestion": 9.966481000185013,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "statement": "Lua e Saturno aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456688.401748422,
+      "daysFromQuestion": 10.189942866563797,
+      "kind": "solar_conjunction",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Sol aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456689.0868055555,
+      "daysFromQuestion": 10.875,
+      "kind": "combustion_exit",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua sai de combustão."
+    },
+    {
+      "jd": 2456689.103501919,
+      "daysFromQuestion": 10.891696363687515,
+      "kind": "sign_change",
+      "planets": [
+        "mercury"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Mercúrio muda de signo."
+    },
+    {
+      "jd": 2456689.1636941466,
+      "daysFromQuestion": 10.951888591051102,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2456689.1977099213,
+      "daysFromQuestion": 10.98590436577797,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2456689.3672710094,
+      "daysFromQuestion": 11.155465453863144,
+      "kind": "station",
+      "planets": [
+        "venus"
+      ],
+      "statement": "Vênus estaciona/reverte movimento."
+    },
+    {
+      "jd": 2456689.6559217605,
+      "daysFromQuestion": 11.444116204977036,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456689.693304363,
+      "daysFromQuestion": 11.481498807668686,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Mercúrio aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456690.1016789707,
+      "daysFromQuestion": 11.889873415231705,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "statement": "Lua e Marte aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456690.4694336685,
+      "daysFromQuestion": 12.257628113031387,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2456690.5682310495,
+      "daysFromQuestion": 12.356425493955612,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Vênus aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456691.1905925903,
+      "daysFromQuestion": 12.978787034749985,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Saturno aperfeiçoam trine."
+    },
+    {
+      "jd": 2456691.7045629653,
+      "daysFromQuestion": 13.49275740981102,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 11,
+      "toSign": 0,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456692.5594137344,
+      "daysFromQuestion": 14.347608178853989,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Júpiter aperfeiçoam square."
+    },
+    {
+      "jd": 2456692.694232944,
+      "daysFromQuestion": 14.482427388429642,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Vênus aperfeiçoam square."
+    },
+    {
+      "jd": 2456692.813387755,
+      "daysFromQuestion": 14.601582199335098,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Sol aperfeiçoam sextile."
+    }
+  ],
+  "M-HE-TRIP-BUSINESS": [
+    {
+      "jd": 2456784.0598414983,
+      "daysFromQuestion": 0.0028970539569854736,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "statement": "Lua e Saturno aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456784.105899259,
+      "daysFromQuestion": 0.04895481467247009,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Marte aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456784.401364013,
+      "daysFromQuestion": 0.34441956877708435,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua e Sol aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456784.6352928723,
+      "daysFromQuestion": 0.5783484280109406,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Sol aperfeiçoam square."
+    },
+    {
+      "jd": 2456784.951655432,
+      "daysFromQuestion": 0.8947109878063202,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2456785.122594997,
+      "daysFromQuestion": 1.0656505525112152,
+      "kind": "sign_change",
+      "planets": [
+        "mercury"
+      ],
+      "fromSign": 1,
+      "toSign": 2,
+      "statement": "Mercúrio muda de signo."
+    },
+    {
+      "jd": 2456785.7666287865,
+      "daysFromQuestion": 1.7096843421459198,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 4,
+      "toSign": 5,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456785.8922853316,
+      "daysFromQuestion": 1.8353408873081207,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Mercúrio aperfeiçoam square."
+    },
+    {
+      "jd": 2456787.1158560957,
+      "daysFromQuestion": 3.0589116513729095,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Júpiter aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456787.34444873,
+      "daysFromQuestion": 3.2875042855739594,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    },
+    {
+      "jd": 2456787.422341391,
+      "daysFromQuestion": 3.365396946668625,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456787.4405444707,
+      "daysFromQuestion": 3.383600026369095,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "statement": "Lua e Marte aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456787.577534422,
+      "daysFromQuestion": 3.520589977502823,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "statement": "Lua e Vênus aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456788.2215452637,
+      "daysFromQuestion": 4.164600819349289,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 5,
+      "toSign": 6,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456788.269456073,
+      "daysFromQuestion": 4.212511628866196,
+      "kind": "aspect",
+      "planets": [
+        "sun",
+        "saturn"
+      ],
+      "aspect": "opposition",
+      "statement": "Sol e Saturno aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456788.769276067,
+      "daysFromQuestion": 4.712331622838974,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2456788.893696412,
+      "daysFromQuestion": 4.836751967668533,
+      "kind": "aspect",
+      "planets": [
+        "mars",
+        "venus"
+      ],
+      "aspect": "opposition",
+      "statement": "Marte e Vênus aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456788.9736471022,
+      "daysFromQuestion": 4.9167026579380035,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Marte aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456788.9823270286,
+      "daysFromQuestion": 4.92538258433342,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Vênus aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456789.535326704,
+      "daysFromQuestion": 5.478382259607315,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Júpiter aperfeiçoam square."
+    },
+    {
+      "jd": 2456790.1678222264,
+      "daysFromQuestion": 6.1108777821063995,
+      "kind": "aspect",
+      "planets": [
+        "mars",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Marte e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2456790.5464721764,
+      "daysFromQuestion": 6.489527732133865,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 6,
+      "toSign": 7,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456791.8110849108,
+      "daysFromQuestion": 7.754140466451645,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2456792.001577839,
+      "daysFromQuestion": 7.944633394479752,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Saturno aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456792.2169256057,
+      "daysFromQuestion": 8.159981161355972,
+      "kind": "antiscion",
+      "planets": [
+        "jupiter",
+        "mercury"
+      ],
+      "statement": "Júpiter e Mercúrio aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456792.302714988,
+      "daysFromQuestion": 8.245770543813705,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Sol aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456792.7385874833,
+      "daysFromQuestion": 8.681643038988113,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 7,
+      "toSign": 8,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456793.385871514,
+      "daysFromQuestion": 9.32892706990242,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Marte aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456793.4126801337,
+      "daysFromQuestion": 9.355735689401627,
+      "kind": "aspect",
+      "planets": [
+        "venus",
+        "mercury"
+      ],
+      "aspect": "sextile",
+      "statement": "Vênus e Mercúrio aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456793.627333149,
+      "daysFromQuestion": 9.570388704538345,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "statement": "Lua e Júpiter aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456793.8095278586,
+      "daysFromQuestion": 9.752583414316177,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Vênus aperfeiçoam trine."
+    },
+    {
+      "jd": 2456793.8215464796,
+      "daysFromQuestion": 9.764602035284042,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Mercúrio aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456794.8414713587,
+      "daysFromQuestion": 10.784526914358139,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 8,
+      "toSign": 9,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456795.4676355566,
+      "daysFromQuestion": 11.410691112279892,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Marte aperfeiçoam square."
+    },
+    {
+      "jd": 2456795.666775092,
+      "daysFromQuestion": 11.609830647706985,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "statement": "Lua e Mercúrio aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456795.8297110046,
+      "daysFromQuestion": 11.772766560316086,
+      "kind": "cusp_entry",
+      "planets": [
+        "venus"
+      ],
+      "house": 10,
+      "statement": "Vênus cruza a cúspide da casa 10."
+    },
+    {
+      "jd": 2456796.070575222,
+      "daysFromQuestion": 12.013630777597427,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Vênus aperfeiçoam square."
+    },
+    {
+      "jd": 2456796.0757589187,
+      "daysFromQuestion": 12.018814474344254,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Júpiter aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456796.146320268,
+      "daysFromQuestion": 12.08937582373619,
+      "kind": "aspect",
+      "planets": [
+        "jupiter",
+        "venus"
+      ],
+      "aspect": "square",
+      "statement": "Júpiter e Vênus aperfeiçoam square."
+    },
+    {
+      "jd": 2456796.183934673,
+      "daysFromQuestion": 12.126990228891373,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456796.7931125606,
+      "daysFromQuestion": 12.7361681163311,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    },
+    {
+      "jd": 2456796.9151621903,
+      "daysFromQuestion": 12.858217746019363,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 9,
+      "toSign": 10,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456797.022023603,
+      "daysFromQuestion": 12.96507915854454,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua e Sol aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456797.5417439784,
+      "daysFromQuestion": 13.484799534082413,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2456797.563425466,
+      "daysFromQuestion": 13.506481021642685,
+      "kind": "station",
+      "planets": [
+        "mars"
+      ],
+      "statement": "Marte estaciona/reverte movimento."
+    },
+    {
+      "jd": 2456797.6571197356,
+      "daysFromQuestion": 13.60017529129982,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "statement": "Lua e Saturno aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456798.257429167,
+      "daysFromQuestion": 14.200484722852707,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2456798.337175771,
+      "daysFromQuestion": 14.280231326818466,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Vênus aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456798.4314997043,
+      "daysFromQuestion": 14.374555259943008,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2456798.6243470157,
+      "daysFromQuestion": 14.567402571439743,
+      "kind": "sign_change",
+      "planets": [
+        "sun"
+      ],
+      "fromSign": 1,
+      "toSign": 2,
+      "statement": "Sol muda de signo."
+    },
+    {
+      "jd": 2456799.012734338,
+      "daysFromQuestion": 14.955789893865585,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456799.041108116,
+      "daysFromQuestion": 14.984163671731949,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Sol aperfeiçoam square."
+    }
+  ],
+  "M-HE-REL": [
+    {
+      "jd": 2456752.164686058,
+      "daysFromQuestion": 0.9417693912982941,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Sol aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456752.438033555,
+      "daysFromQuestion": 1.2151168882846832,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "statement": "Lua e Júpiter aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456752.6147551876,
+      "daysFromQuestion": 1.3918385207653046,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2456753.121528004,
+      "daysFromQuestion": 1.8986113369464874,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Mercúrio aperfeiçoam square."
+    },
+    {
+      "jd": 2456753.3546886784,
+      "daysFromQuestion": 2.1317720115184784,
+      "kind": "sign_change",
+      "planets": [
+        "venus"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Vênus muda de signo."
+    },
+    {
+      "jd": 2456753.402509008,
+      "daysFromQuestion": 2.179592341184616,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 2,
+      "toSign": 3,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456753.407090221,
+      "daysFromQuestion": 2.1841735541820526,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Vênus aperfeiçoam trine."
+    },
+    {
+      "jd": 2456754.397610877,
+      "daysFromQuestion": 3.174694210290909,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Júpiter aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456754.854606126,
+      "daysFromQuestion": 3.6316894590854645,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Sol aperfeiçoam square."
+    },
+    {
+      "jd": 2456755.0235851747,
+      "daysFromQuestion": 3.8006685078144073,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Marte aperfeiçoam square."
+    },
+    {
+      "jd": 2456755.149097536,
+      "daysFromQuestion": 3.9261808693408966,
+      "kind": "sign_change",
+      "planets": [
+        "mercury"
+      ],
+      "fromSign": 11,
+      "toSign": 0,
+      "statement": "Mercúrio muda de signo."
+    },
+    {
+      "jd": 2456755.259473954,
+      "daysFromQuestion": 4.036557286977768,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Saturno aperfeiçoam trine."
+    },
+    {
+      "jd": 2456755.9098297697,
+      "daysFromQuestion": 4.686913102865219,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 3,
+      "toSign": 4,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456756.0388087374,
+      "daysFromQuestion": 4.815892070531845,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2456756.377481912,
+      "daysFromQuestion": 5.154565244913101,
+      "kind": "aspect",
+      "planets": [
+        "sun",
+        "mars"
+      ],
+      "aspect": "opposition",
+      "statement": "Sol e Marte aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456756.566550706,
+      "daysFromQuestion": 5.3436340391635895,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "statement": "Lua e Saturno aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456757.466981445,
+      "daysFromQuestion": 6.244064778089523,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Marte aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456757.602511917,
+      "daysFromQuestion": 6.379595249891281,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    },
+    {
+      "jd": 2456757.767843042,
+      "daysFromQuestion": 6.5449263751506805,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2456758.421899293,
+      "daysFromQuestion": 7.198982626199722,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 4,
+      "toSign": 5,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456758.9130980712,
+      "daysFromQuestion": 7.690181404352188,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Vênus aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456759.1112590176,
+      "daysFromQuestion": 7.888342350721359,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua e Sol aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456759.426212941,
+      "daysFromQuestion": 8.203296273946762,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "statement": "Lua e Marte aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456759.4490041477,
+      "daysFromQuestion": 8.226087480783463,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Júpiter aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456760.1483825785,
+      "daysFromQuestion": 8.925465911626816,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "statement": "Lua e Mercúrio aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456760.1772173983,
+      "daysFromQuestion": 8.954300731420517,
+      "kind": "contra_antiscion",
+      "planets": [
+        "sun",
+        "venus"
+      ],
+      "statement": "Sol e Vênus aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456760.2165106875,
+      "daysFromQuestion": 8.993594020605087,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456760.8564074975,
+      "daysFromQuestion": 9.633490830659866,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 5,
+      "toSign": 6,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456761.7925972682,
+      "daysFromQuestion": 10.569680601358414,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Mercúrio aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456761.8591911537,
+      "daysFromQuestion": 10.636274486780167,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Júpiter aperfeiçoam square."
+    },
+    {
+      "jd": 2456762.166366015,
+      "daysFromQuestion": 10.943449348211288,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Marte aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456762.272325371,
+      "daysFromQuestion": 11.049408704042435,
+      "kind": "aspect",
+      "planets": [
+        "mercury",
+        "jupiter"
+      ],
+      "aspect": "square",
+      "statement": "Mercúrio e Júpiter aperfeiçoam square."
+    },
+    {
+      "jd": 2456762.434803818,
+      "daysFromQuestion": 11.211887151002884,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "statement": "Lua e Vênus aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456762.8210222465,
+      "daysFromQuestion": 11.59810557961464,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Sol aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456763.1805279,
+      "daysFromQuestion": 11.957611232995987,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 6,
+      "toSign": 7,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456763.9688233477,
+      "daysFromQuestion": 12.745906680822372,
+      "kind": "aspect",
+      "planets": [
+        "mercury",
+        "mars"
+      ],
+      "aspect": "opposition",
+      "statement": "Mercúrio e Marte aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456764.047139619,
+      "daysFromQuestion": 12.824222952127457,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Vênus aperfeiçoam trine."
+    },
+    {
+      "jd": 2456764.157909785,
+      "daysFromQuestion": 12.934993118047714,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2456764.785026048,
+      "daysFromQuestion": 13.562109380960464,
+      "kind": "contra_antiscion",
+      "planets": [
+        "mercury",
+        "venus"
+      ],
+      "statement": "Mercúrio e Vênus aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456764.7981490237,
+      "daysFromQuestion": 13.575232356786728,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Saturno aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456765.4053610307,
+      "daysFromQuestion": 14.182444363832474,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 7,
+      "toSign": 8,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456765.5549970013,
+      "daysFromQuestion": 14.332080334424973,
+      "kind": "aspect",
+      "planets": [
+        "venus",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Vênus e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2456765.847916667,
+      "daysFromQuestion": 14.625,
+      "kind": "combustion_entry",
+      "planets": [
+        "mercury",
+        "sun"
+      ],
+      "statement": "Mercúrio entra em combustão."
+    }
+  ],
+  "M-HE-DARRYL": [
+    {
+      "jd": 2456329.8042937657,
+      "daysFromQuestion": 0.10221043229103088,
+      "kind": "cusp_entry",
+      "planets": [
+        "moon"
+      ],
+      "house": 1,
+      "statement": "Lua cruza a cúspide da casa 1."
+    },
+    {
+      "jd": 2456330.246457233,
+      "daysFromQuestion": 0.5443738996982574,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 8,
+      "toSign": 9,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456330.3964089295,
+      "daysFromQuestion": 0.6943255960941315,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Mercúrio aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456330.514641001,
+      "daysFromQuestion": 0.8125576674938202,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Marte aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456330.7159178993,
+      "daysFromQuestion": 1.0138345658779144,
+      "kind": "antiscion",
+      "planets": [
+        "sun",
+        "saturn"
+      ],
+      "statement": "Sol e Saturno aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456330.7482615253,
+      "daysFromQuestion": 1.0461781919002533,
+      "kind": "aspect",
+      "planets": [
+        "jupiter",
+        "venus"
+      ],
+      "aspect": "trine",
+      "statement": "Júpiter e Vênus aperfeiçoam trine."
+    },
+    {
+      "jd": 2456331.030311956,
+      "daysFromQuestion": 1.328228622674942,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456331.5578854224,
+      "daysFromQuestion": 1.8558020889759064,
+      "kind": "cusp_entry",
+      "planets": [
+        "moon"
+      ],
+      "house": 2,
+      "statement": "Lua cruza a cúspide da casa 2."
+    },
+    {
+      "jd": 2456331.8602504274,
+      "daysFromQuestion": 2.1581670939922333,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "statement": "Lua e Júpiter aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456332.2477457663,
+      "daysFromQuestion": 2.545662432909012,
+      "kind": "aspect",
+      "planets": [
+        "mercury",
+        "mars"
+      ],
+      "aspect": "conjunction",
+      "statement": "Mercúrio e Marte aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456332.303127899,
+      "daysFromQuestion": 2.6010445654392242,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 9,
+      "toSign": 10,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456332.7492122194,
+      "daysFromQuestion": 3.0471288859844208,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2456332.9338824293,
+      "daysFromQuestion": 3.2317990958690643,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Vênus aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456333.005289032,
+      "daysFromQuestion": 3.3032056987285614,
+      "kind": "aspect",
+      "planets": [
+        "jupiter",
+        "mercury"
+      ],
+      "aspect": "square",
+      "statement": "Júpiter e Mercúrio aperfeiçoam square."
+    },
+    {
+      "jd": 2456333.0770833334,
+      "daysFromQuestion": 3.375,
+      "kind": "combustion_entry",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua entra em combustão."
+    },
+    {
+      "jd": 2456333.0918750307,
+      "daysFromQuestion": 3.3897916972637177,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2456333.583600416,
+      "daysFromQuestion": 3.881517082452774,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "statement": "Lua e Saturno aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456333.80561985,
+      "daysFromQuestion": 4.103536516427994,
+      "kind": "solar_conjunction",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Sol aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456333.8415382644,
+      "daysFromQuestion": 4.139454931020737,
+      "kind": "aspect",
+      "planets": [
+        "jupiter",
+        "mars"
+      ],
+      "aspect": "square",
+      "statement": "Júpiter e Marte aperfeiçoam square."
+    },
+    {
+      "jd": 2456334.3270833334,
+      "daysFromQuestion": 4.625,
+      "kind": "combustion_exit",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua sai de combustão."
+    },
+    {
+      "jd": 2456334.3885213872,
+      "daysFromQuestion": 4.686438053846359,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456334.7793400427,
+      "daysFromQuestion": 5.0772567093372345,
+      "kind": "aspect",
+      "planets": [
+        "saturn",
+        "venus"
+      ],
+      "aspect": "square",
+      "statement": "Saturno e Vênus aperfeiçoam square."
+    },
+    {
+      "jd": 2456334.8562512537,
+      "daysFromQuestion": 5.154167920351028,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Júpiter aperfeiçoam square."
+    },
+    {
+      "jd": 2456334.914180412,
+      "daysFromQuestion": 5.212097078561783,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Marte aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456335.0833836934,
+      "daysFromQuestion": 5.381300359964371,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Mercúrio aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456335.210336878,
+      "daysFromQuestion": 5.5082535445690155,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Saturno aperfeiçoam trine."
+    },
+    {
+      "jd": 2456336.302178218,
+      "daysFromQuestion": 6.600094884634018,
+      "kind": "aspect",
+      "planets": [
+        "mercury",
+        "saturn"
+      ],
+      "aspect": "trine",
+      "statement": "Mercúrio e Saturno aperfeiçoam trine."
+    },
+    {
+      "jd": 2456336.577260568,
+      "daysFromQuestion": 6.87517723441124,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 11,
+      "toSign": 0,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456337.083689167,
+      "daysFromQuestion": 7.381605833768845,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Júpiter aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456337.743797495,
+      "daysFromQuestion": 8.041714161634445,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Vênus aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456337.841340675,
+      "daysFromQuestion": 8.139257341623306,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "statement": "Lua e Mercúrio aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456338.1292978665,
+      "daysFromQuestion": 8.427214533090591,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "statement": "Lua e Marte aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456338.6494579455,
+      "daysFromQuestion": 8.947374612092972,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Sol aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456338.92204751,
+      "daysFromQuestion": 9.219964176416397,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 0,
+      "toSign": 1,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456339.154998853,
+      "daysFromQuestion": 9.452915519475937,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua e Sol aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456339.842494621,
+      "daysFromQuestion": 10.140411287546158,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Marte aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456339.864117696,
+      "daysFromQuestion": 10.16203436255455,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Saturno aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456339.9116775533,
+      "daysFromQuestion": 10.20959421992302,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "statement": "Lua e Vênus aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456340.17630954,
+      "daysFromQuestion": 10.474226206541061,
+      "kind": "aspect",
+      "planets": [
+        "saturn",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Saturno e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2456340.2644758364,
+      "daysFromQuestion": 10.562392503023148,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Mercúrio aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456340.3700603982,
+      "daysFromQuestion": 10.667977064847946,
+      "kind": "antiscion",
+      "planets": [
+        "saturn",
+        "venus"
+      ],
+      "statement": "Saturno e Vênus aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456340.450106873,
+      "daysFromQuestion": 10.74802353978157,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Vênus aperfeiçoam square."
+    },
+    {
+      "jd": 2456341.3546070596,
+      "daysFromQuestion": 11.6525237262249,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Sol aperfeiçoam square."
+    },
+    {
+      "jd": 2456341.4096576115,
+      "daysFromQuestion": 11.707574278116226,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 1,
+      "toSign": 2,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456341.9961652895,
+      "daysFromQuestion": 12.294081956148148,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Júpiter aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456342.0011056205,
+      "daysFromQuestion": 12.299022287130356,
+      "kind": "sign_change",
+      "planets": [
+        "sun"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Sol muda de signo."
+    },
+    {
+      "jd": 2456342.2101046583,
+      "daysFromQuestion": 12.50802132487297,
+      "kind": "station",
+      "planets": [
+        "saturn"
+      ],
+      "statement": "Saturno estaciona/reverte movimento."
+    },
+    {
+      "jd": 2456342.5432111165,
+      "daysFromQuestion": 12.841127783060074,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Marte aperfeiçoam square."
+    },
+    {
+      "jd": 2456342.9857464572,
+      "daysFromQuestion": 13.283663123846054,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Mercúrio aperfeiçoam square."
+    },
+    {
+      "jd": 2456343.2830925724,
+      "daysFromQuestion": 13.581009238958359,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Vênus aperfeiçoam trine."
+    },
+    {
+      "jd": 2456343.4072950026,
+      "daysFromQuestion": 13.70521166920662,
+      "kind": "cusp_entry",
+      "planets": [
+        "moon"
+      ],
+      "house": 7,
+      "statement": "Lua cruza a cúspide da casa 7."
+    },
+    {
+      "jd": 2456343.947766318,
+      "daysFromQuestion": 14.24568298459053,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 2,
+      "toSign": 3,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456344.12791337,
+      "daysFromQuestion": 14.425830036401749,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    }
+  ],
+  "M-HE-INTERNET": [
+    {
+      "jd": 2456840.391315004,
+      "daysFromQuestion": 0.015620559453964233,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 4,
+      "toSign": 5,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456841.3049398866,
+      "daysFromQuestion": 0.9292454421520233,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Sol aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456841.311967453,
+      "daysFromQuestion": 0.9362730085849762,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "statement": "Lua e Marte aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456841.3265090194,
+      "daysFromQuestion": 0.9508145749568939,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Vênus aperfeiçoam square."
+    },
+    {
+      "jd": 2456841.8137536254,
+      "daysFromQuestion": 1.4380591809749603,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456842.4589961376,
+      "daysFromQuestion": 2.083301693201065,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Mercúrio aperfeiçoam square."
+    },
+    {
+      "jd": 2456842.6813028064,
+      "daysFromQuestion": 2.3056083619594574,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Júpiter aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456842.9047882166,
+      "daysFromQuestion": 2.529093772172928,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 5,
+      "toSign": 6,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456843.9991887417,
+      "daysFromQuestion": 3.6234942972660065,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Sol aperfeiçoam square."
+    },
+    {
+      "jd": 2456844.077947935,
+      "daysFromQuestion": 3.7022534906864166,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Vênus aperfeiçoam trine."
+    },
+    {
+      "jd": 2456844.5632750597,
+      "daysFromQuestion": 4.187580615282059,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Marte aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456844.9531337824,
+      "daysFromQuestion": 4.577439337968826,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2456845.076406976,
+      "daysFromQuestion": 4.7007125318050385,
+      "kind": "antiscion",
+      "planets": [
+        "sun",
+        "venus"
+      ],
+      "statement": "Sol e Vênus aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456845.146361431,
+      "daysFromQuestion": 4.770666986703873,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Júpiter aperfeiçoam square."
+    },
+    {
+      "jd": 2456845.3148810472,
+      "daysFromQuestion": 4.939186602830887,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 6,
+      "toSign": 7,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456846.5188920703,
+      "daysFromQuestion": 6.143197625875473,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    },
+    {
+      "jd": 2456846.591354033,
+      "daysFromQuestion": 6.215659588575363,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "conjunction",
+      "statement": "Lua e Saturno aperfeiçoam conjunction."
+    },
+    {
+      "jd": 2456847.439243337,
+      "daysFromQuestion": 7.063548892736435,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Júpiter aperfeiçoam trine."
+    },
+    {
+      "jd": 2456847.519712111,
+      "daysFromQuestion": 7.144017666578293,
+      "kind": "aspect",
+      "planets": [
+        "sun",
+        "saturn"
+      ],
+      "aspect": "trine",
+      "statement": "Sol e Saturno aperfeiçoam trine."
+    },
+    {
+      "jd": 2456847.558670124,
+      "daysFromQuestion": 7.182975679636002,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 7,
+      "toSign": 8,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456847.673891088,
+      "daysFromQuestion": 7.298196643590927,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "statement": "Lua e Júpiter aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456848.4344867673,
+      "daysFromQuestion": 8.05879232287407,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "statement": "Lua e Sol aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456848.97932454,
+      "daysFromQuestion": 8.603630095720291,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Vênus aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456849.129796883,
+      "daysFromQuestion": 8.754102438688278,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Marte aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456849.5132762995,
+      "daysFromQuestion": 9.13758185505867,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Mercúrio aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456849.6419376936,
+      "daysFromQuestion": 9.266243249177933,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 8,
+      "toSign": 9,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456849.757184049,
+      "daysFromQuestion": 9.381489604711533,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "statement": "Lua e Mercúrio aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456850.1970339026,
+      "daysFromQuestion": 9.821339458227158,
+      "kind": "contra_antiscion",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "statement": "Lua e Vênus aperfeiçoam contato por contra-antíscio."
+    },
+    {
+      "jd": 2456850.754880389,
+      "daysFromQuestion": 10.379185944795609,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "sextile",
+      "statement": "Lua e Saturno aperfeiçoam sextile."
+    },
+    {
+      "jd": 2456850.9756416883,
+      "daysFromQuestion": 10.59994724392891,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Sol aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456851.195528766,
+      "daysFromQuestion": 10.81983432173729,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Marte aperfeiçoam square."
+    },
+    {
+      "jd": 2456851.5807900634,
+      "daysFromQuestion": 11.205095618963242,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "jupiter"
+      ],
+      "aspect": "opposition",
+      "statement": "Lua e Júpiter aperfeiçoam opposition."
+    },
+    {
+      "jd": 2456851.6296034064,
+      "daysFromQuestion": 11.253908962011337,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 9,
+      "toSign": 10,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456851.697624406,
+      "daysFromQuestion": 11.321929961442947,
+      "kind": "sign_change",
+      "planets": [
+        "mercury"
+      ],
+      "fromSign": 2,
+      "toSign": 3,
+      "statement": "Mercúrio muda de signo."
+    },
+    {
+      "jd": 2456851.7506944444,
+      "daysFromQuestion": 11.375,
+      "kind": "combustion_entry",
+      "planets": [
+        "jupiter",
+        "sun"
+      ],
+      "statement": "Júpiter entra em combustão."
+    },
+    {
+      "jd": 2456851.8485831227,
+      "daysFromQuestion": 11.472888678312302,
+      "kind": "aspect",
+      "planets": [
+        "venus",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Vênus e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2456852.504672488,
+      "daysFromQuestion": 12.128978043794632,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "statement": "Lua e Saturno aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456852.7263291087,
+      "daysFromQuestion": 12.350634664297104,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "square",
+      "statement": "Lua e Saturno aperfeiçoam square."
+    },
+    {
+      "jd": 2456853.2339890804,
+      "daysFromQuestion": 12.858294636011124,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Marte aperfeiçoam trine."
+    },
+    {
+      "jd": 2456853.30749478,
+      "daysFromQuestion": 12.931800335645676,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "venus"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Vênus aperfeiçoam trine."
+    },
+    {
+      "jd": 2456853.6113352384,
+      "daysFromQuestion": 13.235640794038773,
+      "kind": "sign_change",
+      "planets": [
+        "moon"
+      ],
+      "fromSign": 10,
+      "toSign": 11,
+      "statement": "Lua muda de signo."
+    },
+    {
+      "jd": 2456853.754955372,
+      "daysFromQuestion": 13.379260927438736,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "mercury"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Mercúrio aperfeiçoam trine."
+    },
+    {
+      "jd": 2456853.9680918064,
+      "daysFromQuestion": 13.59239736199379,
+      "kind": "antiscion",
+      "planets": [
+        "moon",
+        "mars"
+      ],
+      "statement": "Lua e Marte aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456854.5494824257,
+      "daysFromQuestion": 14.173787981271744,
+      "kind": "antiscion",
+      "planets": [
+        "mercury",
+        "venus"
+      ],
+      "statement": "Mercúrio e Vênus aperfeiçoam contato por antíscio."
+    },
+    {
+      "jd": 2456854.7413093653,
+      "daysFromQuestion": 14.365614920854568,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "saturn"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Saturno aperfeiçoam trine."
+    },
+    {
+      "jd": 2456854.9378701057,
+      "daysFromQuestion": 14.562175661325455,
+      "kind": "sign_change",
+      "planets": [
+        "jupiter"
+      ],
+      "fromSign": 3,
+      "toSign": 4,
+      "statement": "Júpiter muda de signo."
+    },
+    {
+      "jd": 2456855.0006944444,
+      "daysFromQuestion": 14.625,
+      "kind": "combustion_exit",
+      "planets": [
+        "jupiter",
+        "sun"
+      ],
+      "statement": "Júpiter sai de combustão."
+    },
+    {
+      "jd": 2456855.2593025174,
+      "daysFromQuestion": 14.88360807299614,
+      "kind": "aspect",
+      "planets": [
+        "moon",
+        "sun"
+      ],
+      "aspect": "trine",
+      "statement": "Lua e Sol aperfeiçoam trine."
+    }
+  ]
+}

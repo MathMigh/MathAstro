@@ -1,0 +1,2655 @@
+[
+  {
+    "id": "M-HE-CHAMPION",
+    "title": "Will the Champion Retain His Belt?",
+    "answer": "YES",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "venus",
+        "lon": 148.30036492002588,
+        "sign": "Leão",
+        "deg": 28.300364920025913,
+        "accHouse": 12,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Sol",
+            "triplicity": "Sol",
+            "term": "Marte",
+            "face": "Marte"
+          }
+        }
+      },
+      "champion": {
+        "house": 10,
+        "planet": "moon",
+        "lon": 81.17978135511069,
+        "sign": "Gêmeos",
+        "deg": 21.179781355110663,
+        "accHouse": 9,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Mercúrio",
+            "triplicity": "Saturno",
+            "term": "Saturno",
+            "face": "Sol"
+          }
+        }
+      },
+      "challenger": {
+        "house": 4,
+        "planet": "saturn",
+        "lon": 238.58921293939198,
+        "sign": "Escorpião",
+        "deg": 28.589212939391928,
+        "accHouse": 2,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": true,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "triplicity": "Marte",
+            "term": "Saturno",
+            "face": "Vênus"
+          }
+        }
+      }
+    },
+    "primary": [
+      "champion",
+      "challenger"
+    ],
+    "direct": [],
+    "antis": [],
+    "mediation": [],
+    "lunar": [
+      {
+        "order": 1,
+        "target": "jupiter",
+        "targetName": "Júpiter",
+        "aspect": "sextile",
+        "degreesToPerfection": 2.8059347783279236,
+        "estimatedDaysToPerfection": 0.21487202444881331
+      },
+      {
+        "order": 2,
+        "target": "venus",
+        "targetName": "Vênus",
+        "aspect": "sextile",
+        "degreesToPerfection": 7.120583564915194,
+        "estimatedDaysToPerfection": 0.5536773048354604
+      }
+    ],
+    "moonVOC": false,
+    "testimonies": [
+      {
+        "id": "primary-no-aspect",
+        "severity": "minor",
+        "statement": "Não há aspecto ptolomaico próximo entre champion e challenger; examinar Lua, tradução/coleta, antíscio e regra específica do tópico."
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Lua (champion) → Saturno (challenger): triplicity/positive."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Saturno (challenger) → Lua (champion): fall/strong_negative."
+      },
+      {
+        "id": "moon-next",
+        "severity": "context",
+        "statement": "Próximo contato lunar: sextile com Júpiter.",
+        "data": {
+          "sequence": [
+            {
+              "order": 1,
+              "target": "jupiter",
+              "targetName": "Júpiter",
+              "aspect": "sextile",
+              "degreesToPerfection": 2.8059347783279236,
+              "estimatedDaysToPerfection": 0.21487202444881331
+            },
+            {
+              "order": 2,
+              "target": "venus",
+              "targetName": "Vênus",
+              "aspect": "sextile",
+              "degreesToPerfection": 7.120583564915194,
+              "estimatedDaysToPerfection": 0.5536773048354604
+            }
+          ]
+        }
+      },
+      {
+        "id": "competition-incumbent-structure",
+        "severity": "major",
+        "statement": "Estrutura de campeão incumbente contra desafiante: campeão=X, desafiante=IV; comparar capacidade acidental, não I/VII genérico."
+      },
+      {
+        "id": "competition-champion-antiscion-angular",
+        "severity": "decisive",
+        "statement": "Antíscio do campeão cai dentro da X, a 4.04° da cúspide: forte dignidade acidental a favor do incumbente.",
+        "data": {
+          "antiscion": 98.82021864488934,
+          "house": 10,
+          "orbToTenth": 4.039716511448205
+        }
+      },
+      {
+        "id": "competition-champion-antiscion-contact",
+        "severity": "major",
+        "statement": "Antíscio do campeão está em contato estreito (0.32°) com Mercúrio.",
+        "data": {
+          "planet": "mercury",
+          "orb": 0.3187856669695748
+        }
+      }
+    ],
+    "reasons": [
+      "O antíscio do campeão torna-se angular na X e inclina o confronto a favor do incumbente."
+    ]
+  },
+  {
+    "id": "M-HE-BRAZIL",
+    "title": "Will Brazil Win the 2014 World Cup?",
+    "answer": "NO",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "mars",
+        "lon": 199.52095510683733,
+        "sign": "Libra",
+        "deg": 19.52095510683739,
+        "accHouse": 7,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Vênus",
+            "exaltation": "Saturno",
+            "triplicity": "Saturno",
+            "term": "Mercúrio",
+            "face": "Saturno"
+          }
+        }
+      },
+      "victory": {
+        "house": 10,
+        "planet": "saturn",
+        "lon": 231.9068384560443,
+        "sign": "Escorpião",
+        "deg": 21.906838456044284,
+        "accHouse": 8,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "triplicity": "Marte",
+            "term": "Mercúrio",
+            "face": "Vênus"
+          }
+        }
+      }
+    },
+    "primary": [
+      "querent",
+      "victory"
+    ],
+    "direct": [],
+    "antis": [],
+    "mediation": [],
+    "lunar": [
+      {
+        "order": 1,
+        "target": "saturn",
+        "targetName": "Saturno",
+        "aspect": "sextile",
+        "degreesToPerfection": 3.3180648619803605,
+        "estimatedDaysToPerfection": 0.2742585176334566
+      }
+    ],
+    "moonVOC": false,
+    "testimonies": [
+      {
+        "id": "primary-no-aspect",
+        "severity": "minor",
+        "statement": "Não há aspecto ptolomaico próximo entre querent e victory; examinar Lua, tradução/coleta, antíscio e regra específica do tópico."
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Marte (querent) → Saturno (victory): exaltation/strong_positive."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Saturno (victory) → Marte (querent): domicile/strong_positive."
+      },
+      {
+        "id": "moon-next",
+        "severity": "context",
+        "statement": "Próximo contato lunar: sextile com Saturno.",
+        "data": {
+          "sequence": [
+            {
+              "order": 1,
+              "target": "saturn",
+              "targetName": "Saturno",
+              "aspect": "sextile",
+              "degreesToPerfection": 3.3180648619803605,
+              "estimatedDaysToPerfection": 0.2742585176334566
+            }
+          ]
+        }
+      },
+      {
+        "id": "competition-team-victory-contact",
+        "severity": "major",
+        "statement": "Time/L1 e vitória/L10 não formam aspecto nos signos atuais.",
+        "data": {}
+      },
+      {
+        "id": "competition-moon-to-victory",
+        "severity": "major",
+        "statement": "Lua aplica a L10/vitória por sextile: outro agente chega ao troféu; não é co-significador automático do time apoiado.",
+        "data": {
+          "aspect": {
+            "a": "moon",
+            "b": "saturn",
+            "aName": "Lua",
+            "bName": "Saturno",
+            "aspect": "sextile",
+            "applying": true,
+            "separating": false,
+            "orb": 3.3180648619803605,
+            "degreesToPerfection": 3.3180648619803605,
+            "estimatedDaysToPerfection": 0.2742585176334566,
+            "beforeEitherChangesSign": true
+          }
+        }
+      },
+      {
+        "id": "competition-other-on-victory-cusp",
+        "severity": "major",
+        "statement": "Vênus está a 0.98° da cúspide X/vitória: testemunho de outro competidor chegando ao prêmio.",
+        "data": {
+          "planet": "venus",
+          "orb": 0.9835069513708277
+        }
+      }
+    ],
+    "reasons": [
+      "L1 não alcança L10 e há testemunho de outro agente chegando à vitória/troféu."
+    ]
+  },
+  {
+    "id": "M-HE-TRIAL",
+    "title": "When Will I Win the Money from This Trial?",
+    "answer": "YES",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "mars",
+        "lon": 320.08925831046946,
+        "sign": "Aquário",
+        "deg": 20.089258310469404,
+        "accHouse": 11,
+        "retro": false,
+        "combust": true,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Saturno",
+            "triplicity": "Saturno",
+            "term": "Júpiter",
+            "face": "Lua"
+          }
+        }
+      },
+      "opponent": {
+        "house": 7,
+        "planet": "venus",
+        "lon": 277.13001601022756,
+        "sign": "Capricórnio",
+        "deg": 7.130016010227564,
+        "accHouse": 10,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": true,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Saturno",
+            "exaltation": "Marte",
+            "triplicity": "Vênus",
+            "term": "Mercúrio",
+            "face": "Júpiter"
+          }
+        }
+      },
+      "judge": {
+        "house": 10,
+        "planet": "saturn",
+        "lon": 197.02002116197565,
+        "sign": "Libra",
+        "deg": 17.020021161975592,
+        "accHouse": 7,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": true,
+          "triplicity": true,
+          "term": false,
+          "face": true,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Vênus",
+            "exaltation": "Saturno",
+            "triplicity": "Saturno",
+            "term": "Júpiter",
+            "face": "Saturno"
+          }
+        }
+      },
+      "verdict": {
+        "house": 4,
+        "planet": "moon",
+        "lon": 42.31396655425067,
+        "sign": "Touro",
+        "deg": 12.313966554250669,
+        "accHouse": 2,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": true,
+          "triplicity": false,
+          "term": false,
+          "face": true,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Vênus",
+            "exaltation": "Lua",
+            "triplicity": "Vênus",
+            "term": "Mercúrio",
+            "face": "Lua"
+          }
+        }
+      }
+    },
+    "primary": [
+      "querent",
+      "verdict"
+    ],
+    "direct": [
+      {
+        "a": "mars",
+        "b": "moon",
+        "aName": "Marte",
+        "bName": "Lua",
+        "aspect": "square",
+        "applying": true,
+        "separating": false,
+        "orb": 7.775291756218792,
+        "degreesToPerfection": 7.775291756218792,
+        "estimatedDaysToPerfection": 0.6847810509119432,
+        "beforeEitherChangesSign": true
+      },
+      {
+        "a": "moon",
+        "b": "mars",
+        "aName": "Lua",
+        "bName": "Marte",
+        "aspect": "square",
+        "applying": true,
+        "separating": false,
+        "orb": 7.775291756218849,
+        "degreesToPerfection": 7.775291756218849,
+        "estimatedDaysToPerfection": 0.6847810509119482,
+        "beforeEitherChangesSign": true
+      },
+      {
+        "a": "moon",
+        "b": "venus",
+        "aName": "Lua",
+        "bName": "Vênus",
+        "aspect": "trine",
+        "applying": false,
+        "separating": true,
+        "orb": 5.183950544023105,
+        "degreesToPerfection": 5.183950544023105
+      }
+    ],
+    "antis": [],
+    "mediation": [],
+    "lunar": [
+      {
+        "order": 1,
+        "target": "mars",
+        "targetName": "Marte",
+        "aspect": "square",
+        "degreesToPerfection": 7.775291756218849,
+        "estimatedDaysToPerfection": 0.6847810509119482
+      },
+      {
+        "order": 2,
+        "target": "sun",
+        "targetName": "Sol",
+        "aspect": "square",
+        "degreesToPerfection": 9.076998382086686,
+        "estimatedDaysToPerfection": 0.8154251551261166
+      }
+    ],
+    "moonVOC": false,
+    "testimonies": [
+      {
+        "id": "primary-application",
+        "severity": "decisive",
+        "statement": "Marte (querent) aplica a Lua (verdict) por square antes de mudança de signo.",
+        "data": {
+          "orb": 7.775291756218792,
+          "degreesToPerfection": 7.775291756218792
+        }
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Marte (querent) → Lua (verdict): face/mild_positive."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Lua (verdict) → Marte (querent): detriment/negative."
+      },
+      {
+        "id": "moon-next",
+        "severity": "context",
+        "statement": "Próximo contato lunar: square com Marte.",
+        "data": {
+          "sequence": [
+            {
+              "order": 1,
+              "target": "mars",
+              "targetName": "Marte",
+              "aspect": "square",
+              "degreesToPerfection": 7.775291756218849,
+              "estimatedDaysToPerfection": 0.6847810509119482
+            },
+            {
+              "order": 2,
+              "target": "sun",
+              "targetName": "Sol",
+              "aspect": "square",
+              "degreesToPerfection": 9.076998382086686,
+              "estimatedDaysToPerfection": 0.8154251551261166
+            }
+          ]
+        }
+      },
+      {
+        "id": "lawsuit-judge",
+        "severity": "context",
+        "statement": "Juiz/tribunal = Saturno; recepções com as partes podem mostrar inclinação."
+      },
+      {
+        "id": "lawsuit-judge-to-querent",
+        "severity": "major",
+        "statement": "Juiz → querente: detriment/negative.",
+        "data": {
+          "reception": {
+            "from": "saturn",
+            "to": "mars",
+            "fromName": "Saturno",
+            "toName": "Marte",
+            "dignities": [
+              "detriment"
+            ],
+            "strongest": "detriment",
+            "disposition": "negative"
+          }
+        }
+      },
+      {
+        "id": "lawsuit-judge-to-opponent",
+        "severity": "major",
+        "statement": "Juiz → oponente: domicile/strong_positive.",
+        "data": {
+          "reception": {
+            "from": "saturn",
+            "to": "venus",
+            "fromName": "Saturno",
+            "toName": "Vênus",
+            "dignities": [
+              "domicile"
+            ],
+            "strongest": "domicile",
+            "disposition": "strong_positive"
+          }
+        }
+      },
+      {
+        "id": "lawsuit-verdict",
+        "severity": "context",
+        "statement": "Fim da matéria/veredicto = Lua (IV)."
+      },
+      {
+        "id": "lawsuit-verdict-querent-application",
+        "severity": "decisive",
+        "statement": "Lua (verdict) aplica a Marte (querent) por square antes de mudança de signo.",
+        "data": {
+          "orb": 7.775291756218849,
+          "degreesToPerfection": 7.775291756218849
+        }
+      },
+      {
+        "id": "lawsuit-verdict-querent-reception-a-b",
+        "severity": "context",
+        "statement": "Lua (verdict) → Marte (querent): detriment/negative."
+      },
+      {
+        "id": "lawsuit-verdict-querent-reception-b-a",
+        "severity": "context",
+        "statement": "Marte (querent) → Lua (verdict): face/mild_positive."
+      },
+      {
+        "id": "lawsuit-verdict-opponent-separation",
+        "severity": "major",
+        "statement": "O contato Lua–Vênus é separativo: descreve contato passado, não perfeição futura por si só."
+      },
+      {
+        "id": "lawsuit-verdict-opponent-reception-a-b",
+        "severity": "context",
+        "statement": "Lua (verdict) → Vênus (opponent): domicile/strong_positive."
+      },
+      {
+        "id": "lawsuit-verdict-opponent-reception-b-a",
+        "severity": "context",
+        "statement": "Vênus (opponent) → Lua (verdict): detriment/negative."
+      }
+    ],
+    "reasons": [
+      "Provisoriamente, L4/veredicto alcança o querente antes do oponente; a cronologia ainda pode proibir este contato.",
+      "O juiz recebe negativamente o querente e positivamente o oponente: forte advertência contra a expectativa do querente."
+    ],
+    "timing": "7.78 unidade(s) de arco; combinação signo=lento, casa=intermediário, síntese=intermediário. A angularidade pode acelerar quando representa agente com vontade e capacidade; não converter mecanicamente sem recepções/contexto."
+  },
+  {
+    "id": "M-HE-BET",
+    "title": "Will I Profit from This Bet?",
+    "answer": "MIXED",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "venus",
+        "lon": 286.0937000338657,
+        "sign": "Capricórnio",
+        "deg": 16.093700033865616,
+        "accHouse": 8,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": true,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Saturno",
+            "exaltation": "Marte",
+            "triplicity": "Vênus",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      },
+      "querent_money": {
+        "house": 2,
+        "planet": "mercury",
+        "lon": 314.68958084149006,
+        "sign": "Aquário",
+        "deg": 14.689580841490056,
+        "accHouse": 9,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": true,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Saturno",
+            "triplicity": "Saturno",
+            "term": "Vênus",
+            "face": "Mercúrio"
+          }
+        }
+      },
+      "bookmaker_money": {
+        "house": 8,
+        "planet": "jupiter",
+        "lon": 103.51078995300892,
+        "sign": "Câncer",
+        "deg": 13.510789953008953,
+        "accHouse": 2,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": true,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Lua",
+            "exaltation": "Júpiter",
+            "triplicity": "Marte",
+            "term": "Mercúrio",
+            "face": "Mercúrio"
+          }
+        }
+      },
+      "quesited": {
+        "house": 8,
+        "planet": "jupiter",
+        "lon": 103.51078995300892,
+        "sign": "Câncer",
+        "deg": 13.510789953008953,
+        "accHouse": 2,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": true,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Lua",
+            "exaltation": "Júpiter",
+            "triplicity": "Marte",
+            "term": "Mercúrio",
+            "face": "Mercúrio"
+          }
+        }
+      }
+    },
+    "primary": [
+      "querent",
+      "quesited"
+    ],
+    "direct": [
+      {
+        "a": "venus",
+        "b": "jupiter",
+        "aName": "Vênus",
+        "bName": "Júpiter",
+        "aspect": "opposition",
+        "applying": true,
+        "separating": false,
+        "orb": 2.5829100808567773,
+        "degreesToPerfection": 2.5829100808567773,
+        "estimatedDaysToPerfection": 8.073846423463683,
+        "beforeEitherChangesSign": true
+      },
+      {
+        "a": "jupiter",
+        "b": "venus",
+        "aName": "Júpiter",
+        "bName": "Vênus",
+        "aspect": "opposition",
+        "applying": true,
+        "separating": false,
+        "orb": 2.5829100808567773,
+        "degreesToPerfection": 2.5829100808567773,
+        "estimatedDaysToPerfection": 8.073846423463683,
+        "beforeEitherChangesSign": true
+      }
+    ],
+    "antis": [],
+    "mediation": [],
+    "lunar": [
+      {
+        "order": 1,
+        "target": "saturn",
+        "targetName": "Saturno",
+        "aspect": "sextile",
+        "degreesToPerfection": 1.9392164858560363,
+        "estimatedDaysToPerfection": 0.16005924023618504
+      }
+    ],
+    "moonVOC": false,
+    "testimonies": [
+      {
+        "id": "primary-application",
+        "severity": "decisive",
+        "statement": "Vênus (querent) aplica a Júpiter (quesited) por opposition antes de mudança de signo.",
+        "data": {
+          "orb": 2.5829100808567773,
+          "degreesToPerfection": 2.5829100808567773
+        }
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Vênus (querent) → Júpiter (quesited): term/positive."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Júpiter (quesited) → Vênus (querent): none/neutral."
+      },
+      {
+        "id": "moon-next",
+        "severity": "context",
+        "statement": "Próximo contato lunar: sextile com Saturno.",
+        "data": {
+          "sequence": [
+            {
+              "order": 1,
+              "target": "saturn",
+              "targetName": "Saturno",
+              "aspect": "sextile",
+              "degreesToPerfection": 1.9392164858560363,
+              "estimatedDaysToPerfection": 0.16005924023618504
+            }
+          ]
+        }
+      },
+      {
+        "id": "bet-profit-to-querent-application",
+        "severity": "decisive",
+        "statement": "Júpiter (bookmaker_money) aplica a Vênus (querent) por opposition antes de mudança de signo.",
+        "data": {
+          "orb": 2.5829100808567773,
+          "degreesToPerfection": 2.5829100808567773
+        }
+      },
+      {
+        "id": "bet-profit-to-querent-reception-a-b",
+        "severity": "context",
+        "statement": "Júpiter (bookmaker_money) → Vênus (querent): none/neutral."
+      },
+      {
+        "id": "bet-profit-to-querent-reception-b-a",
+        "severity": "context",
+        "statement": "Vênus (querent) → Júpiter (bookmaker_money): term/positive."
+      },
+      {
+        "id": "bet-profit-to-pocket-no-aspect",
+        "severity": "minor",
+        "statement": "Não há aspecto ptolomaico próximo entre bookmaker_money e querent_money; examinar Lua, tradução/coleta, antíscio e regra específica do tópico."
+      },
+      {
+        "id": "bet-profit-to-pocket-reception-a-b",
+        "severity": "context",
+        "statement": "Júpiter (bookmaker_money) → Mercúrio (querent_money): term/positive."
+      },
+      {
+        "id": "bet-profit-to-pocket-reception-b-a",
+        "severity": "context",
+        "statement": "Mercúrio (querent_money) → Júpiter (bookmaker_money): none/neutral."
+      },
+      {
+        "id": "bet-is-profit",
+        "severity": "major",
+        "statement": "O objeto do juízo é lucro/prejuízo da aposta, não quem vence a competição em abstrato."
+      }
+    ],
+    "reasons": [
+      "Há perfeição direta futura entre os significadores principais antes da mudança de signo.",
+      "A oposição aperfeiçoa contato com dificuldade/custo/separação conforme o tópico."
+    ],
+    "timing": "2.58 unidade(s) de arco; combinação signo=rápido, casa=intermediário, síntese=intermediário. A angularidade pode acelerar quando representa agente com vontade e capacidade; não converter mecanicamente sem recepções/contexto."
+  },
+  {
+    "id": "M-HE-TRIP-BUSINESS",
+    "title": "Should I Make This Trip or Open a Co-Working Spot?",
+    "answer": "DESCRIPTIVE_ONLY",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "moon",
+        "lon": 129.63139915903244,
+        "sign": "Leão",
+        "deg": 9.631399159032412,
+        "accHouse": 2,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Sol",
+            "triplicity": "Sol",
+            "term": "Mercúrio",
+            "face": "Saturno"
+          }
+        }
+      },
+      "querent_money": {
+        "house": 2,
+        "planet": "sun",
+        "lon": 45.943459100927456,
+        "sign": "Touro",
+        "deg": 15.943459100927441,
+        "accHouse": 11,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Vênus",
+            "exaltation": "Lua",
+            "triplicity": "Vênus",
+            "term": "Júpiter",
+            "face": "Lua"
+          }
+        }
+      },
+      "alternative:trip": {
+        "house": 9,
+        "planet": "jupiter",
+        "lon": 105.82636286402726,
+        "sign": "Câncer",
+        "deg": 15.82636286402726,
+        "accHouse": 1,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": true,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Lua",
+            "exaltation": "Júpiter",
+            "triplicity": "Marte",
+            "term": "Mercúrio",
+            "face": "Mercúrio"
+          }
+        }
+      },
+      "alternative:business": {
+        "house": 10,
+        "planet": "mars",
+        "lon": 190.2216421297134,
+        "sign": "Libra",
+        "deg": 10.22164212971336,
+        "accHouse": 3,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Vênus",
+            "exaltation": "Saturno",
+            "triplicity": "Saturno",
+            "term": "Vênus",
+            "face": "Saturno"
+          }
+        }
+      },
+      "alternative:business:profit": {
+        "house": 11,
+        "planet": "venus",
+        "lon": 3.9819403027849596,
+        "sign": "Áries",
+        "deg": 3.981940302784949,
+        "accHouse": 9,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "exaltation": "Sol",
+            "triplicity": "Sol",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      }
+    },
+    "primary": [
+      "alternative:trip",
+      "alternative:business"
+    ],
+    "direct": [
+      {
+        "a": "jupiter",
+        "b": "mars",
+        "aName": "Júpiter",
+        "bName": "Marte",
+        "aspect": "square",
+        "applying": false,
+        "separating": true,
+        "orb": 5.604720734313901,
+        "degreesToPerfection": 5.604720734313901
+      }
+    ],
+    "antis": [],
+    "mediation": [],
+    "lunar": [
+      {
+        "order": 1,
+        "target": "mars",
+        "targetName": "Marte",
+        "aspect": "sextile",
+        "degreesToPerfection": 0.5902429706809471,
+        "estimatedDaysToPerfection": 0.048953305149526845
+      },
+      {
+        "order": 2,
+        "target": "sun",
+        "targetName": "Sol",
+        "aspect": "square",
+        "degreesToPerfection": 6.312059941895029,
+        "estimatedDaysToPerfection": 0.5785250677873132
+      },
+      {
+        "order": 3,
+        "target": "saturn",
+        "targetName": "Saturno",
+        "aspect": "square",
+        "degreesToPerfection": 10.703004302926615,
+        "estimatedDaysToPerfection": 0.8953598521740965
+      }
+    ],
+    "moonVOC": false,
+    "testimonies": [
+      {
+        "id": "primary-separation",
+        "severity": "major",
+        "statement": "O contato Júpiter–Marte é separativo: descreve contato passado, não perfeição futura por si só."
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Júpiter (alternative:trip) → Marte (alternative:business): triplicity/positive."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Marte (alternative:business) → Júpiter (alternative:trip): none/neutral."
+      },
+      {
+        "id": "moon-next",
+        "severity": "context",
+        "statement": "Próximo contato lunar: sextile com Marte.",
+        "data": {
+          "sequence": [
+            {
+              "order": 1,
+              "target": "mars",
+              "targetName": "Marte",
+              "aspect": "sextile",
+              "degreesToPerfection": 0.5902429706809471,
+              "estimatedDaysToPerfection": 0.048953305149526845
+            },
+            {
+              "order": 2,
+              "target": "sun",
+              "targetName": "Sol",
+              "aspect": "square",
+              "degreesToPerfection": 6.312059941895029,
+              "estimatedDaysToPerfection": 0.5785250677873132
+            },
+            {
+              "order": 3,
+              "target": "saturn",
+              "targetName": "Saturno",
+              "aspect": "square",
+              "degreesToPerfection": 10.703004302926615,
+              "estimatedDaysToPerfection": 0.8953598521740965
+            }
+          ]
+        }
+      },
+      {
+        "id": "choice-alt-trip",
+        "severity": "context",
+        "statement": "trip: Júpiter; condição essencial/acidental registrada.",
+        "data": {
+          "essential": {
+            "domicile": false,
+            "exaltation": true,
+            "triplicity": false,
+            "term": false,
+            "face": false,
+            "detriment": false,
+            "fall": false,
+            "peregrine": false,
+            "dignityRulers": {
+              "domicile": "Lua",
+              "exaltation": "Júpiter",
+              "triplicity": "Marte",
+              "term": "Mercúrio",
+              "face": "Mercúrio"
+            }
+          },
+          "accidental": {
+            "house": 1,
+            "angularity": "angular",
+            "direct": true,
+            "retrograde": false,
+            "swift": true,
+            "slow": false,
+            "cazimi": false,
+            "combust": false,
+            "underSunbeams": false,
+            "distanceFromSun": 59.88290376309982
+          }
+        }
+      },
+      {
+        "id": "choice-alt-business",
+        "severity": "context",
+        "statement": "business: Marte; condição essencial/acidental registrada.",
+        "data": {
+          "essential": {
+            "domicile": false,
+            "exaltation": false,
+            "triplicity": false,
+            "term": false,
+            "face": false,
+            "detriment": true,
+            "fall": false,
+            "peregrine": true,
+            "dignityRulers": {
+              "domicile": "Vênus",
+              "exaltation": "Saturno",
+              "triplicity": "Saturno",
+              "term": "Vênus",
+              "face": "Saturno"
+            }
+          },
+          "accidental": {
+            "house": 3,
+            "angularity": "cadent",
+            "direct": false,
+            "retrograde": true,
+            "swift": false,
+            "slow": true,
+            "cazimi": false,
+            "combust": false,
+            "underSunbeams": false,
+            "distanceFromSun": 144.27818302878592
+          }
+        }
+      },
+      {
+        "id": "choice-alt-business-profit",
+        "severity": "context",
+        "statement": "Retorno de business: Vênus; condição essencial/acidental registrada.",
+        "data": {
+          "essential": {
+            "domicile": false,
+            "exaltation": false,
+            "triplicity": false,
+            "term": false,
+            "face": false,
+            "detriment": true,
+            "fall": false,
+            "peregrine": true,
+            "dignityRulers": {
+              "domicile": "Marte",
+              "exaltation": "Sol",
+              "triplicity": "Sol",
+              "term": "Júpiter",
+              "face": "Marte"
+            }
+          },
+          "accidental": {
+            "house": 9,
+            "angularity": "cadent",
+            "direct": true,
+            "retrograde": false,
+            "swift": false,
+            "slow": true,
+            "cazimi": false,
+            "combust": false,
+            "underSunbeams": false,
+            "distanceFromSun": 41.96151879814249
+          }
+        }
+      },
+      {
+        "id": "topic-should_i-specific",
+        "severity": "context",
+        "statement": "Roteamento tópico específico ativo; o juízo deve usar as casas e papéis materializados, não o fallback L1×Lquesitado quando a pergunta for de estado/comparação/localização."
+      },
+      {
+        "id": "choice-preferred-alternative",
+        "severity": "major",
+        "statement": "Comparação automática favorece “trip” sobre “business”: a primeira tem condição forte, enquanto a segunda e/ou seu retorno estão debilitados.",
+        "data": {
+          "preferred": "trip",
+          "against": "business"
+        }
+      }
+    ],
+    "reasons": [
+      "Este tópico exige descrição de estado/relações ou cadeia específica, não um YES/NO genérico.",
+      "Entre as alternativas materializadas, trip é tecnicamente favorecida sobre business."
+    ]
+  },
+  {
+    "id": "M-HE-REL",
+    "title": "Will She Talk to Me Again? Am I Important to Her?",
+    "answer": "DESCRIPTIVE_ONLY",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "sun",
+        "lon": 13.873676619461454,
+        "sign": "Áries",
+        "deg": 13.873676619461435,
+        "accHouse": 8,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": true,
+          "triplicity": true,
+          "term": false,
+          "face": true,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "exaltation": "Sol",
+            "triplicity": "Sol",
+            "term": "Vênus",
+            "face": "Sol"
+          }
+        }
+      },
+      "quesited": {
+        "house": 7,
+        "planet": "saturn",
+        "lon": 232.48345268776004,
+        "sign": "Escorpião",
+        "deg": 22.483452687760064,
+        "accHouse": 4,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "triplicity": "Marte",
+            "term": "Mercúrio",
+            "face": "Vênus"
+          }
+        }
+      }
+    },
+    "primary": [
+      "querent",
+      "quesited"
+    ],
+    "direct": [],
+    "antis": [],
+    "mediation": [],
+    "lunar": [
+      {
+        "order": 1,
+        "target": "sun",
+        "targetName": "Sol",
+        "aspect": "sextile",
+        "degreesToPerfection": 10.919215382677635,
+        "estimatedDaysToPerfection": 0.9297526335879424
+      },
+      {
+        "order": 2,
+        "target": "mars",
+        "targetName": "Marte",
+        "aspect": "trine",
+        "degreesToPerfection": 17.93184715973632,
+        "estimatedDaysToPerfection": 1.3692096709485326
+      },
+      {
+        "order": 3,
+        "target": "mercury",
+        "targetName": "Mercúrio",
+        "aspect": "square",
+        "degreesToPerfection": 20.51712183449922,
+        "estimatedDaysToPerfection": 1.8459067653752586
+      },
+      {
+        "order": 4,
+        "target": "venus",
+        "targetName": "Vênus",
+        "aspect": "trine",
+        "degreesToPerfection": 24.79323090076298,
+        "estimatedDaysToPerfection": 2.12307236001779
+      }
+    ],
+    "moonVOC": false,
+    "testimonies": [
+      {
+        "id": "primary-no-aspect",
+        "severity": "minor",
+        "statement": "Não há aspecto ptolomaico próximo entre querent e quesited; examinar Lua, tradução/coleta, antíscio e regra específica do tópico."
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Sol (querent) → Saturno (quesited): fall/strong_negative."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Saturno (quesited) → Sol (querent): none/neutral."
+      },
+      {
+        "id": "moon-next",
+        "severity": "context",
+        "statement": "Próximo contato lunar: sextile com Sol.",
+        "data": {
+          "sequence": [
+            {
+              "order": 1,
+              "target": "sun",
+              "targetName": "Sol",
+              "aspect": "sextile",
+              "degreesToPerfection": 10.919215382677635,
+              "estimatedDaysToPerfection": 0.9297526335879424
+            },
+            {
+              "order": 2,
+              "target": "mars",
+              "targetName": "Marte",
+              "aspect": "trine",
+              "degreesToPerfection": 17.93184715973632,
+              "estimatedDaysToPerfection": 1.3692096709485326
+            },
+            {
+              "order": 3,
+              "target": "mercury",
+              "targetName": "Mercúrio",
+              "aspect": "square",
+              "degreesToPerfection": 20.51712183449922,
+              "estimatedDaysToPerfection": 1.8459067653752586
+            },
+            {
+              "order": 4,
+              "target": "venus",
+              "targetName": "Vênus",
+              "aspect": "trine",
+              "degreesToPerfection": 24.79323090076298,
+              "estimatedDaysToPerfection": 2.12307236001779
+            }
+          ]
+        }
+      },
+      {
+        "id": "relationship-voice-saturn",
+        "severity": "major",
+        "statement": "Saturno (lado do quesitado) está em signo de voz mute; próximo signo na direção atual: loud.",
+        "data": {
+          "voice": "mute",
+          "nextVoice": "loud"
+        }
+      },
+      {
+        "id": "relationship-voice-venus",
+        "severity": "major",
+        "statement": "Vênus (lado do quesitado) está em signo de voz weak; próximo signo na direção atual: mute.",
+        "data": {
+          "voice": "weak",
+          "nextVoice": "mute"
+        }
+      },
+      {
+        "id": "relationship-contact-venus-sun",
+        "severity": "context",
+        "statement": "Vênus → Sol: sextile, separativo.",
+        "data": {
+          "aspect": {
+            "a": "venus",
+            "b": "sun",
+            "aName": "Vênus",
+            "bName": "Sol",
+            "aspect": "sextile",
+            "applying": false,
+            "separating": true,
+            "orb": 13.8740155180854,
+            "degreesToPerfection": 13.8740155180854
+          }
+        }
+      },
+      {
+        "id": "relationship-contact-venus-moon",
+        "severity": "major",
+        "statement": "Vênus → Lua: trine, aplicativo.",
+        "data": {
+          "aspect": {
+            "a": "venus",
+            "b": "moon",
+            "aName": "Vênus",
+            "bName": "Lua",
+            "aspect": "trine",
+            "applying": true,
+            "separating": false,
+            "orb": 24.79323090076298,
+            "degreesToPerfection": 24.79323090076298,
+            "estimatedDaysToPerfection": 2.12307236001779,
+            "beforeEitherChangesSign": true
+          }
+        }
+      },
+      {
+        "id": "relationship-other-to-moon",
+        "severity": "major",
+        "statement": "Saturno → Lua do querente: fall/strong_negative.",
+        "data": {
+          "reception": {
+            "from": "saturn",
+            "to": "moon",
+            "fromName": "Saturno",
+            "toName": "Lua",
+            "dignities": [
+              "fall"
+            ],
+            "strongest": "fall",
+            "disposition": "strong_negative"
+          }
+        }
+      },
+      {
+        "id": "relationship-woman-to-querent",
+        "severity": "major",
+        "statement": "Vênus natural da mulher → significador principal do querente: detriment/negative.",
+        "data": {
+          "reception": {
+            "from": "venus",
+            "to": "sun",
+            "fromName": "Vênus",
+            "toName": "Sol",
+            "dignities": [
+              "detriment"
+            ],
+            "strongest": "detriment",
+            "disposition": "negative"
+          }
+        }
+      }
+    ],
+    "reasons": [
+      "Comunicação e importância afetiva foram separadas; os contatos/relações precisam ser lidos em conjunto."
+    ]
+  },
+  {
+    "id": "M-HE-BABY",
+    "title": "Is There Anything Wrong With the Baby? When It Will Be Born?",
+    "answer": "DESCRIPTIVE_ONLY",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "saturn",
+        "lon": 216.73924210176057,
+        "sign": "Escorpião",
+        "deg": 6.73924210176051,
+        "accHouse": 11,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "triplicity": "Marte",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      },
+      "mother": {
+        "house": 1,
+        "planet": "saturn",
+        "lon": 216.73924210176057,
+        "sign": "Escorpião",
+        "deg": 6.73924210176051,
+        "accHouse": 11,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "triplicity": "Marte",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      },
+      "child": {
+        "house": 5,
+        "planet": "venus",
+        "lon": 191.85907607976335,
+        "sign": "Libra",
+        "deg": 11.859076079763327,
+        "accHouse": 10,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": true,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Vênus",
+            "exaltation": "Saturno",
+            "triplicity": "Saturno",
+            "term": "Júpiter",
+            "face": "Saturno"
+          }
+        }
+      },
+      "childbed": {
+        "house": 12,
+        "planet": "jupiter",
+        "lon": 103.059662931438,
+        "sign": "Câncer",
+        "deg": 13.05966293143797,
+        "accHouse": 7,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": true,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Lua",
+            "exaltation": "Júpiter",
+            "triplicity": "Marte",
+            "term": "Mercúrio",
+            "face": "Mercúrio"
+          }
+        }
+      },
+      "doctor_treating_case": {
+        "house": 7,
+        "planet": "moon",
+        "lon": 44.560543448897484,
+        "sign": "Touro",
+        "deg": 14.560543448897477,
+        "accHouse": 5,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": true,
+          "triplicity": false,
+          "term": false,
+          "face": true,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Vênus",
+            "exaltation": "Lua",
+            "triplicity": "Vênus",
+            "term": "Mercúrio",
+            "face": "Lua"
+          }
+        }
+      },
+      "surgery_marcos_variant": {
+        "house": 6,
+        "planet": "mercury",
+        "lon": 155.43128382620446,
+        "sign": "Virgem",
+        "deg": 5.431283826204435,
+        "accHouse": 9,
+        "retro": false,
+        "combust": true,
+        "essential": {
+          "domicile": true,
+          "exaltation": true,
+          "triplicity": false,
+          "term": true,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Mercúrio",
+            "exaltation": "Mercúrio",
+            "triplicity": "Vênus",
+            "term": "Mercúrio",
+            "face": "Sol"
+          }
+        }
+      }
+    },
+    "primary": [
+      "mother",
+      "child"
+    ],
+    "direct": [],
+    "antis": [],
+    "mediation": [],
+    "lunar": [
+      {
+        "order": 1,
+        "target": "mars",
+        "targetName": "Marte",
+        "aspect": "sextile",
+        "degreesToPerfection": 14.552290165126692,
+        "estimatedDaysToPerfection": 1.2344665128015606
+      }
+    ],
+    "moonVOC": false,
+    "testimonies": [
+      {
+        "id": "primary-no-aspect",
+        "severity": "minor",
+        "statement": "Não há aspecto ptolomaico próximo entre mother e child; examinar Lua, tradução/coleta, antíscio e regra específica do tópico."
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Saturno (mother) → Vênus (child): detriment/negative."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Vênus (child) → Saturno (mother): exaltation/strong_positive."
+      },
+      {
+        "id": "moon-next",
+        "severity": "context",
+        "statement": "Próximo contato lunar: sextile com Marte.",
+        "data": {
+          "sequence": [
+            {
+              "order": 1,
+              "target": "mars",
+              "targetName": "Marte",
+              "aspect": "sextile",
+              "degreesToPerfection": 14.552290165126692,
+              "estimatedDaysToPerfection": 1.2344665128015606
+            }
+          ]
+        }
+      },
+      {
+        "id": "pregnancy-child-condition",
+        "severity": "major",
+        "statement": "Bebê/L5 = Vênus: condição essencial e acidental materializada.",
+        "data": {
+          "essential": {
+            "domicile": true,
+            "exaltation": false,
+            "triplicity": false,
+            "term": false,
+            "face": false,
+            "detriment": false,
+            "fall": false,
+            "peregrine": false,
+            "dignityRulers": {
+              "domicile": "Vênus",
+              "exaltation": "Saturno",
+              "triplicity": "Saturno",
+              "term": "Júpiter",
+              "face": "Saturno"
+            }
+          },
+          "accidental": {
+            "house": 10,
+            "angularity": "angular",
+            "direct": true,
+            "retrograde": false,
+            "swift": false,
+            "slow": true,
+            "cazimi": false,
+            "combust": false,
+            "underSunbeams": false,
+            "distanceFromSun": 38.24927614795331
+          }
+        }
+      },
+      {
+        "id": "pregnancy-childbed",
+        "severity": "context",
+        "statement": "Parto/childbed = Júpiter, XII da mãe."
+      },
+      {
+        "id": "pregnancy-doctor",
+        "severity": "context",
+        "statement": "Médico do caso = Lua, VII da mãe."
+      },
+      {
+        "id": "pregnancy-mother-surgery-aspect",
+        "severity": "major",
+        "statement": "Mãe → regente da VI (variante cirúrgica de Marcos): sextile, 1.31° até perfeição.",
+        "data": {
+          "aspect": {
+            "a": "saturn",
+            "b": "mercury",
+            "aName": "Saturno",
+            "bName": "Mercúrio",
+            "aspect": "sextile",
+            "applying": true,
+            "separating": false,
+            "orb": 1.307958275556075,
+            "degreesToPerfection": 1.307958275556075,
+            "estimatedDaysToPerfection": 0.6997150253497522,
+            "beforeEitherChangesSign": true
+          }
+        }
+      },
+      {
+        "id": "pregnancy-child-childbed-aspect",
+        "severity": "major",
+        "statement": "Bebê → childbed: square, 1.20° até perfeição.",
+        "data": {
+          "aspect": {
+            "a": "venus",
+            "b": "jupiter",
+            "aName": "Vênus",
+            "bName": "Júpiter",
+            "aspect": "square",
+            "applying": true,
+            "separating": false,
+            "orb": 1.2005868516746432,
+            "degreesToPerfection": 1.2005868516746432,
+            "estimatedDaysToPerfection": 1.2087059992356333,
+            "beforeEitherChangesSign": true
+          }
+        }
+      }
+    ],
+    "reasons": [
+      "O significador do bebê tem forte dignidade essencial, testemunho favorável ao seu estado no método da fonte.",
+      "Aspectos ligados ao parto convergem em arco curto; timing é tratado como subpergunta, não como prova de dano ao bebê."
+    ],
+    "timing": "1.20 unidade(s) de arco; combinação signo=lento, casa=intermediário, síntese=intermediário. Escala plausível fornecida: days. A angularidade pode acelerar quando representa agente com vontade e capacidade; não converter mecanicamente sem recepções/contexto."
+  },
+  {
+    "id": "M-HE-STOMACH",
+    "title": "What’s the Problem With My Stomach? What Can I Do to Relieve It?",
+    "answer": "DESCRIPTIVE_ONLY",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "venus",
+        "lon": 1.7624250849690533,
+        "sign": "Áries",
+        "deg": 1.7624250849690384,
+        "accHouse": 11,
+        "retro": false,
+        "combust": true,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "exaltation": "Sol",
+            "triplicity": "Sol",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      },
+      "patient": {
+        "house": 1,
+        "planet": "venus",
+        "lon": 1.7624250849690533,
+        "sign": "Áries",
+        "deg": 1.7624250849690384,
+        "accHouse": 11,
+        "retro": false,
+        "combust": true,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "exaltation": "Sol",
+            "triplicity": "Sol",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      },
+      "illness": {
+        "house": 6,
+        "planet": "venus",
+        "lon": 1.7624250849690533,
+        "sign": "Áries",
+        "deg": 1.7624250849690384,
+        "accHouse": 11,
+        "retro": false,
+        "combust": true,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "exaltation": "Sol",
+            "triplicity": "Sol",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      },
+      "doctor_treating_case": {
+        "house": 7,
+        "planet": "mars",
+        "lon": 8.739538375008676,
+        "sign": "Áries",
+        "deg": 8.739538375008692,
+        "accHouse": 11,
+        "retro": false,
+        "combust": true,
+        "essential": {
+          "domicile": true,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": true,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "exaltation": "Sol",
+            "triplicity": "Sol",
+            "term": "Vênus",
+            "face": "Marte"
+          }
+        }
+      },
+      "treatment": {
+        "house": 10,
+        "planet": "saturn",
+        "lon": 220.6359295385007,
+        "sign": "Escorpião",
+        "deg": 10.635929538500704,
+        "accHouse": 6,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "triplicity": "Marte",
+            "term": "Júpiter",
+            "face": "Sol"
+          }
+        }
+      },
+      "organ": {
+        "house": 5,
+        "planet": "venus",
+        "lon": 1.7624250849690533,
+        "sign": "Áries",
+        "deg": 1.7624250849690384,
+        "accHouse": 11,
+        "retro": false,
+        "combust": true,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "exaltation": "Sol",
+            "triplicity": "Sol",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      },
+      "quesited": {
+        "house": 6,
+        "planet": "venus",
+        "lon": 1.7624250849690533,
+        "sign": "Áries",
+        "deg": 1.7624250849690384,
+        "accHouse": 11,
+        "retro": false,
+        "combust": true,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "exaltation": "Sol",
+            "triplicity": "Sol",
+            "term": "Júpiter",
+            "face": "Marte"
+          }
+        }
+      }
+    },
+    "primary": [
+      "patient",
+      "illness"
+    ],
+    "direct": [],
+    "antis": [],
+    "mediation": [],
+    "lunar": [],
+    "moonVOC": true,
+    "testimonies": [
+      {
+        "id": "primary-no-aspect",
+        "severity": "minor",
+        "statement": "Não há aspecto ptolomaico próximo entre patient e illness; examinar Lua, tradução/coleta, antíscio e regra específica do tópico."
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Vênus (patient) → Vênus (illness): detriment/negative."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Vênus (illness) → Vênus (patient): detriment/negative."
+      },
+      {
+        "id": "moon-voc",
+        "severity": "context",
+        "statement": "A Lua não aperfeiçoa aspecto ptolomaico com planeta tradicional antes de sair do signo, pelo algoritmo estrito usado aqui."
+      },
+      {
+        "id": "medical-nature-mismatch",
+        "severity": "major",
+        "statement": "Vênus (organ) tem natureza cold_moist e está em ambiente hot_dry: incompatibilidade humoral relevante.",
+        "data": {
+          "planetQuality": "cold_moist",
+          "signQuality": "hot_dry"
+        }
+      },
+      {
+        "id": "medical-combustion-cause",
+        "severity": "major",
+        "statement": "Vênus está combusto: o Sol é afligente direto e deve entrar na cadeia causal, não apenas como pontuação de fraqueza.",
+        "data": {
+          "sun": 3.0690968143536668
+        }
+      },
+      {
+        "id": "medical-sign-dispositor-cause",
+        "severity": "major",
+        "statement": "Dispositor do signo de Vênus: Marte; candidato causal quando a natureza do signo desequilibra o paciente/órgão.",
+        "data": {
+          "dispositor": "mars"
+        }
+      },
+      {
+        "id": "medical-hot-dry-excess",
+        "severity": "major",
+        "statement": "A cadeia paciente/órgão aponta calor + secura; no vocabulário humoral do caso, excesso colérico é hipótese astrológica interna do método, não diagnóstico médico clínico."
+      }
+    ],
+    "reasons": [
+      "Este tópico exige descrição de estado/relações ou cadeia específica, não um YES/NO genérico."
+    ]
+  },
+  {
+    "id": "M-HE-DARRYL",
+    "title": "Will Darryl Die?",
+    "answer": "UNKNOWN",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "jupiter",
+        "lon": 66.40403701312233,
+        "sign": "Gêmeos",
+        "deg": 6.40403701312232,
+        "accHouse": 6,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": true,
+          "detriment": true,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Mercúrio",
+            "triplicity": "Mercúrio",
+            "term": "Mercúrio",
+            "face": "Júpiter"
+          }
+        }
+      },
+      "subject": {
+        "house": 7,
+        "planet": "mercury",
+        "lon": 330.99653390159733,
+        "sign": "Peixes",
+        "deg": 0.9965339015973314,
+        "accHouse": 3,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": true,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Júpiter",
+            "exaltation": "Vênus",
+            "triplicity": "Marte",
+            "term": "Vênus",
+            "face": "Saturno"
+          }
+        }
+      },
+      "death_subject": {
+        "house": 7,
+        "planet": "mercury",
+        "lon": 330.99653390159733,
+        "sign": "Peixes",
+        "deg": 0.9965339015973314,
+        "accHouse": 3,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": true,
+          "fall": true,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Júpiter",
+            "exaltation": "Vênus",
+            "triplicity": "Marte",
+            "term": "Vênus",
+            "face": "Saturno"
+          }
+        }
+      },
+      "radical_death": {
+        "house": 8,
+        "planet": "moon",
+        "lon": 262.11248486922335,
+        "sign": "Sagitário",
+        "deg": 22.112484869223408,
+        "accHouse": 12,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Júpiter",
+            "triplicity": "Júpiter",
+            "term": "Saturno",
+            "face": "Saturno"
+          }
+        }
+      },
+      "turned_death": {
+        "house": 2,
+        "planet": "saturn",
+        "lon": 221.38994857480728,
+        "sign": "Escorpião",
+        "deg": 11.38994857480725,
+        "accHouse": 11,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "triplicity": "Marte",
+            "term": "Júpiter",
+            "face": "Sol"
+          }
+        }
+      }
+    },
+    "primary": [
+      "death_subject",
+      "turned_death"
+    ],
+    "direct": [
+      {
+        "a": "mercury",
+        "b": "saturn",
+        "aName": "Mercúrio",
+        "bName": "Saturno",
+        "aspect": "trine",
+        "applying": true,
+        "separating": false,
+        "orb": 10.393414673209918,
+        "degreesToPerfection": 10.393414673209918,
+        "estimatedDaysToPerfection": 6.150835157433422,
+        "beforeEitherChangesSign": true
+      },
+      {
+        "a": "mercury",
+        "b": "moon",
+        "aName": "Mercúrio",
+        "bName": "Lua",
+        "aspect": "square",
+        "applying": false,
+        "separating": true,
+        "orb": 21.11595096762602,
+        "degreesToPerfection": 21.11595096762602
+      },
+      {
+        "a": "mercury",
+        "b": "saturn",
+        "aName": "Mercúrio",
+        "bName": "Saturno",
+        "aspect": "trine",
+        "applying": true,
+        "separating": false,
+        "orb": 10.393414673209918,
+        "degreesToPerfection": 10.393414673209918,
+        "estimatedDaysToPerfection": 6.150835157433422,
+        "beforeEitherChangesSign": true
+      }
+    ],
+    "antis": [],
+    "mediation": [
+      {
+        "kind": "prohibition_candidate",
+        "mediator": "venus",
+        "mediatorName": "Vênus",
+        "confidence": "medium",
+        "statement": "Antes da perfeição principal, Saturno aperfeiçoa contato com Vênus. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico.",
+        "sourceIds": [
+          "M-HORARY-CURRENT",
+          "F-HT"
+        ],
+        "data": {
+          "intervening": {
+            "a": "saturn",
+            "b": "venus",
+            "aName": "Saturno",
+            "bName": "Vênus",
+            "aspect": "square",
+            "applying": true,
+            "separating": false,
+            "orb": 6.270733642088999,
+            "degreesToPerfection": 6.270733642088999,
+            "estimatedDaysToPerfection": 5.094664857480062,
+            "beforeEitherChangesSign": true
+          },
+          "primary": {
+            "a": "mercury",
+            "b": "saturn",
+            "aName": "Mercúrio",
+            "bName": "Saturno",
+            "aspect": "trine",
+            "applying": true,
+            "separating": false,
+            "orb": 10.393414673209918,
+            "degreesToPerfection": 10.393414673209918,
+            "estimatedDaysToPerfection": 6.150835157433422,
+            "beforeEitherChangesSign": true
+          }
+        }
+      },
+      {
+        "kind": "prohibition_candidate",
+        "mediator": "mars",
+        "mediatorName": "Marte",
+        "confidence": "medium",
+        "statement": "Antes da perfeição principal, Mercúrio aperfeiçoa contato com Marte. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico.",
+        "sourceIds": [
+          "M-HORARY-CURRENT",
+          "F-HT"
+        ],
+        "data": {
+          "intervening": {
+            "a": "mercury",
+            "b": "mars",
+            "aName": "Mercúrio",
+            "bName": "Marte",
+            "aspect": "conjunction",
+            "applying": true,
+            "separating": false,
+            "orb": 2.261424982184508,
+            "degreesToPerfection": 2.261424982184508,
+            "estimatedDaysToPerfection": 2.453834009385351,
+            "beforeEitherChangesSign": true
+          },
+          "primary": {
+            "a": "mercury",
+            "b": "saturn",
+            "aName": "Mercúrio",
+            "bName": "Saturno",
+            "aspect": "trine",
+            "applying": true,
+            "separating": false,
+            "orb": 10.393414673209918,
+            "degreesToPerfection": 10.393414673209918,
+            "estimatedDaysToPerfection": 6.150835157433422,
+            "beforeEitherChangesSign": true
+          }
+        }
+      },
+      {
+        "kind": "prohibition_candidate",
+        "mediator": "jupiter",
+        "mediatorName": "Júpiter",
+        "confidence": "medium",
+        "statement": "Antes da perfeição principal, Mercúrio aperfeiçoa contato com Júpiter. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico.",
+        "sourceIds": [
+          "M-HORARY-CURRENT",
+          "F-HT"
+        ],
+        "data": {
+          "intervening": {
+            "a": "mercury",
+            "b": "jupiter",
+            "aName": "Mercúrio",
+            "bName": "Júpiter",
+            "aspect": "square",
+            "applying": true,
+            "separating": false,
+            "orb": 5.4075031115249885,
+            "degreesToPerfection": 5.4075031115249885,
+            "estimatedDaysToPerfection": 3.201961621741817,
+            "beforeEitherChangesSign": true
+          },
+          "primary": {
+            "a": "mercury",
+            "b": "saturn",
+            "aName": "Mercúrio",
+            "bName": "Saturno",
+            "aspect": "trine",
+            "applying": true,
+            "separating": false,
+            "orb": 10.393414673209918,
+            "degreesToPerfection": 10.393414673209918,
+            "estimatedDaysToPerfection": 6.150835157433422,
+            "beforeEitherChangesSign": true
+          }
+        }
+      }
+    ],
+    "lunar": [],
+    "moonVOC": true,
+    "testimonies": [
+      {
+        "id": "primary-application",
+        "severity": "decisive",
+        "statement": "Mercúrio (death_subject) aplica a Saturno (turned_death) por trine antes de mudança de signo.",
+        "data": {
+          "orb": 10.393414673209918,
+          "degreesToPerfection": 10.393414673209918
+        }
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Mercúrio (death_subject) → Saturno (turned_death): face/mild_positive."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Saturno (turned_death) → Mercúrio (death_subject): none/neutral."
+      },
+      {
+        "id": "mediation-prohibition_candidate-venus",
+        "severity": "minor",
+        "statement": "Antes da perfeição principal, Saturno aperfeiçoa contato com Vênus. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico.",
+        "data": {
+          "intervening": {
+            "a": "saturn",
+            "b": "venus",
+            "aName": "Saturno",
+            "bName": "Vênus",
+            "aspect": "square",
+            "applying": true,
+            "separating": false,
+            "orb": 6.270733642088999,
+            "degreesToPerfection": 6.270733642088999,
+            "estimatedDaysToPerfection": 5.094664857480062,
+            "beforeEitherChangesSign": true
+          },
+          "primary": {
+            "a": "mercury",
+            "b": "saturn",
+            "aName": "Mercúrio",
+            "bName": "Saturno",
+            "aspect": "trine",
+            "applying": true,
+            "separating": false,
+            "orb": 10.393414673209918,
+            "degreesToPerfection": 10.393414673209918,
+            "estimatedDaysToPerfection": 6.150835157433422,
+            "beforeEitherChangesSign": true
+          }
+        }
+      },
+      {
+        "id": "mediation-prohibition_candidate-mars",
+        "severity": "minor",
+        "statement": "Antes da perfeição principal, Mercúrio aperfeiçoa contato com Marte. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico.",
+        "data": {
+          "intervening": {
+            "a": "mercury",
+            "b": "mars",
+            "aName": "Mercúrio",
+            "bName": "Marte",
+            "aspect": "conjunction",
+            "applying": true,
+            "separating": false,
+            "orb": 2.261424982184508,
+            "degreesToPerfection": 2.261424982184508,
+            "estimatedDaysToPerfection": 2.453834009385351,
+            "beforeEitherChangesSign": true
+          },
+          "primary": {
+            "a": "mercury",
+            "b": "saturn",
+            "aName": "Mercúrio",
+            "bName": "Saturno",
+            "aspect": "trine",
+            "applying": true,
+            "separating": false,
+            "orb": 10.393414673209918,
+            "degreesToPerfection": 10.393414673209918,
+            "estimatedDaysToPerfection": 6.150835157433422,
+            "beforeEitherChangesSign": true
+          }
+        }
+      },
+      {
+        "id": "mediation-prohibition_candidate-jupiter",
+        "severity": "minor",
+        "statement": "Antes da perfeição principal, Mercúrio aperfeiçoa contato com Júpiter. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico.",
+        "data": {
+          "intervening": {
+            "a": "mercury",
+            "b": "jupiter",
+            "aName": "Mercúrio",
+            "bName": "Júpiter",
+            "aspect": "square",
+            "applying": true,
+            "separating": false,
+            "orb": 5.4075031115249885,
+            "degreesToPerfection": 5.4075031115249885,
+            "estimatedDaysToPerfection": 3.201961621741817,
+            "beforeEitherChangesSign": true
+          },
+          "primary": {
+            "a": "mercury",
+            "b": "saturn",
+            "aName": "Mercúrio",
+            "bName": "Saturno",
+            "aspect": "trine",
+            "applying": true,
+            "separating": false,
+            "orb": 10.393414673209918,
+            "degreesToPerfection": 10.393414673209918,
+            "estimatedDaysToPerfection": 6.150835157433422,
+            "beforeEitherChangesSign": true
+          }
+        }
+      },
+      {
+        "id": "moon-voc",
+        "severity": "context",
+        "statement": "A Lua não aperfeiçoa aspecto ptolomaico com planeta tradicional antes de sair do signo, pelo algoritmo estrito usado aqui."
+      },
+      {
+        "id": "death-radical-separation",
+        "severity": "major",
+        "statement": "O contato Mercúrio–Lua é separativo: descreve contato passado, não perfeição futura por si só."
+      },
+      {
+        "id": "death-radical-reception-a-b",
+        "severity": "context",
+        "statement": "Mercúrio (death_subject) → Lua (radical_death): none/neutral."
+      },
+      {
+        "id": "death-radical-reception-b-a",
+        "severity": "context",
+        "statement": "Lua (radical_death) → Mercúrio (death_subject): detriment/negative."
+      },
+      {
+        "id": "death-turned-application",
+        "severity": "decisive",
+        "statement": "Mercúrio (death_subject) aplica a Saturno (turned_death) por trine antes de mudança de signo.",
+        "data": {
+          "orb": 10.393414673209918,
+          "degreesToPerfection": 10.393414673209918
+        }
+      },
+      {
+        "id": "death-turned-reception-a-b",
+        "severity": "context",
+        "statement": "Mercúrio (death_subject) → Saturno (turned_death): face/mild_positive."
+      },
+      {
+        "id": "death-turned-reception-b-a",
+        "severity": "context",
+        "statement": "Saturno (turned_death) → Mercúrio (death_subject): none/neutral."
+      },
+      {
+        "id": "death-body-contact-gate",
+        "severity": "warning",
+        "statement": "Morte não é inferida por acumulação de aflições nem por antíscio isolado; exige contato/perfeição pertinente com VIII radical/derivada e leitura da sequência."
+      }
+    ],
+    "reasons": [
+      "Morte exige cronologia do contato da pessoa com VIII radical/derivada; o snapshot não transforma uma aplicação potencial em sentença antes de testar proibição/refranação."
+    ]
+  },
+  {
+    "id": "M-HE-INTERNET",
+    "title": "When Will the Internet Be Cut Off?",
+    "answer": "YES",
+    "canJudge": true,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "saturn",
+        "lon": 226.93175044981382,
+        "sign": "Escorpião",
+        "deg": 16.931750449813762,
+        "accHouse": 11,
+        "retro": true,
+        "combust": false,
+        "essential": {
+          "domicile": false,
+          "exaltation": false,
+          "triplicity": false,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": true,
+          "dignityRulers": {
+            "domicile": "Marte",
+            "triplicity": "Marte",
+            "term": "Vênus",
+            "face": "Sol"
+          }
+        }
+      },
+      "quesited": {
+        "house": 6,
+        "planet": "mercury",
+        "lon": 84.3859994470715,
+        "sign": "Gêmeos",
+        "deg": 24.385999447071526,
+        "accHouse": 6,
+        "retro": false,
+        "combust": false,
+        "essential": {
+          "domicile": true,
+          "exaltation": false,
+          "triplicity": true,
+          "term": false,
+          "face": false,
+          "detriment": false,
+          "fall": false,
+          "peregrine": false,
+          "dignityRulers": {
+            "domicile": "Mercúrio",
+            "triplicity": "Mercúrio",
+            "term": "Saturno",
+            "face": "Sol"
+          }
+        }
+      }
+    },
+    "primary": [
+      "querent",
+      "quesited"
+    ],
+    "direct": [],
+    "antis": [],
+    "mediation": [],
+    "lunar": [],
+    "moonVOC": true,
+    "testimonies": [
+      {
+        "id": "primary-no-aspect",
+        "severity": "minor",
+        "statement": "Não há aspecto ptolomaico próximo entre querent e quesited; examinar Lua, tradução/coleta, antíscio e regra específica do tópico."
+      },
+      {
+        "id": "primary-reception-a-b",
+        "severity": "context",
+        "statement": "Saturno (querent) → Mercúrio (quesited): none/neutral."
+      },
+      {
+        "id": "primary-reception-b-a",
+        "severity": "context",
+        "statement": "Mercúrio (quesited) → Saturno (querent): term/positive."
+      },
+      {
+        "id": "moon-voc",
+        "severity": "context",
+        "statement": "A Lua não aperfeiçoa aspecto ptolomaico com planeta tradicional antes de sair do signo, pelo algoritmo estrito usado aqui."
+      },
+      {
+        "id": "custom-sign-change-trigger",
+        "severity": "decisive",
+        "statement": "Mercúrio está a 5.61° da mudança de signo; voz loud → mute. Gemini voiced -> Cancer mute: the connection stops talking.",
+        "data": {
+          "planet": "mercury",
+          "degreesToSignChange": 5.6140005529284736,
+          "fromVoice": "loud",
+          "toVoice": "mute"
+        }
+      }
+    ],
+    "reasons": [
+      "O evento é pressuposto pela própria pergunta; a mudança de signo do significador fornecido funciona como marcador do quando, não como prova independente do se."
+    ],
+    "timing": "5.61 unidade(s) simbólica(s) até a mudança de signo. Escala contextual plausível: hours / days / weeks."
+  }
+]

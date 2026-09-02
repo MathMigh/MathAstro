@@ -1,0 +1,14 @@
+{
+  "release": "MathAstro_UNIFICADO_20260901",
+  "base_authority": "NATAL dedicated branch",
+  "module_authority": {
+    "natal": "MathAstro_NATAL_ABSOLUTE_AI_PTBR_PROVIDER_READY_20260901.zip",
+    "horaria": "MathAstro_HORARIA_MARCOS_FRAWLEY_GUGU_20260901_AI_ABSOLUTE_V3_FINAL",
+    "eletiva": "outer ELETIVA method/prompt + electional implementation carried by HORARIA branch",
+    "preditiva": "MathAstro_CONSULTA_ABSOLUTA_MESTRE_MARCOS_FRAWLEY_GUGU_RC6_20260901",
+    "mundana": "MathAstro_MUNDANA_CONSULTA_PRO_AI_MARCOS_FRAWLEY_GUGU_v3_20260901",
+    "sinastria": "MathAstro_SINASTRIA_v4_PROFESSOR_ASTROLOGO_FINAL_CORRIGIDO_20260901"
+  },
+  "merge_rule": "shared natal/core files remain from dedicated NATAL unless another branch has a proven module-specific UI seam; inherited older copies of other modules are not allowed to overwrite their dedicated branch.",
+  "copied_items": 23
+}

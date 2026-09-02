@@ -1,0 +1,130 @@
+{
+  "schema": "mathastro.predictive.protected-unified-core-hashes/2.0",
+  "files": [
+    {
+      "path": "src/app/api/birth-chart/route.ts",
+      "sha256": "3db8a0a4761efe763ef8f1c4b64219488335081b4dbd58d54dfbe34e95e62d85"
+    },
+    {
+      "path": "src/app/lib/arabicLots.ts",
+      "sha256": "beaf7d76b29ce94b2ff1816ed0d9d9272a33c914cf07c50e58e1a6f561b0789f"
+    },
+    {
+      "path": "src/app/lib/aspectDynamics.ts",
+      "sha256": "9fc0ea0db733e15558e80b3342817e29e7100ca8845f8e4dc54cca2110c745b2"
+    },
+    {
+      "path": "src/app/lib/astrologyEngine.ts",
+      "sha256": "c2e5b700a5e17193edb7c4c4c92b270421c6921e0bb87708bfc7b9f87fae9e44"
+    },
+    {
+      "path": "src/app/lib/fixedStars.ts",
+      "sha256": "d74868f16687167f93a1c6d8b1a428bd4153c8700f6b5359a4a4de1ec32f289b"
+    },
+    {
+      "path": "src/app/lib/natalAiForm.ts",
+      "sha256": "4a45e743d66947a233c1841564ead8deeb571dcf272ac33aeb5d88d6ca7b0a50"
+    },
+    {
+      "path": "src/app/lib/natalAnalysis.ts",
+      "sha256": "184a09d668c67586c504e50eeee7548f40a22045420a8938078cab152e9f9d9e"
+    },
+    {
+      "path": "src/app/lib/natalPrecision.ts",
+      "sha256": "da407545d2a9c2326667792e42e82a6149f58374d55454c7018415d206bec444"
+    },
+    {
+      "path": "src/app/lib/natalProductionValidation.ts",
+      "sha256": "519f6cb412500e84be2a44f94012dc8232617654e6338412010a7e3e6ad8b240"
+    },
+    {
+      "path": "src/app/lib/natalTechnicalReport.ts",
+      "sha256": "454bda2358abd2e25decdd9325ee3d03bab89c98229f7252f7b9c62ba60747c1"
+    },
+    {
+      "path": "src/app/lib/traditionalCalculations.ts",
+      "sha256": "ffdb7fc732b5ad38492d894db989f6edc6f61ccb88e70bb121977468bfbbe391"
+    },
+    {
+      "path": "src/app/lib/traditionalReport.ts",
+      "sha256": "01ceaf9518dce8d5a849d71ed86294e8d4eae6ff86cb5b35bf0b732380ab5c5c"
+    },
+    {
+      "path": "src/app/lib/traditionalTables.ts",
+      "sha256": "84addda77726ed23d01bcf36da5206e50ef83a1cff941640ee1035b5212ea416"
+    },
+    {
+      "path": "src/app/lib/traditionalTemperament.ts",
+      "sha256": "283389f01ad54aa02917da407d87ece443c05aa37fc0bd0a04e42ed067eca5a2"
+    },
+    {
+      "path": "src/app/ocidental/natal/page.tsx",
+      "sha256": "5189292fd8f4cf39adcc5a61496253351e77c990d013798c59a2d231e16f35b0"
+    },
+    {
+      "path": "src/interfaces/BirthChartInterfaces.ts",
+      "sha256": "017c4e45f3879c28dc0c2a2b2b93e65be8e3b7e13c7cba84ddc6de155332906c"
+    },
+    {
+      "path": "src/traditions/western/natal/NatalOnlyWorkspace.tsx",
+      "sha256": "e76e1ae193250bb8ec8d553c384cf609a68f4af574215838de5001417900b6cf"
+    },
+    {
+      "path": "src/traditions/western/natal/index.ts",
+      "sha256": "3a2f45e6e367cc003a2acec2d5803a460de5b6e9469f95032cace4b7cfe544fc"
+    },
+    {
+      "path": "src/traditions/western/natal/natalEvidenceAudit.ts",
+      "sha256": "a9fe457a92901cb22f354f61a0a3335518c1d59113b4c94d60952ad1312f7d33"
+    },
+    {
+      "path": "src/traditions/western/natal/natalMethodConstants.ts",
+      "sha256": "a810780beb530137baf69343a14a632fe5497ade9f51d572ad9fde8128b17a6a"
+    },
+    {
+      "path": "src/traditions/western/natal/natalMethodContract.ts",
+      "sha256": "05ef6b262a465006d88314b6190a557ce6a7cb5fac4b68126b1825fe2d048c9d"
+    },
+    {
+      "path": "src/app/utils/chartUtils.tsx",
+      "sha256": "722515d444238328ed063bc18b1f269a29d56dc1978917727af0973a2732e569"
+    },
+    {
+      "path": "src/contexts/BirthChartContext.tsx",
+      "sha256": "7bc4490cb32478acfebe4ce06c2a4878c4eff23a4cefade1c1d1a24d032c0a06"
+    },
+    {
+      "path": "src/contexts/ChartMenuContext.tsx",
+      "sha256": "12429fb24930bf0bc5bcdfba88c01814ca767730ef9307190288f81e020a735a"
+    },
+    {
+      "path": "src/contexts/ArabicPartsContext.tsx",
+      "sha256": "df0d48ea15cdcc61dd4f18da385c8ffd01cd0746dbd415763a59611c3078412c"
+    },
+    {
+      "path": "src/app/components/charts/BirthChart.tsx",
+      "sha256": "16f69220b8e30c6006dc5db5f9434ac7b289bebcce2162729a3685ef5cbbe43a"
+    },
+    {
+      "path": "src/app/components/charts/SecondaryProgressionChart.tsx",
+      "sha256": "d1467ae9d0ca42fcffccf5cb81d3a4a0ce6327399c4795ca21c45a4556372dc3"
+    },
+    {
+      "path": "src/app/components/charts/ProfectionChart.tsx",
+      "sha256": "3dd5b8460d0d6bc4ae2c988b52e75151961d2342ff893831676363bd49e50ce8"
+    },
+    {
+      "path": "src/app/components/charts/LunarDerivedChart.tsx",
+      "sha256": "dae11d951733eda110a0419ee40aba11c353243cd3c8e56574b0d989a455c355"
+    },
+    {
+      "path": "src/app/components/modals/LunarDerivedModal.tsx",
+      "sha256": "0997d92739d26e5f80c8219f1470576f2b27888648b7cd0bc2544d80443f4160"
+    },
+    {
+      "path": "src/app/components/ReturnSelectorArrows.tsx",
+      "sha256": "8dc1819eb5be3351a24e8c7d695fc22b5508aaea6db4505b099e5686654d7ff9"
+    }
+  ],
+  "note": "Regenerated at MathAstro unified integration: protects the authoritative Natal core plus shared UI seams after Synastry integration."
+}

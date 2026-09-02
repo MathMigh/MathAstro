@@ -5,36 +5,38 @@ import React from "react";
 interface DropdownProps {
   disabled?: boolean;
   onChange?: (profile: BirthChartProfile) => void;
+  value?: string;
+  placeholder?: string;
+  ariaLabel?: string;
 }
 
 export default function PresavedChartsDropdown(props: DropdownProps) {
-  const { disabled, onChange } = props;
+  const { disabled, onChange, value, placeholder, ariaLabel } = props;
   const { profiles } = useProfiles();
+  const isControlled = value !== undefined;
 
   return (
     <select
       disabled={disabled ?? false}
+      aria-label={ariaLabel}
+      value={isControlled ? value : undefined}
+      defaultValue={!isControlled && placeholder ? "" : undefined}
       className="w-full disabled:opacity-50"
       onChange={(e) => {
         const key = e.target.value;
-        const profile = profiles.find((p) => p.name === key)!;
-        // onChange?.(presavedBirthDates[key]);
-        // console.log("key: ", key);
-
-        onChange?.(profile);
+        const profile = profiles.find((p) => p.id === key || p.name === key);
+        if (profile) onChange?.(profile);
       }}
     >
-      {/* {Object.entries(presavedBirthDates).map(([name, date], index) => (
-        <option key={index} value={name}>
-          {date.name}
-        </option>
-      ))} */}
-
-      {profiles.map((profile, index) => (
-        <option key={index} value={profile.name}>
-          {profile.name}
-        </option>
-      ))}
+      {placeholder && <option value="">{placeholder}</option>}
+      {profiles.map((profile, index) => {
+        const key = profile.id ?? profile.name ?? String(index);
+        return (
+          <option key={key} value={profile.id ?? profile.name ?? ""}>
+            {profile.name ?? `Mapa ${index + 1}`}
+          </option>
+        );
+      })}
     </select>
   );
 }

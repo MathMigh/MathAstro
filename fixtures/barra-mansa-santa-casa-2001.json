@@ -1,0 +1,13 @@
+{
+  "birthDate": {
+    "day": 21,
+    "month": 4,
+    "year": 2001,
+    "time": "06:45",
+    "coordinates": {
+      "name": "Santa Casa de Misericórdia de Barra Mansa, Rua Pinto Ribeiro 205, Barra Mansa, RJ",
+      "latitude": -22.54129765301692,
+      "longitude": -44.17411375
+    }
+  }
+}

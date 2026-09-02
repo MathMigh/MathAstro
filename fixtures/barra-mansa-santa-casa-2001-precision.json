@@ -1,0 +1,703 @@
+{
+  "input": {
+    "localCivil": "2001-04-21T06:45:00-03:00",
+    "utc": "2001-04-21T09:45:00+00:00",
+    "timezone": "America/Sao_Paulo",
+    "latitude": -22.54129765301692,
+    "longitude": -44.17411375,
+    "julianDayUt": 2452020.90625
+  },
+  "positions": {
+    "Sol": {
+      "longitude": 31.34861655952354,
+      "latitude": -0.00022896605490019197,
+      "distance": 1.0050556142248745,
+      "longitudeSpeed": 0.9759790879289826,
+      "latitudeSpeed": -4.354359367740754e-06,
+      "rightAscension": 29.201202082917057,
+      "declination": 11.94269928789705,
+      "retrograde": false
+    },
+    "Lua": {
+      "longitude": 4.907786849688486,
+      "latitude": -5.02798896859824,
+      "distance": 0.0026443994771736556,
+      "longitudeSpeed": 12.510447943916823,
+      "latitudeSpeed": -0.07594834677744494,
+      "rightAscension": 6.49836746388889,
+      "declination": -2.6658728246654007,
+      "retrograde": false
+    },
+    "Mercúrio": {
+      "longitude": 29.090958716914365,
+      "latitude": -0.7702390138860059,
+      "distance": 1.3335077246018134,
+      "longitudeSpeed": 2.0970536831824518,
+      "latitudeSpeed": 0.1586183063099064,
+      "rightAscension": 27.320689982915315,
+      "declination": 10.430537242504766,
+      "retrograde": false
+    },
+    "Vênus": {
+      "longitude": 1.4853496995064281,
+      "latitude": 3.660374179556266,
+      "distance": 0.3501441006265903,
+      "longitudeSpeed": 0.04755138374917839,
+      "latitudeSpeed": -0.22419786198501268,
+      "rightAscension": 359.90463406232556,
+      "declination": 3.94873652325214,
+      "retrograde": false
+    },
+    "Marte": {
+      "longitude": 266.73264573120287,
+      "latitude": -0.31896528319232886,
+      "distance": 0.7276403563666437,
+      "longitudeSpeed": 0.21761827473128253,
+      "latitudeSpeed": -0.03800524621448585,
+      "rightAscension": 266.43091354499694,
+      "declination": -23.7172895450608,
+      "retrograde": false
+    },
+    "Júpiter": {
+      "longitude": 71.49327578138222,
+      "latitude": -0.42180006400109094,
+      "distance": 5.807577999070733,
+      "longitudeSpeed": 0.2032438942991237,
+      "latitudeSpeed": 0.0023496912950549654,
+      "rightAscension": 70.01844345069232,
+      "declination": 21.742424253011148,
+      "retrograde": false
+    },
+    "Saturno": {
+      "longitude": 60.058259376878404,
+      "latitude": -1.7520289071785764,
+      "distance": 9.964118412717038,
+      "longitudeSpeed": 0.11911081064532585,
+      "latitudeSpeed": 0.002362728745437648,
+      "rightAscension": 58.27005522136068,
+      "declination": 18.449460466110377,
+      "retrograde": false
+    },
+    "Urano": {
+      "longitude": 324.2477323494261,
+      "latitude": -0.701240247025518,
+      "distance": 20.336801190956585,
+      "longitudeSpeed": 0.03016599810929328,
+      "latitudeSpeed": -0.0005868561203130763,
+      "rightAscension": 326.79320106002683,
+      "declination": -14.100334530726666,
+      "retrograde": false
+    },
+    "Netuno": {
+      "longitude": 308.67215813190035,
+      "latitude": 0.15435204651708848,
+      "distance": 30.21569450979816,
+      "longitudeSpeed": 0.010681784183058774,
+      "latitudeSpeed": -9.483077133325372e-05,
+      "rightAscension": 311.0568650418438,
+      "declination": -17.9435129796843,
+      "retrograde": false
+    },
+    "Plutão": {
+      "longitude": 254.96609519764846,
+      "latitude": 10.698635577513024,
+      "distance": 29.649577897517588,
+      "longitudeSpeed": -0.017384490421277415,
+      "latitudeSpeed": 0.0027174453004913312,
+      "rightAscension": 254.89831319790403,
+      "declination": -11.955499692621746,
+      "retrograde": true
+    },
+    "Nodo Norte": {
+      "longitude": 98.88536915638176,
+      "latitude": 0.0,
+      "distance": 0.0024655950350800176,
+      "longitudeSpeed": -0.1885380319755269,
+      "latitudeSpeed": 0.0,
+      "rightAscension": 99.66999570735182,
+      "declination": 23.14103018835892,
+      "retrograde": true
+    },
+    "Nodo Sul": {
+      "longitude": 278.8853691563818,
+      "latitude": -0.0,
+      "distance": 0.0024655950350800176,
+      "longitudeSpeed": -0.1885380319755269,
+      "latitudeSpeed": -0.0,
+      "rightAscension": 279.6699957073518,
+      "declination": -23.14103018835892,
+      "retrograde": true
+    }
+  },
+  "houses": {
+    "regiomontanus": [
+      37.96092883959789,
+      65.49905047398516,
+      95.94807321360197,
+      129.17316614729282,
+      161.68414820689043,
+      190.93228011236974,
+      217.9609288395979,
+      245.49905047398516,
+      275.94807321360196,
+      309.1731661472928,
+      341.6841482068904,
+      10.932280112369735
+    ],
+    "placidus": [
+      37.96092883959789,
+      67.15180741117224,
+      97.52018489785154,
+      129.17316614729282,
+      161.1779720995953,
+      191.2798438031507,
+      217.9609288395979,
+      247.15180741117223,
+      277.52018489785155,
+      309.1731661472928,
+      341.1779720995953,
+      11.279843803150683
+    ],
+    "ascendant": 37.96092883959789,
+    "mc": 309.1731661472928
+  },
+  "nodes": {
+    "trueNorth": 98.88536915638176,
+    "trueSouth": 278.8853691563818,
+    "meanNorth": 99.83846179049537,
+    "meanSouth": 279.8384617904954
+  },
+  "sect": "Diurno",
+  "dignities": {
+    "Sol": {
+      "sign": "Touro",
+      "degree": 1.3486165595235384,
+      "rulers": {
+        "domicile": "Vênus",
+        "exaltation": "Lua",
+        "triplicity": "Vênus",
+        "term": "Vênus",
+        "face": "Mercúrio"
+      },
+      "dignities": [],
+      "debilities": [
+        [
+          "peregrino",
+          -3
+        ]
+      ],
+      "scoreMarcos": 0
+    },
+    "Lua": {
+      "sign": "Áries",
+      "degree": 4.907786849688486,
+      "rulers": {
+        "domicile": "Marte",
+        "exaltation": "Sol",
+        "triplicity": "Sol",
+        "term": "Júpiter",
+        "face": "Marte"
+      },
+      "dignities": [],
+      "debilities": [
+        [
+          "peregrino",
+          -3
+        ]
+      ],
+      "scoreMarcos": 0
+    },
+    "Mercúrio": {
+      "sign": "Áries",
+      "degree": 29.090958716914365,
+      "rulers": {
+        "domicile": "Marte",
+        "exaltation": "Sol",
+        "triplicity": "Sol",
+        "term": "Saturno",
+        "face": "Vênus"
+      },
+      "dignities": [],
+      "debilities": [
+        [
+          "peregrino",
+          -3
+        ]
+      ],
+      "scoreMarcos": 0
+    },
+    "Vênus": {
+      "sign": "Áries",
+      "degree": 1.4853496995064281,
+      "rulers": {
+        "domicile": "Marte",
+        "exaltation": "Sol",
+        "triplicity": "Sol",
+        "term": "Júpiter",
+        "face": "Marte"
+      },
+      "dignities": [],
+      "debilities": [
+        [
+          "exílio",
+          -5
+        ]
+      ],
+      "scoreMarcos": -5
+    },
+    "Marte": {
+      "sign": "Sagitário",
+      "degree": 26.732645731202865,
+      "rulers": {
+        "domicile": "Júpiter",
+        "exaltation": null,
+        "triplicity": "Sol",
+        "term": "Marte",
+        "face": "Saturno"
+      },
+      "dignities": [
+        [
+          "termo",
+          2
+        ]
+      ],
+      "debilities": [],
+      "scoreMarcos": 2
+    },
+    "Júpiter": {
+      "sign": "Gêmeos",
+      "degree": 11.493275781382223,
+      "rulers": {
+        "domicile": "Mercúrio",
+        "exaltation": null,
+        "triplicity": "Saturno",
+        "term": "Júpiter",
+        "face": "Marte"
+      },
+      "dignities": [
+        [
+          "termo",
+          2
+        ]
+      ],
+      "debilities": [
+        [
+          "exílio",
+          -5
+        ]
+      ],
+      "scoreMarcos": -3
+    },
+    "Saturno": {
+      "sign": "Gêmeos",
+      "degree": 0.05825937687840366,
+      "rulers": {
+        "domicile": "Mercúrio",
+        "exaltation": null,
+        "triplicity": "Saturno",
+        "term": "Mercúrio",
+        "face": "Júpiter"
+      },
+      "dignities": [
+        [
+          "triplicidade",
+          3
+        ]
+      ],
+      "debilities": [],
+      "scoreMarcos": 3
+    }
+  },
+  "lordOfNativity": "Saturno",
+  "temperament": {
+    "totals": {
+      "hot": 1,
+      "cold": 4,
+      "dry": 2,
+      "moist": 3
+    },
+    "components": {
+      "Colérico": 3,
+      "Sanguíneo": 4,
+      "Melancólico": 6,
+      "Fleumático": 7
+    },
+    "ranking": [
+      "Fleumático",
+      "Melancólico",
+      "Sanguíneo",
+      "Colérico"
+    ],
+    "dominant": "Fleumático",
+    "secondary": "Melancólico",
+    "weakest": "Colérico",
+    "lordOfNativity": "Saturno",
+    "witnesses": {
+      "Ascendente": {
+        "hot": 0,
+        "cold": 1,
+        "dry": 1,
+        "moist": 0
+      },
+      "Regente do Ascendente": {
+        "hot": 0,
+        "cold": 1,
+        "dry": 0,
+        "moist": 1
+      },
+      "Estação do Sol": {
+        "hot": 1,
+        "cold": 0,
+        "dry": 0,
+        "moist": 1
+      },
+      "Fase da Lua": {
+        "hot": 0,
+        "cold": 1,
+        "dry": 0,
+        "moist": 1
+      },
+      "Senhor da Natividade": {
+        "hot": 0,
+        "cold": 1,
+        "dry": 1,
+        "moist": 0
+      }
+    },
+    "note": "Ledger técnico dos cinco testemunhos sem multiplicadores 1.25/0.75; a síntese canônica deve preservar reforços/contradições qualitativos e não tratar o total como score autoral."
+  },
+  "arabicLots": {
+    "Fortuna": 11.520099129762837,
+    "Espírito": 64.40175854943294,
+    "Necessidade": 345.07926941992775,
+    "Amor": 90.842588259268,
+    "Valor": 142.74838223815786,
+    "Vitória": 45.052446071547166,
+    "Cativeiro": 349.4227685924823
+  },
+  "placements": [
+    {
+      "point": "Sol",
+      "longitude": 31.34861655952354,
+      "geometricHouse": 12,
+      "distanceFromCurrentCusp": 20.416336447153803,
+      "nextCusp": 1,
+      "distanceToNextCusp": 6.612312280074352,
+      "sameSignAsNextCusp": true,
+      "houseArcSize": 27.028648727228155,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Lua",
+      "longitude": 4.907786849688486,
+      "geometricHouse": 11,
+      "distanceFromCurrentCusp": 23.22363864279805,
+      "nextCusp": 12,
+      "distanceToNextCusp": 6.024493262681249,
+      "sameSignAsNextCusp": true,
+      "houseArcSize": 29.248131905479283,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Mercúrio",
+      "longitude": 29.090958716914365,
+      "geometricHouse": 12,
+      "distanceFromCurrentCusp": 18.15867860454463,
+      "nextCusp": 1,
+      "distanceToNextCusp": 8.869970122683526,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 27.028648727228155,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Vênus",
+      "longitude": 1.4853496995064281,
+      "geometricHouse": 11,
+      "distanceFromCurrentCusp": 19.801201492615974,
+      "nextCusp": 12,
+      "distanceToNextCusp": 9.446930412863306,
+      "sameSignAsNextCusp": true,
+      "houseArcSize": 29.248131905479283,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Marte",
+      "longitude": 266.73264573120287,
+      "geometricHouse": 8,
+      "distanceFromCurrentCusp": 21.2335952572177,
+      "nextCusp": 9,
+      "distanceToNextCusp": 9.215427482399093,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 30.449022739616794,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Júpiter",
+      "longitude": 71.49327578138222,
+      "geometricHouse": 2,
+      "distanceFromCurrentCusp": 5.994225307397059,
+      "nextCusp": 3,
+      "distanceToNextCusp": 24.45479743221975,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 30.449022739616808,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Saturno",
+      "longitude": 60.058259376878404,
+      "geometricHouse": 1,
+      "distanceFromCurrentCusp": 22.097330537280513,
+      "nextCusp": 2,
+      "distanceToNextCusp": 5.440791097106761,
+      "sameSignAsNextCusp": true,
+      "houseArcSize": 27.538121634387274,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Urano",
+      "longitude": 324.2477323494261,
+      "geometricHouse": 10,
+      "distanceFromCurrentCusp": 15.07456620213327,
+      "nextCusp": 11,
+      "distanceToNextCusp": 17.43641585746434,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 32.51098205959761,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Netuno",
+      "longitude": 308.67215813190035,
+      "geometricHouse": 9,
+      "distanceFromCurrentCusp": 32.72408491829839,
+      "nextCusp": 10,
+      "distanceToNextCusp": 0.5010080153924719,
+      "sameSignAsNextCusp": true,
+      "houseArcSize": 33.22509293369086,
+      "withinMarcosBaseFiveDegrees": true
+    },
+    {
+      "point": "Plutão",
+      "longitude": 254.96609519764846,
+      "geometricHouse": 8,
+      "distanceFromCurrentCusp": 9.467044723663292,
+      "nextCusp": 9,
+      "distanceToNextCusp": 20.9819780159535,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 30.449022739616794,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Nodo Norte",
+      "longitude": 98.88536915638176,
+      "geometricHouse": 3,
+      "distanceFromCurrentCusp": 2.937295942779784,
+      "nextCusp": 4,
+      "distanceToNextCusp": 30.287796990911062,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 33.225092933690846,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Nodo Sul",
+      "longitude": 278.8853691563818,
+      "geometricHouse": 9,
+      "distanceFromCurrentCusp": 2.9372959427798264,
+      "nextCusp": 10,
+      "distanceToNextCusp": 30.287796990911033,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 33.22509293369086,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Parte Fortuna",
+      "longitude": 11.520099129762837,
+      "geometricHouse": 12,
+      "distanceFromCurrentCusp": 0.5878190173931017,
+      "nextCusp": 1,
+      "distanceToNextCusp": 26.440829709835054,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 27.028648727228155,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Parte Espírito",
+      "longitude": 64.40175854943294,
+      "geometricHouse": 1,
+      "distanceFromCurrentCusp": 26.44082970983505,
+      "nextCusp": 2,
+      "distanceToNextCusp": 1.0972919245522235,
+      "sameSignAsNextCusp": true,
+      "houseArcSize": 27.538121634387274,
+      "withinMarcosBaseFiveDegrees": true
+    },
+    {
+      "point": "Parte Necessidade",
+      "longitude": 345.07926941992775,
+      "geometricHouse": 11,
+      "distanceFromCurrentCusp": 3.395121213037328,
+      "nextCusp": 12,
+      "distanceToNextCusp": 25.853010692441956,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 29.248131905479283,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Parte Amor",
+      "longitude": 90.842588259268,
+      "geometricHouse": 2,
+      "distanceFromCurrentCusp": 25.343537785282834,
+      "nextCusp": 3,
+      "distanceToNextCusp": 5.105484954333974,
+      "sameSignAsNextCusp": true,
+      "houseArcSize": 30.449022739616808,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Parte Valor",
+      "longitude": 142.74838223815786,
+      "geometricHouse": 4,
+      "distanceFromCurrentCusp": 13.575216090865041,
+      "nextCusp": 5,
+      "distanceToNextCusp": 18.935765968732568,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 32.51098205959761,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Parte Vitória",
+      "longitude": 45.052446071547166,
+      "geometricHouse": 1,
+      "distanceFromCurrentCusp": 7.091517231949275,
+      "nextCusp": 2,
+      "distanceToNextCusp": 20.446604402438,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 27.538121634387274,
+      "withinMarcosBaseFiveDegrees": false
+    },
+    {
+      "point": "Parte Cativeiro",
+      "longitude": 349.4227685924823,
+      "geometricHouse": 11,
+      "distanceFromCurrentCusp": 7.738620385591901,
+      "nextCusp": 12,
+      "distanceToNextCusp": 21.509511519887383,
+      "sameSignAsNextCusp": false,
+      "houseArcSize": 29.248131905479283,
+      "withinMarcosBaseFiveDegrees": false
+    }
+  ],
+  "aspectsMarcosInfluence": [
+    {
+      "first": "Lua",
+      "second": "Vênus",
+      "aspect": "conjunção",
+      "orb": 3.4224371501820583,
+      "influenceBand": "weak",
+      "motionNow": "separating",
+      "previousPerfectionJd": 2452020.6309892666,
+      "previousPerfectionDaysAgo": 0.2752607334405184,
+      "nextPerfectionJd": null,
+      "nextPerfectionDays": null,
+      "blocker": null,
+      "blockerJd": null
+    },
+    {
+      "first": "Lua",
+      "second": "Saturno",
+      "aspect": "sextil",
+      "orb": 4.849527472810083,
+      "influenceBand": "weak",
+      "motionNow": "separating",
+      "previousPerfectionJd": 2452020.513319782,
+      "previousPerfectionDaysAgo": 0.3929302180185914,
+      "nextPerfectionJd": null,
+      "nextPerfectionDays": null,
+      "blocker": null,
+      "blockerJd": null
+    },
+    {
+      "first": "Mercúrio",
+      "second": "Marte",
+      "aspect": "trígono",
+      "orb": 2.3583129857114997,
+      "influenceBand": "strong",
+      "motionNow": "separating",
+      "previousPerfectionJd": 2452019.6399320755,
+      "previousPerfectionDaysAgo": 1.2663179244846106,
+      "nextPerfectionJd": null,
+      "nextPerfectionDays": null,
+      "blocker": null,
+      "blockerJd": null
+    },
+    {
+      "first": "Vênus",
+      "second": "Saturno",
+      "aspect": "sextil",
+      "orb": 1.4270903226280245,
+      "influenceBand": "strong",
+      "motionNow": "applying",
+      "previousPerfectionJd": null,
+      "previousPerfectionDaysAgo": null,
+      "nextPerfectionJd": null,
+      "nextPerfectionDays": null,
+      "blocker": "relative-motion-reversal",
+      "blockerJd": 2452022.8299912736
+    }
+  ],
+  "prenatalSyzygy": {
+    "type": "Lua Cheia",
+    "julianDayUt": 2452007.640209169,
+    "daysBeforeBirth": 13.266040830872953,
+    "longitude": 18.35855874554165
+  },
+  "fixedStars": [
+    {
+      "point": "Saturno",
+      "star": "Alcyone",
+      "starLongitude": 60.000631628906085,
+      "starLatitude": 4.051289695096065,
+      "orb": 0.057627747972318843,
+      "maxOrb": 1
+    },
+    {
+      "point": "Cúspide 1",
+      "star": "Schedir",
+      "starLongitude": 37.788547211143396,
+      "starLatitude": 46.622790148602505,
+      "orb": 0.17238162845449523,
+      "maxOrb": 1
+    },
+    {
+      "point": "Sol",
+      "star": "Mira",
+      "starLongitude": 31.5292671046109,
+      "starLatitude": -15.936916396985167,
+      "orb": 0.18065054508736011,
+      "maxOrb": 1
+    },
+    {
+      "point": "Cúspide 1",
+      "star": "Hamal",
+      "starLongitude": 37.66997856638996,
+      "starLatitude": 9.96528381663312,
+      "orb": 0.2909502732079332,
+      "maxOrb": 1
+    },
+    {
+      "point": "Marte",
+      "star": "Aculeus",
+      "starLongitude": 265.8092984909791,
+      "starLatitude": -8.885279916380542,
+      "orb": 0.9233472402237908,
+      "maxOrb": 1
+    },
+    {
+      "point": "Júpiter",
+      "star": "Aldebaran",
+      "starLongitude": 69.79797730345904,
+      "starLatitude": -5.467568431804629,
+      "orb": 1.6952984779231883,
+      "maxOrb": 3
+    }
+  ]
+}

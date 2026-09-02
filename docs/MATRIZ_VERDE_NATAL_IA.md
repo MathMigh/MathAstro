@@ -1,0 +1,3 @@
+# ARQUIVO LEGADO — NÃO É CERTIFICAÇÃO DE PRODUÇÃO
+
+Consulte `MATRIZ_COBERTURA_ESTRUTURAL_NATAL_IA.md` e o validador de produção.

@@ -1,0 +1,48 @@
+{
+  "schema": "mathastro.predictive.gugu-reference/1.0",
+  "fixture": "barra-mansa-santa-casa-2001-precision.json",
+  "targetUtc": "2026-08-31T15:00:00Z",
+  "planetaryValues": {
+    "Lua": 25,
+    "Sol": 19,
+    "Mercúrio": 20,
+    "Vênus": 8,
+    "Marte": 15,
+    "Júpiter": 12,
+    "Saturno": 30
+  },
+  "units": {
+    "majorYearDays": 360,
+    "monthDays": 30
+  },
+  "activeMajor": {
+    "signIndex": 2,
+    "ruler": "Mercúrio",
+    "start": "2009-03-10T09:45:00+00:00",
+    "end": "2028-11-25T09:45:00+00:00"
+  },
+  "activeMinor": {
+    "signIndex": 1,
+    "ruler": "Vênus",
+    "start": "2026-02-09T09:45:00+00:00",
+    "end": "2026-10-07T09:45:00+00:00",
+    "zodiacCycle": 0,
+    "sequenceIndex": 11
+  },
+  "activeDay": {
+    "signIndex": 0,
+    "ruler": "Marte",
+    "start": "2026-08-27T09:45:00+00:00",
+    "end": "2026-09-11T09:45:00+00:00",
+    "zodiacCycle": 0,
+    "sequenceIndex": 11
+  },
+  "activeHour": {
+    "signIndex": 5,
+    "ruler": "Mercúrio",
+    "start": "2026-08-31T00:45:00+00:00",
+    "end": "2026-08-31T20:45:00+00:00",
+    "zodiacCycle": 0,
+    "sequenceIndex": 5
+  }
+}

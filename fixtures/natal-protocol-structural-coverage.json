@@ -1,0 +1,505 @@
+{
+  "allStructuralCovered": true,
+  "certifiesProduction": false,
+  "checks": [
+    {
+      "name": "48 contratos 6–53",
+      "ok": true,
+      "evidence": "count=48 missing=[]"
+    },
+    {
+      "name": "Pacote planetário universal",
+      "ok": true,
+      "evidence": "planet packets + regências + aspectos/recepções/estrelas/nodos/antíscios"
+    },
+    {
+      "name": "Pacote das 12 casas",
+      "ok": true,
+      "evidence": "house dossiers completos"
+    },
+    {
+      "name": "Casas derivadas 12×12",
+      "ok": true,
+      "evidence": "aritmética derivada materializada pelo motor"
+    },
+    {
+      "name": "Contrato de não-recálculo da IA",
+      "ok": true,
+      "evidence": "IA interpreta; motor calcula"
+    },
+    {
+      "name": "Relatório materializa os contratos",
+      "ok": true,
+      "evidence": "todos os contratos são emitidos; isto mede cobertura estrutural, não certificação de produção"
+    },
+    {
+      "name": "API devolve relatório + análise + precisão",
+      "ok": true,
+      "evidence": "birth-chart POST"
+    },
+    {
+      "name": "Fuso IANA fail-closed",
+      "ok": true,
+      "evidence": "sem inferência geográfica silenciosa"
+    },
+    {
+      "name": "Sem pesos 1,25/0,75 na lógica ativa",
+      "ok": true,
+      "evidence": "modulação do temperamento qualitativa"
+    },
+    {
+      "name": "Senhor da Natividade com desempate acidental source-locked",
+      "ok": true,
+      "evidence": "hierarquia essencial primeiro; apenas angularidade exclusiva resolve empate automaticamente; sem score de aspectos"
+    },
+    {
+      "name": "Profissão Frawley source-locked",
+      "ok": true,
+      "evidence": "X + regente X + planetas X + Mercúrio/Vênus/Marte"
+    },
+    {
+      "name": "Partes Marcos preservadas até 5°",
+      "ok": true,
+      "evidence": "contato da Parte não truncado pelo orb genérico de 3°"
+    },
+    {
+      "name": "Validação de referência atualizada",
+      "ok": true,
+      "evidence": "fixture coerente com técnica atual"
+    }
+  ],
+  "protocols": [
+    {
+      "id": "temperament",
+      "section": 6,
+      "title": "Temperamento - núcleo Marcos",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "lord-of-nativity",
+      "section": 7,
+      "title": "Senhor da Natividade - Marcos",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "manner",
+      "section": 8,
+      "title": "Manner - Frawley",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "mentality-marcos",
+      "section": 9,
+      "title": "Mentalidade - método Marcos",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "mentality-frawley",
+      "section": 10,
+      "title": "Mentalidade - complemento Frawley",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "mentality-gugu",
+      "section": 11,
+      "title": "Mentalidade - suplemento Gugu",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "SOURCE_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "constitution",
+      "section": 12,
+      "title": "Constituição geral, corpo e presença",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "health-disease",
+      "section": 13,
+      "title": "Saúde geral e predisposição a doenças",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "body-localization",
+      "section": 14,
+      "title": "Localização corporal de uma vulnerabilidade",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "accidents",
+      "section": 15,
+      "title": "Acidentes e lesões",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "self-undoing",
+      "section": 16,
+      "title": "Sofrimento psíquico, vícios e autossabotagem",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "longevity",
+      "section": 17,
+      "title": "Vitalidade, longevidade e morte - Frawley atual",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "money",
+      "section": 18,
+      "title": "Dinheiro e recursos próprios",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "salary",
+      "section": 19,
+      "title": "Salário, remuneração e benefícios do trabalho",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "inheritance",
+      "section": 20,
+      "title": "Heranças e dinheiro de mortos",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "other-money",
+      "section": 21,
+      "title": "Dinheiro do cônjuge, parceiro, cliente ou outro",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "property",
+      "section": 22,
+      "title": "Imóveis, terra, casa e patrimônio imóvel",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "windfall",
+      "section": 23,
+      "title": "Loteria, ganhos do alto e apoios inesperados",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "loans-banks",
+      "section": 24,
+      "title": "Empréstimos, bancos, contratos financeiros",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "romance-sexuality",
+      "section": 25,
+      "title": "Romance, prazer e sexualidade",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "relationships",
+      "section": 26,
+      "title": "Casamento, parceria e padrão relacional - Marcos",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "children",
+      "section": 27,
+      "title": "Filhos, fertilidade e gravidez",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "father-roots",
+      "section": 28,
+      "title": "Pai, raízes e ancestralidade",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "mother",
+      "section": 29,
+      "title": "Mãe",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "siblings-peers",
+      "section": 30,
+      "title": "Irmãos, primos, vizinhos e pares cotidianos",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "friends-support",
+      "section": 31,
+      "title": "Amigos, benfeitores, esperanças e apoios",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "open-enemies",
+      "section": 32,
+      "title": "Inimigos declarados, concorrentes e oposição",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "hidden-enemies",
+      "section": 33,
+      "title": "Inimigos ocultos, confinamentos e restrições",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "communication-basic-learning",
+      "section": 34,
+      "title": "Comunicação, leitura, escrita e habilidades intelectuais básicas",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "routine",
+      "section": 35,
+      "title": "Rotina e atividades cotidianas",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "higher-learning",
+      "section": 36,
+      "title": "Ensino superior, conhecimento, mestres e profissões eruditas como categoria",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "faith",
+      "section": 37,
+      "title": "Fé, religião e orientação espiritual",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "dreams",
+      "section": 38,
+      "title": "Sonhos durante o sono",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "short-travel",
+      "section": 39,
+      "title": "Viagens curtas/rotineiras e deslocamentos",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "long-travel",
+      "section": 40,
+      "title": "Viagens longas, estrangeiro e peregrinação",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "profession-marcos",
+      "section": 41,
+      "title": "Profissão, habilidades e estilo de trabalho - Marcos",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "profession-frawley",
+      "section": 42,
+      "title": "Profissão - complemento Frawley verificado",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "authority-status",
+      "section": 43,
+      "title": "Honra, autoridade, chefes e posição pública",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_FOR_AI",
+      "structuralCovered": true
+    },
+    {
+      "id": "fame",
+      "section": 44,
+      "title": "Fama e notabilidade - suplemento Frawley",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "subordinates-small-animals",
+      "section": 45,
+      "title": "Empregados, subordinados, prestadores e pequenos animais",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "large-animals",
+      "section": 46,
+      "title": "Grandes animais",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "derived-house-router",
+      "section": 47,
+      "title": "Circunstância natal não listada: roteador por casas derivadas",
+      "phase": "radical",
+      "coverage": "COVERED",
+      "execution": "READY_WITH_CONTEXT_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "radical-promise",
+      "section": 48,
+      "title": "Promessa radical antes de qualquer previsão",
+      "phase": "timing",
+      "coverage": "COVERED",
+      "execution": "TIMING_CONTEXT_REQUIRED",
+      "structuralCovered": true
+    },
+    {
+      "id": "primary-directions",
+      "section": 49,
+      "title": "Direções primárias - Marcos",
+      "phase": "timing",
+      "coverage": "COVERED",
+      "execution": "TIMING_CONTEXT_REQUIRED",
+      "structuralCovered": true
+    },
+    {
+      "id": "secondary-progressions-marcos",
+      "section": 50,
+      "title": "Progressões secundárias - Marcos",
+      "phase": "timing",
+      "coverage": "COVERED",
+      "execution": "TIMING_CONTEXT_REQUIRED",
+      "structuralCovered": true
+    },
+    {
+      "id": "solar-lunar-return-marcos",
+      "section": 51,
+      "title": "Revolução Solar e Lunar - Marcos",
+      "phase": "timing",
+      "coverage": "COVERED",
+      "execution": "TIMING_CONTEXT_REQUIRED",
+      "structuralCovered": true
+    },
+    {
+      "id": "frawley-timing",
+      "section": 52,
+      "title": "Progressões, retornos e profecções - Frawley atual",
+      "phase": "timing",
+      "coverage": "COVERED",
+      "execution": "TIMING+SOURCE_GATE",
+      "structuralCovered": true
+    },
+    {
+      "id": "temporal-convergence",
+      "section": 53,
+      "title": "Regra de convergência temporal",
+      "phase": "timing",
+      "coverage": "COVERED",
+      "execution": "TIMING_CONTEXT_REQUIRED",
+      "structuralCovered": true
+    }
+  ]
+}

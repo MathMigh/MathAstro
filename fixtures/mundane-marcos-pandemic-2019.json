@@ -1,0 +1,23 @@
+{
+  "id": "marcos-pandemic-2019",
+  "source": {
+    "title": "Curso Estrelas Fixas — Aula 9",
+    "author": "Marcos Monteiro",
+    "material": "Astrologia(4).zip / Marcos Monteiro - Estrelas Fixas/9.txt",
+    "note": "Real teaching example. Marcos explicitly starts with the Jupiter-Saturn conjunction governing the onset, then the 2019 eclipse, Aries ingress and Libra ingress, and rejects using the December 2020 conjunction retroactively for an onset already underway."
+  },
+  "location": {
+    "name": "Beijing",
+    "latitude": 39.9042,
+    "longitude": 116.4074
+  },
+  "processOnset": "2019-11-01T00:00:00Z",
+  "grandConjunctionExpected": "2000-05-28T16:05:13Z",
+  "grandConjunctionRejectedForOrigin": "2020-12-21T18:20:37Z",
+  "solarEclipseExpectedDate": "2019-07-02",
+  "ingresses": ["aries-2019", "libra-2019"],
+  "structuralInvariants": [
+    "solar eclipse Sun-Moon conjunction is definition-induced",
+    "solar eclipse Fortune-Ascendant coincidence is definition-induced under the standard day formula"
+  ]
+}

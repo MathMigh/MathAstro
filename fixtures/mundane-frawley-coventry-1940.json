@@ -1,0 +1,62 @@
+{
+  "id": "frawley-coventry-1940",
+  "source": {
+    "title": "The Real Astrology Applied",
+    "author": "John Frawley",
+    "pages": [135, 136, 137, 138, 140, 141],
+    "note": "Published mundane worked example; assertions below are source-anchored and tested independently with PySwissEph. Historical 1345 date is treated as Julian calendar."
+  },
+  "location": {
+    "name": "Coventry",
+    "latitude": 52.4166666667,
+    "longitude": -1.5166666667
+  },
+  "radix": {
+    "date": "1345-01-21T00:00:00",
+    "calendar": "julian",
+    "houseSystem": "Placidus",
+    "sourceAssertions": [
+      "Ascendant is ruled by Venus",
+      "radical eighth cusp is activated by the 1921 Grand Conjunction MC"
+    ]
+  },
+  "grandConjunction1921": {
+    "utc": "1921-09-10T04:14:00Z",
+    "sourceAssertions": [
+      "Jupiter and Saturn are conjunct",
+      "Coventry radical eighth cusp falls on the conjunction-chart Midheaven",
+      "Mars afflicts the conjunction-chart Midheaven by a close square"
+    ]
+  },
+  "ariesIngress1921": {
+    "utc": "1921-03-21T03:51:00Z",
+    "sourceAssertions": [
+      "Sun is at 0 Aries",
+      "Mars is conjunct the South Node near 27 Aries",
+      "this conjunction falls on Coventry's radical Descendant"
+    ]
+  },
+  "eclipse1939": {
+    "utc": "1939-05-03T16:11:00Z",
+    "kind": "lunar",
+    "sourceAssertions": [
+      "This is the eclipse used immediately before the outbreak of war",
+      "Frawley explicitly names Venus as Lord of the Eclipse"
+    ]
+  },
+  "fullMoonRaid": {
+    "utc": "1940-11-15T02:23:00Z",
+    "sourceAssertions": [
+      "Full Moon is at about 22 Taurus",
+      "it falls on Coventry's radical eighth cusp",
+      "the same degree returns to the 1921 Grand Conjunction Midheaven",
+      "Mars falls on Coventry's radical Ascendant"
+    ]
+  },
+  "tolerancesDeg": {
+    "publishedExactOrConj": 2.0,
+    "closeSquareResidual": 1.5,
+    "phaseResidual": 0.02,
+    "exactConjunctionArcsec": 1.0
+  }
+}

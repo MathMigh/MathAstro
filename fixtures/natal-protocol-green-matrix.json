@@ -1,0 +1,5 @@
+{
+  "legacy": true,
+  "certifiesProduction": false,
+  "message": "Arquivo legado. Use natal-protocol-structural-coverage.json para cobertura e natalProductionValidation runtime para liberação de produção."
+}

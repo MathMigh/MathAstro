@@ -1,0 +1,361 @@
+[
+  {
+    "id": "M-HE-CHAMPION",
+    "title": "Will the Champion Retain His Belt?",
+    "ascendant": 187.2422723088539,
+    "answer": "YES",
+    "timing": null,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "venus"
+      },
+      "champion": {
+        "house": 10,
+        "planet": "moon"
+      },
+      "challenger": {
+        "house": 4,
+        "planet": "saturn"
+      }
+    },
+    "mediation": [],
+    "reasons": [
+      "O antíscio do campeão torna-se angular na X e inclina o confronto a favor do incumbente."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-BRAZIL",
+    "title": "Will Brazil Win the 2014 World Cup?",
+    "ascendant": 14.703009529489785,
+    "answer": "NO",
+    "timing": null,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "mars"
+      },
+      "victory": {
+        "house": 10,
+        "planet": "saturn"
+      }
+    },
+    "mediation": [],
+    "reasons": [
+      "L1 não alcança L10 e há testemunho de outro agente chegando à vitória/troféu."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-TRIAL",
+    "title": "When Will I Win the Money from This Trial?",
+    "ascendant": 0.02996579773045514,
+    "answer": "NO",
+    "timing": "7.78 unidade(s) de arco; combinação signo=lento, casa=intermediário, síntese=intermediário. A angularidade pode acelerar quando representa agente com vontade e capacidade; não converter mecanicamente sem recepções/contexto.",
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "mars"
+      },
+      "opponent": {
+        "house": 7,
+        "planet": "venus"
+      },
+      "judge": {
+        "house": 10,
+        "planet": "saturn"
+      },
+      "verdict": {
+        "house": 4,
+        "planet": "moon"
+      }
+    },
+    "mediation": [
+      {
+        "kind": "prohibition",
+        "statement": "Veredicto→querente é proibido antes da perfeição por Lua e Mercúrio aperfeiçoam contato por contra-antíscio."
+      },
+      {
+        "kind": "prohibition_of_prohibition",
+        "statement": "A mesma cadeia confirma “proibição da proibição”: Lua e Mercúrio aperfeiçoam contato por contra-antíscio. ocorre antes de Saturno e Mercúrio aperfeiçoam trine., de modo que a interferência de Mercúrio contra o contato oponente–juiz é ela própria interceptada."
+      }
+    ],
+    "reasons": [
+      "Provisoriamente, L4/veredicto alcança o querente antes do oponente; a cronologia ainda pode proibir este contato.",
+      "O juiz recebe negativamente o querente e positivamente o oponente: forte advertência contra a expectativa do querente.",
+      "A cronologia real reproduz a cadeia do caso: contra-antíscio do veredicto com Mercúrio antes de Lua–Marte proíbe o ganho do querente; a mesma cadeia impede Mercúrio de bloquear Vênus–Saturno, deixando oponente e juiz chegarem ao contato."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-BET",
+    "title": "Will I Profit from This Bet?",
+    "ascendant": 50.67053371416905,
+    "answer": "NO",
+    "timing": "2.58 unidade(s) de arco; combinação signo=rápido, casa=rápido, síntese=rápido. A angularidade pode acelerar quando representa agente com vontade e capacidade; não converter mecanicamente sem recepções/contexto.",
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "venus"
+      },
+      "querent_money": {
+        "house": 2,
+        "planet": "mercury"
+      },
+      "bookmaker_money": {
+        "house": 8,
+        "planet": "jupiter"
+      },
+      "quesited": {
+        "house": 8,
+        "planet": "jupiter"
+      }
+    },
+    "mediation": [
+      {
+        "kind": "refranation",
+        "statement": "Cronologia efemérica: a aplicação inicial Vênus–Júpiter é interrompida antes de aperfeiçoar porque Vênus estaciona/reverte movimento."
+      }
+    ],
+    "reasons": [
+      "Há perfeição direta futura entre os significadores principais antes da mudança de signo.",
+      "A oposição aperfeiçoa contato com dificuldade/custo/separação conforme o tópico.",
+      "A aplicação ao dinheiro da aposta refrana: um significador estaciona/reverte antes de qualquer perfeição real. Sem aspecto, não há lucro."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-TRIP-BUSINESS",
+    "title": "Should I Make This Trip or Open a Co-Working Spot?",
+    "ascendant": 93.31399044890723,
+    "answer": "DESCRIPTIVE_ONLY",
+    "timing": null,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "moon"
+      },
+      "querent_money": {
+        "house": 2,
+        "planet": "sun"
+      },
+      "alternative:trip": {
+        "house": 9,
+        "planet": "jupiter"
+      },
+      "alternative:business": {
+        "house": 10,
+        "planet": "mars"
+      },
+      "alternative:business:profit": {
+        "house": 11,
+        "planet": "venus"
+      }
+    },
+    "mediation": [
+      {
+        "kind": "translation",
+        "statement": "Cronologia confirma tradução futura de luz: Lua e Marte aperfeiçoam sextile. e depois Lua e Sol aperfeiçoam square., sem mudança de signo da Lua entre os dois contatos."
+      }
+    ],
+    "reasons": [
+      "Este tópico exige descrição de estado/relações ou cadeia específica, não um YES/NO genérico.",
+      "Entre as alternativas materializadas, trip é tecnicamente favorecida sobre business.",
+      "A Lua liga o negócio ao dinheiro do querente, mas a recepção do negócio para L2 é negativa: a ligação tende a prejudicar o dinheiro, exatamente o tipo de cadeia que uma escolha precisa expor."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-REL",
+    "title": "Will She Talk to Me Again? Am I Important to Her?",
+    "ascendant": 120.81430088675708,
+    "answer": "NO",
+    "timing": null,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "sun"
+      },
+      "quesited": {
+        "house": 7,
+        "planet": "saturn"
+      }
+    },
+    "mediation": [
+      {
+        "kind": "frustration",
+        "statement": "Contato de comunicação Vênus–Lua não aperfeiçoa no estado atual: Vênus muda de signo. ocorre antes do exato."
+      }
+    ],
+    "reasons": [
+      "Comunicação e importância afetiva foram separadas; os contatos/relações precisam ser lidos em conjunto.",
+      "A cronologia elimina os contatos aparentes de comunicação antes da perfeição, enquanto os significadores do quesitado estão em signos mudos/de voz fraca; a retomada da fala não é mostrada."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-BABY",
+    "title": "Is There Anything Wrong With the Baby? When It Will Be Born?",
+    "ascendant": 280.98557532096913,
+    "answer": "DESCRIPTIVE_ONLY",
+    "timing": "1.20 unidade(s) de arco; combinação signo=lento, casa=intermediário, síntese=intermediário. Escala plausível fornecida: days. A angularidade pode acelerar quando representa agente com vontade e capacidade; não converter mecanicamente sem recepções/contexto.",
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "saturn"
+      },
+      "mother": {
+        "house": 1,
+        "planet": "saturn"
+      },
+      "child": {
+        "house": 5,
+        "planet": "venus"
+      },
+      "childbed": {
+        "house": 12,
+        "planet": "jupiter"
+      },
+      "doctor_treating_case": {
+        "house": 7,
+        "planet": "moon"
+      },
+      "surgery_marcos_variant": {
+        "house": 6,
+        "planet": "mercury"
+      }
+    },
+    "mediation": [],
+    "reasons": [
+      "O significador do bebê tem forte dignidade essencial, testemunho favorável ao seu estado no método da fonte.",
+      "Aspectos ligados ao parto convergem em arco curto; timing é tratado como subpergunta, não como prova de dano ao bebê."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-STOMACH",
+    "title": "What’s the Problem With My Stomach? What Can I Do to Relieve It?",
+    "ascendant": 53.845203616535215,
+    "answer": "DESCRIPTIVE_ONLY",
+    "timing": null,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "venus"
+      },
+      "patient": {
+        "house": 1,
+        "planet": "venus"
+      },
+      "illness": {
+        "house": 6,
+        "planet": "venus"
+      },
+      "doctor_treating_case": {
+        "house": 7,
+        "planet": "mars"
+      },
+      "treatment": {
+        "house": 10,
+        "planet": "saturn"
+      },
+      "organ": {
+        "house": 5,
+        "planet": "venus"
+      },
+      "quesited": {
+        "house": 6,
+        "planet": "venus"
+      }
+    },
+    "mediation": [],
+    "reasons": [
+      "Este tópico exige descrição de estado/relações ou cadeia específica, não um YES/NO genérico."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-DARRYL",
+    "title": "Will Darryl Die?",
+    "ascendant": 263.5901180951095,
+    "answer": "NO",
+    "timing": null,
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "jupiter"
+      },
+      "subject": {
+        "house": 7,
+        "planet": "mercury"
+      },
+      "death_subject": {
+        "house": 7,
+        "planet": "mercury"
+      },
+      "radical_death": {
+        "house": 8,
+        "planet": "moon"
+      },
+      "turned_death": {
+        "house": 2,
+        "planet": "saturn"
+      }
+    },
+    "mediation": [
+      {
+        "kind": "prohibition_candidate",
+        "statement": "Antes da perfeição principal, Saturno aperfeiçoa contato com Vênus. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico."
+      },
+      {
+        "kind": "prohibition_candidate",
+        "statement": "Antes da perfeição principal, Mercúrio aperfeiçoa contato com Marte. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico."
+      },
+      {
+        "kind": "prohibition_candidate",
+        "statement": "Antes da perfeição principal, Mercúrio aperfeiçoa contato com Júpiter. É candidato real a proibição/interferência e deve ser lido com natureza do aspecto, recepções e tópico."
+      },
+      {
+        "kind": "prohibition",
+        "statement": "Interposição antes de contato com morte: Sol e Saturno aperfeiçoam contato por antíscio."
+      },
+      {
+        "kind": "prohibition",
+        "statement": "Interposição antes de contato com morte: Mercúrio e Marte aperfeiçoam conjunction."
+      },
+      {
+        "kind": "prohibition",
+        "statement": "Interposição antes de contato com morte: Júpiter e Mercúrio aperfeiçoam square."
+      }
+    ],
+    "reasons": [
+      "Morte exige cronologia do contato da pessoa com VIII radical/derivada; o snapshot não transforma uma aplicação potencial em sentença antes de testar proibição/refranação.",
+      "Nenhuma aplicação inicial válida à VIII radical/derivada chega à perfeição sem interposição; a cronologia favorece sobrevivência no horizonte analisado."
+    ],
+    "sourceInternalConflict": null
+  },
+  {
+    "id": "M-HE-INTERNET",
+    "title": "When Will the Internet Be Cut Off?",
+    "ascendant": 286.88932693224217,
+    "answer": "YES",
+    "timing": "5.61 unidade(s) simbólica(s) até a mudança de signo. Escala contextual plausível: hours / days / weeks.",
+    "roles": {
+      "querent": {
+        "house": 1,
+        "planet": "saturn"
+      },
+      "quesited": {
+        "house": 6,
+        "planet": "mercury"
+      }
+    },
+    "mediation": [],
+    "reasons": [
+      "O evento é pressuposto pela própria pergunta; a mudança de signo do significador fornecido funciona como marcador do quando, não como prova independente do se.",
+      "Efeméride confirma a mudança real de signo de Mercúrio em +11.32 d; este tempo astronômico não substitui o arco simbólico usado no timing horário."
+    ],
+    "sourceInternalConflict": null
+  }
+]
