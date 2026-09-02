@@ -12,8 +12,9 @@ import {
 } from "./fixedStars";
 
 let swe: SwissEphemeris | null = null;
+let sweInitPromise: Promise<SwissEphemeris> | null = null;
 
-interface CoordinatesLike {
+export interface CoordinatesLike {
   latitude: number;
   longitude: number;
   name?: string;
@@ -21,14 +22,23 @@ interface CoordinatesLike {
 }
 
 export async function getSwe(): Promise<SwissEphemeris> {
-  if (!swe) {
-    swe = new SwissEphemeris();
-    const wasmPath = path.join(process.cwd(), "public", "vendor", "swisseph.wasm");
-    const wasmBytes = await readFile(wasmPath);
-    const wasmDataUrl = `data:application/wasm;base64,${wasmBytes.toString("base64")}`;
-    await swe.init(wasmDataUrl);
+  if (swe) {
+    return swe;
   }
-  return swe;
+
+  if (!sweInitPromise) {
+    sweInitPromise = (async () => {
+      const instance = new SwissEphemeris();
+      const wasmPath = path.join(process.cwd(), "public", "vendor", "swisseph.wasm");
+      const wasmBytes = await readFile(wasmPath);
+      const wasmDataUrl = `data:application/wasm;base64,${wasmBytes.toString("base64")}`;
+      await instance.init(wasmDataUrl);
+      swe = instance;
+      return swe;
+    })();
+  }
+
+  return sweInitPromise;
 }
 
 const SIGNS = ["Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem", "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"];
@@ -49,7 +59,7 @@ function normalizeLocationText(value?: string): string {
     .toLowerCase();
 }
 
-function resolveTimezone(coordinates: CoordinatesLike): string {
+export function resolveTimezone(coordinates: CoordinatesLike): string {
   const latitude = Number(coordinates.latitude);
   const longitude = Number(coordinates.longitude);
 

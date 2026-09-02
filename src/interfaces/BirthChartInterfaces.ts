@@ -39,6 +39,8 @@ export interface BirthDate {
   year: number;
   time: string;
   coordinates: SelectedCity;
+  /** Used by Jyotish/Chinese compatibility workflows; ignored by the Western natal engine. */
+  gender?: "male" | "female";
 }
 
 export interface BirthChartProfile {

@@ -34,7 +34,7 @@ export default function ElectionalPage() {
   }
   return <main className="min-h-screen bg-[#0d0b08] text-[#efe5cf] px-6 py-10">
     <div className="mx-auto max-w-6xl">
-      <p className="text-xs tracking-[0.3em] uppercase text-[#b99b68]">MathAstro · Ocidental</p>
+      <p className="text-xs tracking-[0.3em] uppercase text-[#b99b68]">Math, o Mágico · Ocidental</p>
       <h1 className="mt-2 text-4xl font-semibold">Astrologia Eletiva</h1>
       <p className="mt-4 max-w-4xl text-sm leading-7 text-[#cfc3ad]">Módulo isolado. Linha principal: Marcos Monteiro → John Frawley; Gugu somente onde houver material atribuível. O modo atual preserva a eletiva clássica para cálculo e auditoria, mas explicita a preferência recente por eleição guiada por horária e rejeita a ideia de minuto mágico.</p>
       <div className="mt-8 grid gap-6 lg:grid-cols-2">

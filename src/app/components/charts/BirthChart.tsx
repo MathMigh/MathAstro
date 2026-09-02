@@ -131,7 +131,10 @@ export default function BirthChart({ initialMenu = "home" }: { initialMenu?: Men
   }, [chartMenu]);
 
   useEffect(() => {
-    if (birthChart === undefined && returnChart === undefined) {
+    // Páginas especializadas (ex.: /ocidental/sinastria) podem abrir
+    // diretamente no fluxo correto. Só a interface genérica deve
+    // retornar automaticamente ao menu antigo quando não há mapa.
+    if (initialMenu === "home" && birthChart === undefined && returnChart === undefined) {
       setMenu("home");
     }
 

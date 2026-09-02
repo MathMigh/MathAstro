@@ -20,22 +20,22 @@ const bodyFont = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "MathAstro",
-  description: "MathAstro | Math, o Mágico",
+  title: "Math, o Mágico",
+  description: "Math, o Mágico | Plataforma Astrológica Integral",
   icons: {
     icon: "pisces.png",
   },
   openGraph: {
-    title: "MathAstro",
-    description: "MathAstro | Math, o Mágico",
+    title: "Math, o Mágico",
+    description: "Math, o Mágico | Plataforma Astrológica Integral",
     url: "https://mathastro.vercel.app/",
-    siteName: "MathAstro",
+    siteName: "Math, o Mágico",
     images: [
       {
         url: "https://mathastro.vercel.app/preview.png",
         width: 1200,
         height: 630,
-        alt: "Preview do MathAstro",
+        alt: "Preview do Math, o Mágico",
       },
     ],
     locale: "pt_BR",
@@ -43,8 +43,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "MathAstro",
-    description: "MathAstro | Math, o Mágico",
+    title: "Math, o Mágico",
+    description: "Math, o Mágico | Plataforma Astrológica Integral",
     images: ["https://mathastro.vercel.app/preview.png"],
   },
 };
