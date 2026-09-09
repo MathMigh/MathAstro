@@ -73,7 +73,7 @@ export default function VedicTechnicalView({
       <aside className="rounded-[1.75rem] border border-amber-200/14 bg-white/[0.03] p-3">
         <div className="mb-3 px-2">
           <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.2em] text-amber-200/84">
-            Abas internas
+            Camadas técnicas
           </p>
         </div>
         <div className="grid gap-2">
@@ -102,7 +102,7 @@ export default function VedicTechnicalView({
           <div className="flex flex-wrap items-start justify-between gap-3">
             <div>
               <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-amber-200/84">
-                Secao ativa
+                Seção ativa
               </p>
               <h3 className="mt-2 text-2xl font-black text-amber-50">{activeSection.title}</h3>
               <p className="mt-3 max-w-3xl text-sm leading-7 text-amber-100/74">

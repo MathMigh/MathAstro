@@ -37,14 +37,14 @@ export async function POST(request: Request) {
 
     if (!hasCoordinates(body.primary) || !hasCoordinates(body.transit)) {
       return NextResponse.json(
-        { erro: "Selecione cidades validas para o mapa natal e para o transito." },
+        { erro: "Selecione cidades válidas para o mapa natal e para o trânsito." },
         { status: 400 }
       );
     }
 
     if (body.partner && !hasCoordinates(body.partner)) {
       return NextResponse.json(
-        { erro: "A segunda pessoa precisa ter uma cidade valida selecionada." },
+        { erro: "A segunda pessoa precisa ter uma cidade válida selecionada." },
         { status: 400 }
       );
     }
@@ -70,12 +70,12 @@ export async function POST(request: Request) {
 
     return NextResponse.json(suite);
   } catch (error) {
-    console.error("Erro ao montar a suite vedica:", error);
+    console.error("Erro ao montar a suíte védica:", error);
 
     return NextResponse.json(
       {
         erro:
-          "Nao consegui montar a leitura vedica agora. " +
+          "Não consegui montar a leitura védica agora. " +
           ((error as Error)?.message ?? "Erro desconhecido"),
       },
       { status: 500 }

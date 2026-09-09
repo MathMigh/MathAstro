@@ -1,6 +1,5 @@
 "use client";
 
-import Container from "@/app/components/Container";
 import WorldTopbar from "@/app/components/WorldTopbar";
 import GeneratedReportPanel from "@/app/components/shared/GeneratedReportPanel";
 import LocationAutocomplete, {
@@ -25,10 +24,13 @@ import { useEffect, useMemo, useState } from "react";
 import {
   FiClock,
   FiCompass,
+  FiArrowLeft,
+  FiChevronRight,
   FiHeart,
   FiLoader,
   FiMoon,
   FiRefreshCw,
+  FiSliders,
   FiStar,
   FiSun,
   FiTrendingUp,
@@ -93,6 +95,7 @@ const MODULE_META: Record<
     label: string;
     title: string;
     description: string;
+    short: string;
     action: string;
     icon: React.ReactNode;
   }
@@ -101,7 +104,8 @@ const MODULE_META: Record<
     label: "Janma Jyotish",
     title: "Janma Jyotish",
     description:
-      "Modulo natal principal com Rasi, lordships, vargas, bala, yogas, Jaimini e base tecnica maximalista.",
+      "Módulo natal principal com Rasi, lordships, vargas, bala, yogas, Jaimini e base técnica maximalista.",
+    short: "Natal",
     action: "Gerar Janma Jyotish",
     icon: <FiSun />,
   },
@@ -109,7 +113,8 @@ const MODULE_META: Record<
     label: "Prashna Jyotish",
     title: "Prashna Jyotish",
     description:
-      "Carta da pergunta com foco em Lagna do momento, Lua, Panchanga e validacao tecnica.",
+      "Carta da pergunta com foco em Lagna do momento, Lua, Panchanga e validação técnica.",
+    short: "Pergunta",
     action: "Gerar Prashna Jyotish",
     icon: <FiCompass />,
   },
@@ -117,7 +122,8 @@ const MODULE_META: Record<
     label: "Muhurta",
     title: "Muhurta",
     description:
-      "Bloco eletivo com Panchanga, Lagna do evento, contexto lunar e reserva para janelas classicas.",
+      "Bloco eletivo com Panchanga, Lagna do evento, contexto lunar e reserva para janelas clássicas.",
+    short: "Eleição",
     action: "Gerar Muhurta",
     icon: <FiMoon />,
   },
@@ -125,7 +131,8 @@ const MODULE_META: Record<
     label: "Varshaphala",
     title: "Varshaphala",
     description:
-      "Leitura anual vedica/Tajika com dasha em curso, configuracoes claras e espaco para Muntha e Sahams.",
+      "Leitura anual védica/Tajika com dasha em curso, configurações claras e espaço para Muntha e Sahams.",
+    short: "Ano solar",
     action: "Gerar Varshaphala",
     icon: <FiTrendingUp />,
   },
@@ -133,7 +140,8 @@ const MODULE_META: Record<
     label: "Dasha Shastra",
     title: "Dasha Shastra",
     description:
-      "Motor de periodos planetarios com Vimshottari ativo e familias adicionais ja estruturadas.",
+      "Motor de períodos planetários com Vimshottari ativo e famílias adicionais já estruturadas.",
+    short: "Períodos",
     action: "Gerar Dasha Shastra",
     icon: <FiClock />,
   },
@@ -141,7 +149,8 @@ const MODULE_META: Record<
     label: "Gochara",
     title: "Gochara",
     description:
-      "Transitos a partir do Lagna e da Lua, ligados ao periodo ativo, sem previsao fatalista automatica.",
+      "Trânsitos a partir do Lagna e da Lua, ligados ao período ativo, sem previsão fatalista automática.",
+    short: "Trânsitos",
     action: "Gerar Gochara",
     icon: <FiRefreshCw />,
   },
@@ -149,11 +158,27 @@ const MODULE_META: Record<
     label: "Vivaha Jyotish",
     title: "Vivaha Jyotish",
     description:
-      "Compatibilidade tecnica vedica com dois mapas, matching e trilha aberta para Ashta Koota, D9 e Upapada.",
+      "Compatibilidade técnica védica com dois mapas, matching e trilha aberta para Ashta Koota, D9 e Upapada.",
+    short: "Compatibilidade",
     action: "Gerar Vivaha Jyotish",
     icon: <FiHeart />,
   },
 };
+
+const MODULE_ORDER = Object.entries(MODULE_META) as [
+  JyotishModuleKey,
+  (typeof MODULE_META)[JyotishModuleKey],
+][];
+
+const CORE_STACK = [
+  "Rasi e bhavas",
+  "Nakshatras",
+  "Vargas",
+  "Bala",
+  "Dasha",
+  "Gochar",
+  "Relatório",
+];
 
 function Field({
   label,
@@ -352,8 +377,8 @@ export default function VedicApp() {
   const [partner, setPartner] = useState(partnerSeed);
   const [transit, setTransit] = useState(transitSeed);
   const [config, setConfig] = useState<JyotishConfig>(DEFAULT_JYOTISH_CONFIG);
-  const [question, setQuestion] = useState("Qual e a radicalidade desta pergunta?");
-  const [eventType, setEventType] = useState("Assinatura e inicio de projeto");
+  const [question, setQuestion] = useState("Qual é a radicalidade desta pergunta?");
+  const [eventType, setEventType] = useState("Assinatura e início de projeto");
   const [suite, setSuite] = useState<VedicSuite | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -376,12 +401,12 @@ export default function VedicApp() {
     const partnerBirthDate = toBirthDate(partner);
 
     if (!primaryBirthDate || !transitBirthDate) {
-      setError("Selecione cidades validas para o mapa base e para o momento de analise.");
+      setError("Selecione cidades válidas para o mapa base e para o momento de análise.");
       return;
     }
 
     if (activeModule === "vivaha" && !partnerBirthDate) {
-      setError("Vivaha Jyotish precisa de dois mapas com cidade valida.");
+      setError("Vivaha Jyotish precisa de dois mapas com cidade válida.");
       return;
     }
 
@@ -409,15 +434,15 @@ export default function VedicApp() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.erro ?? "Nao consegui montar a suite vedica agora.");
+        setError(data.erro ?? "Não consegui montar a suíte védica agora.");
         setSuite(null);
         return;
       }
 
       setSuite(data as VedicSuite);
     } catch (requestError) {
-      console.error("Falha ao gerar suite vedica:", requestError);
-      setError("A suite vedica nao respondeu agora.");
+      console.error("Falha ao gerar suíte védica:", requestError);
+      setError("A suíte védica não respondeu agora.");
       setSuite(null);
     } finally {
       setLoading(false);
@@ -484,7 +509,7 @@ export default function VedicApp() {
         return (
           <>
             <PersonForm title="Mapa natal" value={primary} onChange={setPrimary} />
-            <PersonForm title="Data de analise" value={transit} onChange={setTransit} />
+            <PersonForm title="Data de análise" value={transit} onChange={setTransit} />
           </>
         );
       case "gochara":
@@ -499,7 +524,7 @@ export default function VedicApp() {
           <>
             <PersonForm title="Pessoa A" value={primary} onChange={setPrimary} />
             <PersonForm title="Pessoa B" value={partner} onChange={setPartner} />
-            <PersonForm title="Data de observacao" value={transit} onChange={setTransit} />
+            <PersonForm title="Data de observação" value={transit} onChange={setTransit} />
           </>
         );
       default:
@@ -508,237 +533,308 @@ export default function VedicApp() {
   }, [activeModule, eventType, partner, primary, question, transit]);
 
   return (
-    <main className="vedic-world app-world min-h-screen px-4 pb-8 text-amber-50 md:px-6">
+    <main className="vedic-world app-world min-h-screen px-4 pb-10 text-amber-50 md:px-6">
       <WorldTopbar world="vedic" />
-      <div className="mx-auto flex w-full max-w-7xl flex-col items-center">
-        <header className="flex flex-col items-center gap-3 py-6 text-center">
-          <div className="grid h-14 w-14 place-items-center rounded-full border border-amber-200/35 bg-indigo-100/10 text-2xl text-amber-100">
+      <div className="mx-auto flex w-full max-w-7xl flex-col">
+        <header className="vedic-hero">
+          <div className="vedic-hero__mark" aria-hidden>
             <FiStar />
           </div>
-          <div>
-            <p className="text-[0.68rem] font-bold uppercase tracking-[0.34em] text-emerald-200/58">
+          <div className="min-w-0">
+            <p className="text-[0.68rem] font-bold uppercase tracking-[0.26em] text-emerald-200/70">
               ज्योतिष · sete frentes clássicas
             </p>
-            <h1 className="section-title mt-2 text-4xl font-semibold text-amber-50 sm:text-5xl">
+            <h1 className="section-title mt-3 text-4xl font-semibold text-amber-50 sm:text-5xl lg:text-6xl">
               Astrologia Védica
             </h1>
-            <p className="section-copy mx-auto mt-4 max-w-3xl text-sm sm:text-base">
-              O modulo vedico agora foi reorganizado nas sete frentes classicas do Jyotish,
-              com configuracao tecnica visivel, abas internas e relatorios sem julgamento final automatico.
+            <p className="section-copy mt-4 max-w-3xl text-sm sm:text-base">
+              Um workspace Jyotish com motor técnico visível: nascimento, pergunta,
+              eleição, retorno anual, dashas, trânsitos e compatibilidade no mesmo mapa
+              de trabalho.
             </p>
+          </div>
+          <div className="vedic-hero__stack" aria-label="Camadas do motor védico">
+            <span className="vedic-engine-pill">
+              {suite ? "Motor conectado" : loading ? "Sincronizando motor" : "Motor pronto"}
+            </span>
+            {CORE_STACK.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
           </div>
         </header>
 
         {menu === "home" ? (
-          <Container className="mx-auto mt-8 w-[94%] sm:w-[36rem]">
-            <div className="w-full px-4 pt-2 text-center sm:px-2">
-              <h2 className="section-title text-[1.8rem] font-semibold text-amber-50 sm:text-[2.1rem]">
-                Selecione o servico vedico que deseja
+          <section className="vedic-home">
+            <div className="vedic-home__intro">
+              <p className="section-eyebrow">Escolha o módulo</p>
+              <h2 className="section-title mt-3 text-3xl font-semibold text-amber-50 sm:text-4xl">
+                Sete entradas, um só motor védico.
               </h2>
-              <p className="section-copy mt-3 text-sm">
-                Janma, Prashna, Muhurta, Varshaphala, Dasha Shastra, Gochara e Vivaha agora vivem como modulos separados.
+              <p className="section-copy mt-4 max-w-3xl text-sm">
+                Cada frente abre com os campos certos e preserva a configuração técnica
+                no relatório: ayanamsha, bhava, KP, dashas, nodos, Kuja Dosha e Ashta Koota.
               </p>
             </div>
 
-            <div className="mt-8 flex w-full flex-col gap-3 p-4 sm:p-0">
-              {(Object.entries(MODULE_META) as [JyotishModuleKey, (typeof MODULE_META)[JyotishModuleKey]][]).map(
-                ([key, meta]) => (
+            <div className="vedic-orbit-stage" aria-hidden>
+              <div className="vedic-orbit-core">
+                <FiStar />
+              </div>
+              <div className="vedic-orbit-ring vedic-orbit-ring--wide" />
+              <div className="vedic-orbit-ring vedic-orbit-ring--mid" />
+              <div className="vedic-orbit-ring vedic-orbit-ring--tight" />
+              <div className="vedic-orbit-band" />
+              {MODULE_ORDER.map(([key, meta]) => (
+                <span key={key} className="vedic-orbit-node">
+                  {meta.icon}
+                </span>
+              ))}
+            </div>
+
+            <div className="vedic-module-grid">
+              {MODULE_ORDER.map(([key, meta], index) => (
+                <article key={key} className="vedic-module-card">
                   <button
-                    key={key}
                     type="button"
-                    className="vedic-module-btn"
+                    className="vedic-module-card__button"
                     onClick={() => {
                       setActiveModule(key);
                       setMenu("service");
                     }}
                   >
-                    <span className="inline-flex items-center justify-center gap-2">
-                      {meta.icon}
-                      {meta.label}
+                    <span className="vedic-module-card__head">
+                      <span className="vedic-module-card__index">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="vedic-module-card__icon">{meta.icon}</span>
+                    </span>
+                    <span className="vedic-module-card__body">
+                      <span className="vedic-module-card__type">{meta.short}</span>
+                      <strong>{meta.label}</strong>
+                      <span>{meta.description}</span>
+                    </span>
+                    <span className="vedic-module-card__foot">
+                      Abrir workspace
+                      <FiChevronRight />
                     </span>
                   </button>
-                )
-              )}
+                </article>
+              ))}
             </div>
-          </Container>
+          </section>
         ) : (
           <>
-            <Container className="mx-auto mt-8 w-[94%] sm:w-[46rem]">
-              <div className="w-full px-4 pt-2 text-center sm:px-2">
-                <h2 className="section-title text-[1.8rem] font-semibold text-amber-50 sm:text-[2.1rem]">
-                  {activeMeta.title}
-                </h2>
-                <p className="section-copy mt-3 text-sm">{activeMeta.description}</p>
+            <nav className="vedic-module-tabs" aria-label="Módulos védicos">
+              {MODULE_ORDER.map(([key, meta]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    data-active={activeModule === key}
+                    className="vedic-module-tab"
+                    onClick={() => {
+                      setActiveModule(key);
+                    }}
+                  >
+                    {meta.icon}
+                    <span>{meta.short}</span>
+                  </button>
+                ))}
+            </nav>
+
+            <section className="vedic-workspace">
+              <aside className="vedic-control-panel">
+                <div>
+                  <p className="section-eyebrow">Workspace ativo</p>
+                  <h2 className="section-title mt-3 text-3xl font-semibold text-amber-50">
+                    {activeMeta.title}
+                  </h2>
+                  <p className="section-copy mt-3 text-sm">{activeMeta.description}</p>
+                </div>
+
+                <div className="mt-6 grid gap-4">
+                  <ConfigSelect
+                    label="Ayanamsha"
+                    value={config.ayanamsha}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        ayanamsha: value as JyotishConfig["ayanamsha"],
+                      }))
+                    }
+                    options={[
+                      { value: "lahiri", label: "Lahiri" },
+                      { value: "krishnamurti", label: "Krishnamurti" },
+                      { value: "raman", label: "Raman" },
+                    ]}
+                  />
+                  <ConfigSelect
+                    label="Sistema de bhava"
+                    value={config.houseSystem}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        houseSystem: value as JyotishConfig["houseSystem"],
+                      }))
+                    }
+                    options={HOUSE_SYSTEM_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
+                  />
+                  <ConfigSelect
+                    label="Dasha secundária"
+                    value={config.secondaryDasha}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        secondaryDasha: value as JyotishConfig["secondaryDasha"],
+                      }))
+                    }
+                    options={SECONDARY_DASHA_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
+                  />
+                  <ConfigSelect
+                    label="Ciclo Kalachakra"
+                    value={config.kalachakraCycleMode}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        kalachakraCycleMode: value as JyotishConfig["kalachakraCycleMode"],
+                      }))
+                    }
+                    options={KALACHAKRA_CYCLE_MODE_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
+                  />
+                  <ConfigSelect
+                    label="Ayanamsha KP"
+                    value={config.kpAyanamsha}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        kpAyanamsha: value as JyotishConfig["kpAyanamsha"],
+                      }))
+                    }
+                    options={[
+                      { value: "lahiri", label: "Lahiri" },
+                      { value: "krishnamurti", label: "Krishnamurti" },
+                      { value: "raman", label: "Raman" },
+                    ]}
+                  />
+                  <ConfigSelect
+                    label="Aspectos Rahu/Ketu"
+                    value={config.nodeAspectMode}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        nodeAspectMode: value as JyotishConfig["nodeAspectMode"],
+                      }))
+                    }
+                    options={NODE_ASPECT_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
+                  />
+                  <ConfigSelect
+                    label="Ashta Koota"
+                    value={config.ashtaKootaMode}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        ashtaKootaMode: value as JyotishConfig["ashtaKootaMode"],
+                      }))
+                    }
+                    options={ASHTA_KOOTA_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
+                  />
+                  <ConfigSelect
+                    label="Kuja Dosha"
+                    value={config.kujaDoshaRules}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        kujaDoshaRules: value as JyotishConfig["kujaDoshaRules"],
+                      }))
+                    }
+                    options={KUJA_DOSHA_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
+                  />
+                  <ConfigSelect
+                    label="Ruling Planets KP"
+                    value={config.kpRulingPlanetMode}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        kpRulingPlanetMode: value as JyotishConfig["kpRulingPlanetMode"],
+                      }))
+                    }
+                    options={KP_RULING_PLANET_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
+                  />
+                  <ConfigSelect
+                    label="Mrityu Bhaga"
+                    value={config.mrityuBhagaRules}
+                    onChange={(value) =>
+                      setConfig((current) => ({
+                        ...current,
+                        mrityuBhagaRules: value as JyotishConfig["mrityuBhagaRules"],
+                      }))
+                    }
+                    options={MRITYU_BHAGA_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
+                  />
+                </div>
+
+                <div className="mt-5 grid gap-2">
+                  <Toggle
+                    label="Incluir Rahu/Ketu"
+                    checked={config.includeNodes}
+                    onChange={(includeNodes) => setConfig((current) => ({ ...current, includeNodes }))}
+                  />
+                  <Toggle
+                    label="Técnicas avançadas"
+                    checked={config.showAdvanced}
+                    onChange={(showAdvanced) => setConfig((current) => ({ ...current, showAdvanced }))}
+                  />
+                  <Toggle
+                    label="Bhava Chalit Sripati"
+                    checked={config.bhavaChalitSystem === "sripati"}
+                    onChange={(checked) =>
+                      setConfig((current) => ({
+                        ...current,
+                        bhavaChalitSystem: checked ? "sripati" : "whole-sign",
+                      }))
+                    }
+                  />
+                  <Toggle
+                    label="Camada KP separada"
+                    checked={config.kpEnabled}
+                    onChange={(kpEnabled) => setConfig((current) => ({ ...current, kpEnabled }))}
+                  />
+                </div>
+              </aside>
+
+              <div className="vedic-input-panel">
+                <div className="flex flex-wrap items-start justify-between gap-4 border-b border-emerald-200/10 pb-5">
+                  <div>
+                    <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-emerald-200/75">
+                      Dados de cálculo
+                    </p>
+                    <h3 className="mt-2 text-2xl font-black text-amber-50">
+                      {activeMeta.label}
+                    </h3>
+                  </div>
+                  <FiSliders className="text-2xl text-emerald-100/60" />
+                </div>
+
+                <div className="mt-6 grid gap-4">{serviceForms}</div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-[1fr_auto]">
+                  <button type="button" onClick={() => void generateSuite()} className="default-btn">
+                    <span className="inline-flex items-center justify-center gap-2">
+                      {loading ? <FiLoader className="animate-spin" /> : <FiRefreshCw />}
+                      {activeMeta.action}
+                    </span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setMenu("home")}
+                    className="vedic-back-btn"
+                  >
+                    <FiArrowLeft />
+                    Módulos
+                  </button>
+                </div>
               </div>
-
-              <div className="mt-6 grid w-full gap-4 p-4 sm:grid-cols-2 sm:p-0">
-                <ConfigSelect
-                  label="Ayanamsha"
-                  value={config.ayanamsha}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      ayanamsha: value as JyotishConfig["ayanamsha"],
-                    }))
-                  }
-                  options={[
-                    { value: "lahiri", label: "Lahiri" },
-                    { value: "krishnamurti", label: "Krishnamurti" },
-                    { value: "raman", label: "Raman" },
-                  ]}
-                />
-                <ConfigSelect
-                  label="Sistema de bhava"
-                  value={config.houseSystem}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      houseSystem: value as JyotishConfig["houseSystem"],
-                    }))
-                  }
-                  options={HOUSE_SYSTEM_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
-                />
-                <ConfigSelect
-                  label="Ayanamsha KP"
-                  value={config.kpAyanamsha}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      kpAyanamsha: value as JyotishConfig["kpAyanamsha"],
-                    }))
-                  }
-                  options={[
-                    { value: "lahiri", label: "Lahiri" },
-                    { value: "krishnamurti", label: "Krishnamurti" },
-                    { value: "raman", label: "Raman" },
-                  ]}
-                />
-                <ConfigSelect
-                  label="Dasha secundaria"
-                  value={config.secondaryDasha}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      secondaryDasha: value as JyotishConfig["secondaryDasha"],
-                    }))
-                  }
-                  options={SECONDARY_DASHA_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
-                />
-                <ConfigSelect
-                  label="Ciclo Kalachakra"
-                  value={config.kalachakraCycleMode}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      kalachakraCycleMode: value as JyotishConfig["kalachakraCycleMode"],
-                    }))
-                  }
-                  options={KALACHAKRA_CYCLE_MODE_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
-                />
-                <ConfigSelect
-                  label="Aspectos de Rahu/Ketu"
-                  value={config.nodeAspectMode}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      nodeAspectMode: value as JyotishConfig["nodeAspectMode"],
-                    }))
-                  }
-                  options={NODE_ASPECT_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
-                />
-                <ConfigSelect
-                  label="Ashta Koota"
-                  value={config.ashtaKootaMode}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      ashtaKootaMode: value as JyotishConfig["ashtaKootaMode"],
-                    }))
-                  }
-                  options={ASHTA_KOOTA_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
-                />
-                <ConfigSelect
-                  label="Kuja Dosha"
-                  value={config.kujaDoshaRules}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      kujaDoshaRules: value as JyotishConfig["kujaDoshaRules"],
-                    }))
-                  }
-                  options={KUJA_DOSHA_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
-                />
-                <ConfigSelect
-                  label="Ruling Planets KP"
-                  value={config.kpRulingPlanetMode}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      kpRulingPlanetMode: value as JyotishConfig["kpRulingPlanetMode"],
-                    }))
-                  }
-                  options={KP_RULING_PLANET_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
-                />
-                <ConfigSelect
-                  label="Mrityu Bhaga"
-                  value={config.mrityuBhagaRules}
-                  onChange={(value) =>
-                    setConfig((current) => ({
-                      ...current,
-                      mrityuBhagaRules: value as JyotishConfig["mrityuBhagaRules"],
-                    }))
-                  }
-                  options={MRITYU_BHAGA_OPTIONS.map((item) => ({ value: item.value, label: item.label }))}
-                />
-              </div>
-
-              <div className="mt-4 grid w-full gap-2 p-4 sm:grid-cols-3 sm:p-0">
-                <Toggle
-                  label="Incluir Rahu/Ketu"
-                  checked={config.includeNodes}
-                  onChange={(includeNodes) => setConfig((current) => ({ ...current, includeNodes }))}
-                />
-                <Toggle
-                  label="Mostrar tecnicas avancadas"
-                  checked={config.showAdvanced}
-                  onChange={(showAdvanced) => setConfig((current) => ({ ...current, showAdvanced }))}
-                />
-                <Toggle
-                  label="Bhava Chalit Sripati"
-                  checked={config.bhavaChalitSystem === "sripati"}
-                  onChange={(checked) =>
-                    setConfig((current) => ({
-                      ...current,
-                      bhavaChalitSystem: checked ? "sripati" : "whole-sign",
-                    }))
-                  }
-                />
-                <Toggle
-                  label="Camada KP separada"
-                  checked={config.kpEnabled}
-                  onChange={(kpEnabled) => setConfig((current) => ({ ...current, kpEnabled }))}
-                />
-              </div>
-
-              <div className="mt-6 flex w-full flex-col gap-4 p-4 sm:p-0">{serviceForms}</div>
-
-              <div className="mt-6 flex w-full flex-col gap-3 p-4 sm:p-0">
-                <button type="button" onClick={() => void generateSuite()} className="default-btn">
-                  <span className="inline-flex items-center justify-center gap-2">
-                    {loading ? <FiLoader className="animate-spin" /> : <FiRefreshCw />}
-                    {activeMeta.action}
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setMenu("home")}
-                  className="default-btn !border-amber-200/16 !bg-white/[0.03] !text-amber-100 !shadow-none hover:!translate-y-0 hover:!brightness-100 hover:!shadow-none"
-                >
-                  Voltar aos servicos
-                </button>
-              </div>
-            </Container>
+            </section>
 
             {error ? (
               <section className="mt-6 w-full rounded-2xl border border-red-200/30 bg-red-500/10 px-4 py-3 text-sm font-medium text-red-100">
@@ -751,7 +847,7 @@ export default function VedicApp() {
                 <section className="mt-8 grid w-full gap-4 xl:grid-cols-[18rem_1fr]">
                   <article className="rounded-[1.75rem] border border-amber-200/14 bg-white/[0.03] p-5">
                     <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-amber-200/84">
-                      Sintese do modulo
+                      Síntese do módulo
                     </p>
                     <h3 className="mt-2 text-2xl font-black text-amber-50">{activeModuleData.label}</h3>
                     <div className="mt-4 space-y-2 text-sm leading-6 text-amber-100/74">
@@ -767,21 +863,21 @@ export default function VedicApp() {
                         Cobertura
                       </p>
                       <div className="mt-4 space-y-2 text-sm text-amber-100/74">
-                        <p>{activeModuleData.coverage.implemented} secoes calculadas</p>
-                        <p>{activeModuleData.coverage.mixed} secoes parciais</p>
-                        <p>{activeModuleData.coverage.placeholder} secoes estruturadas</p>
+                        <p>{activeModuleData.coverage.implemented} seções calculadas</p>
+                        <p>{activeModuleData.coverage.mixed} seções parciais</p>
+                        <p>{activeModuleData.coverage.placeholder} seções estruturadas</p>
                       </div>
                     </article>
                     <article className="rounded-[1.75rem] border border-amber-200/14 bg-white/[0.03] p-5">
                       <p className="text-[0.68rem] font-extrabold uppercase tracking-[0.22em] text-amber-200/84">
-                        Metodo
+                        Método
                       </p>
                       <div className="mt-4 space-y-2 text-sm text-amber-100/74">
                         <p>Ayanamsha {suite?.config.ayanamsha}</p>
                         <p>Bhava {suite?.config.houseSystem}</p>
                         <p>KP {suite?.config.kpEnabled ? `${suite.config.kpAyanamsha} / ${suite.config.kpHouseSystem}` : "desligado"}</p>
                         <p>Dasha {suite?.config.primaryDasha}</p>
-                        <p>Secundaria {suite?.config.secondaryDasha}</p>
+                        <p>Secundária {suite?.config.secondaryDasha}</p>
                         <p>Kalachakra {suite?.config.kalachakraCycleMode}</p>
                         <p>Mrityu {suite?.config.mrityuBhagaRules}</p>
                       </div>
@@ -831,7 +927,7 @@ export default function VedicApp() {
               </>
             ) : (
               <section className="mt-6 w-full rounded-2xl border border-dashed border-amber-200/18 bg-white/[0.03] px-4 py-10 text-center text-sm text-amber-100/70">
-                {loading ? "Gerando a suite vedica..." : "Preencha o formulario e gere a leitura."}
+                {loading ? "Gerando a suíte védica..." : "Preencha o formulário e gere a leitura."}
               </section>
             )}
           </>

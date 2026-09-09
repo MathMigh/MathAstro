@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import VedicApp from "../components/vedic/VedicApp";
 
 export const metadata: Metadata = {
-  title: "Astrologia Vedica | Math, o Mágico",
+  title: "Astrologia Védica | Math, o Mágico",
   description:
-    "Rasi, Navamsa, Vimshottari Dasha, Gochar, Matching e Panchanga em uma suite vedica.",
+    "Rasi, Navamsa, Vimshottari Dasha, Gochar, matching e Panchanga em uma suíte védica.",
 };
 
 export default function VedicPage() {
