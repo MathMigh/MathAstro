@@ -22,6 +22,7 @@ export default function WorldTopbar({ world = "home" }: { world?: World }) {
             key={item.key}
             href={item.href}
             data-active={world === item.key || undefined}
+            aria-current={world === item.key ? "page" : undefined}
             className={`world-nav__link world-nav__link--${item.key}`}
           >
             {item.label}

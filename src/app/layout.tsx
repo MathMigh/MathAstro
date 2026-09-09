@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Geist_Mono, Manrope } from "next/font/google";
 import "./globals.css";
+import "./celestial.css";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",

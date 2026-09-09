@@ -1,6 +1,7 @@
 "use client";
 
 import WorldTopbar from "@/app/components/WorldTopbar";
+import CelestialScene from "@/app/components/CelestialScene";
 import GeneratedReportPanel from "@/app/components/shared/GeneratedReportPanel";
 import LocationAutocomplete, {
   LocationSelection,
@@ -548,14 +549,12 @@ export default function VedicApp() {
               Astrologia Védica
             </h1>
             <p className="section-copy mt-4 max-w-3xl text-sm sm:text-base">
-              Um workspace Jyotish com motor técnico visível: nascimento, pergunta,
-              eleição, retorno anual, dashas, trânsitos e compatibilidade no mesmo mapa
-              de trabalho.
+              O nascimento, os períodos da vida e os encontros. Uma leitura do tempo pela tradição Jyotish.
             </p>
           </div>
           <div className="vedic-hero__stack" aria-label="Camadas do motor védico">
             <span className="vedic-engine-pill">
-              {suite ? "Motor conectado" : loading ? "Sincronizando motor" : "Motor pronto"}
+              {loading ? "Calculando mapa" : suite ? "Mapa calculado" : "Jyotish"}
             </span>
             {CORE_STACK.map((item) => (
               <span key={item}>{item}</span>
@@ -563,12 +562,14 @@ export default function VedicApp() {
           </div>
         </header>
 
+        <CelestialScene tradition="vedic" compact />
+
         {menu === "home" ? (
           <section className="vedic-home">
             <div className="vedic-home__intro">
               <p className="section-eyebrow">Escolha o módulo</p>
               <h2 className="section-title mt-3 text-3xl font-semibold text-amber-50 sm:text-4xl">
-                Sete entradas, um só motor védico.
+                Os caminhos do seu mapa.
               </h2>
               <p className="section-copy mt-4 max-w-3xl text-sm">
                 Cada frente abre com os campos certos e preserva a configuração técnica
@@ -614,7 +615,7 @@ export default function VedicApp() {
                       <span>{meta.description}</span>
                     </span>
                     <span className="vedic-module-card__foot">
-                      Abrir workspace
+                      Abrir consulta
                       <FiChevronRight />
                     </span>
                   </button>

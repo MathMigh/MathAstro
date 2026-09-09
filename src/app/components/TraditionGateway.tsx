@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import WorldTopbar from "./WorldTopbar";
+import CelestialScene from "./CelestialScene";
 
 type TraditionKey = "chinese" | "western" | "vedic";
 
@@ -22,7 +23,7 @@ const traditions = [
     index: "02",
     eyebrow: "astrologia tradicional · forma e juízo",
     title: "Astrologia\nOcidental",
-    copy: "Natal, Horária, Eletiva, Preditiva, Mundana e Sinastria em motores independentes.",
+    copy: "O mapa natal, as perguntas, os encontros e o tempo de cada escolha.",
     cta: "Entrar na tradição ocidental",
   },
   {
@@ -107,13 +108,14 @@ export default function TraditionGateway() {
       <section className="gateway-intro" aria-labelledby="gateway-title">
         <div>
           <p className="gateway-kicker">três tradições · métodos preservados</p>
-          <h1 id="gateway-title">Escolha o céu pelo qual deseja entrar.</h1>
+          <h1 id="gateway-title">Três tradições.<br />Seu encontro com o céu.</h1>
         </div>
         <p>
-          Uma plataforma, três arquiteturas astrológicas. Cada tradição mantém sua própria linguagem,
-          técnica e hierarquia interna.
+          Do movimento dos astros às perguntas da vida. Explore cada tradição em sua própria linguagem.
         </p>
       </section>
+
+      <CelestialScene />
 
       <section
         className="gateway-grid"
@@ -133,9 +135,6 @@ export default function TraditionGateway() {
             <div className="gateway-panel__wash" aria-hidden />
             <div className="gateway-panel__grid" aria-hidden />
             <div className="gateway-panel__number" aria-hidden>{tradition.index}</div>
-            <div className="gateway-panel__diagram-wrap">
-              <Diagram type={tradition.key} />
-            </div>
 
             <div className="gateway-panel__topline">
               <span>{tradition.eyebrow}</span>
@@ -162,7 +161,7 @@ export default function TraditionGateway() {
       <section className="gateway-secondary" aria-label="Disciplinas da astrologia ocidental">
         <div className="gateway-secondary__intro">
           <span>Dentro do Ocidente</span>
-          <p>Seis disciplinas independentes, uma mesma linguagem visual.</p>
+          <p>Uma pergunta, um nascimento, um momento para escolher.</p>
         </div>
         <div className="gateway-secondary__links">
           {westernModules.map(([href, name, meta], index) => (
@@ -177,7 +176,7 @@ export default function TraditionGateway() {
 
       <footer className="gateway-foot">
         <span>MathAstro · Math, o Mágico</span>
-        <span>cálculo técnico · leitura tradicional · interface integral</span>
+        <span>O céu, em suas muitas leituras.</span>
       </footer>
     </main>
   );

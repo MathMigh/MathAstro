@@ -2,6 +2,7 @@
 
 import GeneratedReportPanel from "@/app/components/shared/GeneratedReportPanel";
 import WorldTopbar from "@/app/components/WorldTopbar";
+import CelestialScene from "@/app/components/CelestialScene";
 import LocationAutocomplete, {
   LocationSelection,
 } from "@/app/components/shared/LocationAutocomplete";
@@ -2558,17 +2559,9 @@ export default function ChineseAstrologyApp() {
   return (
     <main className="chinese-world app-world relative min-h-screen overflow-hidden px-4 pb-8 text-amber-50 md:px-8">
       <WorldTopbar world="chinese" />
-      <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute left-1/2 top-[-7rem] h-[28rem] w-[28rem] -translate-x-1/2 rounded-full bg-red-400/10 blur-3xl" />
-        <div className="absolute right-[6%] top-[12%] h-56 w-56 rounded-full border border-amber-200/8" />
-        <div className="absolute left-[5%] top-[36%] h-36 w-36 rounded-full border border-red-200/8" />
-      </div>
 
       <div className="relative z-10 mx-auto flex w-full max-w-[1800px] flex-col">
-        <header className="flex flex-col items-center gap-3 py-6 text-center">
-          <div className="grid h-14 w-14 place-items-center rounded-full border border-amber-200/35 bg-red-100/10 text-2xl text-amber-100">
-            <FiMoon />
-          </div>
+        <header className="tradition-heading">
           <div>
             <p className="text-[0.68rem] font-bold uppercase tracking-[0.34em] text-red-200/58">
               中國術數 · sete sistemas clássicos
@@ -2577,32 +2570,30 @@ export default function ChineseAstrologyApp() {
               Astrologia Chinesa
             </h1>
             <p className="section-copy mx-auto mt-4 max-w-3xl text-sm sm:text-base">
-              A trilha chinesa foi reorganizada em módulos claros, com BaZi abrigando a própria
-              sinastria e cada técnica recebendo seu atlas técnico completo.
+              Os ciclos da natureza, o tempo e suas transformações. Dos Quatro Pilares à escolha de um dia favorável.
             </p>
           </div>
         </header>
 
+        <CelestialScene tradition="chinese" compact />
+
         {screen === "home" ? (
-          <section className="panel-surface mt-8 overflow-hidden rounded-[2rem] p-5 sm:p-7">
+          <section className="chinese-catalog mt-8">
             <div className="flex flex-col gap-5 border-b border-amber-200/12 pb-6 text-center sm:text-left">
               <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
                 <div>
                   <p className="section-eyebrow">Sete Módulos Clássicos</p>
                   <h2 className="section-title mt-2 text-3xl font-semibold text-amber-50 sm:text-4xl">
-                    Selecione o serviço chinês que deseja
+                    Qual caminho deseja explorar?
                   </h2>
                 </div>
                 <div className="flex flex-wrap justify-center gap-2 sm:justify-end">
-                  <MetricBadge label="BaZi com sinastria interna" />
-                  <MetricBadge label="Sem mexer na védica ou ocidental" />
+                  <MetricBadge label="四柱 · Quatro Pilares" />
                 </div>
               </div>
 
               <p className="section-copy mx-auto max-w-3xl text-sm sm:mx-0 sm:text-base">
-                No lugar da tela antiga, a área chinesa agora abre Bazi, Zi Wei Dou Shu, Qi Men Dun
-                Jia, Da Liu Ren, Tai Yi Shen Shu, Wen Wang Gua e Tong Shu, cada um com o conjunto
-                completo de tópicos que você pediu.
+                Nascimento, relações, estratégia ou calendário. Cada arte oferece um ponto de partida.
               </p>
             </div>
 

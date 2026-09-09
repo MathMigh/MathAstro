@@ -1,0 +1,159 @@
+/* Shared materials, with a distinct pigment for each tradition. */
+body { background: #101113; color: #f3f4f5; }
+:is(.gateway-shell,.western-portal,.western-world,.chinese-world,.vedic-world) {
+  --tradition-accent: #6bb7ff;
+  --tradition-rgb: 107,183,255;
+  --gold: var(--tradition-accent);
+  --gold-soft: var(--tradition-accent);
+  --panel-border: rgba(var(--tradition-rgb),.28);
+  background: #101113;
+  color: #f3f4f5;
+  letter-spacing: 0;
+}
+.chinese-world { --tradition-accent: #ff8271; --tradition-rgb: 255,130,113; }
+.vedic-world { --tradition-accent: #67dfae; --tradition-rgb: 103,223,174; }
+:is(.gateway-shell,.western-portal,.western-world,.chinese-world,.vedic-world) :is(h1,h2,h3,p,a,button,span,label) { letter-spacing: 0; }
+.world-topbar { min-height: 92px; border-color: #383a3d; gap: 20px; }
+.world-brand__name { font-size: 30px; }
+.world-brand__meta { color: #a8adb5; font-size: 10px; }
+.world-nav__link { color: #c4c8ce; font-size: 12px; padding: 10px 14px; border-radius: 4px; }
+.world-nav__link--chinese::before { background: #ff8271; }
+.world-nav__link--western::before { background: #6bb7ff; }
+.world-nav__link--vedic::before { background: #67dfae; }
+.world-nav__link[data-active="true"] { background: #292c30; }
+.gateway-noise,.gateway-panel__wash,.gateway-panel__grid,.western-portal__atmosphere,.app-world::before { display: none; }
+.gateway-intro { margin-top: 32px; margin-bottom: 0; align-items: center; }
+.gateway-intro h1 { font-size: 52px; line-height: 1.04; }
+.gateway-kicker { font-size: 11px; color: #a8adb5; }
+.gateway-intro > p { font-size: 15px; color: #c4c8ce; max-width: 400px; }
+.celestial-scene { position: relative; width: min(1540px,calc(100% - 48px)); height: 275px; margin: 0 auto; }
+.celestial-scene__canvas { width: 100%; height: 100%; touch-action: pan-y; }
+.celestial-scene__canvas canvas { display: block; width: 100%; height: 100%; }
+.celestial-scene__pause { position: absolute; bottom: 8px; right: 0; display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #565a61; border-radius: 50%; color: #d4d9df; background: #191b1f; }
+.celestial-scene__pause:hover { background: #303339; }
+.celestial-scene__fallback { position: absolute; inset: 0; display: grid; place-items: center; color: var(--tradition-accent,#6bb7ff); font-size: 130px; }
+.celestial-scene--compact { height: 210px; }
+.gateway-grid,.gateway-grid[data-active] { height: auto; min-height: 0; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 24px; transition: none; }
+.gateway-panel { display: flex; flex-direction: column; padding: 22px 24px; min-height: 264px; border: 0; border-top: 3px solid var(--accent); border-radius: 0 0 6px 6px; box-shadow: 0 8px 16px #0002, inset 0 1px #ffffff12; transition: transform .25s,box-shadow .25s; }
+.gateway-panel--chinese { --accent: #ff8271; --accent-rgb: 255,130,113; background: #2b1b1c; }
+.gateway-panel--western { --accent: #6bb7ff; --accent-rgb: 107,183,255; background: #192531; }
+.gateway-panel--vedic { --accent: #67dfae; --accent-rgb: 103,223,174; background: #172a24; }
+.gateway-panel:hover { transform: translateY(-4px); box-shadow: 0 14px 24px #0004,inset 0 1px #ffffff22; }
+.gateway-panel__number { top: 22px; right: 20px; color: var(--accent); font-size: 11px; }
+.gateway-panel__topline { position: static; padding-right: 25px; white-space: normal; color: var(--accent); font-size: 10px; min-height: 28px; align-items: start; }
+.gateway-panel__topline i { display: none; }
+.gateway-panel__content { position: static; max-width: none; padding: 16px 0 20px; flex: 1; }
+.gateway-panel__content h2 { font-size: 43px; line-height: .95; }
+.gateway-panel__content h2 span:last-child { color: var(--accent); text-shadow: none; }
+.gateway-panel__content p { font-size: 13px; line-height: 1.65; color: #d1d5d9; margin-top: 14px; }
+.gateway-panel:hover .gateway-panel__content { transform: none; }
+.gateway-panel__cta { position: static; min-height: 36px; padding-top: 12px; font-size: 10px; color: #edf0f3; gap: 12px; }
+.gateway-secondary { margin-top: 30px; border-color: #383a3d; }
+.gateway-secondary__intro span { color: #83c4ff; font-size: 12px; }
+.gateway-secondary__intro p,.gateway-secondary__links span { color: #afb6bf; font-size: 11px; }
+.gateway-secondary__links strong { font-size: 21px; }
+.gateway-secondary__links em { color: #83c4ff; font-size: 10px; }
+.gateway-foot { color: #a2aab4; font-size: 10px; margin-top: 28px; }
+.western-portal__hero { grid-template-columns: minmax(0,1fr) minmax(250px,.55fr); margin-top: 40px; gap: 28px; }
+.western-portal__hero h1 { font-size: 58px; color: #a5d1ff; line-height: 1; }
+.western-portal__eyebrow { color: #6bb7ff; font-size: 11px; }
+.western-portal__hero > p { color: #c4c8ce; font-size: 14px; }
+.western-module-grid { gap: 18px; border: 0; margin-top: 12px; }
+.western-module-card { background: #1b2027; border: 1px solid #384a5e; border-top: 3px solid #579fe8; border-radius: 6px; padding: 24px; min-height: 245px; box-shadow: 0 8px 20px #0003,inset 0 1px #ffffff09; }
+.western-module-card::after,.chinese-home-card::after { display: none; }
+.western-module-card:hover { background: #232d39; box-shadow: 0 14px 25px #0004; }
+.western-module-card__body { padding-top: 20px; }
+.western-module-card__number,.western-module-card__body p { color: #91c6ff; font-size: 11px; }
+.western-module-card__glyph { color: #b1d8ff; background: #233d58; border-color: #5288be; }
+.western-module-card__body h2 { font-size: 36px; }
+.western-module-card__body > span { color: #c8cfd8; font-size: 13px; }
+.western-module-card__foot { color: #d7e6f6; font-size: 10px; border-color: #3b5068; }
+.western-portal__footer { color: #b2bcc8; font-size: 11px; }
+.tradition-heading { padding: 36px 0 4px; text-align: left; }
+.tradition-heading h1 { font-size: 58px; color: var(--tradition-accent); line-height: 1.05; }
+.tradition-heading .section-copy { margin-left: 0; color: #ccd0d6; max-width: 660px; }
+.tradition-heading p:first-child { color: var(--tradition-accent); }
+.chinese-world > .relative { max-width: 1400px; }
+.chinese-world .celestial-scene { width: 100%; }
+.chinese-catalog { margin-top: 8px; }
+.chinese-catalog > div:first-child { text-align: left; }
+.chinese-home-card { border-radius: 6px!important; border: 1px solid #754139!important; border-top: 3px solid #f17665!important; background: #2b2021!important; box-shadow: 0 8px 20px #0003,inset 0 1px #ffffff09!important; }
+.chinese-home-card:hover { background: #372526!important; border-color: #ff8271!important; }
+:is(.chinese-world,.vedic-world,.western-world) .section-eyebrow { color: var(--tradition-accent); font-size: 11px; }
+:is(.chinese-world,.vedic-world,.western-world) .section-copy { color: #cbd0d6; }
+:is(.chinese-world,.vedic-world,.western-world) :is(.panel-surface,.western-glass) { background: #1b1d21; border: 1px solid #44484e; border-radius: 6px; box-shadow: 0 5px 15px #0002,inset 0 1px #ffffff0b; }
+:is(.chinese-world,.vedic-world,.western-world) .panel-surface .panel-surface { background: transparent; box-shadow: none; border: 0; border-top: 1px solid #44484e; border-radius: 0; }
+:is(.chinese-world,.vedic-world,.western-world) :is(input:not([type=checkbox]):not([type=radio]):not([type=range]),select,textarea) { border-radius: 5px; background: #111316; border-color: #555b64; color: #f3f4f6; }
+:is(.chinese-world,.vedic-world,.western-world) :is(input,select,textarea):focus { border-color: var(--tradition-accent); box-shadow: 0 0 0 3px rgba(var(--tradition-rgb),.16); }
+:is(.chinese-world,.vedic-world,.western-world) .default-btn { background: var(--tradition-accent); border: 1px solid var(--tradition-accent); border-radius: 5px; color: #101518; font-size: 12px; box-shadow: 0 4px 0 rgba(var(--tradition-rgb),.3); }
+:is(.chinese-world,.vedic-world,.western-world) .default-btn:disabled { cursor: wait; opacity: .6; }
+:is(.chinese-world,.vedic-world,.western-world) [class*="text-amber-100"] { color: #dee4eb; }
+:is(.chinese-world,.vedic-world,.western-world) [class*="text-red-200"] { color: #ffb6a9; }
+:is(.chinese-world,.vedic-world,.western-world) [class*="rounded-["], :is(.chinese-world,.vedic-world,.western-world) .rounded-2xl { border-radius: 6px; }
+.western-navigation { background: #101113; padding-bottom: 14px; border-bottom: 1px solid #3b4653; }
+.western-navigation .world-topbar { width: min(1400px,calc(100% - 40px)); }
+.western-navigation__links { display: flex; flex-wrap: wrap; gap: 8px 22px; width: min(1400px,calc(100% - 40px)); margin: 14px auto 0; }
+.western-navigation__links a { font-size: 13px; color: #bac9da; padding: 5px 0; border-bottom: 2px solid transparent; }
+.western-navigation__links a[aria-current=page] { color: #8cc7ff; border-color: #6bb7ff; }
+.western-navigation .celestial-scene { height: 110px; position: absolute; right: 25px; top: 158px; width: 140px; pointer-events: none; }
+.western-navigation .celestial-scene__pause { pointer-events: auto; width: 28px; height: 28px; }
+.western-workspaces main { background: #101113; color: #e8edf2; }
+.western-workspaces main h1 { font-family: var(--font-display),serif; color: #a5d1ff; font-size: 42px; line-height: 1.1; padding-right: 130px; }
+.western-workspaces main section { min-width: 0; }
+.western-workspaces main :is(textarea,pre) { max-width: 100%; }
+.western-workspaces main [class*="text-[#"] { color: #cbd4df; }
+.western-workspaces main [class*="bg-[#"] { background-color: #1b2027; }
+.western-workspaces main [class*="border-[#"] { border-color: #4a596c; }
+.western-workspaces main [class*="rounded"] { border-radius: 6px; }
+.vedic-hero { border-bottom: 1px solid #3f5f51; }
+.vedic-hero h1 { color: #8be6bd; }
+.vedic-module-card { border-top: 3px solid #67dfae; border-radius: 6px; }
+.vedic-orbit-stage { display: none; }
+.vedic-home { grid-template-columns: 1fr; }
+.vedic-hero__stack { display: none; }
+:is(a,button,input,select,textarea,summary):focus-visible { outline: 2px solid var(--tradition-accent,#a9cfff); outline-offset: 4px; }
+@media (min-width: 1700px) { .celestial-scene { height: 330px; } .celestial-scene--compact { height: 210px; } }
+@media (max-width: 1000px) {
+  .gateway-intro h1 { font-size: 42px; }
+  .gateway-panel { padding: 20px; }
+  .gateway-panel__content h2 { font-size: 35px; }
+  .gateway-grid { gap: 12px; }
+  .celestial-scene { height: 235px; }
+  .celestial-scene--compact { height: 190px; }
+}
+@media (max-width: 700px) {
+  .world-topbar { flex-wrap: wrap; padding: 18px 0 12px; gap: 16px; }
+  .world-brand__name { font-size: 28px; }
+  .world-nav { display: flex; width: 100%; justify-content: space-between; }
+  .world-nav__link { padding: 8px; font-size: 11px; }
+  .gateway-intro { grid-template-columns: 1fr; gap: 14px; margin-top: 26px; }
+  .gateway-intro h1 { font-size: 38px; }
+  .gateway-intro > p { font-size: 13px; }
+  .celestial-scene { height: 145px; width: calc(100% - 24px); }
+  .celestial-scene--compact { height: 175px; }
+  .celestial-scene__pause { width: 30px; height: 30px; right: 0; bottom: 0; }
+  .gateway-grid,.gateway-grid[data-active] { grid-template-columns: 1fr; height: auto; gap: 16px; }
+  .gateway-panel { min-height: 0; padding: 18px 22px; }
+  .gateway-panel__content { padding: 12px 0 16px; }
+  .gateway-panel__content h2 { font-size: 35px; flex-direction: row; flex-wrap: wrap; gap: 0 8px; line-height: 1; }
+  .gateway-panel__content p { margin-top: 12px; }
+  .gateway-panel__topline { min-height: 0; }
+  .gateway-secondary { grid-template-columns: 1fr; }
+  .gateway-secondary__intro p { max-width: none; }
+  .gateway-secondary__links { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+  .gateway-foot { flex-direction: column; gap: 8px; }
+  .western-portal__hero { grid-template-columns: 1fr; gap: 16px; margin-top: 28px; }
+  .western-portal__hero > p { grid-column: auto; }
+  .western-portal__hero h1,.tradition-heading h1 { font-size: 42px; }
+  .western-module-grid { grid-template-columns: 1fr; }
+  .western-module-card { min-height: 220px; }
+  .chinese-world { padding-left: 16px; padding-right: 16px; }
+  .chinese-world .world-topbar { width: 100%; }
+  .tradition-heading { padding-top: 26px; }
+  .western-workspaces main h1 { font-size: 34px; padding-right: 0; }
+  .western-navigation .celestial-scene { position: relative; top: auto; right: auto; height: 100px; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,*::before,*::after { scroll-behavior: auto!important; animation: none!important; transition: none!important; }
+  .gateway-panel:hover,.western-module-card:hover,.chinese-home-card:hover { transform: none; }
+}

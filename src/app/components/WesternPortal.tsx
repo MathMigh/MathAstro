@@ -1,5 +1,6 @@
 import Link from "next/link";
 import WorldTopbar from "./WorldTopbar";
+import CelestialScene from "./CelestialScene";
 
 const modules = [
   {
@@ -32,7 +33,7 @@ const modules = [
     number: "04",
     name: "Preditiva",
     kicker: "Tempo",
-    copy: "Revoluções, progressões, profecções, períodos e gatilhos organizados num motor auditável.",
+    copy: "Revoluções, progressões e profecções para acompanhar os períodos da vida.",
   },
   {
     href: "/ocidental/mundana",
@@ -59,20 +60,16 @@ export default function WesternPortal() {
       <WorldTopbar world="western" />
 
       <header className="western-portal__hero">
-        <div className="western-portal__seal" aria-hidden>
-          <span />
-          <i />
-          <b />
-        </div>
         <div>
           <p className="western-portal__eyebrow">tradição ocidental · seis disciplinas</p>
           <h1>Astrologia Ocidental</h1>
         </div>
         <p>
-          O mesmo céu calculado alimenta áreas diferentes; o método de cada arte permanece isolado.
-          Escolha o tipo de julgamento, não apenas um “tipo de mapa”.
+          Um nascimento, uma pergunta, um encontro. Seis maneiras de ler o céu e encontrar o tempo de cada coisa.
         </p>
       </header>
+
+      <CelestialScene tradition="western" compact />
 
       <section className="western-module-grid" aria-label="Módulos da astrologia ocidental">
         {modules.map((module) => (
